@@ -39,8 +39,8 @@ public class EPApiServiceImpl implements EPApiService {
 
     @Override
     public List<DemandCalendar> findByDateBetween(Date sDate, Date eDate) {
-        LocalDate localSDate = sDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localEDate = eDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localSDate = sDate.atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localEDate = eDate.atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         sDate = Date.from(localSDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         eDate = Date.from(localEDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         return demandCalendarRepository.findByDateBetween(sDate, eDate);

@@ -253,7 +253,7 @@ public class NodeProfitServiceImpl implements INodeProfitService {
 		String energyKey = "energy";
 
 //		ElectricityHolidayRepository electricityHolidayRepository = SpringBeanHelper.getBeanOrThrow(ElectricityHolidayRepository.class);
-//		LocalDate today = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//		LocalDate today = date.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 //		LocalDate startOfDate = today.withDayOfMonth(1);
 //		LocalDate lastDayOfMonth = today.with(TemporalAdjusters.lastDayOfMonth());
 //		List<ElectricityHolidayInfo> ravineInfos = electricityHolidayRepository.findAllByPk_NodeIdAndPk_DateBetween(nodeId, startOfDate,
@@ -338,7 +338,7 @@ public class NodeProfitServiceImpl implements INodeProfitService {
 		String backwardEnergyKey = "backward_active_energy";
 
 //		ElectricityHolidayRepository electricityHolidayRepository = SpringBeanHelper.getBeanOrThrow(ElectricityHolidayRepository.class);
-//		LocalDate today = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//		LocalDate today = date.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 //		LocalDate startOfDate = today.withDayOfMonth(1);
 //		LocalDate lastDayOfMonth = today.with(TemporalAdjusters.lastDayOfMonth());
 //		List<ElectricityHolidayInfo> ravineInfos = electricityHolidayRepository.findAllByPk_NodeIdAndPk_DateBetween(nodeId, startOfDate,

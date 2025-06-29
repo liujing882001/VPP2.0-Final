@@ -1,4 +1,6 @@
 package com.example.vvpservice.point.service.mappingStrategy.impl;
+import java.util.Collections;
+import java.util.Objects;
 import java.util.Date;
 import java.time.Instant;
 
@@ -675,9 +677,9 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 			case "cfg_storage_energy_strategy_power_96": {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date startDate = TimeUtil.strFormat(dateFormat.format(st));
-				startDate.setTime(startDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli() - 1);
+				startDate.setTime(startDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() - 1);
 				Date endDate = TimeUtil.strFormat(dateFormat.format(et));
-				endDate.setTime(endDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli() + 86400000 - 1);
+				endDate.setTime(endDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() + 86400000 - 1);
 
 				Specification<CfgStorageEnergyStrategyPower96> spec = (root, query, criteriaBuilder) -> {
 					// 构建查询条件
@@ -692,11 +694,11 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 					Map<Date, String> resultMap = new HashMap<>();
 					res.forEach(o -> {
 						// 将字符串转换为 LocalDate 和 LocalTime
-						LocalDate localDate = o.getEffectiveDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						LocalDate localDate = o.getEffectiveDate().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 						LocalTime time = Objects.equals(o.getETime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getETime());
 
 						// 合并成一个 LocalDateTime 对象
-						LocalDateTime dateTime = LocalDateTime.now().atZone(ZoneId.systemDefault()).atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+						LocalDateTime dateTime = Date.from(LocalDateTime.of(localDate, time).atZone(ZoneId.systemDefault()).toInstant());
 						if (time.equals(LocalTime.MIDNIGHT)) {
 							dateTime = dateTime.plusDays(1);
 						}
@@ -709,15 +711,15 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 					Map<Date, Double> resultMap = new HashMap<>();
 					res.forEach(o -> {
 						// 将字符串转换为 LocalDate 和 LocalTime
-						LocalDate localDate = o.getEffectiveDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						LocalDate localDate = o.getEffectiveDate().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 						LocalTime time = Objects.equals(o.getETime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getETime());
 
 						// 合并成一个 LocalDateTime 对象
-						LocalDateTime dateTime = LocalDateTime.now().atZone(ZoneId.systemDefault()).atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+						LocalDateTime dateTime = Date.from(LocalDateTime.of(localDate, time).atZone(ZoneId.systemDefault()).toInstant());
 						if (time.equals(LocalTime.MIDNIGHT)) {
 							dateTime = dateTime.plusDays(1);
 						}
-						resultMap.put(Date.from(dateTime.toInstant().atZone(ZoneId.systemDefault()).atZone(ZoneId.systemDefault()).toInstant()),
+						resultMap.put(Date.from(dateTime.toInstant().atZone(ZoneId.systemDefault()).toInstant()),
 								o.getStrategy().equals("充电") ? -o.getPower() : (o.getStrategy().equals("待机") ? 0 : o.getPower()));
 					});
 					return resultMap;

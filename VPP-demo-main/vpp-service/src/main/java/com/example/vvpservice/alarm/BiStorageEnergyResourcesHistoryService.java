@@ -52,7 +52,7 @@ public class BiStorageEnergyResourcesHistoryService {
      */
     public static String calculateDuration(Date alarmStartTime, Date alarmEndTime) {
         if (alarmStartTime != null && alarmEndTime == null) {
-            Instant startInstant  = alarmStartTime.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant();
+            Instant startInstant  = alarmStartTime.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant();
             Instant nowInstant  = Instant.now();
             Duration duration = Duration.between(startInstant, nowInstant);
             long minutes = duration.toMinutes();
@@ -71,8 +71,8 @@ public class BiStorageEnergyResourcesHistoryService {
                 }
             }
         } else if (alarmStartTime != null && alarmEndTime != null) {
-            Instant startInstant = alarmStartTime.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant();
-            Instant endInstant = alarmEndTime.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant();
+            Instant startInstant = alarmStartTime.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant();
+            Instant endInstant = alarmEndTime.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant();
             Duration duration = Duration.between(startInstant, endInstant);
             long minutes = duration.toMinutes();
             if (minutes < 60) {
