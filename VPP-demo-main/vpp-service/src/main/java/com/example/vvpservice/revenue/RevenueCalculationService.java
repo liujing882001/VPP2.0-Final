@@ -269,12 +269,12 @@ public class RevenueCalculationService {
 
 	public String getBasicParameter(Double vol, Double power) {
 		List<RevenueParameterDto> basicParams = getDefaultBasicParameter();
-		Map<String, RevenueParameterDto> map = basicParams.stream().collect(Collectors.toMap(RevenueParameterDto::getParam_name,
+		Map<String, RevenueParameterDto> map = basicParams.stream().collect(Collectors.toMap(RevenueParameterDto::getParamName,
 				Function.identity()));
-		map.get(EstimationParameterEnum.designPower.getChineseName()).setDefault_value(String.valueOf(power));
-		map.get(EstimationParameterEnum.designCapacity.getChineseName()).setDefault_value(String.valueOf(vol));
+		map.get(EstimationParameterEnum.designPower.getChineseName()).setDefaultValue(String.valueOf(power));
+		map.get(EstimationParameterEnum.designCapacity.getChineseName()).setDefaultValue(String.valueOf(vol));
 		JSONObject object = new JSONObject();
-		basicParams.forEach(o -> object.put(o.getParam_id(), o.getDefault_value()));
+		basicParams.forEach(o -> object.put(o.getParamId(), o.getDefaultValue()));
 		return JSON.toJSONString(object);
 	}
 
@@ -283,7 +283,7 @@ public class RevenueCalculationService {
 		List<RevenueParameterDto> basicParams = getDefaultBasicParameter();
 		basicParams.forEach(o -> {
 			if (o.getUnit().equals("%")) {
-				params.add(o.getParam_id());
+				params.add(o.getParamId());
 			}
 		});
 		return params;
@@ -367,7 +367,7 @@ public class RevenueCalculationService {
 		List<ReportData> excelData = new ArrayList<>();
 		JSONObject parameter = JSON.parseObject(info.getFundamentalParameter());
 		AtomicLong index = new AtomicLong(1);
-		Map<String, RevenueParameterDto> parameterDtoMap = defaultParams.stream().collect(Collectors.toMap(RevenueParameterDto::getParam_id,
+		Map<String, RevenueParameterDto> parameterDtoMap = defaultParams.stream().collect(Collectors.toMap(RevenueParameterDto::getParamId,
 				Function.identity()));
 
 		List<String> basicParam = Arrays.asList(EstimationParameterEnum.designPower.toString(), EstimationParameterEnum.backupHours.toString(),
@@ -472,12 +472,12 @@ public class RevenueCalculationService {
 	private ReportData buildExcelData(RevenueParameterDto o, String value, Long index, String typeName, String remark) {
 		ReportData data = new ReportData();
 		data.setId(index);
-		if (o.getParam_id().equals("designPower")) {
+		if (o.getParamId().equals("designPower")) {
 			data.setName("储能功率");
-		} else if (o.getParam_id().equals("designCapacity")) {
+		} else if (o.getParamId().equals("designCapacity")) {
 			data.setName("储能容量");
 		} else {
-			data.setName(o.getParam_name());
+			data.setName(o.getParamName());
 		}
 		data.setType(typeName);
 		data.setValue(Double.valueOf(value));

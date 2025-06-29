@@ -15,6 +15,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+        <!-- Spring Web 支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!-- 自定义验证注解 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -66,6 +71,19 @@
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
+        <!-- Jackson 核心依赖 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
@@ -77,10 +95,11 @@
             <artifactId>cron-utils</artifactId>
             <version>9.1.1</version>
         </dependency>
+        <!-- 使用现代化的 Guava 库替换过时的 google-collections -->
         <dependency>
-            <groupId>com.google.code.google-collections</groupId>
-            <artifactId>google-collect</artifactId>
-            <version>snapshot-20080530</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
@@ -138,12 +157,6 @@
             <groupId>com.github.jrachiele</groupId>
             <artifactId>java-timeseries</artifactId>
             <version>0.2.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

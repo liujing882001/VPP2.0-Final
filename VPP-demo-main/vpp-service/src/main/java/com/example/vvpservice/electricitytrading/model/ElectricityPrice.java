@@ -12,6 +12,12 @@ import java.util.List;
 public class ElectricityPrice {
 	@ApiModelProperty("字段名称")
 	private String name;
+	@ApiModelProperty("开始时间")
+	private String sTime;
+	
+	@ApiModelProperty("结束时间")
+	private String eTime;
+
 
 	@ApiModelProperty("数据")
 	private List<Price> priceList;

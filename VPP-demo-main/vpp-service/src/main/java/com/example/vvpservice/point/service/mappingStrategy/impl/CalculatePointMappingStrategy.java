@@ -231,7 +231,7 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 		result.entrySet()
 				.stream()
 				.filter(entry -> entry.getValue() instanceof Number || entry.getValue() == null)
-				.forEach(entry -> dResult.put(entry.getKey().getTime(), (Double) entry.getValue()));
+				.forEach(entry -> dResult.put(entry.getKey().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli(), (Double) entry.getValue()));
 
 		for (Map.Entry<Long, Double> dR : dResult.entrySet()) {
 			Long k = dR.getKey();
@@ -381,7 +381,7 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 		result.entrySet()
 				.stream()
 				.filter(entry -> entry.getValue() instanceof Number || entry.getValue() == null)
-				.forEach(entry -> dResult.put(entry.getKey().getTime(), (Double) entry.getValue()));
+				.forEach(entry -> dResult.put(entry.getKey().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli(), (Double) entry.getValue()));
 
 		for (Map.Entry<Long, Double> dR : dResult.entrySet()) {
 			Long k = dR.getKey();
@@ -672,9 +672,9 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 			case "cfg_storage_energy_strategy_power_96": {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date startDate = TimeUtil.strFormat(dateFormat.format(st));
-				startDate.setTime(startDate.getTime() - 1);
+				startDate.setTime(startDate.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli() - 1);
 				Date endDate = TimeUtil.strFormat(dateFormat.format(et));
-				endDate.setTime(endDate.getTime() + 86400000 - 1);
+				endDate.setTime(endDate.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli() + 86400000 - 1);
 
 				Specification<CfgStorageEnergyStrategyPower96> spec = (root, query, criteriaBuilder) -> {
 					// 构建查询条件
@@ -690,7 +690,7 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 					res.forEach(o -> {
 						// 将字符串转换为 LocalDate 和 LocalTime
 						LocalDate localDate = o.getEffectiveDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-						LocalTime time = Objects.equals(o.getETime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getETime());
+						LocalTime time = Objects.equals(o.getEtime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getEtime());
 
 						// 合并成一个 LocalDateTime 对象
 						LocalDateTime dateTime = LocalDateTime.of(localDate, time);
@@ -707,7 +707,7 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 					res.forEach(o -> {
 						// 将字符串转换为 LocalDate 和 LocalTime
 						LocalDate localDate = o.getEffectiveDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-						LocalTime time = Objects.equals(o.getETime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getETime());
+						LocalTime time = Objects.equals(o.getEtime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getEtime());
 
 						// 合并成一个 LocalDateTime 对象
 						LocalDateTime dateTime = LocalDateTime.of(localDate, time);

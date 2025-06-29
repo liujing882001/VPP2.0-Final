@@ -315,8 +315,8 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
             out:
             for(DemandModel demandModel:demandModelList){
                 if(baseLine.getNodeId().equals(demandModel.getNodeId())){
-                    if(baseLine.getCountDataTime().getTime()>=demandModel.getStartDate().getTime()
-                            && baseLine.getCountDataTime().getTime()<=demandModel.getEndDate().getTime()){
+                    if(baseLine.getCountDataTime().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()>=demandModel.getStartDate().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()
+                            && baseLine.getCountDataTime().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()<=demandModel.getEndDate().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()){
                         flag=false;
                         break out;
                     }
