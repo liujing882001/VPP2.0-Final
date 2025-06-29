@@ -1,4 +1,5 @@
 package com.example.vvpservice.energymodel.model;
+import java.util.Date;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

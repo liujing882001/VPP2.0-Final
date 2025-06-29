@@ -1,4 +1,13 @@
 package com.example.vvpservice.nodeep.service;
+import java.util.Date;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.LocalDate;
+
+import java.time.LocalDateTime;
+import java.util.stream.Stream;
+import java.time.ZoneId;
+import java.sql.Timestamp;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -43,7 +52,7 @@ public class NodeEpService {
 				UpdateNodeEPBatchRequest.price::getPrice));
 		if (now.getYear() <= request.getDate().getYear() && now.getMonthValue() <= request.getDate().getMonthValue()) {
 			ElectricityPriceRepository electricityPriceRepository = SpringBeanHelper.getBeanOrThrow(ElectricityPriceRepository.class);
-			LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 			List<ElectricityPrice> prices = electricityPriceRepository.findAllByNodeIdAndEffectiveDate(nodeId, effectiveDate);
 			if (prices.isEmpty()) {
 				generateEPrice(request, priceMap, now, prices);
@@ -52,9 +61,9 @@ public class NodeEpService {
 			electricityPriceRepository.saveAll(prices);
 			Map<LocalTime, String> propertyMap = new HashMap<>();
 			for (ElectricityPrice price : prices) {
-				propertyMap.put(LocalTime.parse(price.getStime()), price.getProperty());
+				propertyMap.put(LocalTime.parse(price.getSTime()), price.getProperty());
 			}
-			Date etProfit = Date.from(LocalDateTime.of(request.getDate().atEndOfMonth(), LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
+			Date etProfit = Date.from(request.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
 			reCalculateProfit(nodeId, etProfit, priceMap, propertyMap);
 			overWriteOldTablePrice(request.getNodeId(), Date.from(request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
 					priceMap);
@@ -96,7 +105,7 @@ public class NodeEpService {
 //				nodeProfit.setPriceRavine(priceMap.getOrDefault("深谷",BigDecimal.ZERO).doubleValue());
 			});
 			nodeProfitRepository.saveAll(profits);
-			Date etProfit = Date.from(LocalDateTime.of(request.getDate().atEndOfMonth(), LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
+			Date etProfit = Date.from(request.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
 			Map<LocalTime, String> propertyMap = new HashMap<>();
 
 			if (stationNode.getStationType().equals("储能电站")) {
@@ -106,7 +115,7 @@ public class NodeEpService {
 						cfgStorageEnergyStrategyRepository.findAllByNodeIdAndEffectiveDate(stationNode.getStationId(), st);
 				for (CfgStorageEnergyStrategy price : cfgStorageEnergyStrategies) {
 					priceMap.put(price.getProperty(), price.getPriceHour());
-					LocalTime sTime = LocalTime.parse(price.getStime());
+					LocalTime sTime = LocalTime.parse(price.getSTime());
 					for (int i = 0; i < 4; i++) {
 						propertyMap.put(sTime, price.getProperty());
 						sTime = sTime.plusMinutes(15);
@@ -120,7 +129,7 @@ public class NodeEpService {
 						cfgPhotovoltaicTouPriceRepository.findAllByNodeIdAndEffectiveDate(stationNode.getStationId(), st);
 				for (CfgPhotovoltaicTouPrice price : cfgPhotovoltaicTouPrices) {
 					priceMap.put(price.getProperty(), price.getPriceHour());
-					LocalTime sTime = LocalTime.parse(price.getStime());
+					LocalTime sTime = LocalTime.parse(price.getSTime());
 					for (int i = 0; i < 4; i++) {
 						propertyMap.put(sTime, price.getProperty());
 						sTime = sTime.plusMinutes(15);
@@ -175,8 +184,8 @@ public class NodeEpService {
 				espriceList.forEach(o -> {
 					DateTimeFormatter InputFormatter = DateTimeFormatter.ofPattern("HH:mm");
 					DateTimeFormatter OutputFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-					LocalTime sTime = LocalTime.parse(o.getStime(), InputFormatter);
-					LocalTime eTime = LocalTime.parse(o.getEtime(), InputFormatter);
+					LocalTime sTime = LocalTime.parse(o.getSTime(), InputFormatter);
+					LocalTime eTime = LocalTime.parse(o.getETime(), InputFormatter);
 					String st = sTime.format(OutputFormatter);
 					String et = eTime.format(OutputFormatter);
 					if (Duration.between(sTime, eTime).toHours() == 1 || Duration.between(sTime, eTime).toMinutes() == 59) {
@@ -207,8 +216,8 @@ public class NodeEpService {
 				pvpriceList.forEach(o -> {
 					DateTimeFormatter InputFormatter = DateTimeFormatter.ofPattern("HH:mm");
 					DateTimeFormatter OutputFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-					LocalTime sTime = LocalTime.parse(o.getStime(), InputFormatter);
-					LocalTime eTime = LocalTime.parse(o.getEtime(), InputFormatter);
+					LocalTime sTime = LocalTime.parse(o.getSTime(), InputFormatter);
+					LocalTime eTime = LocalTime.parse(o.getETime(), InputFormatter);
 					String st = sTime.format(OutputFormatter);
 					String et = eTime.format(OutputFormatter);
 					if (Duration.between(sTime, eTime).toHours() == 1 || Duration.between(sTime, eTime).toMinutes() == 59) {
@@ -272,9 +281,9 @@ public class NodeEpService {
 				ElectricityPrice price = new ElectricityPrice();
 				price.setNodeId(request.getNodeId());
 				price.setEffectiveDate(request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime());
-				price.setStime(formatter.format(ts));
-				price.setEtime(formatter.format(ts.plus(interval)));
-				price.setTimeFrame(price.getStime() + "-" + price.getEtime());
+				price.setSTime(formatter.format(ts));
+				price.setETime(formatter.format(ts.plus(interval)));
+				price.setTimeFrame(price.getSTime() + "-" + price.getETime());
 				switch (o.getCategory()) {
 					case "sharp":
 						price.setProperty("尖");
@@ -344,9 +353,9 @@ public class NodeEpService {
 				ElectricityPrice price = new ElectricityPrice();
 				price.setNodeId(request.getNodeId());
 				price.setEffectiveDate(request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime());
-				price.setStime(formatter.format(ts));
-				price.setEtime(formatter.format(ts.plus(interval)));
-				price.setTimeFrame(price.getStime() + "-" + price.getEtime());
+				price.setSTime(formatter.format(ts));
+				price.setETime(formatter.format(ts.plus(interval)));
+				price.setTimeFrame(price.getSTime() + "-" + price.getETime());
 				price.setProperty(o.getTimeCategory());
 				price.setPrice(o.getPrice());
 				price.setCreatedTime(LocalDate.now().atStartOfDay());
@@ -478,7 +487,7 @@ public class NodeEpService {
 
 		if (now.getYear() <= request.getDate().getYear() && now.getMonthValue() <= request.getDate().getMonthValue()) {
 			ElectricityPriceRepository electricityPriceRepository = SpringBeanHelper.getBeanOrThrow(ElectricityPriceRepository.class);
-			LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 			List<ElectricityPrice> prices = electricityPriceRepository.findAllByNodeIdAndEffectiveDate(nodeId, effectiveDate);
 			if (prices.isEmpty()) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -587,7 +596,7 @@ public class NodeEpService {
 			result.setPriceShoulder(BigDecimal.valueOf(profits.get(0).getPriceStable()));
 			result.setPriceOffPeak(BigDecimal.valueOf(profits.get(0).getPriceLow()));
 //			result.setPriceRavine(BigDecimal.valueOf(profits.get(0).getPriceRavine()));
-			LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 			List<ElectricityPrice> prices = electricityPriceRepository.findAllByNodeIdAndEffectiveDate(nodeId, effectiveDate);
 			if (prices.isEmpty()) {
 				// 查询旧电价表
@@ -635,7 +644,7 @@ public class NodeEpService {
 		Date et = Date.from(request.getDate().atEndOfMonth().minusMonths(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
 
 		LocalDate now = LocalDate.now();
-		LocalDateTime nowMonth = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+		LocalDateTime nowMonth = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
 		Map<String, BigDecimal> priceMap = new HashMap<>();
 		Map<LocalTime, String> propertyMap = new HashMap<>();
@@ -644,9 +653,9 @@ public class NodeEpService {
 
 		// 项目电价，维护自己的表
 		if (stationNode.getStationCategory().contains("项目")) {
-			LocalDateTime effectiveDate = request.getDate().atDay(1).minusMonths(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+			LocalDateTime effectiveDate = request.getDate().atDay(1).minusMonths(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 			List<ElectricityPrice> prices =
-					electricityPriceRepository.findAllByNodeIdAndEffectiveDate(request.getNodeId(), effectiveDate).stream().sorted(Comparator.comparing(ElectricityPrice::getStime)).collect(Collectors.toList());
+					electricityPriceRepository.findAllByNodeIdAndEffectiveDate(request.getNodeId(), effectiveDate).stream().sorted(Comparator.comparing(ElectricityPrice::getSTime)).collect(Collectors.toList());
 			if (prices.isEmpty()) {
 				throw new RuntimeException("无上月电价信息！");
 			}
@@ -680,7 +689,7 @@ public class NodeEpService {
 
 		for (ElectricityPrice price : res) {
 			priceMap.put(price.getProperty(), price.getPrice());
-			propertyMap.put(LocalTime.parse(price.getStime()), price.getProperty());
+			propertyMap.put(LocalTime.parse(price.getSTime()), price.getProperty());
 		}
 
 		if (priceMap.isEmpty() || propertyMap.isEmpty()) {
@@ -688,7 +697,7 @@ public class NodeEpService {
 		}
 
 		// 更新收益、写入旧表
-		Date etProfit = Date.from(LocalDateTime.of(request.getDate().atEndOfMonth(), LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
+			Date etProfit = Date.from(request.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
 		Date effectiveDate = Date.from(request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
 		// 异步调用
 		CompletableFuture.runAsync(() -> reCalculateProfit(request.getNodeId(), etProfit, priceMap, propertyMap));
@@ -703,7 +712,7 @@ public class NodeEpService {
 			throw new RuntimeException("只有系统节点能复制项目电价");
 		}
 
-		LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime();
+		LocalDateTime effectiveDate = request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
 		List<Object[]> nodeParent = stationNodeRepository.findNodeHierarchy(request.getNodeId());
 		List<String> parentList = nodeParent.stream().filter(o -> o[1] != null).map(o -> String.valueOf(o[1])).collect(Collectors.toList());
@@ -728,8 +737,8 @@ public class NodeEpService {
 			Map<String, String> timeMap = new HashMap<>();
 			prices.forEach(o -> timeMap.put(o.getTimeFrame(), o.getProperty()));
 			Map<LocalTime, String> propertyMap = new HashMap<>();
-			prices.forEach(o -> propertyMap.put(LocalTime.parse(o.getStime()), o.getProperty()));
-			Date etProfit = Date.from(LocalDateTime.of(request.getDate().atEndOfMonth(), LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
+			prices.forEach(o -> propertyMap.put(LocalTime.parse(o.getSTime()), o.getProperty()));
+			Date etProfit = Date.from(request.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant());
 			Date st = Date.from(request.getDate().atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
 
 			// 异步调用

@@ -10,6 +10,11 @@ import java.util.List;
 
 @Data
 public class ElectricityPrice {
+    public String getSTime() { return sTime; }
+    public void setSTime(String sTime) { this.sTime = sTime; }
+    public String getETime() { return eTime; }
+    public void setETime(String eTime) { this.eTime = eTime; }
+
 	@ApiModelProperty("字段名称")
 	private String name;
 	@ApiModelProperty("开始时间")

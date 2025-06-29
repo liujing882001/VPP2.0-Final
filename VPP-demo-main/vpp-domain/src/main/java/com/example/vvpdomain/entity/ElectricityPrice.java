@@ -21,6 +21,14 @@ import java.time.LocalTime;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "electricity_price")
 public class ElectricityPrice implements Serializable {
+    private String sTime;
+    private String eTime;
+    
+    public String getSTime() { return sTime; }
+    public void setSTime(String sTime) { this.sTime = sTime; }
+    public String getETime() { return eTime; }
+    public void setETime(String eTime) { this.eTime = eTime; }
+
     
     private static final long serialVersionUID = 1L;
 

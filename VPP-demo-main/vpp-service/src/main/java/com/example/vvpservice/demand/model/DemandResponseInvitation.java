@@ -1,4 +1,5 @@
 package com.example.vvpservice.demand.model;
+import java.util.Date;
 
 
 import lombok.Getter;

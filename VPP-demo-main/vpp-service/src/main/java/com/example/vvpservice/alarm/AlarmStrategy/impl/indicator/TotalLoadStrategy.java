@@ -1,4 +1,5 @@
 package com.example.vvpservice.alarm.AlarmStrategy.impl.indicator;
+import java.util.Date;
 
 import com.example.vvpcommom.SpringBeanHelper;
 import com.example.vvpdomain.IotTsKvRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
 @Component("total_load")

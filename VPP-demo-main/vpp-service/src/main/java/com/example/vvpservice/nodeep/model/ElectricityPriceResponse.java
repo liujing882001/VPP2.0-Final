@@ -1,4 +1,5 @@
 package com.example.vvpservice.nodeep.model;
+import java.util.Date;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
@@ -9,6 +10,13 @@ import java.util.List;
 
 @Data
 public class ElectricityPriceResponse {
+    public String getSTime() { return sTime; }
+    public void setSTime(String sTime) { this.sTime = sTime; }
+    public String getETime() { return eTime; }
+    public void setETime(String eTime) { this.eTime = eTime; }
+
+    private String sTime;
+    private String eTime;
 
 	private String city;
 

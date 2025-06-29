@@ -1,4 +1,6 @@
 package com.example.vvpservice.energymodel;
+import java.util.Date;
+import java.time.Instant;
 
 import com.example.vvpcommom.RedisUtils;
 import com.example.vvpcommom.SpringBeanHelper;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -79,8 +82,8 @@ public class ProfitChartServiceImpl implements ProfitChartService {
 							.stream().map(power -> power.getStrategy().equals("充电") ? - power.getPower() : power.getPower()).map(o -> o / 4).collect(Collectors.toList());
 
 			BiStorageEnergyLogRepository biStorageEnergyLogRepository = SpringBeanHelper.getBeanOrThrow(BiStorageEnergyLogRepository.class);
-			LocalDateTime todayStart = LocalDate.now().atStartOfDay();
-			Date date = Date.from(todayStart.atZone(ZoneId.systemDefault()).toInstant());
+			LocalDateTime todayStart = LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+			Date date = Date.from(todayStart.atZone(ZoneId.systemDefault()).atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).atZone(ZoneId.systemDefault()).toInstant());
 			BiStorageEnergyLog biStorageEnergyLog = biStorageEnergyLogRepository.findBiStorageEnergyLogByNodeIdAndTs(nodeId,date);
 
 			double startSoc = baseInfo.getMinDischargePercent();

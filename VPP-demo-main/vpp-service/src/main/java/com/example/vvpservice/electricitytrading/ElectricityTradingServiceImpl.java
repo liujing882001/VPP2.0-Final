@@ -1,4 +1,5 @@
 package com.example.vvpservice.electricitytrading;
+import java.util.Date;
 
 import com.example.vvpcommom.TimeUtil;
 import com.example.vvpdomain.CfgStorageEnergyStrategyRepository;
@@ -126,7 +127,7 @@ public class ElectricityTradingServiceImpl implements ElectricityTradingService 
 	}
 
 	private static void getRandomPrices(CfgStorageEnergyStrategy o, Calendar st_c, AtomicReference<Double> v, Random random, List<ElectricityPrice.Price> prices) {
-		List<String> time = Arrays.asList(o.getStime().split(":"));
+		List<String> time = Arrays.asList(o.getSTime().split(":"));
 		Calendar c = Calendar.getInstance();
 		c.setTime(st_c.getTime());
 		c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.get(0)));
@@ -142,7 +143,7 @@ public class ElectricityTradingServiceImpl implements ElectricityTradingService 
 	}
 
 	private static void getPrices(CfgStorageEnergyStrategy o, Calendar st_c, List<ElectricityPrice.Price> prices) {
-		List<String> time = Arrays.asList(o.getStime().split(":"));
+		List<String> time = Arrays.asList(o.getSTime().split(":"));
 		Calendar c = Calendar.getInstance();
 		c.setTime(st_c.getTime());
 		c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.get(0)));

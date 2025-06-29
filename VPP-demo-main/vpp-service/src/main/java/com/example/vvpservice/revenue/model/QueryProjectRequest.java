@@ -1,4 +1,5 @@
 package com.example.vvpservice.revenue.model;
+import java.util.Date;
 
 import lombok.Data;
 

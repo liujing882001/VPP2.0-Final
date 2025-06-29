@@ -1,4 +1,6 @@
 package com.example.vvpservice.externalapi.service;
+import java.util.Date;
+import java.time.Instant;
 
 import com.alibaba.fastjson.JSON;
 import com.example.vvpdomain.DemandCalendarRepository;
@@ -37,8 +39,8 @@ public class EPApiServiceImpl implements EPApiService {
 
     @Override
     public List<DemandCalendar> findByDateBetween(Date sDate, Date eDate) {
-        LocalDate localSDate = sDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate localEDate = eDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localSDate = sDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localEDate = eDate.toInstant().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         sDate = Date.from(localSDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         eDate = Date.from(localEDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         return demandCalendarRepository.findByDateBetween(sDate, eDate);
@@ -86,8 +88,8 @@ public class EPApiServiceImpl implements EPApiService {
     }
     @Override
     public VppDataDTO getVppDataList(String dataId, LocalDateTime sLTime, LocalDateTime eLTime) {
-        Date sDate = Date.from(sLTime.atZone(ZoneId.systemDefault()).toInstant());
-        Date eDate = Date.from(eLTime.atZone(ZoneId.systemDefault()).toInstant());
+        Date sDate = Date.from(sLTime.atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant());
+        Date eDate = Date.from(eLTime.atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant());
         VppDataDTO vppDataDTO = new VppDataDTO();
         Map<Date, ?> res = pointService.getDValuesByTime(dataId, sDate, eDate);
         List<VppData> vppDataList = new ArrayList<>();
@@ -106,8 +108,8 @@ public class EPApiServiceImpl implements EPApiService {
     }
     @Override
     public VppDataDTO getVppDataListNow(String dataId, LocalDateTime sLTime, LocalDateTime eLTime) {
-        Date sDate = Date.from(sLTime.atZone(ZoneId.systemDefault()).toInstant());
-        Date eDate = Date.from(eLTime.atZone(ZoneId.systemDefault()).toInstant());
+        Date sDate = Date.from(sLTime.atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant());
+        Date eDate = Date.from(eLTime.atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toInstant());
         VppDataDTO vppDataDTO = new VppDataDTO();
         Map<Date, ?> res = pointService.getValuesByTime(dataId, sDate, eDate);
         List<VppData> vppDataList = new ArrayList<>();
