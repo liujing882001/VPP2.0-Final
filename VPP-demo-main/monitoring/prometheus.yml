@@ -1,0 +1,27 @@
+# VPP 2.0 Prometheus 监控配置
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Prometheus 自监控
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # VPP 应用监控
+  - job_name: 'vpp-app'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['vpp-app:8080']
+    scrape_interval: 30s
+
+  # PostgreSQL 监控
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+
+  # Redis 监控
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']

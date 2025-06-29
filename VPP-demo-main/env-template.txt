@@ -1,0 +1,90 @@
+# VPP 2.0 虚拟电厂管理系统 - 环境变量配置模板
+# ==================================================
+# 使用方法：复制此文件为 .env 并根据实际环境修改配置值
+
+# 应用配置
+APP_NAME=VirtualPowerPlant
+APP_VERSION=2.0-FINAL
+SPRING_PROFILES_ACTIVE=docker
+
+# 数据库配置
+DB_HOST=postgres
+DB_PORT=5432
+DB_NAME=vpp_db
+DB_USER=vpp_user
+DB_PASSWORD=vpp_password
+DB_URL=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+
+# Redis 配置
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_DATABASE=0
+
+# Kafka 配置
+KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+KAFKA_CONSUMER_GROUP_ID=vpp-consumer-group
+KAFKA_AUTO_OFFSET_RESET=earliest
+
+# 阿里云配置 (请替换为实际值)
+ALIYUN_ACCESS_KEY_ID=your_aliyun_access_key_id
+ALIYUN_ACCESS_KEY_SECRET=your_aliyun_access_key_secret
+ALIYUN_SMS_REGION=cn-hangzhou
+ALIYUN_SMS_SIGN_NAME=虚拟电厂
+
+# JVM 配置
+JAVA_OPTS=-server -Xms1g -Xmx2g -XX:+UseG1GC -XX:MaxRAMPercentage=80.0 -XX:+HeapDumpOnOutOfMemoryError
+
+# 日志配置
+LOG_LEVEL=INFO
+LOG_PATH=/app/logs
+
+# 监控配置
+MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=health,info,metrics,prometheus
+MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+
+# 安全配置
+JWT_SECRET=vpp_jwt_secret_key_change_in_production
+SESSION_TIMEOUT=3600
+CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:80
+
+# 文件上传配置
+UPLOAD_MAX_FILE_SIZE=100MB
+UPLOAD_MAX_REQUEST_SIZE=100MB
+
+# 线程池配置
+THREAD_POOL_CORE_SIZE=10
+THREAD_POOL_MAX_SIZE=50
+THREAD_POOL_QUEUE_CAPACITY=1000
+
+# 缓存配置
+CACHE_TTL=3600
+CACHE_MAX_ENTRIES=10000
+
+# 外部服务配置
+FOREST_SERVICE_IP=http://localhost:8080
+EXTERNAL_API_TIMEOUT=30000
+
+# SSL/TLS 配置
+SSL_ENABLED=false
+SSL_KEY_STORE_PATH=/app/ssl/keystore.p12
+SSL_KEY_STORE_PASSWORD=changeit
+SSL_KEY_STORE_TYPE=PKCS12
+
+# Docker 配置
+DOCKER_REGISTRY=your-registry.com
+DOCKER_IMAGE_TAG=latest
+
+# 健康检查配置
+HEALTH_CHECK_INTERVAL=30s
+HEALTH_CHECK_TIMEOUT=10s
+HEALTH_CHECK_RETRIES=3
+
+# 邮件配置 (可选)
+MAIL_HOST=smtp.163.com
+MAIL_PORT=587
+MAIL_USERNAME=your_email@163.com
+MAIL_PASSWORD=your_email_password
+
+# 时区配置
+TZ=Asia/Shanghai 

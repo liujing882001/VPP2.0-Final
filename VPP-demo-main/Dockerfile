@@ -1,32 +1,73 @@
-# 使用OpenJDK 8作为基础镜像
-FROM openjdk:8-jdk-alpine
+# 使用分阶段构建优化镜像大小
+# 第一阶段：构建阶段
+FROM openjdk:11-jdk-slim as builder
+
+# 设置工作目录
+WORKDIR /build
+
+# 安装必要的工具
+RUN apt-get update && apt-get install -y \
+    maven \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# 复制Maven配置文件
+COPY pom.xml .
+COPY start/pom.xml start/
+COPY vpp-common/pom.xml vpp-common/
+COPY vpp-domain/pom.xml vpp-domain/
+COPY vpp-gateway/pom.xml vpp-gateway/
+COPY vpp-kafka/pom.xml vpp-kafka/
+COPY vpp-scheduling/pom.xml vpp-scheduling/
+COPY vpp-service/pom.xml vpp-service/
+COPY vpp-web/pom.xml vpp-web/
+
+# 预下载依赖（Docker层缓存优化）
+RUN mvn dependency:go-offline -B
+
+# 复制源代码
+COPY . .
+
+# 构建项目
+RUN mvn clean package -DskipTests -B
+
+# 第二阶段：运行阶段
+FROM openjdk:11-jre-slim
+
+# 创建非root用户
+RUN groupadd -r vpp && useradd -r -g vpp vpp
+
+# 安装必要的运行时依赖
+RUN apt-get update && apt-get install -y \
+    curl \
+    tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # 设置工作目录
 WORKDIR /app
 
-# 安装Maven
-RUN apk add --no-cache maven
+# 从构建阶段复制JAR文件
+COPY --from=builder /build/start/target/*.jar app.jar
 
-# 复制项目文件
-COPY . /app
+# 创建日志目录
+RUN mkdir -p /app/logs && chown -R vpp:vpp /app
 
-# 构建项目
-RUN mvn clean package -DskipTests
+# 切换到非root用户
+USER vpp
 
-# 查找生成的jar文件
-RUN find /app -name "*.jar" -type f | head -1 > /tmp/jarfile
+# JVM优化参数
+ENV JAVA_OPTS="-server -Xms1g -Xmx2g -XX:+UseG1GC -XX:+UseContainerSupport -XX:MaxRAMPercentage=80.0"
 
-# 复制jar文件到根目录
-RUN cp $(cat /tmp/jarfile) /app/app.jar
-
-# 设置时区
-ENV TZ=Asia/Shanghai
-RUN apk add --no-cache tzdata && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo $TZ > /etc/timezone
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
+    CMD curl -f http://localhost:8080/actuator/health || exit 1
 
 # 暴露端口
 EXPOSE 8080
 
 # 启动应用
-CMD ["java", "-jar", "/app/app.jar", "--spring.profiles.active=prod"] 
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar --spring.profiles.active=${SPRING_PROFILES_ACTIVE:-prod}"] 
