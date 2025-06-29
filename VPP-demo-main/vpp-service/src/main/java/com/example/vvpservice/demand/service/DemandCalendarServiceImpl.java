@@ -208,12 +208,12 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
                         ai.setId(id);
                         ai.setNodeId(nodeId);
                         ai.setSystemId(baseLineLoadModelList.get(0).getSystemId());
-                        ai.setCountDataTime(countDateTime);
-                        ai.setBaselineLoadValueOther(avgRealValue+"");
+                        ai.setCountDataTime(countDateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+                        ai.setBaselineLoadValueOther(String.valueOf(avgRealValue));
 
                         saveMap.put(time,ai);
                     }
-                    //判断哪个时刻没有数据，补齐“-”
+                    //判断哪个时刻没有数据，补齐"-"
                     for(String time:everyTimeList){
                         if(!saveMap.containsKey(time)){
                             AiLoadForecasting ai = new AiLoadForecasting();
@@ -223,7 +223,7 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
                             ai.setId(id);
                             ai.setNodeId(nodeId);
                             ai.setSystemId(loadList.get(0).getSystemId());
-                            ai.setCountDataTime(countDateTime);
+                            ai.setCountDataTime(countDateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
                             ai.setBaselineLoadValueOther("-");
 
                             saveMap.put(time,ai);
@@ -320,8 +320,8 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
             out:
             for(DemandModel demandModel:demandModelList){
                 if(baseLine.getNodeId().equals(demandModel.getNodeId())){
-                    if(baseLine.getCountDataTime().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()>=demandModel.getStartDate().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()
-                            && baseLine.getCountDataTime().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()<=demandModel.getEndDate().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()){
+                    if(baseLine.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()>=demandModel.getStartDate().toInstant().toEpochMilli()
+                            && baseLine.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()<=demandModel.getEndDate().toInstant().toEpochMilli()){
                         flag=false;
                         break out;
                     }
@@ -353,10 +353,11 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
             model.setId(e.getId());
             model.setNodeId(e.getNodeId());
             model.setSystemId(e.getSystemId());
-            model.setRealValue(e.getRealValue());
-            model.setCountDataTime(e.getCountDataTime());
-            model.setCountData(sdf.format(e.getCountDataTime()));
-            model.setCountTime(sdfTime.format(e.getCountDataTime()));
+            model.setRealValue(e.getRealValue() != null ? e.getRealValue().toString() : "0");
+            Date countDataTime = Date.from(e.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant());
+            model.setCountDataTime(countDataTime);
+            model.setCountData(sdf.format(countDataTime));
+            model.setCountTime(sdfTime.format(countDataTime));
             model.setCountYear(Integer.parseInt(model.getCountData().split("-")[0]));
             lineList.add(model);
 
@@ -372,7 +373,7 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
      * 新接电用户无同期历史负荷的，采用非工作日基线计算方法。
      *
      * 以上一年节假日XXX——》指的是上一年度的同节日，例如端午节总共几天，所算出来的均值，作为基线值
-     * “新接电用户无同期历史负荷的，采用非工作日基线计算方法。”若是端午节，找上年端午节，没有找到历史数据，就按照非工作日基线计算实现。
+     * "新接电用户无同期历史负荷的，采用非工作日基线计算方法。"若是端午节，找上年端午节，没有找到历史数据，就按照非工作日基线计算实现。
      */
     private void festival(Integer dateType,Date date){
         try{
@@ -467,12 +468,12 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
                         ai.setId(id);
                         ai.setNodeId(nodeId);
                         ai.setSystemId(baseLineLoadModelList.get(0).getSystemId());
-                        ai.setCountDataTime(countDateTime);
-                        ai.setBaselineLoadValueOther(avgRealValue+"");
+                        ai.setCountDataTime(countDateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+                        ai.setBaselineLoadValueOther(String.valueOf(avgRealValue));
 
                         saveMap.put(time,ai);
                     }
-                    //判断哪个时刻没有数据，补齐“-”
+                    //判断哪个时刻没有数据，补齐"-"
                     for(String time:everyTimeList){
                         AiLoadForecasting ai = saveMap.get(time);
                         if(ai==null){
@@ -484,7 +485,7 @@ public class DemandCalendarServiceImpl implements DemandCalendarService {
                             ai.setId(id);
                             ai.setNodeId(nodeId);
                             ai.setSystemId(loadList.get(0).getSystemId());
-                            ai.setCountDataTime(countDateTime);
+                            ai.setCountDataTime(countDateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
                             ai.setBaselineLoadValueOther("-");
 
                             saveMap.put(time,ai);

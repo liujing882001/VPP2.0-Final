@@ -67,11 +67,11 @@
             <version>${springdoc.version}</version>
         </dependency>
 
-        <!-- Rate Limiting -->
+        <!-- Rate Limiting - 使用较早版本以确保可用性 -->
         <dependency>
             <groupId>com.github.vladimir-bukhtoyarov</groupId>
             <artifactId>bucket4j-core</artifactId>
-            <version>${bucket4j.version}</version>
+            <version>7.6.0</version>
         </dependency>
 
         <!-- Caching -->
@@ -91,6 +91,14 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Project Modules -->
@@ -125,7 +133,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
-            <version>${spring-boot.version}</version>
+            <version>5.7.11</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

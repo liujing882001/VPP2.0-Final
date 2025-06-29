@@ -1,7 +1,6 @@
 package com.example.vvpweb.tradepower;
-
-
 import com.alibaba.fastjson.JSON;
+import java.time.Instant;
 import com.alibaba.fastjson.JSONObject;
 import com.example.gateway.model.MeteorologicalData;
 import com.example.gateway.model.MeteorologicalDataVo;
@@ -27,7 +26,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -44,7 +42,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
+import java.util.Date;
 @EnableAsync
 @Slf4j
 @RestController
@@ -52,7 +50,6 @@ import java.util.stream.IntStream;
 @CrossOrigin
 @Api(value = "电力交易", tags = {"电力交易"})
 public class TradePowerController {
-
     @Resource
     private IotTsKvMeteringDevice96Repository iotTsKvMeteringDevice96Repository;
     @Resource
@@ -65,15 +62,11 @@ public class TradePowerController {
     TradePowerRepository ttradePowerRepository;
     @Resource
     TradePowerLogRepository ttradePowerLogRepository;
-
     private static TradeEnvironmentConfig config;
-
     @Autowired
     public TradePowerController(TradeEnvironmentConfig environmentConfig) {
         config = environmentConfig;
     }
-
-
     @Scheduled(cron = "0 0 8 * * *")
     @Async
     @ApiOperation("交易任务生成")
@@ -81,11 +74,9 @@ public class TradePowerController {
     @RequestMapping(value = "taskGeneration", method = {RequestMethod.POST})
     public ResponseResult taskGeneration() throws JsonProcessingException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
         LocalDateTime now = LocalDateTime.now(ZoneOffset.ofHours(8));
         LocalDateTime sLocalTime = now.withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(2);
         LocalDateTime eLocalTime = sLocalTime.plusDays(2);
-
         Date sTime = Date.from(sLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
         Date eTime = Date.from(eLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
         int startYear = sLocalTime.getYear();
@@ -94,7 +85,6 @@ public class TradePowerController {
         int endMonth = eLocalTime.getMonthValue();
         int endDay = eLocalTime.getDayOfMonth();
         String id = String.format("%04d%02d%02d%02d%02d", startYear, startMonth, startDay, endMonth, endDay);
-
         //给算法发送请求
         Map<String,String> aireq = new HashMap<>();
         //环境替换ddddddddddddddddddddddddd
@@ -103,21 +93,17 @@ public class TradePowerController {
 //        aireq.put("node_id","c20a1ecb5d33539e5334ad85af822252");
 //        aireq.put("node_id","e4653aad857c96f4c2ea4fd044bffbea");
         aireq.put("task_code",id);
-
         log.info("交易任务生成给算法发送预测储能策略请求,预测节点为===========>>>>>>>" + JSON.toJSONString(aireq));
         String result = okHttpPost("http://127.0.0.1:13360/powerTradingStrategy", JSON.toJSONString(aireq));
 //        String result = okHttpPost("http://192.168.110.55:13360/powerTradingStrategy", JSON.toJSONString(aireq));
-
         log.info("交易任务生成算法返回结果=======" + JSON.toJSONString(result));
         ObjectMapper om = new ObjectMapper();
         AIStorageEnergystrategyRequest responseResult = om.readValue(result, AIStorageEnergystrategyRequest.class);
         if (responseResult.getCode() != 200) {
             return ResponseResult.error("该节点不支持");
         }
-
         return ResponseResult.success("任务编号为"+id+"的任务将在一分钟内完成生成");
     }
-
     @ApiOperation("储能三日策略预测数据")
     @UserLoginToken
     @RequestMapping(value = "energyStrategyPrediction", method = {RequestMethod.POST})
@@ -125,11 +111,9 @@ public class TradePowerController {
     public void energyStoragePrediction(@RequestBody EnergyStrategyCommand command) throws ParseException {
 //        try {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
         LocalDateTime now = LocalDateTime.now(ZoneOffset.ofHours(8));
         LocalDateTime sLocalTime = now.withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(2);
         LocalDateTime eLocalTime = sLocalTime.plusDays(2);
-
         Date sTime = Date.from(sLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
         Date eTime = Date.from(eLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
         int startYear = sLocalTime.getYear();
@@ -160,7 +144,6 @@ public class TradePowerController {
                     sModel.setNodeName(map.get(s.getNodeId()));
                     sModel.setList(new ArrayList<>());
                     SimpleDateFormat sft = new SimpleDateFormat("HH:mm");
-
                     List<StrategyTimeModel> sTModels = new ArrayList<>();
                     IntStream.range(0, s.getList().size()).forEach(i -> {
                         int startHour = (i * 15) / 60;
@@ -205,13 +188,11 @@ public class TradePowerController {
 //            po.setEnergyNodes("c20a1ecb5d33539e5334ad85af822252,96a1a8c51194b433025bc8fb677de785");
 //            po.setPvNodes("bb05b2b6d467846b9ea2b68de14c6f70");
             po.setPvNodes(config.getEnergyStoragePredictionPvNode());
-
 //            po.setPvNodes("5cfd76f998dbcf8d7e214187d0e30ac5");
 //            po.setEnergyNodes("e4653aad857c96f4c2ea4fd044bffbea,07c3c82df1dd93e9c303644eb79985cb");
 //            po.setPvNodes("bb05b2b6d467846b9ea2b68de14c6f70");
 //            po.setStation("长乐产投大楼、深圳泰伦广场A座、深圳泰伦广场B座、深圳某工业设备新材料股份有限公司");
 //            po.setLoadNodes("176c0991f24e30c2b25a9dbf1185b7b9,5eb413037ba16ea6108c12e0d6353be3,3da72e052a0b48759b0f4633df42235a,e238bb37143b82082f695bb5c9cb438f");
-
             po.setStrategy(JSON.toJSONString(listEnd));
 //                log.info("listEnd:{}",JSON.toJSONString(listEnd));
             po.setOperation(JSON.toJSONString(operationList));
@@ -224,7 +205,6 @@ public class TradePowerController {
 //            log.error("ignored:{}",ignored.getMessage());
 //        }
     }
-
     @ApiOperation("调度策略")
     @UserLoginToken
     @RequestMapping(value = "schedulingStrategy", method = {RequestMethod.POST})
@@ -239,7 +219,6 @@ public class TradePowerController {
                 return ResponseResult.error("此任务未生成策略");
             }
 //            redisUtils.delete("schedulingStrategy" + tradePower.getId());
-
             ObjectMapper objectMapper = new ObjectMapper();
             List<SchedulingStrategyModel> list = objectMapper.readValue(
                     firstList,
@@ -247,7 +226,6 @@ public class TradePowerController {
                     }
             );
             redisUtils.add("schedulingStrategy" + tradePower.getId(), firstList, 60 * 60, TimeUnit.SECONDS);
-
 //            Map<String,String> map = new HashMap<>();
 //            map.put("e4653aad857c96f4c2ea4fd044bffbea","产投储能001");
 //            map.put("07c3c82df1dd93e9c303644eb79985cb","产投储能002");
@@ -291,7 +269,6 @@ public class TradePowerController {
 //            });
             list.forEach(v -> v.getStrategy().forEach(vv -> vv.getList().forEach(vvv -> vvv.setPower(Math.abs(vvv.getPower())))));
             return ResponseResult.success(list);
-
         } catch (RedisConnectionFailureException | ParseException e) {
             return ResponseResult.error(501,"redis超时",null);
         } catch (JsonMappingException e) {
@@ -300,7 +277,6 @@ public class TradePowerController {
             throw new RuntimeException(e);
         }
     }
-
     @ApiOperation("调度策略编辑")
     @UserLoginToken
     @RequestMapping(value = "schedulingStrategyEditor", method = {RequestMethod.POST})
@@ -310,7 +286,6 @@ public class TradePowerController {
             List<SchedulingStrategyModel> list = new ArrayList<>();
             ObjectMapper objectMapper = new ObjectMapper();
             long startTime = System.currentTimeMillis();
-
             while (true) {
                 Object redis = redisUtils.get("schedulingStrategy" + request.getTaskCode());
                 if (redis instanceof String) {
@@ -334,9 +309,7 @@ public class TradePowerController {
                     }
                 }
             }
-
 //            redisUtils.delete("schedulingStrategy" + request.getTaskCode());
-
 //        String firstList = tradePower.getStrategy();
 //        if (firstList == null || firstList.isEmpty()) {
 //            return ResponseResult.error("此任务未生成策略");
@@ -354,7 +327,6 @@ public class TradePowerController {
             Date etime = timeFormat.parse(request.getEndTime());
             String strategy = request.getType();
             Double power = request.getPower();
-
             for (SchedulingStrategyModel model : list) {
                 if (model.getDate().equals(dateFormat.parse(request.getEditDate()))) {
                     for (StrategyModel item : model.getStrategy()) {
@@ -366,7 +338,6 @@ public class TradePowerController {
                                 }
                             }
                         }
-
                     }
                 }
             }
@@ -393,7 +364,6 @@ public class TradePowerController {
 //                        return newStrategy;
 //                    })
 //                    .collect(Collectors.toList());
-
             redisUtils.add("schedulingStrategy" + request.getTaskCode(), JSON.toJSONString(list), 60 * 60, TimeUnit.SECONDS);
             list.forEach(v -> v.getStrategy().forEach(vv -> vv.getList().forEach(vvv -> vvv.setPower(Math.abs(vvv.getPower())))));
             return ResponseResult.success(list);
@@ -402,7 +372,6 @@ public class TradePowerController {
             return ResponseResult.error(501,"redis超时",null);
         }
     }
-
     @ApiOperation("调度曲线")
     @UserLoginToken
     @RequestMapping(value = "dispatchCurve", method = {RequestMethod.POST})
@@ -415,7 +384,6 @@ public class TradePowerController {
 //
 //        Date nowDate = Date.from(now.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
 //        Date startDate = Date.from(now.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
-
         Date startDate = sdf.parse(request.getQueryDate());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
@@ -426,13 +394,13 @@ public class TradePowerController {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         //环境替换ddddddddddddddddddddddddd
         //储能实际
-//        List<DispatchCurveDateRes> energyReal1list = generateResponses(startDate,calendar.getTime());
-//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e4653aad857c96f4c2ea4fd044bffbea","chuneng","load001","load",startDate,calendar.getTime())
+//        List<DispatchCurveDateRes> energyReal1list = generateResponses(startDate,calendar.getTimeInMillis());
+//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e4653aad857c96f4c2ea4fd044bffbea","chuneng","load001","load",startDate,calendar.getTimeInMillis())
                 //演示
-//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("c20a1ecb5d33539e5334ad85af822252","chuneng","load001","load",startDate,calendar.getTime())
-        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode1(),"chuneng","load001","load",startDate,calendar.getTime())
+//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("c20a1ecb5d33539e5334ad85af822252","chuneng","load001","load",startDate,calendar.getTimeInMillis())
+        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode1(),"chuneng","load001","load",startDate,calendar.getTimeInMillis())
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
 //        DispatchCurveRes energyReal1 = new DispatchCurveRes("储能001实际功率",true,
 //                energyReal1list.stream().peek(response -> {
 //                    Double value = energyReal1Map.get(response.getDate());
@@ -441,13 +409,13 @@ public class TradePowerController {
 //                    }
 //                    response.setValue(value);
 //                }).collect(Collectors.toList()));
-        List<DispatchCurveDateRes> energyReal2list = generateResponses(startDate,calendar.getTime());
-//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("07c3c82df1dd93e9c303644eb79985cb","chuneng","load002","load",startDate,calendar.getTime())
+        List<DispatchCurveDateRes> energyReal2list = generateResponses(startDate,calendar.getTimeInMillis());
+//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("07c3c82df1dd93e9c303644eb79985cb","chuneng","load002","load",startDate,calendar.getTimeInMillis())
                 //演示
-//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("96a1a8c51194b433025bc8fb677de785","chuneng","load002","load",startDate,calendar.getTime())
-        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode2(),"chuneng","load001","load",startDate,calendar.getTime())
+//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("96a1a8c51194b433025bc8fb677de785","chuneng","load002","load",startDate,calendar.getTimeInMillis())
+        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode2(),"chuneng","load001","load",startDate,calendar.getTimeInMillis())
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
         DispatchCurveRes energyReal2 = new DispatchCurveRes("储能实际功率",true,
                 energyReal2list.stream().peek(response -> {
                     Double value = null;
@@ -468,7 +436,6 @@ public class TradePowerController {
                     }
                     response.setValue(value);
                 }).collect(Collectors.toList()));
-
 //        DispatchCurveRes energyFore1 = null;
 //        DispatchCurveRes energyFore2 = null;
         DispatchCurveRes energyFore3 = null;
@@ -494,7 +461,6 @@ public class TradePowerController {
                 energyFore3 = new DispatchCurveRes("储能预测功率",true,s00,request.getQueryDate());
             }
         }
-
 //        for (SchedulingStrategyModel v : request.getStrategyData()) {
 //            if (v.getDate().equals(sdf.parse(request.getQueryDate()))){
 //                for (StrategyModel date: v.getStrategy()){
@@ -512,26 +478,20 @@ public class TradePowerController {
 //        dispatchCurveResList.add(energyFore1);
 //        dispatchCurveResList.add(energyFore2);
         dispatchCurveResList.add(energyFore3);
-
         return ResponseResult.success(dispatchCurveResList);
-
     }
-
     @ApiOperation("保存下发")
     @UserLoginToken
     @PostMapping( "/saveSend")
     public ResponseResult saveSend() {
-
         return ResponseResult.success();
     }
-
     @ApiOperation("发用电功率分析")
     @UserLoginToken
     @PostMapping( "/powerAnalysis")
     public ResponseResult<List<DispatchCurveRes>> powerAnalysis(@RequestBody PowerAnalysisCommand command) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         Date startDate = sdf.parse(command.getStartDate());
         Date endDate = sdf2.parse(command.getEndDate() + " 23:59:59");
         Calendar calendar = Calendar.getInstance();
@@ -549,7 +509,7 @@ public class TradePowerController {
 //        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao","JL-001-load","load",startDate,endDate)
         Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getPvNode1(),"nengyuanzongbiao","JL-001-load","load",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
         DispatchCurveRes pvReal1 = new DispatchCurveRes("实际发电功率",true,
                 pvReal1list.stream().peek(response -> {
                     Double value = pvReal1Map.get(response.getDate());
@@ -565,7 +525,7 @@ public class TradePowerController {
 //        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao",startDate,endDate)
         Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getPvNode1(),"nengyuanzongbiao",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
         DispatchCurveRes pvFore1 = new DispatchCurveRes("预测发电功率",true,
                 pvFore1list.stream().peek(response -> {
                     Double value = pvFore1Map.get(response.getDate()) == null ? null : Double.valueOf(pvFore1Map.get(response.getDate()));
@@ -577,29 +537,28 @@ public class TradePowerController {
         //用电实际
 //        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e4653aad857c96f4c2ea4fd044bffbea","chuneng","load001","load",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
 //        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("07c3c82df1dd93e9c303644eb79985cb","chuneng","load002","load",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));;
+//                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));;
         List<DispatchCurveDateRes> gateReal1list = generateResponses(startDate,endDate);
 //        Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao","GKB-load","load",startDate,endDate)
         Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getLoadNode1(),"nengyuanzongbiao","GKB-load","load",startDate,endDate)
-
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
         //部署需改
 //        Map<Date, Double> gateReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("176c0991f24e30c2b25a9dbf1185b7b9","nengyuanzongbiao","GKB-load","load",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
 //        Map<Date, Double> gateReal3Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("5eb413037ba16ea6108c12e0d6353be3","nengyuanzongbiao","GKB-load","load",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
 //        Map<Date, Double> gateReal4Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("3da72e052a0b48759b0f4633df42235a","nengyuanzongbiao","GKB-load","load",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
 //        Map<Date, Double> gateReal5Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("38c9a70b255900044a85838900214aec","nengyuanzongbiao","db-1AH2-p13","load",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
         DispatchCurveRes gateReal1 = new DispatchCurveRes("实际用电功率",true,
                 gateReal1list.stream().peek(response -> {
                     Double gateValue = gateReal1Map.get(response.getDate());
@@ -610,10 +569,8 @@ public class TradePowerController {
 //                    Double gateValue4 = gateReal4Map.get(response.getDate());
 //                    Double gateValue5 = gateReal5Map.get(response.getDate());
                     Double value = null;
-
 //                    if (gateValue == null && gateValue5 == null) {
                     if (gateValue == null) {
-
                         value = null;
                     } else {
                         Double finalGateValue = Optional.ofNullable(gateValue).orElse(0.0);
@@ -623,7 +580,6 @@ public class TradePowerController {
 //                        Double finalGateValue3 = Optional.ofNullable(gateValue3).orElse(0.0);
 //                        Double finalGateValue4 = Optional.ofNullable(gateValue4).orElse(0.0);
 //                        Double finalGateValue5 = Optional.ofNullable(gateValue5).orElse(0.0);
-
 //                        Double value = finalGateValue + finalEnergy1Value + finalEnergy2Value + finalGateValue2 + finalGateValue3 + finalGateValue4;
 //                        value = finalGateValue + finalGateValue5;
                         value = finalGateValue;
@@ -636,19 +592,19 @@ public class TradePowerController {
 //        Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao",startDate,endDate)
         Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getLoadNode1(),"nengyuanzongbiao",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
 //        Map<Date, String> gateFore2Map = aiLoadRepository.findByDateNodeIdSystemId("176c0991f24e30c2b25a9dbf1185b7b9","nengyuanzongbiao",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
 //        Map<Date, String> gateFore3Map = aiLoadRepository.findByDateNodeIdSystemId("5eb413037ba16ea6108c12e0d6353be3","nengyuanzongbiao",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
 //        Map<Date, String> gateFore4Map = aiLoadRepository.findByDateNodeIdSystemId("3da72e052a0b48759b0f4633df42235a","nengyuanzongbiao",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
 //        Map<Date, String> gateFore5Map = aiLoadRepository.findByDateNodeIdSystemId("38c9a70b255900044a85838900214aec","nengyuanzongbiao",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
         DispatchCurveRes gateFore1 = new DispatchCurveRes("预测用电功率",true,
                 gateFore1list.stream().peek(response -> {
                     Double value = gateFore1Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore1Map.get(response.getDate()));
@@ -656,33 +612,26 @@ public class TradePowerController {
 //                    Double value3 = gateFore3Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore3Map.get(response.getDate()));
 //                    Double value4 = gateFore4Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore4Map.get(response.getDate()));
 //                    Double value5 = gateFore5Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore5Map.get(response.getDate()));
-
 //                    value += value2 + value3 + value4;
 //                    value += value5;
-
                     value = value >= 0 ? Double.valueOf(String.format("%.2f", value)) : null;
                     response.setValue(value);
                 }).sorted(Comparator.comparing(DispatchCurveDateRes::getDate)).collect(Collectors.toList()));
-
         List<DispatchCurveRes> dispatchCurveResList = new ArrayList<>();
         dispatchCurveResList.add(pvReal1);
         dispatchCurveResList.add(pvFore1);
         dispatchCurveResList.add(gateReal1);
         dispatchCurveResList.add(gateFore1);
-
         return ResponseResult.success(dispatchCurveResList);
     }
-
     @ApiOperation("运行曲线分析")
     @UserLoginToken
     @PostMapping( "/runningCurve")
     public ResponseResult<List<DispatchCurveRes>> runningCurve(@RequestBody RunningCurveCommand command) throws ParseException, JsonProcessingException {
         try {
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-
         Date startDate = sdf.parse(command.getStartDate());
         Date endDate = sdf2.parse(command.getEndDate() + " 23:59:59");
         Calendar calendar = Calendar.getInstance();
@@ -694,54 +643,49 @@ public class TradePowerController {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         //环境替换ddddddddddddddddddddddddd
         Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode1(),"chuneng","load001","load",startDate,endDate)
-
         //演示
 //        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("c20a1ecb5d33539e5334ad85af822252","chuneng","load001","load",startDate,endDate)
 //        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e4653aad857c96f4c2ea4fd044bffbea","chuneng","load001","load",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
         //演示
             Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode2(),"chuneng","load002","load",startDate,endDate)
 //            Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("96a1a8c51194b433025bc8fb677de785","chuneng","load002","load",startDate,endDate)
 //        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("07c3c82df1dd93e9c303644eb79985cb","chuneng","load002","load",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));;
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));;
         List<DispatchCurveDateRes> gateReal1list = generateResponses(startDate,endDate);
         //部署需改
         Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getLoadNode1(),"nengyuanzongbiao","GKB-load","load",startDate,endDate)
 //        Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao","GKB-load","load",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
 //        Map<Date, Double> gateReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("38c9a70b255900044a85838900214aec","nengyuanzongbiao","db-1AH2-p13","load",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
 //        演示
-//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTime())
+//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTimeInMillis())
         //测试
-            Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getPvNode1(),"nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTime())
-//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTime())
+            Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getPvNode1(),"nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTimeInMillis())
+//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTimeInMillis())
                 .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
-                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(IotTsKvMeteringDevice96.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
         DispatchCurveRes gateReal1 = new DispatchCurveRes("节点总功率",true,
                 gateReal1list.stream().peek(response -> {
                     Double gateValue = gateReal1Map.get(response.getDate());
 //                    Double gateValue2 = gateReal2Map.get(response.getDate());
-
                     Double energy1Value = energyReal1Map.get(response.getDate());
                     Double energy2Value = energyReal2Map.get(response.getDate());
                     Double pv1Value = pvReal1Map.get(response.getDate());
-
                     if (gateValue == null && energy1Value == null && energy2Value == null) {
                         response.setValue(null);
                     } else {
                         Double finalGateValue = Optional.ofNullable(gateValue).orElse(0.0);
 //                        Double finalGateValue2 = Optional.ofNullable(gateValue2).orElse(0.0);
-
                         Double finalEnergy1Value = Optional.ofNullable(energy1Value).orElse(0.0);
                         Double finalEnergy2Value = Optional.ofNullable(energy2Value).orElse(0.0);
                         Double finalPv2Value = Optional.ofNullable(pv1Value).orElse(0.0);
 //                        Double value = finalGateValue + finalGateValue2 - finalEnergy1Value - finalEnergy2Value - finalPv2Value;
-
                         Double value = finalGateValue - finalEnergy1Value - finalEnergy2Value - finalPv2Value;
                         value = value >= 0 ? Double.parseDouble(String.format("%.2f", value)) : 0;
                         response.setValue(value);
@@ -775,19 +719,18 @@ public class TradePowerController {
         }
         List<DispatchCurveDateRes> gateFore1list = generateResponses(startDate,endDate);
             Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getLoadNode1(),"nengyuanzongbiao",startDate,endDate)
-
 //        Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
 //        Map<Date, String> gateFore2Map = aiLoadRepository.findByDateNodeIdSystemId("38c9a70b255900044a85838900214aec","nengyuanzongbiao",startDate,endDate)
 //                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
         //演示
             Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getPvNode1(),"nengyuanzongbiao",startDate,endDate)
-//        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao",startDate,calendar.getTime())
+//        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao",startDate,calendar.getTimeInMillis())
 //        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao",startDate,endDate)
                 .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
-                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+                .collect(Collectors.toMap(obj -> Date.from(AiLoadForecasting.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
         DispatchCurveRes gateFore1 = new DispatchCurveRes("节点总预测功率",true,
                 gateFore1list.stream().peek(response -> {
                     Double value = gateFore1Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore1Map.get(response.getDate()));
@@ -797,7 +740,6 @@ public class TradePowerController {
 //                    value += value2 - value3 - value4;
 //                    log.info("response.getDate():{}gateFore1Map:{},energyFore:{},pvFore1Map:{}",response.getDate(),value,value3,value4);
                     value += - value3 - value4;
-
 //                    try {
 //                        if (response.getDate().equals(sdf2.parse("2024-07-31 04:00:00"))) {
 //                            value = 16300.0;
@@ -813,7 +755,6 @@ public class TradePowerController {
 //                    }
                     value = value >= 0 ? Double.parseDouble(String.format("%.2f", value)) : 0;
 //                    value = Double.valueOf(String.format("%.2f", value));
-
                     response.setValue(value);
                 }).collect(Collectors.toList()));
         List<DispatchCurveRes> dispatchCurveResList = new ArrayList<>();
@@ -824,7 +765,6 @@ public class TradePowerController {
             return ResponseResult.error(501,"redis超时",null);
         }
     }
-
     @ApiOperation("申报运行曲线")
     @UserLoginToken
     @PostMapping( "/declareForOperation")
@@ -840,8 +780,7 @@ public class TradePowerController {
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
             calendar.add(Calendar.DAY_OF_MONTH, 3);
-            Date endDate = calendar.getTime();
-
+            Date endDate = calendar.getTimeInMillis();
 //
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        List<SchedulingStrategyModel> list = null;
@@ -869,14 +808,12 @@ public class TradePowerController {
             if (firstList == null || firstList.isEmpty()) {
                 return ResponseResult.error("此任务未生成策略");
             }
-
             List<DeclareForOperationModel> list1 = objectMapper.readValue(
                     firstList,
                     new TypeReference<List<DeclareForOperationModel>>() {
                     }
             );
             List<Double> maxMin = new ArrayList<>();
-
             for (DeclareForOperationModel d : list1) {
                 String dDate = sdf.format(d.getDate());
                 List<StrategyModel> energyList = list.stream().filter(e -> !sdf.format(e.getDate()).equals(dDate)).collect(Collectors.toList()).get(0).getStrategy();
@@ -921,7 +858,6 @@ public class TradePowerController {
 //            double interval1 = (max - min) / 4;
 //            double interval2 = interval1 + interval1;
 //            double interval3 = interval2 + interval1;
-
             long maxT2 = Math.round(max);
             long minT2 = Math.round(min);
             long range = Math.abs((maxT2 - minT2) / 5);
@@ -963,47 +899,37 @@ public class TradePowerController {
                     operationTime.setType("未知");
                 }
             })));
-
             DeclareForOperationRes listEnd = new DeclareForOperationRes();
             listEnd.setNodeNum(config.getDeclareForOperationNum());
             listEnd.setList(list1);
             listEnd.setIntervalInfo(intervalInfo);
             boolean tt = redisUtils.add("declareForOperation" + tradePower.getId(), JSON.toJSONString(list1), 60 * 60, TimeUnit.SECONDS);
-
             return ResponseResult.success(listEnd);
-
         } catch (RedisConnectionFailureException e) {
             return ResponseResult.error(501,"redis超时","redis超时");
         }
-
     }
     public static long[] calculateIntervals(long min,long highestUnit, long unitRange, int numIntervals) {
         long[] intervals = new long[numIntervals];
         log.info("min:{},highestUnit:{},unitRange:{},numIntervals:{}",min,highestUnit,unitRange,numIntervals);
-
         long firstInterval = (min >0 ? min / unitRange : min / unitRange - 1) * unitRange;
 //        long firstInterval = (min / unitRange) * unitRange;
-
 //        log.info("firstInterval:{}",firstInterval);
         if (min % unitRange != 0) {
 //            log.info("min % unitRange:{}",min % unitRange);
             firstInterval -= (min < 0 ? highestUnit : 0);
 //            log.info("firstInterval2:{}",firstInterval);
         }
-
         for (int i = 0; i < numIntervals; i++) {
             intervals[i] = firstInterval + i * unitRange;
         }
-
         long lastInterval = intervals[numIntervals - 1];
         if (lastInterval % unitRange != 0) {
             lastInterval = ((lastInterval / unitRange) + 1) * unitRange;
         }
         intervals[numIntervals - 1] = lastInterval;
-
         return intervals;
     }
-
     @ApiOperation("编辑申报运行曲线")
     @UserLoginToken
     @PostMapping( "/editDeclareForOperation")
@@ -1011,7 +937,6 @@ public class TradePowerController {
 //        TradePower tradePower = ttradePowerRepository.findById(request.getTaskCode()).orElse(null);
         List<SchedulingStrategyModel> list = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
-
         Object redis = redisUtils.get("declareForOperation" + commend.getTaskCode());
         if (redis instanceof String) {
             String schedulingStrategyJson = (String) redis;
@@ -1031,7 +956,6 @@ public class TradePowerController {
 //                }
 //        );
 //        redisUtils.delete("declareForOperation" + commend.getTaskCode());
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         Date stime = timeFormat.parse(commend.getStartTime());
@@ -1045,20 +969,17 @@ public class TradePowerController {
 //        double interval1 = (max - min) / 4;
 //        double interval2 = interval1 + interval1;
 //        double interval3 = interval2 + interval1;
-
         long maxT2 = Math.round(max);
         long minT2 = Math.round(min);
 //        log.info("maxT2:{},minT2:{}",maxT2,minT2);
         long range = Math.abs((maxT2 - minT2) / 5);
 //        log.info("range:{}",range);
 //        log.info("max:{},min:{}",max,min);
-
         String valueStr = Long.toString(range);
         int length = valueStr.length();
         long highestUnit = (long) Math.pow(10, length - 1);
         long ceilingValue = ((range + highestUnit - 1) / highestUnit) * highestUnit;
 //        log.info("valueStr:{},length:{},highestUnit:{},ceilingValue:{}",valueStr,length,highestUnit,ceilingValue);
-
         long[] intervals = calculateIntervals(minT2, highestUnit,ceilingValue, 6);
 //        long interval1T2 =  Math.round(((max - min) / 4));
 //        long interval2T2 = interval1T2 + interval1T2;
@@ -1103,7 +1024,6 @@ public class TradePowerController {
                             }
                         }
                     }
-
                 }
             }
         }
@@ -1129,7 +1049,6 @@ public class TradePowerController {
         listEnd.setIntervalInfo(intervalInfo);
         return ResponseResult.success(listEnd);
     }
-
     @ApiOperation("确定申报")
     @UserLoginToken
     @PostMapping( "/confirmDelivery")
@@ -1160,28 +1079,24 @@ public class TradePowerController {
             return ResponseResult.error(501,"redis超时","redis超时");
         }
     }
-
     @ApiOperation("电力交易天气")
     @UserLoginToken
     @PostMapping( "/weatherChart")
     public ResponseResult weatherChart(@RequestBody WeatherChartCommand model) {
         try {
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date startDateTime = new Date();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(startDateTime);
             calendar.add(Calendar.DAY_OF_MONTH, 3);
-
             //todo 以项目节点查询
             Node node = nodeRepository.findByNodeId(config.getMasterNode());
-
             WeatherRequest json = new WeatherRequest();
             json.setKey("9875c3ceb98687f62b75b9639a875b27");
             json.setLongitude(node.getLongitude());
             json.setLatitude(node.getLatitude());
 //            json.setStartDateTime(sdf.format(startDateTime) + " 00:00:00");
-//            json.setEndDateTime(sdf.format(calendar.getTime()) + " 23:59:59");
+//            json.setEndDateTime(sdf.format(calendar.getTimeInMillis()) + " 23:59:59");
             json.setStartDateTime(model.getStartDate() + " 00:00:00");
             json.setEndDateTime(model.getEndDate() + " 23:59:59");
             log.info("weatherChart天气传参：{}", JSONObject.toJSONString(json));
@@ -1208,13 +1123,10 @@ public class TradePowerController {
             return ResponseResult.error("储能天气图表查询失败");
         }
     }
-
     private boolean isDateInRange(Date date, Date startDate, Date endDate) {
         return !date.before(startDate) && !date.after(endDate);
     }
-
     private boolean isTimeInRange(Date stime, Date etime, Date targetStime, Date targetEtime) {
-
         return !stime.before(targetStime) && !etime.after(targetEtime);
     }
     //任务开始时间
@@ -1229,7 +1141,7 @@ public class TradePowerController {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.add(Calendar.DAY_OF_MONTH, 3);
-        Date endDate = calendar.getTime();
+        Date endDate = calendar.getTimeInMillis();
         //部署需改
         //用电
 //        List<AiLoadForecasting> allData = aiLoadRepository.findByDateNodeIdsSystemId(
@@ -1264,7 +1176,6 @@ public class TradePowerController {
                 "nengyuanzongbiao",
                 startDate,
                 endDate);
-
         Map<String, Map<String, List<AiLoadForecasting>>> groupedPvData = allPvData.stream()
                 .filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
                 .collect(Collectors.groupingBy(
@@ -1343,7 +1254,6 @@ public class TradePowerController {
         double interval1 = (max - min) / 4;
         double interval2 = interval1 + interval1;
         double interval3 = interval2 + interval1;
-
         list1.forEach(vv -> vv.getStrategy().forEach(vvv -> vvv.getList().forEach(operationTime -> {
             Double predictValue = operationTime.getPower();
             if (predictValue >= min && predictValue <= interval1) {
@@ -1358,21 +1268,18 @@ public class TradePowerController {
                 operationTime.setType("未知");
             }
         })));
-
         return list1;
     }
     public static List<DispatchCurveDateRes> generateResponses(Date startDate, Date endDate) throws ParseException {
         List<DispatchCurveDateRes> responses = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
-
-        while (calendar.getTime().before(endDate)) {
-            responses.add(new DispatchCurveDateRes(sdf.parse(sdf.format(calendar.getTime())), null));
+        while (calendar.getTimeInMillis().before(endDate)) {
+            responses.add(new DispatchCurveDateRes(sdf.parse(sdf.format(calendar.getTimeInMillis())), null));
             calendar.add(Calendar.MINUTE, 15);
         }
-        if (!calendar.getTime().equals(endDate)) {
+        if (!calendar.getTimeInMillis().equals(endDate)) {
             responses.add(new DispatchCurveDateRes(sdf.parse(sdf.format(endDate)), null));
         }
         return responses;
@@ -1381,30 +1288,25 @@ public class TradePowerController {
         List<DeclareForOperationModel> responses = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
-        while (calendar.getTime().before(endDate)) {
+        while (calendar.getTimeInMillis().before(endDate)) {
             DeclareForOperationModel declareForOperationModel = new DeclareForOperationModel();
-            declareForOperationModel.setDate(dateFormat.parse(dateFormat.format(calendar.getTime())));
-
+            declareForOperationModel.setDate(dateFormat.parse(dateFormat.format(calendar.getTimeInMillis())));
             List<OperationModel> operationModelList = new ArrayList<>();
             for (Map.Entry<String, String> entry : config.getNodeMap().entrySet()) {
                 OperationModel operationModel = new OperationModel();
                 operationModel.setNodeId(entry.getKey());
                 operationModel.setNodeName(entry.getValue());
-
                 List<OperationTimeModel> operationTimeModelList = new ArrayList<>();
                 for (int i = 0; i < 96; i++) { // 每15分钟一个数据点
                     OperationTimeModel operationTimeModel = new OperationTimeModel();
                     Calendar startTime = (Calendar) calendar.clone();
                     startTime.add(Calendar.MINUTE, i * 15);
                     operationTimeModel.setStime(timeFormat.parse(timeFormat.format(startTime.getTime())));
-
                     Calendar endTime = (Calendar) startTime.clone();
                     endTime.add(Calendar.MINUTE, 15);
                     operationTimeModel.setEtime(timeFormat.parse(timeFormat.format(endTime.getTime())));
-
                     operationTimeModel.setPower(0.0);
                     operationTimeModel.setType("type");
                     operationTimeModelList.add(operationTimeModel);
@@ -1412,13 +1314,10 @@ public class TradePowerController {
                 operationModel.setList(operationTimeModelList);
                 operationModelList.add(operationModel);
             }
-
             declareForOperationModel.setStrategy(operationModelList);
             responses.add(declareForOperationModel);
-
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-
         return responses;
     }
     public static String okHttpPost(String reqUrl, String json) {
@@ -1429,25 +1328,20 @@ public class TradePowerController {
                         public X509Certificate[] getAcceptedIssuers() {
                             return new X509Certificate[0];
                         }
-
                         public void checkClientTrusted(X509Certificate[] certs, String authType) {
                         }
-
                         public void checkServerTrusted(X509Certificate[] certs, String authType) {
                         }
                     }
             };
-
             // 创建 SSL 上下文，使用信任所有证书的 TrustManager
             SSLContext sslContext = SSLContext.getInstance("SSL");
             sslContext.init(null, trustAllCerts, new SecureRandom());
-
             // 设置 OkHttpClient 使用我们创建的 SSL 上下文
             OkHttpClient client = new OkHttpClient.Builder()
                     .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustAllCerts[0])
                     .hostnameVerifier((hostname, session) -> true)
                     .build();
-
             MediaType mediaType = MediaType.parse("application/json");
             okhttp3.RequestBody body = okhttp3.RequestBody.create(mediaType, json);
             Request request = new Request.Builder()
@@ -1456,7 +1350,6 @@ public class TradePowerController {
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
                     .build();
-
             // 发送请求
             Response response = client.newCall(request).execute();
             return response.body().string();

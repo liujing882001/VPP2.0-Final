@@ -26,17 +26,17 @@ public class RevenueAnalysis implements Serializable {
     @Column(name = "station_id")
     private String stationId;
 
-    @Column(name = "mouth_revenue", precision = 20, scale = 2)
-    private BigDecimal monthRevenue;
+    @Column(name = "mouth_revenue", columnDefinition = "TEXT")
+    private String monthRevenue;
 
-    @Column(name = "mouth_count")
-    private Integer monthCount;
+    @Column(name = "mouth_count", columnDefinition = "TEXT")
+    private String monthCount;
 
-    @Column(name = "year_revenue", precision = 20, scale = 2)
-    private BigDecimal yearRevenue;
+    @Column(name = "year_revenue", columnDefinition = "TEXT")
+    private String yearRevenue;
 
-    @Column(name = "year_count")
-    private Integer yearCount;
+    @Column(name = "year_count", columnDefinition = "TEXT")
+    private String yearCount;
 
     /**
      * Default constructor

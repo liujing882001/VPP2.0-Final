@@ -1,6 +1,9 @@
 package com.example.vvpweb.demand;
-
 import com.alibaba.fastjson.JSONObject;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
 import com.example.vvpcommom.Enum.SysParamEnum;
 import com.example.vvpcommom.PageModel;
 import com.example.vvpcommom.ResponseResult;
@@ -26,7 +29,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -34,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 /**
  * @author maoyating
  * @description 需求响应-实时监测
@@ -45,7 +46,6 @@ import java.util.stream.Collectors;
 @CrossOrigin
 @Api(value = "需求响应-实时监测", tags = {"需求响应-实时监测"})
 public class DemandRespMonitorController {
-
     private static Logger logger = LoggerFactory.getLogger(DemandRespMonitorController.class);
     @Autowired
     private DemandRespTaskRepository demandRespTaskRepository;
@@ -65,7 +65,6 @@ public class DemandRespMonitorController {
     private AiLoadRepository aiLoadRepository;
     @Resource
     private SysParamRepository sysParamRepository;
-
     @ApiOperation("查询实时监测列表")
     @UserLoginToken
     @RequestMapping(value = "/getRespMonitorList", method = {RequestMethod.POST})
@@ -76,7 +75,6 @@ public class DemandRespMonitorController {
                 List<Predicate> predicates = new ArrayList<>();
                 predicates.add(cb.equal(root.get("dStatus"), 2));//执行中
                 criteriaQuery.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
-
                 Order order = cb.desc(root.get("taskCode"));
                 //纯日期不好排序，用任务编号来判断即可
                 if (model.getRsTimeSort() != null) {
@@ -92,7 +90,6 @@ public class DemandRespMonitorController {
                     } else {
                         order = cb.desc(root.get("respType"));
                     }
-
                 }
                 if (model.getRespLevelSort() != null) {
                     if (model.getRespLevelSort() == 1) {
@@ -100,7 +97,6 @@ public class DemandRespMonitorController {
                     } else {
                         order = cb.desc(root.get("respLevel"));
                     }
-
                 }
                 if (model.getRespSubsidySort() != null) {
                     if (model.getRespSubsidySort() == 1) {
@@ -108,7 +104,6 @@ public class DemandRespMonitorController {
                     } else {
                         order = cb.desc(root.get("respSubsidy"));
                     }
-
                 }
                 criteriaQuery.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
                 criteriaQuery.orderBy(order); //
@@ -118,13 +113,9 @@ public class DemandRespMonitorController {
         //当前页为第几页 默认 1开始
         int page = model.getNumber();
         int size = model.getPageSize();
-
         Pageable pageable = PageRequest.of(page - 1, size);
-
         Page<DemandRespTask> datas = demandRespTaskRepository.findAll(spec, pageable);
-
         PageModel pageModel = new PageModel();
-
         if (datas.getContent() != null && datas.getContent().size() > 0) {
             List<DemandRespTaskRespModel> list = new ArrayList<>();
             datas.getContent().forEach(d -> {
@@ -136,14 +127,11 @@ public class DemandRespMonitorController {
         } else {
             pageModel.setContent(datas.getContent());
         }
-
         pageModel.setTotalPages(datas.getTotalPages());
         pageModel.setTotalElements((int) datas.getTotalElements());
         pageModel.setNumber(datas.getNumber() + 1);
-
         return ResponseResult.success(pageModel);
     }
-
     @ApiOperation("获取详情列表")
     @UserLoginToken
     @RequestMapping(value = "/getDeviceListByRespId", method = {RequestMethod.POST})
@@ -186,9 +174,9 @@ public class DemandRespMonitorController {
                         String baseLoad = "-";
                         if (ai != null) {
                             if(getMethod.equals("商汤")){
-                                baseLoad=ai.getBaselineLoadValue();
+                                baseLoad = ai.getBaselineLoadValue().toString();
                             }else{
-                                baseLoad=ai.getBaselineLoadValueOther();
+                                baseLoad = ai.getBaselineLoadValueOther() == null ? null : ai.getBaselineLoadValueOther().toString();
                             }
                             if (ai.getRealValue() != null) {
                                 //当前负荷
@@ -198,13 +186,11 @@ public class DemandRespMonitorController {
                         noResp.setBaseLoad(baseLoad);
                         //实时响应负荷
                         noResp.setRealTimeLoad(d.getRealTimeLoad());
-
                         noResps.add(noResp);
                     }
                 }
                 pageModel.setContent(noResps);
                 pageModel.setTotalElements(noRepository.countRespIdAndNodeIds(model.getRespId(), nodeIds));
-
                 return ResponseResult.success(pageModel);
             } else {
                 pageModel.setTotalElements(0);
@@ -216,5 +202,4 @@ public class DemandRespMonitorController {
             return ResponseResult.success();
         }
     }
-
 }

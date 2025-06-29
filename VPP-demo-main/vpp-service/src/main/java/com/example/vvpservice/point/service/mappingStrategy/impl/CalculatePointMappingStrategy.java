@@ -236,7 +236,7 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 		result.entrySet()
 				.stream()
 				.filter(entry -> entry.getValue() instanceof Number || entry.getValue() == null)
-				.forEach(entry -> dResult.put(entry.getKey().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli(), (Double) entry.getValue()));
+				.forEach(entry -> dResult.put(entry.getKey().toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli(), (Double) entry.getValue()));
 
 		for (Map.Entry<Long, Double> dR : dResult.entrySet()) {
 			Long k = dR.getKey();
@@ -386,7 +386,7 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 		result.entrySet()
 				.stream()
 				.filter(entry -> entry.getValue() instanceof Number || entry.getValue() == null)
-				.forEach(entry -> dResult.put(entry.getKey().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli(), (Double) entry.getValue()));
+				.forEach(entry -> dResult.put(entry.getKey().toInstant().atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli(), (Double) entry.getValue()));
 
 		for (Map.Entry<Long, Double> dR : dResult.entrySet()) {
 			Long k = dR.getKey();
@@ -694,15 +694,15 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 					Map<Date, String> resultMap = new HashMap<>();
 					res.forEach(o -> {
 						// 将字符串转换为 LocalDate 和 LocalTime
-						LocalDate localDate = o.getEffectiveDate().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						LocalDate localDate = o.getEffectiveDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 						LocalTime time = Objects.equals(o.getETime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getETime());
 
 						// 合并成一个 LocalDateTime 对象
-						LocalDateTime dateTime = Date.from(LocalDateTime.of(localDate, time).atZone(ZoneId.systemDefault()).toInstant());
+						Date dateTime = Date.from(LocalDateTime.of(localDate, time).atZone(ZoneId.systemDefault()).toInstant());
 						if (time.equals(LocalTime.MIDNIGHT)) {
-							dateTime = dateTime.plusDays(1);
-						}
-						resultMap.put(Date.from(dateTime.toInstant().atZone(ZoneId.systemDefault()).toInstant()), o.getStrategy());
+						dateTime = new Date(dateTime.getTime() + 86400000);
+					}
+						resultMap.put(dateTime, o.getStrategy());
 					});
 					return resultMap;
 				}
@@ -711,15 +711,15 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 					Map<Date, Double> resultMap = new HashMap<>();
 					res.forEach(o -> {
 						// 将字符串转换为 LocalDate 和 LocalTime
-						LocalDate localDate = o.getEffectiveDate().atZone(ZoneId.systemDefault()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						LocalDate localDate = o.getEffectiveDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 						LocalTime time = Objects.equals(o.getETime(), "24:00") ? LocalTime.MIDNIGHT : LocalTime.parse(o.getETime());
 
 						// 合并成一个 LocalDateTime 对象
-						LocalDateTime dateTime = Date.from(LocalDateTime.of(localDate, time).atZone(ZoneId.systemDefault()).toInstant());
+						Date dateTime = Date.from(LocalDateTime.of(localDate, time).atZone(ZoneId.systemDefault()).toInstant());
 						if (time.equals(LocalTime.MIDNIGHT)) {
-							dateTime = dateTime.plusDays(1);
-						}
-						resultMap.put(Date.from(dateTime.toInstant().atZone(ZoneId.systemDefault()).toInstant()),
+						dateTime = new Date(dateTime.getTime() + 86400000);
+					}
+						resultMap.put(dateTime,
 								o.getStrategy().equals("充电") ? -o.getPower() : (o.getStrategy().equals("待机") ? 0 : o.getPower()));
 					});
 					return resultMap;
@@ -739,7 +739,7 @@ public class CalculatePointMappingStrategy implements MappingStrategy {
 				if (colName.equals("predict_value")) {
 					List<AiLoadForecasting> res = repository.findAll(spec);
 
-					res.forEach(o -> resultMap.put(o.getCountDataTime(), o.getPredictValue() == null ? 0.0 :
+					res.forEach(o -> resultMap.put(Date.from(o.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), o.getPredictValue() == null ? 0.0 :
 							Double.parseDouble(o.getPredictValue())));
 				}
 				return resultMap;

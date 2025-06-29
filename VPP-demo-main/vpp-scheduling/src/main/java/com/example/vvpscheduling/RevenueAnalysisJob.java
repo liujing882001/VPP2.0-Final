@@ -304,7 +304,7 @@ public class RevenueAnalysisJob {
                                     .sorted(Comparator.comparing(RAInfoVO::getTime))
                                     .collect(Collectors.toList());
                             String nowYearRevenue = revenueAnalysis.getYearRevenue();
-                            JSONArray jsonArray = JSON.parseArray(nowYearRevenue);
+                            JSONArray jsonArray = nowYearRevenue != null ? JSON.parseArray(nowYearRevenue) : new JSONArray();
                             List<RAInfoVO> currentList = new ArrayList<>();
                             for (int i = 0; i < jsonArray.size(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -332,7 +332,7 @@ public class RevenueAnalysisJob {
                             revenueAnalysis.setYearRevenue(JSON.toJSONString(currentList));
 
                             String nowYearCount = revenueAnalysis.getYearCount();
-                            JSONArray jsonArrayCount = JSON.parseArray(nowYearCount);
+                            JSONArray jsonArrayCount = nowYearCount != null ? JSON.parseArray(nowYearCount) : new JSONArray();
                             List<RAInfoVO> currentListCount = new ArrayList<>();
                             for (int i = 0; i < jsonArrayCount.size(); i++) {
                                 JSONObject jsonObject = jsonArrayCount.getJSONObject(i);
@@ -382,8 +382,8 @@ public class RevenueAnalysisJob {
                                     .sorted(Comparator.comparing(RAInfoVO::getTime))
                                     .collect(Collectors.toList());
 
-                            revenueAnalysis.setMouthRevenue(JSON.toJSONString(raInfoVOS));
-                            revenueAnalysis.setMouthCount(JSON.toJSONString(dayCountVO));
+                            revenueAnalysis.setMonthRevenue(JSON.toJSONString(raInfoVOS));
+                            revenueAnalysis.setMonthCount(JSON.toJSONString(dayCountVO));
                         }
                         log.info("完成测算：{}",queryNodeId);
                         revenueAnalysisRepository.save(revenueAnalysis);

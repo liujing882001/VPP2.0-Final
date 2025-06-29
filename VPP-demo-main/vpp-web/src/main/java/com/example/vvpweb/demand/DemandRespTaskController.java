@@ -1,6 +1,9 @@
 package com.example.vvpweb.demand;
-
 import com.alibaba.fastjson.JSON;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.time.Instant;
+import java.time.ZoneId;
 import com.alibaba.fastjson.JSONObject;
 import com.example.vvpcommom.Enum.SysParamEnum;
 import com.example.vvpcommom.*;
@@ -35,7 +38,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.annotation.Resource;
 import javax.persistence.criteria.*;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +47,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-
 /**
  * @author maoyating
  * @description 需求响应-响应任务
@@ -56,7 +57,6 @@ import java.util.stream.Collectors;
 @CrossOrigin
 @Api(value = "需求响应-响应任务", tags = {"需求响应-响应任务"})
 public class DemandRespTaskController {
-
     private static Logger logger = LoggerFactory.getLogger(DemandRespTaskController.class);
     @Autowired
     private DemandRespTaskRepository demandRespTaskRepository;
@@ -88,14 +88,12 @@ public class DemandRespTaskController {
     private DemandRespPlanPriceRepository priceRepository;
     @Autowired
     private UserRepository userRepository;
-
     @Value("${server.port}")
     private int port;
     @Resource
     private DemandRespStrategyService respStrategyService;
     @Resource
     private DemandRespStrategyNoService noService;
-
     @Resource
     private DemandRespPlanRepository planRepository;
     @Resource
@@ -112,7 +110,6 @@ public class DemandRespTaskController {
         //TODO 从哪获取？？
         return ResponseResult.success();
     }
-
     /**
      * 接收厦门国网传的内容
      */
@@ -124,7 +121,6 @@ public class DemandRespTaskController {
             if (StringUtils.isNotEmpty(json)) {
                 DemandTaskMqttModel taskMqttModel = JSON.parseObject(json, DemandTaskMqttModel.class);
                 DemandRespTask dr = new DemandRespTask();
-
                 String[] rsTimeStr = taskMqttModel.getStartTime().split(" ");
                 String[] reTimeStr = taskMqttModel.getEndTime().split(" ");
                 dr.setRespId(taskMqttModel.getCmdCode());//存指令编码
@@ -142,11 +138,9 @@ public class DemandRespTaskController {
                 }
                 dr.setRespType(Integer.valueOf(taskMqttModel.getAdjustType()));
                 dr.setRespLevel(Integer.valueOf(taskMqttModel.getAdjustCode().trim()));//响应级别
-
                 //已超时的数据，直接设置为0-删除状态   ，未超时的数据才能正常处理
                 if(taskMqttModel.getFlag()==0){
                     dr.setDStatus(1);
-
                     Specification<ScheduleStrategy> spec = new Specification<ScheduleStrategy>() {
                         @Override
                         public Predicate toPredicate(Root<ScheduleStrategy> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -159,10 +153,8 @@ public class DemandRespTaskController {
                     };
                     //根据userId，查找创建的策略
                     List<ScheduleStrategy> strategyList = scheduleStrategyRepository.findAll(spec);
-
                     //申报负荷表
                     List<DemandRespStrategyNo> strategyNoList = new ArrayList<>();
-
                     //找到自动参加需求响应的策略信息
                     List<DemandRespStrategy> sList = new ArrayList<>();
                     if (strategyList != null && strategyList.size() > 0) {
@@ -172,9 +164,7 @@ public class DemandRespTaskController {
                             strategy.setScheduleStrategy(d);
                             strategy.setSId("admin" + dr.getRespId() + d.getStrategyId());
                             strategy.setCreateBy(d.getUserId());
-
                             sList.add(strategy);
-
                             //选择的运行策略，各节点的设备的负荷值
                             Map<Node, List<Device>> nodeListMap = d.getDeviceList().stream().
                                     collect(Collectors.groupingBy(Device::getNode));
@@ -193,23 +183,18 @@ public class DemandRespTaskController {
                                 strategyNo.setNodeId(node.getNodeId());//节点id
                                 strategyNo.setIsPlatform(2);//非第三方平台
                                 strategyNo.setRespId(dr.getRespId());
-
                                 strategyNoList.add(strategyNo);
                             }
-
                         });
-
                     }
                     //策略信息入库
                     if (sList != null && sList.size() > 0) {
                         respStrategyRepository.saveAll(sList);
                     }
-
                     //自动申报负荷信息入库
                     if (strategyNoList != null && strategyNoList.size() > 0) {
                         noRepository.saveAll(strategyNoList);
                     }
-
                     SysJob sysJob = new SysJob();
                     sysJob.setJobName("需求响应任务" + dr.getTaskCode());
                     sysJob.setJobGroup("需求响应");
@@ -227,29 +212,23 @@ public class DemandRespTaskController {
                     sysJob.setMisfirePolicy("3");//计划执行错误策略（1立即执行 2执行一次 3放弃执行）
                     sysJob.setConcurrent("1");//0允许 1禁止
                     sysJob.setCreateBy("admin");
-
                     sysJob = sysJobService.insertJobDemand(sysJob);
-
                     sysJob.setStatus(ScheduleConstants.Status.NORMAL.getValue());//状态（0正常 1暂停）
                     sysJobService.changeStatus(sysJob);
                     dr.setJobId(sysJob.getJobId());
-
                     dr.setCreateBy("admin");//保存创建者
                 }else{
                     dr.setDStatus(0);
                     dr.setCreateBy("admin_delete");//保存创建者
                 }
-
                 demandRespTaskRepository.save(dr);
             }
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.error("mqtt需求响应任务异常 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     @ApiOperation("查询任务列表")
     @UserLoginToken
     @RequestMapping(value = "/getTaskList", method = {RequestMethod.POST})
@@ -257,7 +236,6 @@ public class DemandRespTaskController {
         try {
             //更新已过期的响应任务
             demandRespTaskRepository.updateExpiredTasks();
-
             List<Integer> statusList = new ArrayList<>();
             statusList.add(1);
             statusList.add(4);
@@ -290,11 +268,8 @@ public class DemandRespTaskController {
             //当前页为第几页 默认 1开始
             int page = model.getNumber();
             int size = model.getPageSize();
-
             Pageable pageable = PageRequest.of(page - 1, size);
-
             Page<DemandRespTask> datas = demandRespTaskRepository.findAll(spec, pageable);
-
             PageModel pageModel = new PageModel();
             //封装到pageUtil
             if (datas.getContent() != null && datas.getContent().size() > 0) {
@@ -311,15 +286,12 @@ public class DemandRespTaskController {
             pageModel.setTotalPages(datas.getTotalPages());
             pageModel.setTotalElements((int) datas.getTotalElements());
             pageModel.setNumber(datas.getNumber() + 1);
-
             return ResponseResult.success(pageModel);
         }catch (Exception e){
             e.printStackTrace();
             return ResponseResult.error("查询为空");
         }
     }
-
-
     @ApiOperation("录入任务")
     @UserLoginToken
     @RequestMapping(value = "/addTask", method = {RequestMethod.POST})
@@ -349,7 +321,6 @@ public class DemandRespTaskController {
             }
             DemandRespTask dr = new DemandRespTask();
             Date date = new Date();
-
             Date rsdate = TimeUtil.strDDToDate(respTaskReq.getRsTime()+ ":00","yyyy-MM-dd HH:mm:00");
             if (rsdate.before(date)) {
                 return ResponseResult.error("响应开始时段不能小于当前时间");
@@ -460,7 +431,6 @@ public class DemandRespTaskController {
             }
             DemandRespTask dr = new DemandRespTask();
             Date date = new Date();
-
             Date rsdate = TimeUtil.strDDToDate(respTaskReq.getRsTime()+ ":00","yyyy-MM-dd HH:mm:00");
             if (rsdate.before(date)) {
                 return ResponseResult.error("响应开始时段不能小于当前时间");
@@ -482,7 +452,6 @@ public class DemandRespTaskController {
             dr.setCreateBy(userId);//保存创建者
             //判断该用户角色key类型为 1(系统管理员) 2(普通管理员)
             boolean role = userService.isManger();
-
             Specification<ScheduleStrategy> spec = new Specification<ScheduleStrategy>() {
                 @Override
                 public Predicate toPredicate(Root<ScheduleStrategy> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -572,14 +541,12 @@ public class DemandRespTaskController {
 //            if (sList != null && sList.size() > 0) {
 //                respStrategyRepository.saveAll(sList);
 //            }
-
             //自动申报负荷信息入库
         //todo,这里暂时注释，发现会创建两种任务id，一种普通用户前缀的一种admin前缀的
 //            if (strategyNoList != null && strategyNoList.size() > 0) {
 //                logger.info("开始保存数据了");
 //                noRepository.saveAll(strategyNoList);
 //            }
-
 //            SysJob sysJob = new SysJob();
 //            sysJob.setJobName("需求响应任务" + respTaskReq.getTaskCode());
 //            sysJob.setJobGroup("需求响应");
@@ -605,10 +572,8 @@ public class DemandRespTaskController {
 //            e.printStackTrace();
 //            return ResponseResult.error("录入需求响应任务异常 +" + e.getMessage());
 //        }
-
         return ResponseResult.success();
     }
-
     /**
      * 修改响应任务节点相关信息
      * add by maoyating 20240312
@@ -622,11 +587,9 @@ public class DemandRespTaskController {
         List<DemandRespStrategyModel> strategyModelList = new ArrayList<>();
         //第三方的运行策略，各节点的负荷值
         List<DemandRespStrategyNoModel> strategyNoModelList = new ArrayList<>();
-
         //符合邀约调节的用户编号resourceId  add by maoyating  20240312
         if(StringUtils.isNotBlank(respTaskReq.getInviteRange())){
             List<String> inviteRange = Arrays.asList(respTaskReq.getInviteRange().split(","));
-
             //得到本次新增的户号列表
             List<String> addList = inviteRange;
             //筛出不同户号的信息
@@ -643,13 +606,10 @@ public class DemandRespTaskController {
                 List<String> delList = getDifference(oldList, inviteRange);
                 if(delList!=null&&delList.size()>0){
                     //判断要删掉的户号是否为已申报，若已申报，直接给出提示
-
                     //删除本次需要删除的户号
                     noRepository.deleteByDrsIds(dr.getRespId(),delList);
                 }
-
             }
-
             Specification<Node> spec1 = new Specification<Node>() {
                 @Override
                 public Predicate toPredicate(Root<Node> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -663,15 +623,12 @@ public class DemandRespTaskController {
             //后续可能只考虑在线节点生成策略
             List<Node> nodeOnlineList = nodeList.stream().filter(Node::getOnline).collect(Collectors.toList());
             String sId = "admin"+"_" + dr.getRespId() +"_"+ "getInvitation";
-
             DemandRespStrategyModel drsModel = new DemandRespStrategyModel();
             drsModel.setSId(sId);
             drsModel.setStrategyId("zhinengtuijian");
             drsModel.setCreateBy("admin");
             drsModel.setRespId(dr.getRespId());
-
             strategyModelList.add(drsModel);
-
             for (String noHouseholds : addList) {
                 //判断运行策略是自动参加响应任务，还是手动;如果是自动，需要自动进行申报
                 int status = 11;//未申报
@@ -686,10 +643,8 @@ public class DemandRespTaskController {
                 if(dr.getRespLoad()!=null){
                     strategyNo.setDeclareLoad(dr.getRespLoad()/inviteRange.size());//todo 实际需要发给一斐进行计算得出
                 }
-
                 strategyNo.setSId(sId);
                 strategyNo.setDrsStatus(status);
-
                 strategyNo.setIsPlatform(1);//第三方平台
                 strategyNo.setRespId(dr.getRespId());
                 strategyNoModelList.add(strategyNo);
@@ -709,7 +664,6 @@ public class DemandRespTaskController {
                 criteriaQuery.orderBy(cb.asc(root.get("createdTime"))); //按照createdTime升序排列
                 return criteriaQuery.getRestriction();
             };
-
             if (nodeList.size() > 0) {
                 nodeList.forEach(v -> {
                     List<IotTsKv> iotTsKvs = iotTsKvRepository.findAllForAlgorithm(v.getNodeId(),dr.getRsTime(),dr.getReTime());
@@ -731,7 +685,6 @@ public class DemandRespTaskController {
                             iotTsKvs.stream().filter(vt -> vt.getPointName().equals("出水温度"))
                                     .mapToDouble(vte -> Double.parseDouble(vte.getPointValue())).average().orElse(0)
                     );
-
                     Date date = new Date();
                     String id = dr.getRespId() + "_" + v.getNodeId() + "_" + date.getTime();
                     DemandStrategy strategy = new DemandStrategy();
@@ -749,7 +702,6 @@ public class DemandRespTaskController {
                     strategy.setNoHouseholds(v.getNoHouseholds());
                     //策略内容、预测调节负荷、预测调节后负荷、申报值默认当前（commandValue，算法返回）等待算法返回
                     demandStrategyRepository.save(strategy);
-
                     DemandAlgorithmVo json =new DemandAlgorithmVo(
                             dr.getRespId(),
                             v.getNodeId(),
@@ -770,13 +722,10 @@ public class DemandRespTaskController {
                             e.printStackTrace();
                         }
                     });
-
                 });
             }
-
         }
     }
-
     /**
      * 去掉并集后的list
      * @param list1
@@ -788,7 +737,6 @@ public class DemandRespTaskController {
         result.removeAll(list2);
         return result;
     }
-
     @ApiOperation("编辑任务")
     @UserLoginToken
     @RequestMapping(value = "/editTask", method = {RequestMethod.POST})
@@ -797,7 +745,6 @@ public class DemandRespTaskController {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request1 = attributes.getRequest();
         String userId = request1.getHeader("authorizationCode");
-
         try {
             //判断id是否为空
             if (StringUtils.isBlank(respTaskReq.getRespId())) {
@@ -822,7 +769,6 @@ public class DemandRespTaskController {
                 return ResponseResult.error("该需求响应不存在");
             }
             DemandRespTask dr = task.get();
-
             dr.setRsTime(rsdate);
             dr.setReTime(TimeUtil.strDDToDate(respTaskReq.getReTime()+":00", "yyyy-MM-dd HH:mm:00"));
             dr.setRsDate(TimeUtil.strDDToDate(respTaskReq.getRsDate(), "yyyy-MM-dd"));
@@ -830,17 +776,14 @@ public class DemandRespTaskController {
             dr.setRespLoad(respTaskReq.getRespLoad());
             dr.setRespType(respTaskReq.getRespType());
             dr.setRespSubsidy(respTaskReq.getRespSubsidy());
-
             dr.setRespLevel(respTaskReq.getRespLevel());//响应级别
             if (StringUtils.isNotEmpty(respTaskReq.getFeedbackTime())) {//反馈日期
                 dr.setFeedbackTime(TimeUtil.strToDateFormatYMDHMS(respTaskReq.getFeedbackTime()));
             }
             dr.setUpdateBy(userId);//保存创建者
             dr.setUpdateTime(date);
-
             demandRespTaskRepository.save(dr);
             demandStrategyRepository.updateStateByIds(respTaskReq.getRespId());
-
             //修改响应任务节点相关信息 add by maoyating 20240312
             updateNodeInfo(respTaskReq,dr,"edit");
         } catch (Exception e) {
@@ -849,7 +792,6 @@ public class DemandRespTaskController {
         }
         return ResponseResult.success();
     }
-
     @ApiOperation("编辑任务价格--南网")
     @UserLoginToken
     @RequestMapping(value = "/editTaskPrice", method = {RequestMethod.POST})
@@ -858,13 +800,11 @@ public class DemandRespTaskController {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request1 = attributes.getRequest();
         String userId = request1.getHeader("authorizationCode");
-
         try {
             //判断id是否为空
             if (StringUtils.isBlank(respTaskReq.getRespId())) {
                 return ResponseResult.error("id不能为空");
             }
-
             Optional<DemandRespTask> task = demandRespTaskRepository.findById(respTaskReq.getRespId());
             if (!task.isPresent()) {
                 return ResponseResult.error("该需求响应不存在");
@@ -875,22 +815,17 @@ public class DemandRespTaskController {
                 return ResponseResult.error("该需求响应已申报节点，不能手动修改价格");
             }
             dr.setRespSubsidy(respTaskReq.getRespSubsidy());
-
             dr.setUpdateBy(userId);//保存创建者
             dr.setUpdateTime(new Date());
-
             demandRespTaskRepository.save(dr);
-
             noRepository.updateDeclarePrice(respTaskReq.getRespId(),respTaskReq.getRespSubsidy());
             priceRepository.updatePrice(respTaskReq.getRespId(),respTaskReq.getRespSubsidy());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.error("编辑需求响应任务异常 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     @ApiOperation("删除任务")
     @UserLoginToken
     @RequestMapping(value = "/delTask", method = {RequestMethod.POST})
@@ -899,7 +834,6 @@ public class DemandRespTaskController {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request1 = attributes.getRequest();
         String userId = request1.getHeader("authorizationCode");
-
         try {
             //判断id是否为空
             if (StringUtils.isBlank(respId)) {
@@ -911,30 +845,22 @@ public class DemandRespTaskController {
             }
             DemandRespTask dr = task.get();
             Date date = new Date();
-
             dr.setUpdateBy(userId);//保存创建者
             dr.setUpdateTime(date);
             dr.setDStatus(0);//0-删除
-
             if (dr.getJobId() != null) {
                 //直接删除定时任务
                 Optional<SysJob> old = sysJobRepository.findById(dr.getJobId());
                 SysJob oldJob = old.get();
                 sysJobService.deleteJob(oldJob);
             }
-
             demandRespTaskRepository.save(dr);
-
             //todo 福建的需求，删除任务，需反馈需求响应false
-
-
         } catch (Exception e) {
             return ResponseResult.error("删除需求响应任务异常 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     @ApiOperation("废弃--搜索设备列表")
     @UserLoginToken
     @RequestMapping(value = "/getDeviceListByName", method = {RequestMethod.POST})
@@ -955,11 +881,8 @@ public class DemandRespTaskController {
         //当前页为第几页 默认 1开始
         int page = model.getNumber();
         int size = model.getPageSize();
-
         Pageable pageable = PageRequest.of(page - 1, size);
-
         Page<DemandRespStrategy> datas = respStrategyRepository.findAll(spec, pageable);
-
         PageModel pageModel = new PageModel();
         //封装到pageUtil
         if (datas.getContent() != null && datas.getContent().size() > 0) {
@@ -977,10 +900,8 @@ public class DemandRespTaskController {
         pageModel.setTotalPages(datas.getTotalPages());
         pageModel.setTotalElements((int) datas.getTotalElements());
         pageModel.setNumber(datas.getNumber() + 1);
-
         return ResponseResult.success(pageModel);
     }
-
     @ApiOperation("查询该用户具有权限的策略名称")
     @UserLoginToken
     @RequestMapping(value = "/getStrategyList", method = {RequestMethod.POST})
@@ -988,14 +909,12 @@ public class DemandRespTaskController {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request1 = attributes.getRequest();
         String userId = request1.getHeader("authorizationCode");
-
         Specification<DemandRespStrategy> respSpec = new Specification<DemandRespStrategy>() {
             @Override
             public Predicate toPredicate(Root<DemandRespStrategy> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
                 List<Predicate> predicates = new ArrayList<>();
                 predicates.add(cb.equal(root.get("createBy"), userId));
                 predicates.add(cb.equal(root.get("respTask").get("respId"), respId));
-
                 criteriaQuery.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
                 return criteriaQuery.getRestriction();
             }
@@ -1005,10 +924,8 @@ public class DemandRespTaskController {
         if (respStrategyList != null && respStrategyList.size() > 0) {
             oldStrategyId = respStrategyList.get(0).getScheduleStrategy().getStrategyId();
         }
-
         //判断该用户角色key类型为 1(系统管理员) 2(普通管理员)
         boolean role = userService.isManger();
-
         Specification<ScheduleStrategy> spec = new Specification<ScheduleStrategy>() {
             @Override
             public Predicate toPredicate(Root<ScheduleStrategy> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -1023,22 +940,18 @@ public class DemandRespTaskController {
         };
         //根据userId，查找创建的策略
         List<ScheduleStrategy> strategyList = scheduleStrategyRepository.findAll(spec);
-
         //所有的策略信息
         Map<String, Object> respMap = new HashMap<>();
         Map<String, String> map = new HashMap<>();
-
         if (strategyList != null && strategyList.size() > 0) {
             strategyList.forEach(d -> {
                 map.put(d.getStrategyId(), d.getStrategyName());
             });
-
         }
         respMap.put("oldStrategyId", oldStrategyId);
         respMap.put("strategyList", map);
         return ResponseResult.success(respMap);
     }
-
     @ApiOperation("根据可调负荷运行策略id获取设备列表")
     @UserLoginToken
     @RequestMapping(value = "/getDeviceListById", method = {RequestMethod.POST})
@@ -1049,16 +962,13 @@ public class DemandRespTaskController {
             public Predicate toPredicate(Root<ScheduleStrategyDevice> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
                 List<Predicate> predicates = new ArrayList<>();
                 predicates.add(cb.equal(root.get("strategyId"), model.getStrategyId()));
-
                 criteriaQuery.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
                 return criteriaQuery.getRestriction();
             }
         };
         List<ScheduleStrategyDevice> strategyDeviceList = scheduleStrategyDeviceRepository.findAll(specDevice);
-
         if (strategyDeviceList != null && strategyDeviceList.size() > 0) {
             ScheduleStrategy scheduleStrategy = scheduleStrategyRepository.getOne(model.getStrategyId());
-
             List<String> deviceIdList = new ArrayList<>();
             strategyDeviceList.forEach(s -> {
                 deviceIdList.add(s.getDeviceId());
@@ -1071,7 +981,6 @@ public class DemandRespTaskController {
                         predicates.add(cb.like(root.get("deviceName"), "%" + model.getDeviceName() + "%"));
                     }
                     predicates.add(cb.in(root.get("deviceId")).value(deviceIdList));
-
                     Order order = cb.desc(root.get("deviceRatedPower"));
                     if (model.getDeviceRatedPowerSort() != null) {
                         if (model.getDeviceRatedPowerSort() == 1) {
@@ -1086,7 +995,6 @@ public class DemandRespTaskController {
                         } else {
                             order = cb.desc(root.get("scheduleStrategy").get("status"));
                         }
-
                     }
                     criteriaQuery.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
                     criteriaQuery.orderBy(order); //
@@ -1096,22 +1004,16 @@ public class DemandRespTaskController {
             //当前页为第几页 默认 1开始
             int page = model.getNumber();
             int size = model.getPageSize();
-
             Pageable pageable = PageRequest.of(page - 1, size);
-
             Page<Device> datas = deviceRepository.findAll(spec, pageable);
-
             PageModel pageModel = new PageModel();
-
             Double totalDeviceRatedPower = 0.00;//总额定负荷
             Double totalActualLoad = 0.00;//总实际负荷
-
             //封装到pageUtil
             if (datas.getContent() != null && datas.getContent().size() > 0) {
                 List<DemandRespStrategyReq> list = new ArrayList<>();
                 datas.getContent().forEach(d -> {
                     DemandRespStrategyReq newModel = new DemandRespStrategyReq();
-
                     newModel.setNodeId(d.getNode().getNodeId());
                     newModel.setNodeName(d.getNode().getNodeName());//节点名称
                     newModel.setSystemId(d.getSystemType().getSystemId());
@@ -1136,7 +1038,6 @@ public class DemandRespTaskController {
                     list.add(newModel);
                 });
                 pageModel.setContent(list);
-
                 Specification<Device> spec1 = new Specification<Device>() {
                     @Override
                     public Predicate toPredicate(Root<Device> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -1145,15 +1046,12 @@ public class DemandRespTaskController {
                             predicates.add(cb.like(root.get("deviceName"), "%" + model.getDeviceName() + "%"));
                         }
                         predicates.add(cb.in(root.get("deviceId")).value(deviceIdList));
-
                         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
                     }
                 };
-
                 List<Device> deviceList = deviceRepository.findAll(spec1);
                 for (Device d : deviceList) {
                     totalDeviceRatedPower += d.getDeviceRatedPower();
-
                 }
                 if (scheduleStrategy.isStrategyStatus()) {
                     //如果策略true-开启状态，则实时负荷=额定负荷
@@ -1161,7 +1059,6 @@ public class DemandRespTaskController {
                 } else {
                     totalActualLoad = 0.00;
                 }
-
             } else {
                 pageModel.setContent(datas.getContent());
             }
@@ -1169,24 +1066,19 @@ public class DemandRespTaskController {
             pageModel.setTotalPages(datas.getTotalPages());
             pageModel.setTotalElements((int) datas.getTotalElements());
             pageModel.setNumber(datas.getNumber() + 1);
-
-
             Map<String, Object> map = new HashMap<>();
             map.put("totalDeviceRatedPower", totalDeviceRatedPower);//总额定负荷
             map.put("totalActualLoad", totalActualLoad);//总实际负荷
             map.put("devieInfo", pageModel);//设备分页信息
-
             return ResponseResult.success(map);
         } else {
             Map<String, Object> map = new HashMap<>();
             map.put("totalDeviceRatedPower", 0);//总额定负荷
             map.put("totalActualLoad", 0);//总实际负荷
             map.put("devieInfo", null);//设备分页信息
-
             return ResponseResult.success(map);
         }
     }
-
     @ApiOperation("编辑策略")
     @UserLoginToken
     @RequestMapping(value = "/editStrategy", method = {RequestMethod.POST})
@@ -1218,7 +1110,6 @@ public class DemandRespTaskController {
                         predicates.add(cb.equal(root.get("scheduleStrategy").get("strategyId"), oldStrategyId));
                         predicates.add(cb.equal(root.get("respTask").get("respId"), respId));
 //                        predicates.add(cb.equal(root.get("createBy"),userId ));
-
                         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
                     }
                 };
@@ -1227,33 +1118,26 @@ public class DemandRespTaskController {
                     return ResponseResult.error("该策略不存在");
                 }
                 dr = demandRespStrategy.get();
-
                 dr.setScheduleStrategy(s);
-
                 respStrategyRepository.save(dr);
             } else {
-
                 if (demandRespTask == null) {
                     return ResponseResult.error("该需求响应不存在");
                 }
-
                 dr = new DemandRespStrategy();
                 dr.setSId(userId + demandRespTask.getRespId() + s.getStrategyId());
                 dr.setScheduleStrategy(s);
                 dr.setCreateBy(userId);
                 dr.setRespTask(demandRespTask);
-
                 respStrategyRepository.save(dr);
             }
             //选择的运行策略，各节点的设备的负荷值
             List<DemandRespStrategyNo> strategyNoList = new ArrayList<>();
-
             //判断运行策略是自动参加响应任务，还是手动;如果是自动，需要自动进行申报
             int status = 11;//未申报
             if (s.isDemandResponse()) {
                 status = 21;//已申报
             }
-
             if (s.getDeviceList() != null && s.getDeviceList().size() > 0) {
                 Map<Node, List<Device>> nodeListMap = s.getDeviceList().stream().
                         collect(Collectors.groupingBy(Device::getNode));
@@ -1283,12 +1167,9 @@ public class DemandRespTaskController {
                         strategyNo.setDeclarePrice(demandRespTask.getRespSubsidy());
                     }
                     strategyNo.setRespId(dr.getRespTask().getRespId());
-
                     strategyNoList.add(strategyNo);
-
                     //TODO 向福建发送主动申报信息
                 }
-
                 //根据节点的申报额定功率，进行占比分配
                 Double declare=strategyNoList.stream().mapToDouble(DemandRespStrategyNo::getDeclareLoad).sum();
                 if(declare>demandRespTask.getRespLoad()){//如果节点之和的申报额定功率，大于下发的需求响应任务，则按占比进行分配
@@ -1308,20 +1189,15 @@ public class DemandRespTaskController {
                         // 如果不相等，则调整最后一个用户的申报量，使其与总申报量相等
                         strategyNoList.get(strategyNoList.size() - 1).setDeclareLoad(remaining);
                     }
-
                 }
                 noRepository.saveAll(strategyNoList);
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.error("编辑策略异常 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     @ApiOperation("查询申报负荷列表")
     @UserLoginToken
     @RequestMapping(value = "/getDeclareList", method = {RequestMethod.POST})
@@ -1339,7 +1215,6 @@ public class DemandRespTaskController {
 //            sIdsList = respStrategyRepository.findSIdsByUserId(model.getRespId(), userId);
 //        }
         sIdsList = respStrategyRepository.findSIdsByUserId(model.getRespId(), userId);
-
         if (sIdsList != null && sIdsList.size() > 0) {
             List<String> finalSIdsList = sIdsList;
             Specification<DemandRespStrategyNo> spec = new Specification<DemandRespStrategyNo>() {
@@ -1355,11 +1230,8 @@ public class DemandRespTaskController {
             //当前页为第几页 默认 1开始
             int page = model.getNumber();
             int size = model.getPageSize();
-
             Pageable pageable = PageRequest.of(page - 1, size);
-
             Page<DemandRespStrategyNo> datas = noRepository.findAll(spec, pageable);
-
             PageModel pageModel = new PageModel();
             List<DemandRespStrategyNoResp> noResps = new ArrayList<>();
             //封装到pageUtil
@@ -1373,10 +1245,8 @@ public class DemandRespTaskController {
                         getMethod=obj.get("baseLineGetMethod").toString();
                     }
                 }
-
                 //得到nodeIds,去ai表里查询ai基线负荷
                 List<String> nodeIds = datas.stream().map(DemandRespStrategyNo::getNodeId).collect(Collectors.toList());
-
                 //730需求
                 //查询响应任务
                 DemandRespTask task = demandRespTaskRepository.findByRespId(model.getRespId());
@@ -1389,7 +1259,6 @@ public class DemandRespTaskController {
 //                String reTime = dateSdf.format(task.getRsDate()) + " " + timeSdf.format(task.getReTime());
                 Date sDate = task.getRsTime();
                 Date eDate = task.getReTime();
-
                 Specification<AiLoadForecasting> spec1 = new Specification<AiLoadForecasting>() {
                     @Override
                     public Predicate toPredicate(Root<AiLoadForecasting> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -1401,11 +1270,9 @@ public class DemandRespTaskController {
                         return criteriaQuery.getRestriction();
                     }
                 };
-
                 //List<AiLoadForecasting> forecastingList = aiLoadRepository.findByNodeIdsMax(nodeIds);  20231023废弃
                 List<AiLoadForecasting> forecastingList = aiLoadRepository.findAll(spec1);
                 Map<String, List<AiLoadForecasting>> baseLoadMap = forecastingList.stream().collect(Collectors.groupingBy(AiLoadForecasting::getNodeId));
-
                 for(DemandRespStrategyNo d:datas){
                     DemandRespStrategyNoResp noResp = new DemandRespStrategyNoResp();
                     noResp.setDrsId(d.getDrsId());
@@ -1414,34 +1281,26 @@ public class DemandRespTaskController {
                     noResp.setDeclareLoad(d.getDeclareLoad());
                     noResp.setNoHouseholds(d.getNoHouseholds());
                     noResp.setStrategyId(d.getDemandRespStrategy().getScheduleStrategy().getStrategyId());
-
                     //20230605n zph  基线负荷 默认值为 -，类型为字符串
                     //double baseValue = com.example.vvpcommom.StringUtils.convertBaseLineValueToDouble(baseLoadMap.get(d.getNodeId()));
-
                     List<AiLoadForecasting> aiList = baseLoadMap.get(d.getNodeId());
-
                     noResp.setBaseLoad(getAvgBaseLoad(getMethod,aiList));
                     noResp.setDeclarePrice(d.getDeclarePrice());
-
                     noResps.add(noResp);
                 }
             }
             pageModel.setContent(noResps);
-
             pageModel.setTotalPages(datas.getTotalPages());
             pageModel.setTotalElements((int) datas.getTotalElements());
             pageModel.setNumber(datas.getNumber() + 1);
-
             Map<String, Object> map = new HashMap<>();
             Object[] obj = noRepository.findStrategyCount(sIdsList);
-
             if (obj != null) {
                 Object[] objects = (Object[]) obj[0];
                 map.put("invitation", objects[0]);//邀约对象
                 map.put("totalDeclare", objects[1]);//申报负荷
             } else {
                 List<DemandStrategy> demandStrategyList = demandStrategyRepository.findByRespId(model.getRespId());
-
                 map.put("invitation", demandStrategyList.size());//邀约对象
                 map.put("totalDeclare", demandStrategyList.stream().mapToDouble(v -> Double.parseDouble(v.getCommandValue())).sum());//申报负荷
             }
@@ -1450,9 +1309,7 @@ public class DemandRespTaskController {
         } else {
             return ResponseResult.error("未选择策略信息");
         }
-
     }
-
     /**
      * 计算基线平均负荷
      * @param getMethod
@@ -1461,7 +1318,6 @@ public class DemandRespTaskController {
      */
     private String getAvgBaseLoad(String getMethod,List<AiLoadForecasting> aiList){
         String baseLoad = "-";
-
         if(aiList!=null && aiList.size()>0){
             //基线总和
             double baseLoadTotal = 0.00;
@@ -1469,12 +1325,12 @@ public class DemandRespTaskController {
             int count =0;
             if(getMethod.equals("商汤")){
                 for(AiLoadForecasting a: aiList){
-                    if (StringUtils.isEmpty(a.getBaselineLoadValue())
-                            || "-".equals(a.getBaselineLoadValue())
-                            || !com.example.vvpcommom.StringUtils.isNumber(a.getBaselineLoadValue())) {
+                    if (StringUtils.isEmpty(a.getBaselineLoadValue() == null ? null : a.getBaselineLoadValue().toString())
+                            || "-".equals(a.getBaselineLoadValue() == null ? null : a.getBaselineLoadValue().toString())
+                            || !com.example.vvpcommom.StringUtils.isNumber(a.getBaselineLoadValue() == null ? null : a.getBaselineLoadValue().toString())) {
                         count++;
                     }else {
-                        baseLoadTotal += Double.parseDouble(a.getBaselineLoadValue());
+                        baseLoadTotal += a.getBaselineLoadValue().doubleValue();
                     }
                 }
                 if(count<aiList.size()){
@@ -1482,12 +1338,12 @@ public class DemandRespTaskController {
                 }
             }else{
                 for(AiLoadForecasting a: aiList){
-                    if (StringUtils.isEmpty(a.getBaselineLoadValueOther())
-                            || "-".equals(a.getBaselineLoadValueOther())
-                            || !com.example.vvpcommom.StringUtils.isNumber(a.getBaselineLoadValueOther())) {
+                    if (StringUtils.isEmpty(a.getBaselineLoadValueOther() == null ? null : a.getBaselineLoadValueOther().toString())
+                            || "-".equals(a.getBaselineLoadValueOther() == null ? null : a.getBaselineLoadValueOther().toString())
+                            || !com.example.vvpcommom.StringUtils.isNumber(a.getBaselineLoadValueOther() == null ? null : a.getBaselineLoadValueOther().toString())) {
                         count++;
                     }else {
-                        baseLoadTotal += Double.parseDouble(a.getBaselineLoadValueOther());
+                        baseLoadTotal += a.getBaselineLoadValueOther().doubleValue();
                     }
                 }
                 if(count<aiList.size()){
@@ -1499,7 +1355,6 @@ public class DemandRespTaskController {
     }
     @Value("${suanfaBackCalcApi}")
     private String suanfaBackCalcApi;
-
     @ApiOperation("编辑申报负荷")
     @UserLoginToken
     @RequestMapping(value = "/editDeclare", method = {RequestMethod.POST})
@@ -1531,7 +1386,6 @@ public class DemandRespTaskController {
             DemandStrategy find = demandStrategyList.get(0);
             find.setState(2);
             demandStrategyRepository.save(find);
-
             DemandStrategy demandStrategy = new DemandStrategy();
             BeanUtils.copyProperties(find, demandStrategy);
             String id = find.getRespId() + "_" + find.getNodeId() + "_" + new Date().getTime() + new Random().nextInt(100);
@@ -1540,7 +1394,6 @@ public class DemandRespTaskController {
             demandStrategy.setLlm(false);
             //等待算法返回才修改策略不然按照上一个策略，后续修改：申报负荷，调节负荷、调节后负荷
             demandStrategyRepository.save(demandStrategy);
-
             if (drsId.contains("_")) {
                 DemandAlgorithmVo json =new DemandAlgorithmVo(
                         demandStrategy.getRespId(),
@@ -1570,10 +1423,8 @@ public class DemandRespTaskController {
             e.printStackTrace();
             return ResponseResult.error("编辑申报负荷异常 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     @ApiOperation("申报负荷提交")
     @UserLoginToken
     @RequestMapping(value = "/declareSubmit", method = {RequestMethod.POST})
@@ -1598,7 +1449,6 @@ public class DemandRespTaskController {
                 if (diff < 5000) {
                     return ResponseResult.error("接近反馈截止时间，申报失败！");
                 }
-
                 //判断某个户号是否被申报过，若被申报过，则给出提示
                 if (drsIds != null && drsIds.size() > 0) {
                     List<DemandRespStrategyNo> noList = noRepository.findNoListByRespIdStatus(respId, 21);//查询已申报的状态的户号信息
@@ -1613,7 +1463,6 @@ public class DemandRespTaskController {
                                 }
                             }
                         }
-
                     }
                 } else {
                     return ResponseResult.error("请先选择要申报的节点！");
@@ -1628,15 +1477,12 @@ public class DemandRespTaskController {
             e.printStackTrace();
             return ResponseResult.error("请先选择要申报的节点");
         }
-
         return ResponseResult.success();
     }
-
     @ApiOperation("获取第三方智慧能源平台列表")
     @UserLoginToken
     @PostMapping("/getSmartEnergySysParamList")
     public ResponseResult getSmartEnergySysParamList(@RequestParam("sysParamKey") Integer sysParamKey) {
-
         Specification<SysParam> spec = new Specification<SysParam>() {
             @Override
             public Predicate toPredicate(Root<SysParam> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -1653,22 +1499,18 @@ public class DemandRespTaskController {
                 model.setParamName(s.getSysParamName());
                 model.setId(s.getId());
                 model.setAddress(s.getSysParamValue());
-
                 list.add(model);
             });
             return ResponseResult.success(list);
         }
-
         return ResponseResult.error("获取第三方智慧能源平台信息失败！");
     }
-
     @ApiOperation("第三方智慧能源平台-发送")
     @UserLoginToken
     @RequestMapping(value = "/thirdPlatformSend", method = {RequestMethod.POST})
     @Transactional
     public ResponseResult thirdPlatformSend(@RequestParam(value = "respId") String respId,
                                             @RequestParam("platformId") String platformId) {
-
         try {
             if (StringUtils.isBlank(respId)) {
                 return ResponseResult.error("任务编码不能为空！");
@@ -1687,10 +1529,8 @@ public class DemandRespTaskController {
             e.printStackTrace();
             return ResponseResult.error("第三方智慧能源平台-发送异常 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     /**
      * 将需求响应任务转换为kafka报文
      *
@@ -1700,10 +1540,8 @@ public class DemandRespTaskController {
     private String transTaskKafka(DemandRespTask task) {
         SimpleDateFormat formatter_ymd = new SimpleDateFormat("yyyy-MM-dd");
         formatter_ymd.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-
         SimpleDateFormat hm = new SimpleDateFormat("HH:mm");
         hm.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-
         DemandResponseInvitation taskKafka = new DemandResponseInvitation();
         taskKafka.setDemandId(task.getRespId());
         taskKafka.setDeleteFlag(0);//0-正常 1-取消
@@ -1714,19 +1552,15 @@ public class DemandRespTaskController {
         taskKafka.setDemandType(task.getRespType() + "");
         taskKafka.setDemandValue(task.getRespLoad());
         taskKafka.setDemandPrice(task.getRespSubsidy());
-
         List<DemandResponseInvitation> list = new ArrayList<>();
         list.add(taskKafka);
-
         return JSONObject.toJSONString(list);
     }
-
     @ApiOperation("第三方智慧能源平台-查询申报负荷列表")
     @UserLoginToken
     @RequestMapping(value = "/thirdPlatformDeclareList", method = {RequestMethod.POST})
     @Transactional
     public ResponseResult thirdPlatformDeclareList(@RequestBody DemandStrategyModel model) {
-
         try {
             if (StringUtils.isBlank(model.getRespId())) {
                 return ResponseResult.error("任务编码不能为空！");
@@ -1736,25 +1570,20 @@ public class DemandRespTaskController {
             }
             //查询所有相关的策略id
             List<String> sIdsList = respStrategyRepository.findSIdsByPlatformId(model.getRespId(), model.getPlatformId());
-
             Specification<DemandRespStrategyNo> spec = new Specification<DemandRespStrategyNo>() {
                 @Override
                 public Predicate toPredicate(Root<DemandRespStrategyNo> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
                     List<Predicate> predicates = new ArrayList<>();
                     predicates.add(cb.in(root.get("demandRespStrategy").get("sId")).value(sIdsList));
                     predicates.add(cb.equal(root.get("isPlatform"), 1));//查询第三方平台的数据
-
                     return cb.and(predicates.toArray(new Predicate[predicates.size()]));
                 }
             };
             //当前页为第几页 默认 1开始
             int page = model.getNumber();
             int size = model.getPageSize();
-
             Pageable pageable = PageRequest.of(page - 1, size);
-
             Page<DemandRespStrategyNo> datas = noRepository.findAll(spec, pageable);
-
             PageModel pageModel = new PageModel();
             List<DemandRespStrategyNoResp> noResps = new ArrayList<>();
             //封装到pageUtil
@@ -1770,7 +1599,6 @@ public class DemandRespTaskController {
                 }
                 //得到nodeIds,去ai表里查询ai基线负荷
                 List<String> nodeIds = datas.stream().map(DemandRespStrategyNo::getNodeId).collect(Collectors.toList());
-
                 //730需求
                 //查询响应任务
                 DemandRespTask task = demandRespTaskRepository.findByRespId(model.getRespId());
@@ -1783,7 +1611,6 @@ public class DemandRespTaskController {
 //                String reTime = dateSdf.format(task.getRsDate()) + " " + timeSdf.format(task.getReTime());
                 Date sDate = task.getRsTime();
                 Date eDate = task.getReTime();
-
                 Specification<AiLoadForecasting> spec1 = new Specification<AiLoadForecasting>() {
                     @Override
                     public Predicate toPredicate(Root<AiLoadForecasting> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -1795,11 +1622,8 @@ public class DemandRespTaskController {
                         return criteriaQuery.getRestriction();
                     }
                 };
-
                 List<AiLoadForecasting> forecastingList = aiLoadRepository.findAll(spec1);
-
                 Map<String, List<AiLoadForecasting>> baseLoadMap = forecastingList.stream().collect(Collectors.groupingBy(AiLoadForecasting::getNodeId));
-
                 for(DemandRespStrategyNo d:datas.getContent()){
                     DemandRespStrategyNoResp noResp = new DemandRespStrategyNoResp();
                     noResp.setDrsId(d.getDrsId());
@@ -1808,19 +1632,14 @@ public class DemandRespTaskController {
                     noResp.setDeclareLoad(d.getDeclareLoad());
                     noResp.setNoHouseholds(d.getNoHouseholds());
                     List<AiLoadForecasting> aiList = baseLoadMap.get(d.getNodeId());
-
                     noResp.setBaseLoad(getAvgBaseLoad(getMethod,aiList));
-
                     noResps.add(noResp);
                 }
-
             }
             pageModel.setContent(noResps);
-
             pageModel.setTotalPages(datas.getTotalPages());
             pageModel.setTotalElements((int) datas.getTotalElements());
             pageModel.setNumber(datas.getNumber() + 1);
-
             Map<String, Object> map = new HashMap<>();
             Object[] obj = noRepository.findStrategyCount(sIdsList);
             if (obj != null) {
@@ -1833,14 +1652,11 @@ public class DemandRespTaskController {
             }
             map.put("devieInfo", pageModel);//设备分页信息
             return ResponseResult.success(map);
-
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.error("异常 +" + e.getMessage());
         }
-
     }
-
     @ApiOperation("第三方智慧能源平台-申报负荷提交")
     @UserLoginToken
     @RequestMapping(value = "/thirdPlatformDeclareSubmit", method = {RequestMethod.POST})
@@ -1859,10 +1675,8 @@ public class DemandRespTaskController {
             if (drsIds == null || drsIds.size() == 0) {
                 return ResponseResult.error("请选择您要申报的内容！");
             }
-
             //批量更新申报状态
             noRepository.updateStatus(drsIds);
-
             Specification<DemandRespStrategyNo> spec = new Specification<DemandRespStrategyNo>() {
                 @Override
                 public Predicate toPredicate(Root<DemandRespStrategyNo> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -1873,18 +1687,14 @@ public class DemandRespTaskController {
                     return cb.and(predicates.toArray(new Predicate[predicates.size()]));
                 }
             };
-
             //TODO 将申报信息发送给 福建
-
             //批量更新中标状态  本次默认1-已中标
             noRepository.updateWinningBid(drsIds, 1);
-
             //查询对应的任务id
             DemandRespTask task = demandRespTaskRepository.findByRespId(respId);
             List<DemandRespStrategyNo> scheduleStrategy = noRepository.findAll(spec);
             //将信息发给高新兴
             String jsonStr = transDeclareKafka(task, scheduleStrategy);
-
             String url = "http://localhost:" + port + "/v1/demandResponseInvitationResult";
             //发送数据到API接口
             HttpUtil.okHttpPost(url, jsonStr);
@@ -1892,10 +1702,8 @@ public class DemandRespTaskController {
             e.printStackTrace();
             return ResponseResult.error("申报提交异常 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     /**
      * 将需求响应任务申报信息转换为kafka报文
      *
@@ -1905,12 +1713,9 @@ public class DemandRespTaskController {
     private String transDeclareKafka(DemandRespTask task, List<DemandRespStrategyNo> noList) {
         SimpleDateFormat formatter_ymd = new SimpleDateFormat("yyyy-MM-dd");
         formatter_ymd.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-
         SimpleDateFormat hm = new SimpleDateFormat("HH:mm");
         hm.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-
         List<DemandResponseInvitationResult> list = new ArrayList<>();
-
         for (DemandRespStrategyNo no : noList) {
             DemandResponseInvitationResult taskKafka = new DemandResponseInvitationResult();
             taskKafka.setDemandId(task.getRespId());
@@ -1923,14 +1728,10 @@ public class DemandRespTaskController {
             taskKafka.setDemandPrice(task.getRespSubsidy());
             taskKafka.setMeterAccountNumber(no.getNoHouseholds());
             taskKafka.setInvitationResult(no.getWinningBid() + "");//是否中标
-
             list.add(taskKafka);
         }
-
         return JSONObject.toJSONString(list);
     }
-
-
     /**
      * 查询价格详情--南网新增
      * @param model
@@ -1946,34 +1747,27 @@ public class DemandRespTaskController {
             }
             PageModel pageModel = new PageModel();
             DemandRespTask task = demandRespTaskRepository.findByRespId(model.getRespId());
-
             //当前页为第几页 默认 1开始
             int pageSize = model.getPageSize();
             int pageNum = (model.getNumber() - 1) * pageSize;//pg 从0开始
-
             SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
             sdfTime.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-
             Date startDate = sdfTime.parse(sdfTime.format(task.getRsTime()));
             Date endDate = sdfTime.parse(sdfTime.format(task.getReTime()));
             List<DemandRespPlanPrice> planPriceList=planPriceRepository.findByRespIdDateList(model.getRespId(),
                     startDate, endDate,pageSize,pageNum);
-
             pageModel.setContent(planPriceList);
-
             //总数
             int count = planPriceRepository.countByRespIdDate(model.getRespId(),
                     startDate, endDate);
             //封装到pageUtil
             pageModel.setTotalElements(count);
             return ResponseResult.success(pageModel);
-
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.error("查询有误！");
         }
     }
-
     /**
      * 响应任务是否参加申报--南网
      * @param respId
@@ -1994,41 +1788,33 @@ public class DemandRespTaskController {
             e.printStackTrace();
             return ResponseResult.error("编辑响应任务失败 +" + e.getMessage());
         }
-
         return ResponseResult.success();
     }
-
     @ApiOperation("南网-查询申报负荷列表")
     @UserLoginToken
     @RequestMapping(value = "/getCSPGDeclareList", method = {RequestMethod.POST})
     @Transactional
     public ResponseResult getCSPGDeclareList(@RequestBody DemandStrategyModel model) {
-
         try {
             if (StringUtils.isBlank(model.getRespId())) {
                 return ResponseResult.error("任务编码不能为空！");
             }
             //查询所有相关的策略id
             List<String> sIdsList = respStrategyRepository.findSIdsByPlatformId(model.getRespId(), "zhinengtuijian");
-
             Specification<DemandRespStrategyNo> spec = new Specification<DemandRespStrategyNo>() {
                 @Override
                 public Predicate toPredicate(Root<DemandRespStrategyNo> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
                     List<Predicate> predicates = new ArrayList<>();
                     predicates.add(cb.in(root.get("demandRespStrategy").get("sId")).value(sIdsList));
                     predicates.add(cb.equal(root.get("isPlatform"), 1));//查询第三方平台的数据
-
                     return cb.and(predicates.toArray(new Predicate[predicates.size()]));
                 }
             };
             //当前页为第几页 默认 1开始
             int page = model.getNumber();
             int size = model.getPageSize();
-
             Pageable pageable = PageRequest.of(page - 1, size);
-
             Page<DemandRespStrategyNo> datas = noRepository.findAll(spec, pageable);
-
             PageModel pageModel = new PageModel();
             List<DemandRespStrategyNoResp> noResps = new ArrayList<>();
             List<DemandStrategy> demandStrategyList = demandStrategyRepository.findByRespIdAndState(model.getRespId(),Arrays.asList(1));
@@ -2047,7 +1833,6 @@ public class DemandRespTaskController {
                 }
                 //得到nodeIds,去ai表里查询ai基线负荷
                 List<String> nodeIds = datas.stream().map(DemandRespStrategyNo::getNodeId).collect(Collectors.toList());
-
                 //730需求
                 //查询响应任务
                 DemandRespTask task = demandRespTaskRepository.findByRespId(model.getRespId());
@@ -2058,7 +1843,6 @@ public class DemandRespTaskController {
                 timeSdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
                 Date sDate = task.getRsTime();
                 Date eDate = task.getReTime();
-
                 Specification<AiLoadForecasting> spec1 = new Specification<AiLoadForecasting>() {
                     @Override
                     public Predicate toPredicate(Root<AiLoadForecasting> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -2070,11 +1854,8 @@ public class DemandRespTaskController {
                         return criteriaQuery.getRestriction();
                     }
                 };
-
                 List<AiLoadForecasting> forecastingList = aiLoadRepository.findAll(spec1);
-
                 Map<String, List<AiLoadForecasting>> baseLoadMap = forecastingList.stream().collect(Collectors.groupingBy(AiLoadForecasting::getNodeId));
-
                 for(DemandRespStrategyNo d:datas.getContent()){
                     DemandRespStrategyNoResp noResp = new DemandRespStrategyNoResp();
                     noResp.setDrsId(d.getDrsId());
@@ -2093,7 +1874,6 @@ public class DemandRespTaskController {
                         noResp.setAdjustLoad(null);
                     }
                     noResp.setBaseLoad(getAvgBaseLoad(getMethod,aiList));
-
                     noResps.add(noResp);
                 }
             }
@@ -2101,7 +1881,6 @@ public class DemandRespTaskController {
             pageModel.setTotalPages(datas.getTotalPages());
             pageModel.setTotalElements((int) datas.getTotalElements());
             pageModel.setNumber(datas.getNumber() + 1);
-
             Map<String, Object> map = new HashMap<>();
             Object[] obj = noRepository.findStrategyCount(sIdsList);
             if (obj != null) {
@@ -2138,10 +1917,8 @@ public class DemandRespTaskController {
                 map.put(n.getNodeId(),model);
             });
         }
-
         return ResponseResult.success(map);
     }
-
     /**
      * 查询参与响应的节点信息
      * add by maoyating 20240312
@@ -2161,7 +1938,6 @@ public class DemandRespTaskController {
         }
         return ResponseResult.success(map);
     }
-
     /**
      * 手动出清 触发
      * add by maoyating 20240313

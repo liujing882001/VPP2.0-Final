@@ -8,7 +8,8 @@ import com.example.vvpdomain.UserRepository;
 import com.example.vvpdomain.UserSecretRepository;
 import com.example.vvpdomain.entity.UserSecret;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,8 +33,9 @@ import static com.example.vvpdomain.constants.UserConstant.*;
  * 20240622
  */
 @Component
-@Slf4j
 public class EncryptionFilter implements Filter {
+
+    private static final Logger log = LoggerFactory.getLogger(EncryptionFilter.class);
 
     @Autowired
     private RedisUtils redisUtils;

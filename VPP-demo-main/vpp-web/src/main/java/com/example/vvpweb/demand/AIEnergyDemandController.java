@@ -213,7 +213,7 @@ public class AIEnergyDemandController {
                                     String.valueOf(
                                             aiList.stream()
                                                     .filter(v -> v.getCurrentForecastValue() != null && !("-").equals(v.getCurrentForecastValue()))
-                                                    .mapToDouble(v2 -> Double.parseDouble(v2.getCurrentForecastValue())).average().orElse(0)
+                                                    .mapToDouble(v2 -> v2.getCurrentForecastValue().doubleValue()).average().orElse(0)
                                     ));
                         } else {
                             noResp.setForecastLoad(strategy.getForecastLoad());
@@ -221,12 +221,12 @@ public class AIEnergyDemandController {
                         noResp.setNowLoad(
                                 String.valueOf(
                                         aiList.stream().filter(v -> v.getRealValue() != null && !("-").equals(v.getRealValue()))
-                                                .mapToDouble(v2 -> Double.parseDouble(v2.getRealValue())).average().orElse(0)
+                                                .mapToDouble(v2 -> v2.getRealValue().doubleValue()).average().orElse(0)
                                 ));//实际负荷
                         noResp.setBaseLoad(
                                 String.valueOf(
                                         aiList.stream().filter(v -> v.getBaselineLoadValue() != null && !("-").equals(v.getBaselineLoadValue()))
-                                                .mapToDouble(v2 -> Double.parseDouble(v2.getBaselineLoadValue())).average().orElse(0)
+                                                .mapToDouble(v2 -> v2.getBaselineLoadValue().doubleValue()).average().orElse(0)
                                 ));//基线负荷
                     }
                     if (noResp.getBaseLoad() != null && noResp.getNowLoad() != null) {
@@ -300,12 +300,12 @@ public class AIEnergyDemandController {
 //            // “-”的统计次数
 //            int count =0;
 //            for(AiLoadForecasting a: aiList){
-//                if (StringUtils.isEmpty(a.getCurrentForecastValue())
-//                        || "-".equals(a.getCurrentForecastValue())
-//                        || !com.example.vvpcommom.StringUtils.isNumber(a.getCurrentForecastValue())) {
+//                if (StringUtils.isEmpty(a.getCurrentForecastValue() == null ? null : a.getCurrentForecastValue().toString())
+//                        || "-".equals(a.getCurrentForecastValue() == null ? null : a.getCurrentForecastValue().toString())
+//                        || !com.example.vvpcommom.StringUtils.isNumber(a.getCurrentForecastValue() == null ? null : a.getCurrentForecastValue().toString())) {
 //                    count++;
 //                }else {
-//                    forecastTotal += Double.parseDouble(a.getCurrentForecastValue());
+//                    forecastTotal += a.getCurrentForecastValue().doubleValue();
 //                }
 //            }
 //            if(count<aiList.size()){
@@ -313,7 +313,7 @@ public class AIEnergyDemandController {
 //            }
             forecastLoad = String.valueOf(aiList.stream()
                     .filter(v1 -> v1.getCurrentForecastValue() != null)
-                    .filter(v -> !v.getCurrentForecastValue().equals("-")).mapToDouble(v2 -> Double.parseDouble(v2.getCurrentForecastValue()))
+                    .filter(v -> !v.getCurrentForecastValue().equals("-")).mapToDouble(v2 -> v2.getCurrentForecastValue().doubleValue())
                     .sum()
                     /aiList.size());
         }

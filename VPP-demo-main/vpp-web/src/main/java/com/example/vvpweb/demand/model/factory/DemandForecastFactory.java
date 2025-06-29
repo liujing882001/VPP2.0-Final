@@ -6,6 +6,7 @@ import com.example.vvpdomain.entity.DemandStrategy;
 import com.example.vvpweb.demand.model.DemandForecastResponse;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -27,11 +28,11 @@ public class DemandForecastFactory {
             Date reTime) {
         List<DemandForecastResponse> list = new ArrayList<>();
         Long forecastAdjustLoad = Math.round(demandStrategyList.stream().mapToDouble(vend1 -> Double.parseDouble(vend1.getForecastAdjustLoad())).average().orElse(0));
-        long firstTime = sTime.getTime();
+        long firstTime = sTime.toInstant().toEpochMilli();
         AtomicLong startTime = new AtomicLong(firstTime -100 );
         AtomicLong endTime = new AtomicLong(firstTime + (900 * 1000) +100);
-        long rsLongTime = rsTime.getTime();
-        long reLongTime = reTime.getTime();
+        long rsLongTime = rsTime.toInstant().toEpochMilli();
+        long reLongTime = reTime.toInstant().toEpochMilli();
         //临时增加逻辑nowDate，当前时间在创建时间之前才会显示实际负荷
         long nowDate = new Date().getTime();
         List<Double> baselineLoadValue = new ArrayList<>();
@@ -43,22 +44,22 @@ public class DemandForecastFactory {
         loadForecastingList.forEach(v ->
                 {
                     DemandForecastResponse response = new DemandForecastResponse();
-                    long time = v.getCreatedTime().getTime() + 50 ;
+                    long time = v.getCreatedTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() + 50 ;
 
                     if (v.getId() == loadForecastingList.get(0).getId()) {
-                        time = v.getCreatedTime().getTime();
+                        time = v.getCreatedTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
                     }
                     if(time >= startTime.get() && time <= endTime.get()) {
                         if (v.getBaselineLoadValue() != null && !("-").equals(v.getBaselineLoadValue())) {
-                            baselineLoadValue.add(Double.valueOf(v.getBaselineLoadValue()));
+                            baselineLoadValue.add(v.getBaselineLoadValue().doubleValue());
                         }
                         if (v.getCurrentForecastValue() != null && !("-").equals(v.getCurrentForecastValue())) {
-                            forecastLoad.add(Double.valueOf(v.getCurrentForecastValue()));
+                            forecastLoad.add(v.getCurrentForecastValue().doubleValue());
 
                         }
                         if (v.getRealValue() != null && !("-").equals(v.getRealValue())) {
                             if (nowDate >= time - 50) {
-                                realValue.add(Double.valueOf(v.getRealValue()));
+                                realValue.add(v.getRealValue().doubleValue());
                             }
                         }
                     } else {
@@ -150,14 +151,14 @@ public class DemandForecastFactory {
                         realValue.clear();
 
                         if (v.getBaselineLoadValue() != null && !("-").equals(v.getBaselineLoadValue())) {
-                            baselineLoadValue.add(Double.valueOf(v.getBaselineLoadValue()));
+                            baselineLoadValue.add(v.getBaselineLoadValue().doubleValue());
                         }
                         if (v.getCurrentForecastValue() != null && !("-").equals(v.getCurrentForecastValue())) {
-                            forecastLoad.add(Double.valueOf(v.getCurrentForecastValue()));
+                            forecastLoad.add(v.getCurrentForecastValue().doubleValue());
                         }
                         if (v.getRealValue() != null && !("-").equals(v.getRealValue())) {
                             if (nowDate >= time - 50) {
-                                realValue.add(Double.valueOf(v.getRealValue()));
+                                realValue.add(v.getRealValue().doubleValue());
                             }
                         }
                         chartId.getAndSet(chartId.get() + 1L);
@@ -167,14 +168,14 @@ public class DemandForecastFactory {
                     if (loadForecastingList.indexOf(v) == listSize) {
                         DemandForecastResponse responseEnd = new DemandForecastResponse();
                         if (v.getBaselineLoadValue() != null && !("-").equals(v.getBaselineLoadValue())) {
-                            baselineLoadValue.add(Double.valueOf(v.getBaselineLoadValue()));
+                            baselineLoadValue.add(v.getBaselineLoadValue().doubleValue());
                         }
                         if (v.getCurrentForecastValue() != null && !("-").equals(v.getCurrentForecastValue())) {
-                            forecastLoad.add(Double.valueOf(v.getCurrentForecastValue()));
+                            forecastLoad.add(v.getCurrentForecastValue().doubleValue());
                         }
                         if (v.getRealValue() != null && !("-").equals(v.getRealValue())) {
                             if (nowDate >= time - 50) {
-                                realValue.add(Double.valueOf(v.getRealValue()));
+                                realValue.add(v.getRealValue().doubleValue());
                             }
                         }
                         Long end2 = 0L;

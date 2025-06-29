@@ -1,8 +1,8 @@
 package com.example.vvpscheduling.service.demand.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.vvpcommom.Enum.SysParamEnum;
 import com.example.vvpcommom.StringUtils;
+import com.example.vvpcommom.Enum.SysParamEnum;
 import com.example.vvpcommom.TimeUtil;
 import com.example.vvpdomain.*;
 import com.example.vvpdomain.entity.*;
@@ -23,9 +23,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -267,16 +269,16 @@ public class DemandRespTaskServiceImpl implements IDemandRespTaskService {
                             for (int i = 0; i < forecastingList.size(); i++) {
                                 realTimeLoadTemp = 0d;
                                 AiLoadForecasting ai = forecastingList.get(i);
-                                if (date.compareTo(ai.getCountDataTime()) == 0) {
+                                if (Date.from(ai.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()).equals(date)) {
                                     //20230605n zph  基线负荷 默认值为 -，类型为字符串
                                     double baseValue = 0.0;
                                     if(getMethod.equals("商汤")){
-                                        baseValue=StringUtils.convertBaseLineValueToDouble(ai.getBaselineLoadValue());
+                                        baseValue=StringUtils.convertBaseLineValueToDouble(ai.getBaselineLoadValue().toString());
                                     }else{
                                         baseValue=StringUtils.convertBaseLineValueToDouble(ai.getBaselineLoadValueOther());
                                     }
 
-                                    double realValue = StringUtils.convertBaseLineValueToDouble(ai.getRealValue());
+                                    double realValue = StringUtils.convertBaseLineValueToDouble(ai.getRealValue().toString());
 
                                     //实时响应负荷=实际负荷-基线负荷
                                     if (respTaskReq.getRespType() == 1) {//削峰
@@ -286,7 +288,7 @@ public class DemandRespTaskServiceImpl implements IDemandRespTaskService {
                                     }
                                     realTimeLoadTempF = realTimeLoadTemp;
                                     // realTimeLoad += realTimeLoadTemp;
-                                    realLoadMap.put(ai.getCountDataTime(), realTimeLoadTemp);
+                                    realLoadMap.put(Date.from(ai.getCountDataTime().atZone(ZoneId.systemDefault()).toInstant()), realTimeLoadTemp);
                                     flag = true;
                                     break b;
                                 } else {

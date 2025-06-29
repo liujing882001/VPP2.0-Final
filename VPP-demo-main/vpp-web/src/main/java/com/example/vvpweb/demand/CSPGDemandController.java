@@ -1,6 +1,8 @@
 package com.example.vvpweb.demand;
-
 import com.example.vvpcommom.RedisUtils;
+import java.time.LocalDateTime;
+import java.time.Instant;
+import java.util.Date;
 import com.example.vvpcommom.ResponseResult;
 import com.example.vvpcommom.TimeUtil;
 import com.example.vvpdomain.*;
@@ -22,7 +24,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -31,14 +32,13 @@ import javax.persistence.criteria.Root;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
-
+import java.time.ZoneId;
 @RestController
 @RequestMapping("/demandCSPG")
 @CrossOrigin
 @Api(value = "需求响应-接收南网数据", tags = {"需求响应-接收接收南网数据"})
 public class CSPGDemandController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CSPGDemandController.class);
-
     @Resource
     private DemandRespPlanRepository planRepository;
     @Autowired
@@ -67,7 +67,6 @@ public class CSPGDemandController {
     private DemandRespStrategyNoService noService;
     @Autowired
     private INoHouseholdsService noHouseholdsService;
-
     /**
      * 5.4负荷聚合商接收虚拟电厂邀约接口
      * 由虚拟电厂平台调用负荷聚合平台接口，下发需求响应邀约,涉及到多页分发，则为多页的并集
@@ -80,7 +79,6 @@ public class CSPGDemandController {
             if(model!=null){
                 //
                 DemandRespTask dr = new DemandRespTask();
-
                 String[] rsTimeStr = model.getStartTime().split(" ");
                 String[] reTimeStr = model.getEndTime().split(" ");
                 dr.setRespId(model.getInvitationId());//存计划id
@@ -90,13 +88,11 @@ public class CSPGDemandController {
                 dr.setRsDate(rsDate);
                 dr.setTaskCode(TimeUtil.startEndDateToStr(dr.getRsDate(),dr.getRsTime(),dr.getReTime()));
                 dr.setFeedbackTime(TimeUtil.strDDToDate(model.getReplyTime(),"yyyy-MM-dd HH:mm:ss"));
-
                 //todo 查询系统参数里，是否有价格
                 SysParam sysParam = paramRepository.findSysParamBySysParamKey(11);
                 if(sysParam!=null){
                     dr.setRespSubsidy(Double.parseDouble(sysParam.getSysParamValue()));
                 }
-
                 //计算总需求量 Mw单位需要转kw
                 Map<String,Double> mrLineMap = model.getMrLine();
                 List<DemandRespPlanPrice> priceList=new ArrayList<>();
@@ -104,7 +100,6 @@ public class CSPGDemandController {
                 if(model.getMrLine()!=null ){
                     respLoad = mrLineMap.values().stream().mapToDouble(Double::doubleValue).sum()*1000;
                     dr.setRespLoad(respLoad);
-
                     for(String time: mrLineMap.keySet()){
                         DemandRespPlanPrice p = new DemandRespPlanPrice();
                         p.setInvitationId(model.getInvitationId());
@@ -114,7 +109,6 @@ public class CSPGDemandController {
                         p.setResponseTime(timeConvert);//时间
                         p.setTotalPower(mrLineMap.get(time)*1000);//电量
                         p.setPrice(dr.getRespSubsidy());
-
                         priceList.add(p);
                     }
                     planPriceRepository.saveAll(priceList);
@@ -130,29 +124,23 @@ public class CSPGDemandController {
                     case "NWFZFW":
                         dr.setRespType(3);
                         break;
-
                 }
                 dr.setRespLevel(1);//响应级别 1-日前
-
                 dr.setDStatus(1);
-
                 //符合邀约调节的用户编号resourceId
                 String[] inviteRange =null;
                 if(StringUtils.isNotBlank(model.getInviteRange())){
                     if(model.getInviteRange().equals("all")){
-
                     }else{
                         inviteRange = model.getInviteRange().split(",");
                     }
                 }
-
                 String systemId = "nengyuanzongbiao";
                 //AI值
                 List<AiLoadForecasting> aiList = new ArrayList<>();
                 //基线负荷值
                 List<DemandRespPlanResponse> responseList = new ArrayList<>();
                 if(model.getBaseLine()!=null ){
-
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
                     SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
@@ -161,10 +149,8 @@ public class CSPGDemandController {
                     sdfDate.setTimeZone(TimeZone.getTimeZone("GMT+8"));
                     SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
                     fmt.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-
                     for(Map<String,Object> m:model.getBaseLine()){
                         String resourceId=m.get("resourceId")+"";
-
                         for(String key: m.keySet()){
                             DemandRespPlanResponse p = new DemandRespPlanResponse();
                             p.setResourceId(resourceId.trim());
@@ -176,67 +162,51 @@ public class CSPGDemandController {
                                 p.setResponseTime(timeConvert);//时间
                                 Double baseline =Double.valueOf(String.valueOf(m.get(key)));
                                 p.setBaseline(baseline);//基线负荷
-
                                 responseList.add(p);
-
                                 //往AI表里更新值
                                 Date countDateTime = sdfDate.parse(sdf.format(dr.getRsDate())+" "+key+":00");
                                 String id = model.getInvitationId() + "_" + systemId + "_" + fmt.format(countDateTime);
-
                                 AiLoadForecasting ai = new AiLoadForecasting();
                                 ai.setId(id);
                                 ai.setNodeId(model.getInvitationId());
                                 ai.setSystemId(systemId);
-                                ai.setCountDataTime(countDateTime);
+                                ai.setCountDataTime(countDateTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
                                 ai.setBaselineLoadValueOther(baseline+"");
-
                                 aiList.add(ai);
                             }
                         }
                     }
-
                     responseRepository.saveAll(responseList);
-
                     aiLoadRepository.saveAll(aiList);
                 }
-
                 dr.setCreateBy("admin");//保存创建者
-
                 demandRespTaskRepository.save(dr);
-
                 List<DemandRespStrategyModel> strategyModelList = new ArrayList<>();
                 //第三方的运行策略，各节点的负荷值
                 List<DemandRespStrategyNoModel> strategyNoModelList = new ArrayList<>();
-
                 List<String> noHouseholdsList = responseList.stream().map(DemandRespPlanResponse::getResourceId).distinct().collect(Collectors.toList());
                 Specification<Node> spec1 = new Specification<Node>() {
                     @Override
                     public Predicate toPredicate(Root<Node> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
                         List<Predicate> predicates = new ArrayList<>();
                         predicates.add(cb.in(root.get("noHouseholds")).value(noHouseholdsList));
-
                         return cb.and(predicates.toArray(new Predicate[predicates.size()]));
                     }
                 };
                 List<Node> nodeList = nodeRepository.findAll(spec1);
                 Map<String, Node> nodeMap = nodeList.stream().collect(Collectors.toMap(Node::getNoHouseholds, n -> n));
-
                 String sId = "admin"+"_" + dr.getRespId() +"_"+ "getInvitation";
-
                 DemandRespStrategyModel drsModel = new DemandRespStrategyModel();
                 drsModel.setSId(sId);
                 drsModel.setStrategyId("getInvitation");
                 drsModel.setCreateBy("admin");
                 drsModel.setRespId(dr.getRespId());
-
                 strategyModelList.add(drsModel);
-
                 for (String noHouseholds : noHouseholdsList) {
                     //该户号对应的响应时间的可调负荷
                     double declare = noHouseholdsService.findResponsiblePowerByNoHouseholds(noHouseholds,dr.getRsTime(),dr.getReTime());
                     //判断运行策略是自动参加响应任务，还是手动;如果是自动，需要自动进行申报
                     int status = 11;//未申报
-
                     DemandRespStrategyNoModel strategyNo = new DemandRespStrategyNoModel();
                     strategyNo.setDrsId(sId +"_"+ noHouseholds);//申报负荷id
                     strategyNo.setNoHouseholds(noHouseholds);//户号
@@ -246,19 +216,15 @@ public class CSPGDemandController {
                         strategyNo.setNodeId(node.getNodeId());//节点id
                     }
                     strategyNo.setDeclareLoad(declare);
-
                     strategyNo.setSId(sId);
                     strategyNo.setDrsStatus(status);
-
                     strategyNo.setIsPlatform(1);//第三方平台
                     strategyNo.setRespId(dr.getRespId());
                     strategyNoModelList.add(strategyNo);
                 }
-
                 if(strategyModelList!=null && strategyModelList.size()>0){
                     respStrategyService.batchInsert(strategyModelList);
                 }
-
                 //申报负荷信息入库
                 if (strategyNoModelList != null && strategyNoModelList.size() > 0) {
                     //根据节点的申报额定功率，进行占比分配
@@ -277,12 +243,9 @@ public class CSPGDemandController {
                             // 如果不相等，则调整最后一个用户的申报量，使其与总申报量相等
                             strategyNoModelList.get(strategyNoModelList.size() - 1).setDeclareLoad(remaining);
                         }
-
                     }
                     noService.batchInsert(strategyNoModelList);
-
                 }
-
             }
             return ResponseResult.success();
         } catch (Exception e) {
@@ -290,7 +253,6 @@ public class CSPGDemandController {
             return ResponseResult.error(e.getMessage());
         }
     }
-
     /**
      * 5.5负荷聚合商上报计划曲线和价格接口
      * 虚拟电厂平台定时轮询负荷聚合平台接口，拉取用户计划曲线和价格；5.4 接口中的邀约截止时间前定时调用此接口，直至邀约时间为止；
@@ -302,27 +264,22 @@ public class CSPGDemandController {
         try {
             LOGGER.info("5.5负荷聚合商上报计划曲线和价格接口:"+model.toString());
             if(model!=null){
-
                 Date date = new Date();
                 //根据邀约计划id查出响应任务
                 DemandRespTask task = demandRespTaskRepository.findByRespId(model.getInvitationId());
-
                 //得到时间区间列表
 //                List<String> timeList = TimeUtil.getTimeList(task.getRsTime(),task.getReTime());
-
                 Map<String,Object> respMap = new HashMap<>();
                 respMap.put("creditCode",model.getCreditCode());//负荷聚合商唯一标识（统一社会信用代码）
                 respMap.put("invitationId",model.getInvitationId());//邀约计划 ID
                 respMap.put("replyTime",TimeUtil.dateFormat(date));//答复时间戳，(yyyy-MM-dd HH:mm:ss)
                 Map<String,Double> priceMap = new HashMap<>();
                 Map<String,Double> totalPowerMap = new HashMap<>();//总申报
-
                 List<Map<String,Object>> responsePlanList = new ArrayList<>();//所有节点平均响应曲线
                 //0：不参加，后续不再轮询报价和响应曲线接口，本次邀约终止；
                 //1：参加，后续电网会定期轮询本接口获取新的报价和响应曲线
                 if(task.getDStatus()==4){//4是代表不参加
                     respMap.put("replyResult",0);//
-
                     respMap.put("vppPrices",priceMap);//为 96 点价格曲线(元/MWh)
                     respMap.put("vppPlans",totalPowerMap);//为负荷聚合商总曲线调整为总的运行功率曲线，简单处理等于下属所有资源的响应曲线叠加
                     respMap.put("page",1);//页码，默认为 1
@@ -330,38 +287,28 @@ public class CSPGDemandController {
                     //当 replyResult 为 0 时，本字段为空[]；
                     //当 replyResult 为 1 时，本字段仅上报响应执行开始时间 startTime 至响应执行结束 endTime 时段内每 15min 间隔的响应曲线
                     respMap.put("responsePlan",responsePlanList);
-
                     LOGGER.info("5.5负荷聚合商上报计划曲线和价格接口--返回:"+respMap.toString());
                     return ResponseResult.success(respMap);
                 }
                 respMap.put("replyResult",1);//
-
                 //查询总条数
                 Long count = noRepository.countNoListByRespIdBid(task.getRespId(),3);
-
                 if(count!=null && count>0){
                     List<DemandRespPlanPrice> priceList = planPriceRepository.findByInvitationIdList(task.getRespId());
-
                     SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-
                     double totalDeclare = 0.0;
                     //已发送南网的申报信息
                     List<String> drsId = new ArrayList<>();
-
                     Map<String,Double> strategyMap = new HashMap<>();
-
                     int pageSize = model.getPageSize();
                     int pageNum = 0;//pg 从0开始
-
                     //找到每个节点的申报电量，未发送的中标信息
                     List<DemandRespStrategyNo> noList = noRepository.findNoListByRespIdBid(task.getRespId(),3
                             ,pageSize,pageNum);
                     if(noList!=null && noList.size()>0){
                         for(DemandRespStrategyNo s:noList){
                             strategyMap.put(s.getNodeId(),s.getDeclareLoad());
-
                             totalDeclare+=s.getDeclareLoad();
-
                             drsId.add(s.getDrsId());
                         }
                     }
@@ -373,16 +320,13 @@ public class CSPGDemandController {
                             priceMap.put(time,0.0);//价格默认0
                         }
                         totalPowerMap.put(time,totalDeclare/1000);
-
                     }
-
                     if(!strategyMap.isEmpty()){
                         for(String nodeId:strategyMap.keySet()){
                             Map<String,Object> responsePlanMap = new HashMap<>();//每个节点平均响应曲线
                             Map<String,Double> powerMap = new HashMap<>();//平均响应曲线
                             Double declare=strategyMap.get(nodeId);
                             for(DemandRespPlanPrice e:priceList ) {
-
                                 String time = df.format(e.getResponseTime());
                                 powerMap.put(time,declare);
                             }
@@ -391,7 +335,6 @@ public class CSPGDemandController {
                             responsePlanList.add(responsePlanMap);
                         }
                     }
-
                     Long page = (long) Math.ceil((double) count / model.getPageSize())+model.getPage();
                     respMap.put("vppPrices",priceMap);//为 96 点价格曲线(元/MWh)
                     respMap.put("vppPlans",totalPowerMap);//为负荷聚合商总曲线调整为总的运行功率曲线，简单处理等于下属所有资源的响应曲线叠加
@@ -400,7 +343,6 @@ public class CSPGDemandController {
                     //当 replyResult 为 0 时，本字段为空[]；
                     //当 replyResult 为 1 时，本字段仅上报响应执行开始时间 startTime 至响应执行结束 endTime 时段内每 15min 间隔的响应曲线
                     respMap.put("responsePlan",responsePlanList);
-
                     noRepository.updateWinningBid(drsId,4);//已发送
                 }else{
                     respMap.put("vppPrices",priceMap);//为 96 点价格曲线(元/MWh)
@@ -413,17 +355,14 @@ public class CSPGDemandController {
                 }
                 LOGGER.info("5.5负荷聚合商上报计划曲线和价格接口--返回:"+respMap.toString());
                 return ResponseResult.success(respMap);
-
             }else{
                 return ResponseResult.error("参数不能为空");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.error("操作失败");
         }
     }
-
     /**
      * 5.6 负荷聚合商接收日前预调度计划接口
      * 当出清计算完毕后，虚拟电厂平台主动调用负荷聚合平台的接口，将次日需求响应曲线发至负荷聚合平台，
@@ -445,30 +384,23 @@ public class CSPGDemandController {
                 plan.setCreditCode(model.getCreditCode());
                 plan.setCreateBy("admin");
                 plan.setCreateTime(TimeUtil.stringToDate(model.getSystemTime()));
-
                 //中标的户号信息，需更新状态为1-已中标
                 List<String> winningList = new ArrayList<>();
-
                 //任务总价格计划
                 List<DemandRespPlanPrice> planPriceList = new ArrayList<>();
                 //楼宇/储能站等 计划
                 List<DemandRespPlanResponse> planResponsesList = new ArrayList<>();
-
                 //vppPrices    Object    否	价格曲线，仅含邀约时段内  的 96 点价格曲线(元/MWh)
                 //vppPlans Object  是 负荷聚合商或大用户总的日前调度计划,MW
                 //将vppPrices与vppPlans组装成一个Map
                 Map<String,CSPGDemandPlanPriceModel> planPriceMap = mergeMaps(model.getVppPrices(), model.getVppPlans());
-
                 String[] invitationIds = model.getInvitationId().split(",");
                 if(invitationIds.length>0){
                     for(String id : invitationIds){
                         plan.setPlanId(date.getTime()+id);
                         plan.setInvitationId(id);
-
                         list.add(plan);
-
                         winningList.add(id);
-
                         for(String time: planPriceMap.keySet()){
                             DemandRespPlanPrice p = new DemandRespPlanPrice();
                             p.setInvitationId(model.getInvitationId());
@@ -483,7 +415,6 @@ public class CSPGDemandController {
                             if(priceModel.getPrice()!=null){
                                 p.setPrice(priceModel.getPrice()*1000.0);
                             }
-
                             planPriceList.add(p);
                         }
                         //responsePlan responsePlan[] 数组 不同园区/充电站/楼宇/储能站具体计划
@@ -491,7 +422,6 @@ public class CSPGDemandController {
                             model.getResponsePlan().forEach(r->{
                                 String resourceId = r.getResourceId();
                                 for(String time:r.getDeclare().keySet()){
-
                                     DemandRespPlanResponse response = new DemandRespPlanResponse();
                                     response.setRId(model.getInvitationId()+"_"+resourceId+"_"+time.replace(":",""));
                                     response.setInvitationId(model.getInvitationId());
@@ -501,7 +431,6 @@ public class CSPGDemandController {
                                     }
                                     response.setResponseDate(rsDate);
                                     response.setResponseTime(TimeUtil.strDDToDate(time, "HH:mm"));
-
                                     planResponsesList.add(response);
                                 }
                             });
@@ -511,22 +440,18 @@ public class CSPGDemandController {
                     noRepository.updateWinningBid(winningList,1);
                 }
                 planRepository.saveAll(list);
-
                 //批量更新户号信息--已中标和出清成功
                 noRepository.updateWinningBidAndDrsStatus(winningList,1,22);
                 //批量更新任务状态 已申报出清成功
                 demandRespTaskRepository.updateBatchStatus(invitationIds,3);
-
                 if(planPriceList!=null && planPriceList.size()>0){
                     planPriceRepository.saveAll(planPriceList);
                 }
                 if(planResponsesList!=null && planResponsesList.size()>0){
                     responseRepository.saveAll(planResponsesList);
                 }
-
                 List<DemandRespTask> taskList = demandRespTaskRepository.findByRespIdList(invitationIds);
                 for(DemandRespTask dr:taskList){
-
                     SysJob sysJob = new SysJob();
                     sysJob.setJobName("需求响应任务" + dr.getTaskCode());
                     sysJob.setJobGroup("需求响应");
@@ -544,25 +469,19 @@ public class CSPGDemandController {
                     sysJob.setMisfirePolicy("3");//计划执行错误策略（1立即执行 2执行一次 3放弃执行）
                     sysJob.setConcurrent("1");//0允许 1禁止
                     sysJob.setCreateBy("admin");
-
                     sysJob = sysJobService.insertJobDemand(sysJob);
-
                     sysJob.setStatus(ScheduleConstants.Status.NORMAL.getValue());//状态（0正常 1暂停）
                     sysJobService.changeStatus(sysJob);
                     dr.setJobId(sysJob.getJobId());
-
                     demandRespTaskRepository.updateBatchJobId(dr.getRespId(),sysJob.getJobId());
                 }
-
             }
-
             return ResponseResult.success();
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.error(e.getMessage());
         }
     }
-
     /**
      * 价格曲线与电量计划曲线
      * @param vppPrices
@@ -571,10 +490,8 @@ public class CSPGDemandController {
      */
     public static Map<String, CSPGDemandPlanPriceModel> mergeMaps(Map<String, Double> vppPrices, Map<String, Double> vppPlans) {
         Map<String, CSPGDemandPlanPriceModel> newMap = new HashMap<>();
-
         Set<String> keys = new HashSet<>(vppPrices.keySet()); // 获取vppPrices的所有键，以便在vppPlans中查找相同的键
         keys.addAll(vppPlans.keySet()); // 将vppPlans的键添加到集合中
-
         for (String key : keys) {
             Double price = vppPrices.get(key); // 获取价格值
             Double power = vppPlans.get(key); // 获取电量值
@@ -590,7 +507,6 @@ public class CSPGDemandController {
         }
         return newMap;
     }
-
     /**
      * 5.7 负荷聚合商接收紧急调控任务接口
      * 接口使用方法：当日前邀约未能满足电网需求，仍存在供应困难问题时，由虚拟电厂平台主动调用负荷聚合商平台接口，进行紧急调控任务下发，
@@ -602,13 +518,10 @@ public class CSPGDemandController {
     public ResponseResult getIntraDayTask(@RequestBody IntraDayTaskModel model) {
         try {
             LOGGER.info("5.7负荷聚合商接收紧急调控任务接口:"+model.toString());
-
             Map<String,Object> respMap = new HashMap<>();
-
             if(model!=null){
                 // Y 表示同意，N 表示拒绝
                 String confirmResult="Y";
-
                 Date date = new Date();
                 List<DemandRespPlan> list = new ArrayList<>();
                 DemandRespPlan plan = new DemandRespPlan();
@@ -619,59 +532,43 @@ public class CSPGDemandController {
                 plan.setCreditCode(model.getCreditCode());
                 plan.setCreateBy("admin");
                 plan.setCreateTime(TimeUtil.stringToDate(model.getSystemTime()));
-
                 //不同资源的具体控制计划（大楼/充电站等）
                 List<IntraDayTaskResourceModel> resourceModelList = new ArrayList<>();
-
                 int type = 1;//1-代表削峰  2-代表填谷
                 if(model.getResponsePlanList()!=null && model.getResponsePlanList().size()>0){
-
                     //判断功率目标值是正值还是负值  负值表示削峰，正数表示填谷。
                     for(IntraDayTaskResourceModel r:model.getResponsePlanList()){
                         double power = r.getTargetPower();
                         if(r.getTargetPower()>0){
                             type=2;
                         }else{
-
                         }
-
                         //查接口，判断响应时间段内负荷值是否满足需求
                         double declare = noHouseholdsService.findResponsiblePowerByNoHouseholds(r.getResourceId(),
                                 TimeUtil.stringToDate(r.getStartTime()),TimeUtil.stringToDate(r.getEndTime()));
-
                         if(declare>=power){
                             declare=power;
                         }
-
                         if(declare>200){
                             declare=200;
                         }
-
                         IntraDayTaskResourceModel irModel = new IntraDayTaskResourceModel();
                         irModel.setResourceId(r.getResourceId());
                         irModel.setEndTime(r.getEndTime());
                         irModel.setStartTime(r.getStartTime());
                         irModel.setTargetPower(declare);
-
                         resourceModelList.add(irModel);
                     }
-
                 }
                 //如果有设置
-
                 //任务总价格计划
                 List<DemandRespPlanPrice> planPriceList = new ArrayList<>();
                 //楼宇/储能站等 计划
                 List<DemandRespPlanResponse> planResponsesList = new ArrayList<>();
-
-
                 respMap.put("page",model.getPage());//页码，默认为第一页
                 respMap.put("totalPage",model.getTotalPage());//总页数，默认为 1 页
                 respMap.put("confirmResult",confirmResult);//Y 表示同意，N 表示拒绝
                 respMap.put("resourceList",resourceModelList);
-
-
-
             }
             LOGGER.info("5.7负荷聚合商接收紧急调控任务接口==返回："+respMap.toString());
             return ResponseResult.success(respMap);
@@ -680,5 +577,4 @@ public class CSPGDemandController {
             return ResponseResult.error(e.getMessage());
         }
     }
-
 }

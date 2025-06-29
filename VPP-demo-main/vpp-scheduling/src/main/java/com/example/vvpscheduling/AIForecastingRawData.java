@@ -14,8 +14,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -90,16 +93,16 @@ public class AIForecastingRawData {
 							loadForecasting.setId(id);
 							loadForecasting.setNodeId(nodeId);
 							loadForecasting.setSystemId(systemId);
-							loadForecasting.setRealValue(valueDefault);
-							loadForecasting.setBaselineLoadValue(valueDefault);
-							loadForecasting.setCurrentForecastValue(valueDefault);
-							loadForecasting.setUltraShortTermForecastValue(valueDefault);
+							loadForecasting.setRealValue(new BigDecimal(valueDefault.equals("-") ? "0" : valueDefault));
+							loadForecasting.setBaselineLoadValue(new BigDecimal(valueDefault.equals("-") ? "0" : valueDefault));
+							loadForecasting.setCurrentForecastValue(new BigDecimal(valueDefault.equals("-") ? "0" : valueDefault));
+							loadForecasting.setUltraShortTermForecastValue(new BigDecimal(valueDefault.equals("-") ? "0" : valueDefault));
 						}
 
 						loadForecasting.setNodeId(nodeId);
 						loadForecasting.setSystemId(systemId);
-						loadForecasting.setRealValue(String.valueOf(entry.getValue()));
-						loadForecasting.setCountDataTime(entry.getKey());
+						loadForecasting.setRealValue(new BigDecimal(String.valueOf(entry.getValue())));
+						loadForecasting.setCountDataTime(entry.getKey().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
 						result.add(loadForecasting);
 					}
 				});

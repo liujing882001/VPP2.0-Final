@@ -2,7 +2,8 @@ package com.example.start.encrypt;
 
 import com.example.vvpcommom.StringUtils;
 import com.example.vvpcommom.thread.ThreadLocalUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -16,8 +17,9 @@ import static com.example.vvpdomain.constants.UserConstant.CUR_REQUEST_USER_PUBL
  * 声明拦截器
  */
 @Component
-@Slf4j
 public class EncryptInterceptor extends HandlerInterceptorAdapter {
+
+    private static final Logger log = LoggerFactory.getLogger(EncryptInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

@@ -87,7 +87,7 @@ public class ProjectResponse {
 		this.basicInfo.area = info.getArea();
 		this.basicInfo.fileName = info.getFileName();
 
-		Map<String, RevenueParameterDto> parameterDtoMap = parameterDtos.stream().collect(Collectors.toMap(RevenueParameterDto::getParam_id,
+		Map<String, RevenueParameterDto> parameterDtoMap = parameterDtos.stream().collect(Collectors.toMap(RevenueParameterDto::getParamId,
 				Function.identity()));
 
 		JSONObject eleParam = JSON.parseObject(info.getElectricityParameter());
@@ -117,7 +117,7 @@ public class ProjectResponse {
 						this.basicInfo.designPower = parameter.get(o).toString();
 					}
 					if (designParam.contains(o)) {
-						parameterDtoMap.get(o).setDefault_value((String) parameter.get(o));
+						parameterDtoMap.get(o).setDefaultValue((String) parameter.get(o));
 						JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(parameterDtoMap.get(o)));
 						if (jsonObject.get("unit").equals("%")) {
 							jsonObject.put("default_value", Double.parseDouble((String) jsonObject.get("default_value")) * 100);
@@ -125,7 +125,7 @@ public class ProjectResponse {
 						designParams.add(jsonObject);
 					}
 					if (economicParam.contains(o)) {
-						parameterDtoMap.get(o).setDefault_value((String) parameter.get(o));
+						parameterDtoMap.get(o).setDefaultValue((String) parameter.get(o));
 						JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(parameterDtoMap.get(o)));
 						if (jsonObject.get("unit").equals("%")) {
 							jsonObject.put("default_value", Double.parseDouble((String) jsonObject.get("default_value")) * 100);
