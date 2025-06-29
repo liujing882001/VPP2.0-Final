@@ -11,6 +11,7 @@ import com.aliyuncs.profile.IClientProfile;
 import com.example.vvpcommom.ResponseResult;
 import com.example.vvpdomain.alarm.info.AlarmInfo;
 import com.example.vvpdomain.alarm.info.AlarmInfoRepository;
+import com.example.vvpservice.alarm.message.AlarmShortMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
