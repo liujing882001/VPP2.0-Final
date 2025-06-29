@@ -1,0 +1,24 @@
+.ant-tabs-bottom>.ant-tabs-nav:before, .ant-tabs-bottom>div>.ant-tabs-nav:before, .ant-tabs-top>.ant-tabs-nav:before, .ant-tabs-top>div>.ant-tabs-nav:before{
+	/* background: none; */
+	/* border: none; */
+}
+.ant-tabs > .ant-tabs-nav, .ant-tabs > div > .ant-tabs-nav{
+	background: #212029;
+}
+.ant-tabs-content{
+	height: 100%;
+}
+.ant-tabs-tabpane{
+	height: 100%;
+}
+.allcontent12{
+	min-width: 1200px;
+	/* margin-top: -14px; */
+}
+.allcontent12 .ant-tabs-nav{
+	/* margin-left: -16px; */
+	/* margin-top: -14px; */
+}
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+	color: #0092FF;
+}

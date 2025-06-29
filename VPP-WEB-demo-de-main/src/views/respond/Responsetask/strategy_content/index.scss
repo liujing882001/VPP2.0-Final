@@ -1,0 +1,107 @@
+.editModal{
+	width: 100%;
+	min-height: 280px;
+}
+.strategy_contentTitle{
+	background: rgba(0, 146, 255,0.05);
+	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
+	border: 1px solid #0092FF;
+	font-weight: 400;
+	font-size: 12px;
+	color: #0092FF;
+	padding: 8px 8px;
+	border-radius: 5px 5px;
+	margin-bottom: 16px;
+}
+.editModal-Left{
+	width: 115px;
+	min-height: 250px;
+	float: left;
+	background: rgba(255,255,255,0.05);
+	ul{
+		margin: 0px;
+		padding: 0px;
+		li{
+			list-style: none;
+			color: #fff;
+			line-height: 50px;
+			text-align: center;
+			
+		}
+	}
+}
+.editModal-Right{
+	float: right;
+	width: calc(100% - 115px);
+	// min-height: 250px;
+	ul{
+		margin: 0px;
+		padding: 0px;
+		margin-left: 16px;
+		li{
+			list-style: none;
+			color: #fff;
+			height: 53px;
+			// line-height: 50px;
+			text-align: left;
+			// display: flex;
+			// align-items: center; /* 垂直居中 */
+			// justify-content: left; /* 水平居中 */
+			font-size: 14px;
+			
+		}
+	}
+	.ant-input{
+		background: none;
+	}
+	.ant-form-item-explain-error{
+		width: 200px;
+	}
+	.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input, .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover{
+		border-color: #fff;
+	}
+}
+.ModalRight{
+	.ant-modal-content{
+		padding-bottom: 24px;
+	}
+}
+.prompt-title{
+	line-height: 32px;
+	b{
+		font-size: 12px;
+		color: #8F959E;
+		font-weight: normal;
+		margin-left: 10px;
+	}
+	
+}
+
+.confirm-btn,.confirm-btn:hover{
+	margin: 0 0 18px 0;
+	height: 32px;
+	width: 84px;
+	background: #0092FF;
+	border-radius: 3px;
+	font-family: PingFangSC, PingFang SC;
+	font-weight: 400;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: none;
+}
+.confirm-btn[disabled],.confirm-btn[disabled]:hover{
+	margin: 0 0 18px 0;
+	height: 32px;
+	width: 84px;
+	background: #0092FF;
+	border-radius: 3px;
+	font-family: PingFangSC, PingFang SC;
+	font-weight: 400;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: none;
+	opacity: 0.8;
+}
+.ant-checkbox-disabled.ant-checkbox-checked .ant-checkbox-inner:after{
+	border-color: #fff;
+}

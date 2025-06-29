@@ -1,0 +1,128 @@
+package com.example.vvpdomain.entity;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+/**
+ * Electricity Price Entity
+ * Represents electricity pricing information for different time periods
+ */
+@Entity
+@Data
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "electricity_price")
+public class ElectricityPrice implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "id")
+    private String id;
+
+    /**
+     * Node identifier
+     */
+    @Column(name = "node_id")
+    private String nodeId;
+
+    /**
+     * Date when the price becomes effective
+     */
+    @Column(name = "effective_date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime effectiveDate;
+
+    /**
+     * Time frame description (e.g., "Peak", "Off-Peak")
+     */
+    @Column(name = "time_frame")
+    private String timeFrame;
+
+    /**
+     * Start time of the price period
+     */
+    @Column(name = "s_time")
+    private LocalTime startTime;
+
+    /**
+     * End time of the price period
+     */
+    @Column(name = "e_time")
+    private LocalTime endTime;
+
+    /**
+     * Price property/type
+     */
+    @Column(name = "property")
+    private String property;
+
+    /**
+     * Electricity price value
+     */
+    @Column(name = "price", precision = 10, scale = 4)
+    private BigDecimal price;
+
+    /**
+     * Strategy value
+     */
+    @Column(name = "strategy", precision = 10, scale = 4)
+    private BigDecimal strategy;
+
+    /**
+     * Record creation timestamp
+     */
+    @CreatedDate
+    @Column(name = "created_time", updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdTime;
+
+    /**
+     * Record last update timestamp
+     */
+    @LastModifiedDate
+    @Column(name = "update_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
+
+    /**
+     * Type of date (e.g., "Weekday", "Weekend", "Holiday")
+     */
+    @Column(name = "date_type")
+    private String dateType;
+
+    /**
+     * Price usage type
+     */
+    @Column(name = "price_use")
+    private String priceUse;
+
+    /**
+     * Default constructor
+     */
+    public ElectricityPrice() {
+    }
+
+    public ElectricityPrice(ElectricityPrice price) {
+        this.id = price.getId();
+        this.nodeId = price.getNodeId();
+        this.effectiveDate = price.getEffectiveDate();
+        this.timeFrame = price.getTimeFrame();
+        this.startTime = price.getStartTime();
+        this.endTime = price.getEndTime();
+        this.property = price.getProperty();
+        this.price = price.getPrice();
+        this.createdTime = price.getCreatedTime();
+        this.updateTime = price.getUpdateTime();
+        this.dateType = price.getDateType();
+        this.priceUse = price.getPriceUse();
+    }
+}

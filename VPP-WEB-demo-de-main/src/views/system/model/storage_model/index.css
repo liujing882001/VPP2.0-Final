@@ -1,0 +1,22 @@
+.tabls .ant-table-row .ant-table-row-level-1>td{
+	background: #004B90;
+}
+.allcontented{
+	background: #212029;
+	border-radius: 10px;
+	/* padding-top: 16px; */
+}
+.storage_model{
+	/* background: #FFF; */
+	padding: 16px 16px;
+	border-radius: 10px;
+}
+.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input, .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover{
+	background: none;
+}
+input:-internal-autofill-selected {
+	background-color: #000000 !important;
+}
+.ant-input-password-icon.anticon{
+	/* color: #FFFFFF; */
+}

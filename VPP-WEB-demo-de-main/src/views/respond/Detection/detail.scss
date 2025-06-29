@@ -1,0 +1,58 @@
+.detail{
+	.header{
+		// background: none;
+		line-height: 50px;
+		margin-left: -16px;
+		margin-top: -16px;
+		width: calc(100% + 32px);
+		background: #212029;
+		img{
+			width: 18px;
+			height: 18px;
+			vertical-align: middle;
+			margin-left: 16px;
+		}
+		a{
+			font-size: 14px;
+			font-family: PingFangSC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #FFFFFF;
+		}
+	}
+	.detailbody{
+		background: #212029; 
+		border-radius: 2px;
+		padding: 22px 22px; 
+		margin-top: 15px;
+		
+		h4{
+			font-size: 16px;
+			font-family: PingFangSC-Medium, PingFang SC;
+			font-weight: 500;
+			color: #FFF;
+		}
+		.detailul{
+			padding: 10px 0px;
+			// border-bottom: 1px solid #DFE1E5;
+			overflow: hidden;
+			padding-bottom: 30px;
+			margin-bottom: 24px;
+			li{
+				list-style: none;
+				float: left;
+				font-size: 14px;
+				font-family: PingFangSC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #FFF;
+				padding-right: 50px;
+			}
+		}
+	}
+	.ant-pagination-options-quick-jumper{
+		color: #FFFFFF;
+	}
+	.ant-pagination-options-quick-jumper input{
+		background: none;
+		color: #FFFFFF;
+	}
+}

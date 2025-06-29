@@ -1,0 +1,451 @@
+name: VPP Algorithm Service CI/CD Pipeline
+# Version: 2.1.0
+# Comprehensive pipeline with testing, security, and deployment
+
+on:
+  push:
+    branches: [ main, develop, feature/* ]
+  pull_request:
+    branches: [ main, develop ]
+  release:
+    types: [ published ]
+  schedule:
+    # Weekly security scan
+    - cron: '0 2 * * 1'
+
+env:
+  PYTHON_VERSION: '3.11'
+  NODE_VERSION: '18'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/vpp-algorithm-service
+
+jobs:
+  # ===== Code Quality & Static Analysis =====
+  code-quality:
+    runs-on: ubuntu-latest
+    name: Code Quality & Static Analysis
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for better analysis
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r VPP_Algorithm-main/requirements-optimized.txt
+    
+    - name: Code formatting check (Black)
+      run: |
+        black --check --diff VPP_Algorithm-main/
+    
+    - name: Import sorting check (isort)
+      run: |
+        isort --check-only --diff VPP_Algorithm-main/
+    
+    - name: Linting (flake8)
+      run: |
+        flake8 VPP_Algorithm-main/ --max-line-length=88 --extend-ignore=E203,W503
+    
+    - name: Type checking (mypy)
+      run: |
+        mypy VPP_Algorithm-main/ --ignore-missing-imports
+    
+    - name: Security linting (bandit)
+      run: |
+        pip install bandit[toml]
+        bandit -r VPP_Algorithm-main/ -f json -o bandit-report.json
+    
+    - name: Upload security report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: bandit-security-report
+        path: bandit-report.json
+
+  # ===== Unit & Integration Tests =====
+  test:
+    runs-on: ubuntu-latest
+    name: Unit & Integration Tests
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_USER: test_user
+          POSTGRES_DB: vpp_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r VPP_Algorithm-main/requirements-optimized.txt
+    
+    - name: Set up test environment
+      run: |
+        cp VPP_Algorithm-main/environment.template .env
+        sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=test_password/' .env
+        sed -i 's/DB_USER=.*/DB_USER=test_user/' .env
+        sed -i 's/DB_NAME=.*/DB_NAME=vpp_test/' .env
+    
+    - name: Run unit tests
+      env:
+        DATABASE_URL: postgresql://test_user:test_password@localhost:5432/vpp_test
+        REDIS_URL: redis://localhost:6379/0
+      run: |
+        cd VPP_Algorithm-main
+        python -m pytest tests/test_optimized.py -v --tb=short --cov=core --cov=api --cov-report=xml --cov-report=html
+    
+    - name: Run performance tests
+      if: matrix.python-version == '3.11'  # Only run on primary version
+      env:
+        DATABASE_URL: postgresql://test_user:test_password@localhost:5432/vpp_test
+        REDIS_URL: redis://localhost:6379/0
+      run: |
+        cd VPP_Algorithm-main
+        python -m pytest tests/test_optimized.py -v -m performance --tb=short
+    
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      if: matrix.python-version == '3.11'
+      with:
+        file: ./VPP_Algorithm-main/coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results-${{ matrix.python-version }}
+        path: |
+          VPP_Algorithm-main/coverage.xml
+          VPP_Algorithm-main/htmlcov/
+
+  # ===== Security Scanning =====
+  security:
+    runs-on: ubuntu-latest
+    name: Security Scanning
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install safety pip-audit
+    
+    - name: Security vulnerability scan (Safety)
+      run: |
+        safety check --json --output safety-report.json || true
+    
+    - name: Pip audit scan
+      run: |
+        pip-audit --format=json --output=pip-audit-report.json || true
+    
+    - name: SAST scan with CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: python
+        queries: security-extended
+    
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+    
+    - name: Upload security reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: security-reports
+        path: |
+          safety-report.json
+          pip-audit-report.json
+
+  # ===== Docker Build & Scan =====
+  docker:
+    runs-on: ubuntu-latest
+    name: Docker Build & Security Scan
+    needs: [code-quality, test]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Log in to Container Registry
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=sha,prefix={{branch}}-
+    
+    - name: Build Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: VPP_Algorithm-main/
+        push: false
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        target: production
+    
+    - name: Container security scan (Trivy)
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ steps.meta.outputs.tags }}
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+    
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+    
+    - name: Push Docker image
+      if: github.event_name != 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: VPP_Algorithm-main/
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        target: production
+
+  # ===== Integration Tests =====
+  integration:
+    runs-on: ubuntu-latest
+    name: End-to-End Integration Tests
+    needs: [docker]
+    if: github.ref == 'refs/heads/main' || github.event_name == 'release'
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: integration_test_password
+          POSTGRES_USER: integration_test_user
+          POSTGRES_DB: vpp_integration_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up test environment
+      run: |
+        docker-compose -f VPP_Algorithm-main/docker-compose.test.yml up -d
+        sleep 30  # Wait for services to be ready
+    
+    - name: Run API integration tests
+      run: |
+        # Run comprehensive API tests
+        curl -f http://localhost:8000/api/v2/health || exit 1
+        # Add more integration test commands here
+    
+    - name: Load testing
+      run: |
+        # Simple load test with curl
+        for i in {1..100}; do
+          curl -s http://localhost:8000/api/v2/health > /dev/null &
+        done
+        wait
+    
+    - name: Cleanup
+      if: always()
+      run: |
+        docker-compose -f VPP_Algorithm-main/docker-compose.test.yml down
+
+  # ===== Deployment =====
+  deploy-staging:
+    runs-on: ubuntu-latest
+    name: Deploy to Staging
+    needs: [security, docker, test]
+    if: github.ref == 'refs/heads/develop'
+    environment: staging
+    
+    steps:
+    - name: Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        # Add actual deployment commands here
+        # kubectl apply -f k8s/staging/
+    
+    - name: Health check
+      run: |
+        echo "Performing health check..."
+        # curl -f https://staging-api.vpp.com/health
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    name: Deploy to Production
+    needs: [integration]
+    if: github.event_name == 'release'
+    environment: production
+    
+    steps:
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production environment..."
+        # Add actual deployment commands here
+        # kubectl apply -f k8s/production/
+    
+    - name: Health check
+      run: |
+        echo "Performing production health check..."
+        # curl -f https://api.vpp.com/health
+    
+    - name: Smoke tests
+      run: |
+        echo "Running production smoke tests..."
+        # Run critical functionality tests
+
+  # ===== Notifications =====
+  notify:
+    runs-on: ubuntu-latest
+    name: Notifications
+    needs: [deploy-staging, deploy-production]
+    if: always()
+    
+    steps:
+    - name: Notify Slack
+      if: failure()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: failure
+        channel: '#vpp-alerts'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+        message: |
+          🚨 VPP Algorithm Service CI/CD Pipeline Failed
+          Branch: ${{ github.ref }}
+          Commit: ${{ github.sha }}
+          Author: ${{ github.actor }}
+    
+    - name: Create GitHub Issue on Failure
+      if: failure() && github.ref == 'refs/heads/main'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `CI/CD Pipeline Failure - ${context.sha.substring(0, 7)}`,
+            body: `
+              ## Pipeline Failure Report
+              
+              **Branch:** ${context.ref}
+              **Commit:** ${context.sha}
+              **Author:** ${context.actor}
+              **Workflow:** ${context.workflow}
+              **Run ID:** ${context.runId}
+              
+              Please investigate and fix the failing pipeline.
+              
+              [View Workflow Run](${context.server_url}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            `,
+            labels: ['bug', 'ci/cd', 'high-priority']
+          })
+
+  # ===== Cleanup =====
+  cleanup:
+    runs-on: ubuntu-latest
+    name: Cleanup Artifacts
+    needs: [deploy-production]
+    if: always()
+    
+    steps:
+    - name: Cleanup old artifacts
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            run_id: context.runId,
+          });
+          
+          // Keep artifacts for 7 days, then cleanup
+          const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+          
+          for (const artifact of artifacts.data.artifacts) {
+            if (new Date(artifact.created_at) < sevenDaysAgo) {
+              await github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: artifact.id,
+              });
+            }
+          } 

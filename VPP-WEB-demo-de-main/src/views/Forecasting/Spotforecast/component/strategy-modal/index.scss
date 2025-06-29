@@ -1,0 +1,148 @@
+.strategy-modal{
+    .ant-modal-header{
+        padding: 24px;
+        background: transparent;
+        border-bottom: none;
+    }
+    .ant-modal-title{
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 500;
+        font-size: 16px;
+        color: #FFFFFF;
+        background:transparent;
+    }
+    .ant-modal-content{
+        width: 600px;
+        height: auto;
+        background: #212029;
+        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
+        border-radius: 18px;
+    }
+    .ant-modal-close-x{
+        svg{
+            color: #FFFFFF;
+        }
+    }
+    .ant-modal-body{
+        padding: 6px 24px 24px 24px;
+    }
+    .strategy-modal-content{
+        width: 552px;
+        height: 250px;    
+        background: rgba(255,255,255,0.05);
+        border-radius: 11px;
+        backdrop-filter: blur(25.2px);
+        display: flex;
+    }
+    .strategy-modal-content-left{
+        padding-left: 16px;
+        display: flex;
+        flex-direction: column;
+        width: 117px;
+        background: rgba(255,255,255,0.05);
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        border-radius: 11px 0 0 11px;
+        p{
+            margin-bottom: 0px;
+        }
+        .strategy-modal-content-left-item:nth-child(1){
+            margin-top: 16px;
+        }
+        .strategy-modal-content-left-item:nth-child(2){
+            margin-top: 24px;
+        }
+        .strategy-modal-content-left-item:nth-child(3){
+            margin-top: 24px;
+        }
+        .strategy-modal-content-left-item:nth-child(4){
+            margin-top: 24px;
+        }
+        .strategy-modal-content-left-item:nth-child(5){
+            margin-top: 24px;
+        }
+    }
+    .strategy-modal-content-right{
+        max-width: 435px;
+        padding-left: 16px;
+        display: flex;
+        flex-direction: column;
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        border-radius: 0 0 11px 11px;
+       
+        p{
+            margin-bottom: 0px;
+        }
+        .strategy-modal-content-right-item:nth-child(1){
+            margin-top: 16px;
+            height: 22px;
+        }
+        .strategy-modal-content-right-item:nth-child(2){
+            margin-top: 24px;
+             height: 22px;
+        }
+        .strategy-modal-content-right-item:nth-child(3){
+            margin-top: 24px;
+             height: 22px;
+        }
+        .strategy-modal-content-right-item:nth-child(4){
+            margin-top: 24px;
+            height: 22px;   
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;         
+        }
+        .strategy-modal-content-right-item:nth-child(5){
+            margin-top: 24px;
+        }
+    }
+    .temperature-input{
+        border-radius: 4px;
+        border: 1px solid #0092FF;
+        background: transparent;
+    }
+    .temperature-icon{
+        margin-left: 5px;
+    }
+    .rang-text{
+        margin-left: 16px;
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 12px;
+        color: #8F959E;
+    }
+    .btn-wrapper{
+        margin-top: 36px;
+        display: flex;
+        justify-content: flex-end;
+        .cancel-btn{
+            width: 65px;
+            height: 32px;
+            border-radius: 3px;
+            border: 1px solid #AEAEAE;
+            background: transparent;
+            font-family: PingFangSC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #DFE1E5;
+            margin-right: 16px;
+        }
+        .ok-btn{
+            width: 65px !important;
+            height: 32px !important;
+            background: #0092FF !important;
+            border-radius: 3px !important;
+            font-family: PingFangSC, PingFang SC !important;
+            font-weight: 400;
+            font-size: 14px;
+            color: #DFE1E5;
+            margin-right: 16px;
+            border: none;
+        }
+    }
+}

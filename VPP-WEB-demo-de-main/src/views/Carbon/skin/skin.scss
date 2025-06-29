@@ -1,0 +1,40 @@
+.skin{
+	min-width: 1200px;
+	a{
+		color: #FFFFFF;
+	}
+	.header{
+		height: 79px;
+		background: #212029;
+		border-radius: 2px;
+		line-height: 79px;
+		padding: 0px 15px;
+		color: #FFF;
+		// margin-top: 15px;
+		margin-bottom: 15px;
+		margin-top: 0px;
+		border-radius: 10px;
+	}
+	.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+		background: none;
+		// color: #FFFFFF;
+	}
+	.ant-select-arrow{
+		color: #8F959E;
+	}
+	.ant-select{
+		margin-right: 12px;
+	}
+	.wider{
+		h4{
+			text-align: left;
+			padding-left: 15px;
+			font-weight: 500;
+			button{
+				float: right;
+				margin: 10px 10px 0px 0px;
+				// background: ;
+			}
+		}
+	}
+}

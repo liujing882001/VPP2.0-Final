@@ -1,0 +1,104 @@
+.status-three-wrap{
+    width: 800px;
+    height: 500px;
+    background-image: url(../../assets/energy-flow-both.png);
+    background-size: 800px 460px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    position: relative;
+    .status-three-gif{
+        position: absolute;
+        display: inline-block;
+        width: 490px;
+        height: 430px;
+        background-image: url(../../assets/gif-3.gif);
+        background-size: cover;
+        background-position: center;
+        top: 12%;
+        left: 20%;
+    }
+    .charging-discharge-capacity{
+        position: absolute;
+        top: 57px;
+        left: 585px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .electricity-purchased-1{
+        position: absolute;
+        top: 53px;
+        left: 67px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .photovoltaic-power{
+        position: absolute;
+        top: 306px;
+        left: 130px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .enterprise-electricity{
+        position: absolute;
+        top: 291px;
+        left: 497px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+}

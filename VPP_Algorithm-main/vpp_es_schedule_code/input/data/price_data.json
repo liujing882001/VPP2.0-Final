@@ -1,0 +1,3218 @@
+[
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-01",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-02",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-03",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-04",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-05",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-06",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-07",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-08",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-09",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-10",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-11",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2024-12",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.0605
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "尖",
+                    "price_hour": 1.2726
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "尖",
+                    "price_hour": 1.2726
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.2442
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "平",
+                    "price_hour": 0.6427
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "平",
+                    "price_hour": 0.6427
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "尖",
+                    "price_hour": 1.2726
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "尖",
+                    "price_hour": 1.2726
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "峰",
+                    "price_hour": 1.0605
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "峰",
+                    "price_hour": 1.0605
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "峰",
+                    "price_hour": 1.0605
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "峰",
+                    "price_hour": 1.0605
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "峰",
+                    "price_hour": 1.0605
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "峰",
+                    "price_hour": 1.0605
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.6427
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2025-01",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.24913
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "尖",
+                    "price_hour": 1.29809
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2025-02",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2025-03",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.0358
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.0358
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.0358
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.2825
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.0358
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.0358
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.0358
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.0358
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.6277
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.6277
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.6277
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.6277
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.6277
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.6277
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.6277
+                }
+            ]
+        }
+    },
+    {
+        "node_id": "chiku",
+        "system_id": "nengyuanzongbiao",
+        "month": "2025-04",
+        "price_info": {
+            "month_price": [
+                {
+                    "order": 0,
+                    "time_frame": "00:00-00:59",
+                    "s_time": "00:00",
+                    "e_time": "00:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 1,
+                    "time_frame": "01:00-01:59",
+                    "s_time": "01:00",
+                    "e_time": "01:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 2,
+                    "time_frame": "02:00-02:59",
+                    "s_time": "02:00",
+                    "e_time": "02:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 3,
+                    "time_frame": "03:00-03:59",
+                    "s_time": "03:00",
+                    "e_time": "03:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 4,
+                    "time_frame": "04:00-04:59",
+                    "s_time": "04:00",
+                    "e_time": "04:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 5,
+                    "time_frame": "05:00-05:59",
+                    "s_time": "05:00",
+                    "e_time": "05:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 6,
+                    "time_frame": "06:00-06:59",
+                    "s_time": "06:00",
+                    "e_time": "06:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 7,
+                    "time_frame": "07:00-07:59",
+                    "s_time": "07:00",
+                    "e_time": "07:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 8,
+                    "time_frame": "08:00-08:59",
+                    "s_time": "08:00",
+                    "e_time": "08:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 9,
+                    "time_frame": "09:00-09:59",
+                    "s_time": "09:00",
+                    "e_time": "09:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 10,
+                    "time_frame": "10:00-10:59",
+                    "s_time": "10:00",
+                    "e_time": "10:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 11,
+                    "time_frame": "11:00-11:59",
+                    "s_time": "11:00",
+                    "e_time": "11:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 12,
+                    "time_frame": "12:00-12:59",
+                    "s_time": "12:00",
+                    "e_time": "12:59",
+                    "property": "谷",
+                    "price_hour": 0.29502
+                },
+                {
+                    "order": 13,
+                    "time_frame": "13:00-13:59",
+                    "s_time": "13:00",
+                    "e_time": "13:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 14,
+                    "time_frame": "14:00-14:59",
+                    "s_time": "14:00",
+                    "e_time": "14:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 15,
+                    "time_frame": "15:00-15:59",
+                    "s_time": "15:00",
+                    "e_time": "15:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 16,
+                    "time_frame": "16:00-16:59",
+                    "s_time": "16:00",
+                    "e_time": "16:59",
+                    "property": "峰",
+                    "price_hour": 1.08174
+                },
+                {
+                    "order": 17,
+                    "time_frame": "17:00-17:59",
+                    "s_time": "17:00",
+                    "e_time": "17:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 18,
+                    "time_frame": "18:00-18:59",
+                    "s_time": "18:00",
+                    "e_time": "18:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 19,
+                    "time_frame": "19:00-19:59",
+                    "s_time": "19:00",
+                    "e_time": "19:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 20,
+                    "time_frame": "20:00-20:59",
+                    "s_time": "20:00",
+                    "e_time": "20:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 21,
+                    "time_frame": "21:00-21:59",
+                    "s_time": "21:00",
+                    "e_time": "21:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 22,
+                    "time_frame": "22:00-22:59",
+                    "s_time": "22:00",
+                    "e_time": "22:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                },
+                {
+                    "order": 23,
+                    "time_frame": "23:00-23:59",
+                    "s_time": "23:00",
+                    "e_time": "23:59",
+                    "property": "平",
+                    "price_hour": 0.65560
+                }
+            ]
+        }
+    }
+]

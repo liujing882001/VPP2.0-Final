@@ -1,0 +1,116 @@
+.chart-wrapper{
+    flex: 1;
+    background:#474851;
+    position: relative;
+    height: 334px;
+    border-radius: 6px 6px 6px 6px;
+    border: 1px solid #58585E;
+}
+.chart-date-picker{
+    position: absolute;
+    right: 30px;
+    top: 62px;
+    width: 240px;
+    height: 32px;
+    z-index: 999;
+}
+.query-btn-default{
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    height: 32px;
+    z-index: 999;
+}
+
+.empty-container-1{
+    flex: 1;
+    background:#474851;
+    position: relative;
+    height: 290px;
+    padding-top: 10px;
+    border-radius: 6px 6px 6px 6px;
+    border: 1px solid #58585E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .empty-icon{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-image: url(../../assets/empty.png);
+        background-size: cover;
+        background-position: center;
+    }
+    .empty-text{
+        color: #fff;
+        font-size: 14px;
+    }
+}
+
+.chart-file-wrap{
+    width: 716px;
+    height: 50px;
+    background: rgba(143,149,158,0.1);
+    border: 1px solid rgba(143,149,158,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    .chart-file-wrap-left{
+        display: flex;
+        align-items: center;
+        .chart-file-icon{
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url(../../assets/excel-icon.png);
+            background-size: cover;
+        }
+        .chart-file-text{
+            margin-left: 14px;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+        .file-loading{
+            display: flex;
+            align-items: center;
+            margin-top: 0px;
+            margin-left: 14px;
+            .file-loading-icon{
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                background-image: url(../../assets/loading-icon.gif);
+                background-size: cover;
+                margin-right: 4px;
+            }
+            .file-loading-text{
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #8F959E;
+            }
+        }
+    }
+    .chart-file-wrap-right{
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #0092FF;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &::before{
+            content: '';
+            width: 16px;
+            height: 16px;
+            background-image: url(../../assets/upload-icon.png);
+            background-size: cover;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    }
+}

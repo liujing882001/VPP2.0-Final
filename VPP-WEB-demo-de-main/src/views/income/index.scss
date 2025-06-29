@@ -1,0 +1,16 @@
+.income{
+	height: calc(100% - 16px);
+	overflow: auto;
+	.navigation{
+		height: 100%;
+		.ant-tree{
+			padding-left: 8px;
+		}
+		.ant-spin-nested-loading{
+			height: 100%;
+		}
+		.ant-spin-container{
+			height: 100%;
+		}
+	}
+}

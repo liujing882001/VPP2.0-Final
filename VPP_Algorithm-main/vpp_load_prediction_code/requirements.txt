@@ -1,0 +1,14 @@
+pydantic==2.6.4
+fastapi==0.108.0
+uvicorn==0.29.0
+gunicorn==21.2.0
+sqlalchemy==2.0.31
+apscheduler==3.10.4
+psycopg2-binary==2.9.9
+pyyaml==6.0.2
+pandas
+numpy
+lightgbm
+scikit-learn
+pytz
+xgboost

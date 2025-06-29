@@ -1,0 +1,43 @@
+2025-06-29 15:20:51,471 - INFO - 🚀 开始高级代码修复...
+2025-06-29 15:20:51,473 - INFO - 发现 97 个Python文件
+2025-06-29 15:20:51,578 - INFO - ✅ 修复完成: main.py
+2025-06-29 15:20:51,694 - INFO - ✅ 修复完成: api.py
+2025-06-29 15:20:51,705 - INFO - ✅ 修复完成: main.py
+2025-06-29 15:20:51,705 - INFO - ✅ 修复完成: schedulers.py
+2025-06-29 15:20:51,719 - INFO - ✅ 修复完成: log_util.py
+2025-06-29 15:20:51,859 - INFO - ✅ 修复完成: api.py
+2025-06-29 15:20:51,874 - INFO - ✅ 修复完成: run.py
+2025-06-29 15:20:51,920 - INFO - ✅ 修复完成: schedulers.py
+2025-06-29 15:20:51,920 - INFO - ✅ 修复完成: test_performance.py
+2025-06-29 15:20:51,956 - INFO - ✅ 修复完成: test_exceptions.py
+2025-06-29 15:20:51,988 - INFO - ✅ 修复完成: exceptions.py
+2025-06-29 15:20:52,013 - INFO - 🔧 运行 autoflake...
+2025-06-29 15:20:52,302 - INFO - ✅ autoflake 完成
+2025-06-29 15:20:52,303 - INFO - 🔧 运行 isort...
+2025-06-29 15:20:52,501 - INFO - ✅ isort 完成
+2025-06-29 15:20:52,501 - INFO - 🔧 运行 black...
+2025-06-29 15:20:53,148 - WARNING - ⚠️ black 警告: reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_es_schedule_code/api/api.py
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_es_schedule_code/cron/redis_clock.py: Cannot parse: 42:8:         else:
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_es_schedule_code/config/__init__.py: Cannot parse: 106:0: <line number missing in source>
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_es_schedule_code/input/loader.py: Cannot parse: 82:0: <line number missing in source>
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_es_schedule_code/main.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_es_schedule_code/cron/schedulers.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/api/api.py
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/config/__init__.py: Cannot parse: 103:0: <line number missing in source>
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/cron/redis_clock.py: Cannot parse: 39:8:         else:
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/cron/schedulers.py
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_es_schedule_code/output/loader.py: Cannot parse: 74:0: <line number missing in source>
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/main.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/tests/test_exceptions.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/cron/run.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/scripts/advanced_code_fixer.py
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/input/loader.py: Cannot parse: 54:0: <line number missing in source>
+error: cannot format /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/output/loader.py: Cannot parse: 64:0: <line number missing in source>
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/vpp_load_prediction_code/utils/log_util.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/tests/test_comprehensive.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/tests/test_performance.py
+reformatted /Users/jimliu/Documents/cursor/VPP-2.0-final/VPP_Algorithm-main/core/algorithm_engine.py
+
+Oh no! 💥 💔 💥
+13 files reformatted, 76 files left unchanged, 8 files failed to reformat.
+

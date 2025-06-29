@@ -1,0 +1,159 @@
+.assist{
+	padding: 34px 28px; 
+	background: #09183F;
+	/* margin-top: 16px; */
+}
+.assistheader{
+	width: 100%;
+	color: #FFFFFF;
+}
+.assistheader .ant-picker{
+	margin-right: 20px;
+}
+.assistheader .ant-select{
+	margin:0px 20px;
+}
+.assistlist{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	
+}
+.assistlist>li{
+	list-style: none;
+	
+	overflow: hidden;
+	margin-top: 20px;
+	border: 1px solid #203875;
+	padding-top: 20px;
+}
+.assistlist li>div{
+	overflow: hidden;
+	padding: 0px 16px;
+}
+.affairs{
+	float: left;
+	width: 70%;
+	margin: 0px;
+	padding: 0px;
+}
+.partake{
+	float: left;
+	width: 30%;
+}
+.affairs ol{
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	margin-left: 30px;
+}
+.affairs ol>li{
+	float: left;
+	width: 33.33%;
+	padding: 0px;
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	line-height: 32px;
+	margin: 0px;
+}
+.partake{
+	color: #FFFFFF;
+}
+.partake .ant-switch{
+	margin-left: 30px;
+}
+.ai{
+	width: 97px;
+	height: 28px;
+	line-height: 28px;
+	background: #09183F;
+	border-radius: 3px;
+	border: 1px solid #FFFFFF;
+	display: inline-block;
+	text-align: center;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.partake .active{
+	width: 97px;
+	height: 28px;
+	line-height: 28px;
+	/* background: #09183F; */
+	border-radius: 3px;
+	border: 1px solid #0091FF;
+	color: #0091FF;
+	display: inline-block;
+	text-align: center;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.condition{
+	/* width: 100%; */
+	
+	height: 66px;
+	line-height: 66px;
+	background: rgba(23, 44, 99, 0.7);
+	border-radius: 4px 4px 0px 0px;
+	margin-top: 20px;
+	padding-left:50px !important;
+}
+.condition {
+	display: flex;
+}
+.condition div{
+	flex: 1;
+	color: #FFFFFF;
+	font-size: 16px;
+	
+}
+.condition div>span{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background: #44D7B6;
+	border-radius: 50% 50%;
+	margin-right: 10px;
+}
+.condition .unexecuted{
+	background: #F7B500;
+}
+.condition .finish{
+	background: #44D7B6;
+}
+.condition .ongoing{
+	background: #0091FF;
+}
+.ant-modal-confirm-body .ant-modal-confirm-content{
+	color: #FFFFFF;
+}
+.ant-modal-confirm-body .ant-modal-confirm-title{
+	color: #FFFFFF;
+}
+.ant-modal-confirm .ant-modal-confirm-btns .ant-btn + .ant-btn{
+	/* background: #0091FF;
+	color: #FFFFFF;
+	border: none; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+.tacticsbody{
+	background: #212029;
+	border-radius: 10px;
+	padding: 16px 16px;
+	.header{
+		padding: 0px;
+		height: 34px !important;
+		line-height: 34px !important;
+		margin-top: 0px !important;
+		padding-left: 0px !important;
+		background: none;
+		
+		.ant-input-group-addon .ant-btn{
+			background: none;
+			color: #FFFFFF;
+			
+		}
+		.ant-input-search-button{
+			height: 31px;
+		}
+		.ant-input-search>.ant-input-group>.ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary){
+			color: #FFFFFF;
+		}
+	}
+	button{
+		margin-right: 18px;
+	}
+	.ant-table-wrapper{
+		margin: 19px 0px;
+	}
+	.ou{
+		background: #212029;
+	}
+	.ji{
+		background: #312D36;
+	}
+	.ant-modal-header{
+		// border: none;
+	}
+	.pattern{
+		padding: 0px;
+		li{
+			list-style: none;
+			float: left;
+			display: inline-block;
+			width: 210px;
+			height: 150px;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

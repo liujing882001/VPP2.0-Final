@@ -1,0 +1,698 @@
+.spinning-wrap {
+  // height: calc(100% - 64px);
+  height: 100%;
+}
+.chat-page {
+  height: calc(100% - 50px);
+}
+
+.chat-page-header {
+  width: 100%;
+  height: 80px;
+  background: #303038;
+  border-radius: 0px 0px 0px 0px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  cursor: pointer;
+  .chat-page-header-title {
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+  }
+  .chat-page-header-title::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(../../assets/back-btn.png);
+    background-size: cover;
+    margin-right: 10px;
+  }
+}
+
+.chat-page-content {
+  height: calc(100vh - 144px);
+  width: 100%;
+  background: #292930;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(../../assets/main-page-bg.png);
+  background-size: 828px 843px;
+  background-repeat: no-repeat;
+  background-position: -130px 100px;
+}
+.scroll-wrap {
+  padding: 40px 250px 0 250px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.scroll-wrap::-webkit-scrollbar {
+  display: none;
+}
+.default-header {
+  .task-intro-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    .task-intro {
+      width: 264px;
+      height: 160px;
+
+      .task-intro-header {
+        height: 120px;
+        background: #303038;
+        border-radius: 10px 10px 0 0;
+        background-image: url(../../assets/task-intro-1.png);
+        background-size: cover;
+      }
+      .task-intro-footer {
+        width: 264px;
+        height: 40px;
+        background: linear-gradient(133deg, #0092FF 0%, #22ccc3 100%);
+        border-radius: 0 0 10px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 13px;
+        color: #ffffff;
+      }
+    }
+
+    .task-intro-1 {
+      .task-intro-header {
+        height: 120px;
+        background: #303038;
+        border-radius: 10px 10px 0 0;
+        background-image: url(../../assets/task-intro-1.png);
+        background-size: cover;
+      }
+    }
+
+    .task-intro-2 {
+      .task-intro-header {
+        height: 120px;
+        background: #303038;
+        border-radius: 10px 10px 0 0;
+        background-image: url(../../assets/task-intro-1.png);
+        background-size: cover;
+      }
+    }
+    .task-intro-2 {
+      .task-intro-header {
+        height: 120px;
+        background: #303038;
+        border-radius: 10px 10px 0 0;
+        background-image: url(../../assets/task-intro-2.png);
+        background-size: cover;
+      }
+    }
+    .task-intro-3 {
+      .task-intro-header {
+        height: 120px;
+        background: #303038;
+        border-radius: 10px 10px 0 0;
+        background-image: url(../../assets/task-intro-3.png);
+        background-size: cover;
+      }
+    }
+  }
+  .task-list-wrap {
+    margin-bottom: 60px;
+
+    .task-list-top,
+    .task-list-bottom {
+      display: flex;
+      justify-content: center;
+      .task-item {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.01);
+        box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2923);
+        border: 1px solid #8f959e;
+        border-radius: 32px;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        padding: 0 22px;
+        cursor: pointer;
+        .task-name {
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 400;
+          font-size: 14px;
+          color: #dfe1e5;
+          margin-bottom: 0;
+          display: flex;
+          align-items: center;
+        }
+        .task-name::after {
+          content: "";
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+          background-image: url(../../assets/arrow.png);
+          margin-left: 15px;
+        }
+      }
+      .task-item:hover {
+        border-color: #0092FF;
+      }
+    }
+    .task-list-bottom {
+      margin-top: 18px;
+    }
+  }
+}
+
+.scroll-content {
+  .left-default-wrap {
+    display: flex;
+    margin-bottom: 50px;
+    align-items: center;
+    .left-robot-icon {
+      display: inline-block;
+      padding: 0 24px;
+      width: 46px;
+      height: 40px;
+      background: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      background-repeat: no-repeat;
+    }
+    .left-message {
+      width: auto;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+      caret-color: #fff; /* 显示光标为黑色 */
+      padding: 0 24px;
+    }
+  }
+  .right-default-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 60px;
+    .right-message {
+      padding: 11px 25px;
+      height: 42px;
+      background: #0092FF;
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2923);
+      border: 1px solid #0092FF;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .generate-strategy-wrap {
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+    .robot-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: absolute;
+    }
+    .robot-gif-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-size: contain;
+      background-image: url(../../assets/xiaoda_icon.png);
+      // background-size: 64px 64px;
+      background-repeat: no-repeat;
+      background-position: right center;
+      margin-right: 18px;
+      position: relative;
+      top: 0px;
+      position: absolute;
+      left: 0px;
+    }
+    .generate-strategy {
+      width: 800px;
+      background: rgba(42, 43, 64, 0.15);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      margin-left: 70px;
+
+      .generate-strategy-header {
+        width: 100%;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 0 24px;
+
+        .pre-loading-text {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .generate-strategy-content {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        width: 100%;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 26px 24px 50px 24px;
+        .loading-icon {
+          display: inline-block;
+          width: 60px;
+          height: 42px;
+          background-image: url(../../assets/loading.gif);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-position: -10px 8px;
+        }
+        p {
+          margin-bottom: 10px;
+        }
+      }
+      .generate-strategy-content.loading-icon-wrap {
+        padding: 0;
+        .loading-icon {
+          margin-top: 6px;
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+
+  .edit-strategy-wrap {
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+    .robot-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: relative;
+      position: absolute;
+    }
+    .robot-gif-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-size: contain;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-position: right center;
+      // background-size: 64px 64px;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      position: absolute;
+    }
+    .edit-strategy {
+      width: 100%;
+      background: rgba(42, 43, 64, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      padding-bottom: 5px;
+      margin-left: 70px;
+
+      .edit-strategy-header {
+        width: 100%;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 0 24px;
+      }
+      .edit-strategy-content.loading-icon-wrap {
+        padding: 0;
+        .loading-icon {
+          margin-top: 6px;
+          margin-left: 12px;
+        }
+      }
+      .edit-strategy-content {
+        padding: 15px 24px;
+        background: #292930;
+        .batch-confirm-btn {
+          width: 84px;
+          height: 32px;
+          background: #0092FF;
+          border-radius: 3px 3px 3px 3px;
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+          border: #0092FF;
+          margin-bottom: 11px;
+        }
+        .edit-strategy-table {
+          .ant-table-thead {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px 4px 0px 0px;
+          }
+          .ant-table-tbody {
+            background: rgba(143, 149, 158, 0.2);
+          }
+        }
+      }
+
+      .chart-query-title {
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .chart-query-wrap {
+        display: flex;
+        align-items: center;
+        .ant-select-selector {
+          position: relative;
+          top: 1px;
+        }
+        .chart-query-btn {
+          width: 56px;
+          height: 26px;
+          background: #0092FF;
+          border-radius: 3px 3px 3px 3px;
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 400;
+          font-size: 12px;
+          color: #ffffff;
+          border: none;
+        }
+      }
+    }
+    .edit-strategy-first {
+      width: 800px;
+      background: rgba(42, 43, 64, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      .edit-strategy-header {
+        width: 100%;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 0 24px;
+      }
+      .edit-strategy-content.loading-icon-wrap {
+        padding: 0;
+        .loading-icon {
+          display: inline-block;
+          width: 60px;
+          height: 42px;
+          background-image: url(../../assets/loading.gif);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: -10px 8px;
+          margin-top: 6px;
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+
+  .submit-declare-wrap {
+    display: flex;
+    margin-bottom: 65px;
+    position: relative;
+    .robot-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: absolute;
+    }
+    .robot-gif-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-size: contain;
+      background-image: url(../../assets/xiaoda_icon.png);
+	  background-position: right center;
+      // background-size: 64px 64px;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+    .submit-declare {
+      width: 800px;
+      background: rgba(42, 43, 64, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      margin-left: 70px;
+      .submit-declare-title {
+        padding: 0 24px;
+        width: 100;
+        display: flex;
+        align-items: center;
+        height: 42px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .submit-declare-content {
+        .submit-declare-content-top {
+          padding: 20px 24px 16px 20px;
+          display: flex;
+          .invite-obj {
+            width: 280px;
+            height: 54px;
+            background-image: url(../../assets/invite-obj-bg.png);
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            margin-right: 16px;
+            .invite-obj-left {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 14px;
+              color: #ffffff;
+            }
+            .invite-obj-right {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 18px;
+              color: #ffffff;
+            }
+          }
+          .declare-load {
+            width: 280px;
+            height: 54px;
+            background-image: url(../../assets/invite-obj-bg.png);
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            .declare-load-left {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 14px;
+              color: #ffffff;
+            }
+            .declare-load-right {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 18px;
+              color: #ffffff;
+            }
+          }
+        }
+        .submit-declare-content-bottom {
+          padding: 0 24px;
+        }
+      }
+    }
+  }
+}
+
+.btn-bottom-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 250px 50px 0;
+  .init-wrap {
+    height: 42px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2923);
+    border: 1px solid #0092FF;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0 25px;
+    color: #ffffff;
+    .ant-select-selector {
+      margin: 0;
+      padding: 0;
+    }
+    .ant-select-arrow {
+      display: none;
+    }
+    .init-select-option {
+      width: 150px;
+      margin: 0 20px;
+      border-bottom: 1px solid #ffffff;
+      .ant-select-selection-search-input {
+        color: #fff;
+      }
+      .ant-select-selector {
+        border: none;
+      }
+      .ant-select-selection-placeholder {
+        padding-left: 0;
+      }
+      .ant-select-selection-search-input {
+        margin-left: 40px;
+      }
+    }
+    .ant-select-selection-placeholder {
+      padding-left: 18px;
+      left: 0;
+    }
+    .ant-select-selection-search-input {
+      margin-left: 0 !important;
+    }
+    .ant-select-selection-search {
+      left: 0;
+    }
+  }
+  .analysis-wrap {
+    display: flex;
+    justify-content: flex-end;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #ffffff;
+    .reset-strategy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 136px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      border: 1px solid #0092FF;
+      margin-right: 24px;
+    }
+    .generate-strategy-btn {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 136px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      border: 1px solid #0092FF;
+    }
+  }
+  .confirm-wrap {
+    display: flex;
+    justify-content: flex-end;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #ffffff;
+    .reset-strategy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 136px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      border: 1px solid #0092FF;
+      margin-right: 24px;
+    }
+    .generate-strategy-btn {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 26px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      border: 1px solid #0092FF;
+    }
+  }
+}
+
+.content-input-wrapper {
+  display: flex;
+  align-items: center;
+  .ant-input {
+    background: rgba(143, 149, 158, 0.2);
+    height: 30px;
+    width: 60px;
+    margin: 0 5px;
+  }
+}
+.edit-declareLoad-input {
+  background: rgba(143, 149, 158, 0.2);
+  height: 30px;
+  width: 98px;
+  margin: 0;
+}

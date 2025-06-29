@@ -1,0 +1,71 @@
+.areatitle{
+	line-height: 80px;
+}
+.titltspan{
+	font-size: 16px;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FFFFFF;
+}
+.areatitle button span{
+	
+	font-size: 14px;
+}
+.areatitle .ant-btn{
+	margin: 0px;
+}
+.areatitle .ant-input-group-wrapper{
+	float: right;
+	margin-top: 23px;
+}
+.areatitle .areabtn{
+	float: inherit;
+	margin-left: 20px;
+}
+.areatitle .ant-input{
+	border-right: none;
+}
+.hrader{
+	/* float: inherit; */
+	overflow: hidden;
+	/* padding-top: 20px; */
+}
+.none{
+	display: none;
+}
+.block{
+	display: block;
+}
+.block span{
+	margin-left: 36px;
+}
+.btns{
+	background: none;
+	color: #1890FF;
+	border: none;
+	text-align: left;
+	padding-left: 0px;
+}
+#newforms .dynamic-delete-button{
+	position: absolute;
+	right: -45px;
+}
+#newforms .ant-table-row-expand-icon{
+	background: none;
+}
+.ant-table-row-expand-icon{
+	background: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

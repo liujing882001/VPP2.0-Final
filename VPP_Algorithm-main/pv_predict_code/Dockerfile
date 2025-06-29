@@ -1,0 +1,26 @@
+FROM python:3.10.14-slim
+
+RUN apt-get update --fix-missing && apt-get install -y libgomp1 --fix-missing
+
+# 设置工作目录
+WORKDIR /app
+
+COPY requirements.txt /app
+
+# 更新 pip 并安装依赖包
+RUN pip install --upgrade pip -i https://mirrors.aliyun.com/pypi/simple && \
+    pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple
+
+# 设置python环境变量
+ENV PYTHONPATH "${PYTHONPATH}:/app"
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+
+ADD . /app
+
+# 暴露端口
+EXPOSE 8000
+
+# 启动命令
+CMD ["python", "PV_predict.py"] 

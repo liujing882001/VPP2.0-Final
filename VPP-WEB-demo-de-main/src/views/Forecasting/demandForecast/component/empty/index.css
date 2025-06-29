@@ -1,0 +1,18 @@
+.empty-wrap {
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.empty-wrap .empty-icon svg {
+  width: 50px;
+  height: 50px;
+  color: #fff;
+}
+
+.empty-wrap .empty-text {
+  margin-top: 10px;
+  color: #fff;
+}

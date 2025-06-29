@@ -1,0 +1,970 @@
+.profit-forecast-page {
+  height: 100%;
+}
+
+.ant-select-focused .ant-select-selector {
+  box-shadow: none !important;
+}
+
+.profit-forecast-page-header {
+  width: 100%;
+  height: 80px;
+  background: #303038;
+  border-radius: 0px 0px 0px 0px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  cursor: pointer;
+  .profit-forecast-page-header-title {
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+  }
+  .profit-forecast-page-header-title::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(../../assets/back-btn.png);
+    background-size: cover;
+    margin-right: 10px;
+  }
+}
+
+.profit-chat-page-content {
+  height: calc(100vh - 130px);
+  width: 100%;
+  background: #292930;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(../../assets/main-page-bg.png);
+  background-size: 828px 843px;
+  background-repeat: no-repeat;
+  background-position: -130px 100px;
+}
+.scroll-wrap1 {
+  padding: 40px 0 0 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.scroll-wrap1::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-content {
+  .first-chat-wrap {
+    display: flex;
+    margin-bottom: 40px;
+    .left-robot-icon {
+      display: inline-block;
+      padding: 0 24px;
+      width: 46px;
+      height: 40px;
+      background: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      background-repeat: no-repeat;
+    }
+    .first-chat-message {
+      width: auto;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+      caret-color: #fff; /* 显示光标为黑色 */
+      padding: 16px 24px;
+      display: flex;
+      flex-direction: column;
+
+      .project-wrap {
+        display: flex;
+        margin-top: 18px;
+        .new-project {
+          cursor: pointer;
+          min-width: 120px;
+          height: 32px;
+          background: rgba(255, 255, 255, 0.1);
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          padding: 0 10px;
+          margin-right: 30px;
+          .project-text {
+            margin-bottom: 2px;
+          }
+        }
+        .is-active {
+          border: 1px solid #0092FF;
+        }
+        .look-project {
+          cursor: pointer;
+          width: 120px;
+          height: 32px;
+          background: rgba(255, 255, 255, 0.1);
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          padding: 0 10px;
+          .project-text {
+            margin-bottom: 2px;
+          }
+        }
+      }
+      .new-project-tips {
+        margin-top: 16px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 12px;
+        color: #8f959e;
+      }
+    }
+  }
+
+  .right-default-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    flex-direction: column;
+    .right-message {
+      padding: 11px 25px;
+      height: 42px;
+      background: #0092FF;
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2923);
+      border: 1px solid #0092FF;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .file-container {
+      margin-top: 16px;
+      .file-item {
+        width: 192px;
+        height: 60px;
+        background: rgba(246, 246, 246, 0.1);
+        border-radius: 6px 6px 6px 6px;
+        border: 1px solid #58585e;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        .file-item-icon {
+          width: 30px;
+          height: 30px;
+          background-image: url(./assets/excel-icon.png);
+          background-size: cover;
+          margin-right: 18px;
+        }
+        .file-item-info {
+          display: flex;
+          flex-direction: column;
+          .file-item-info-text {
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+            white-space: nowrap;
+            width: 105px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          .file-item-info-size {
+            margin-top: 5px;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+  .generate-strategy-wrap {
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+    .robot-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: absolute;
+    }
+    .robot-gif-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-size: contain;
+      background-image: url(../../assets/xiaoda_icon.png);
+      // background-size: 64px 64px;
+      background-repeat: no-repeat;
+      background-position: right center;
+      margin-right: 18px;
+      position: relative;
+      top: 0px;
+      position: absolute;
+      left: 0px;
+    }
+    .generate-strategy {
+      width: 800px;
+      background: rgba(42, 43, 64, 0.15);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      margin-left: 70px;
+
+      .generate-strategy-header {
+        width: 100%;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 0 24px;
+
+        .pre-loading-text {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .generate-strategy-content {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        width: 100%;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 26px 24px 50px 24px;
+        .loading-icon {
+          display: inline-block;
+          width: 60px;
+          height: 42px;
+          background-image: url(../../assets/loading.gif);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-position: -10px 8px;
+        }
+        p {
+          margin-bottom: 10px;
+        }
+      }
+      .generate-strategy-content.loading-icon-wrap {
+        padding: 0;
+        .loading-icon {
+          margin-top: 6px;
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+
+  .look-project-wrap,
+  .edit-project-wrap {
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+    .robot-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: relative;
+      position: absolute;
+    }
+
+    .robot-gif-icon {
+      display: inline-block;
+     width: 46px;
+     height: 40px;
+     background-size: contain;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-position: right center;
+      // background-size: 64px 64px;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      position: absolute;
+    }
+    .look-project,
+    .edit-project {
+      width: 100%;
+      background: rgba(42, 43, 64, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      padding-bottom: 5px;
+      margin-left: 70px;
+
+      .edit-project-header {
+        width: 100%;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 0 24px;
+      }
+      .edit-project-content.loading-icon-wrap {
+        padding: 0;
+        .loading-icon {
+          margin-top: 6px;
+          margin-left: 12px;
+        }
+      }
+      .edit-project-content {
+        padding: 15px 24px;
+        background: #292930;
+        .batch-confirm-btn {
+          width: 84px;
+          height: 32px;
+          background: #0092FF;
+          border-radius: 3px 3px 3px 3px;
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 400;
+          font-size: 14px;
+          color: #ffffff;
+          border: #0092FF;
+          margin-bottom: 11px;
+        }
+        .edit-project-table {
+          .ant-table-thead {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px 4px 0px 0px;
+          }
+          .ant-table-tbody {
+            background: rgba(143, 149, 158, 0.2);
+          }
+        }
+      }
+
+      .chart-query-title {
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .chart-query-wrap {
+        display: flex;
+        align-items: center;
+        .ant-select-selector {
+          position: relative;
+          top: 1px;
+        }
+        .chart-query-btn {
+          width: 56px;
+          height: 26px;
+          background: #0092FF;
+          border-radius: 3px 3px 3px 3px;
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 400;
+          font-size: 12px;
+          color: #ffffff;
+          border: none;
+        }
+      }
+    }
+    .look-project-first,
+    .edit-project-first {
+      width: 100%;
+      min-width: 877px;
+      background: rgba(42, 43, 64, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      .look-project-header,
+      .edit-project-header {
+        width: 100%;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        padding: 0 24px;
+        .edit-project-header-title {
+          flex-grow: 1;
+        }
+      }
+      .look-project-content.loading-icon-wrap {
+        padding: 0;
+        .loading-icon {
+          display: inline-block;
+          width: 60px;
+          height: 42px;
+          background-image: url(../../assets/loading.gif);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: -10px 8px;
+          margin-top: 6px;
+          margin-left: 12px;
+        }
+      }
+      .edit-project-content.loading-icon-wrap {
+        padding: 0;
+        .loading-icon {
+          display: inline-block;
+          width: 60px;
+          height: 42px;
+          background-image: url(../../assets/loading.gif);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: -10px 8px;
+          margin-top: 6px;
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+
+  .submit-declare-wrap {
+    display: flex;
+    margin-bottom: 65px;
+    position: relative;
+    .robot-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-image: url(../../assets/xiaoda_icon.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 18px;
+      position: absolute;
+    }
+    .robot-gif-icon {
+      display: inline-block;
+      width: 46px;
+      height: 40px;
+      background-size: contain;
+      background-image: url(../../assets/xiaoda_icon.png);
+      // background-size: 64px 64px;
+      background-repeat: no-repeat;
+	  background-position: right center;
+      margin-right: 18px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+    .submit-declare {
+      width: 800px;
+      background: rgba(42, 43, 64, 0.1);
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3663);
+      border: 2px solid #0092FF;
+      border-radius: 10px;
+      margin-left: 70px;
+      .submit-declare-title {
+        padding: 0 24px;
+        width: 100;
+        display: flex;
+        align-items: center;
+        height: 42px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .submit-declare-content {
+        .submit-declare-content-top {
+          padding: 20px 24px 16px 20px;
+          display: flex;
+          .invite-obj {
+            width: 280px;
+            height: 54px;
+            background-image: url(../../assets/invite-obj-bg.png);
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            margin-right: 16px;
+            .invite-obj-left {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 14px;
+              color: #ffffff;
+            }
+            .invite-obj-right {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 18px;
+              color: #ffffff;
+            }
+          }
+          .declare-load {
+            width: 280px;
+            height: 54px;
+            background-image: url(../../assets/invite-obj-bg.png);
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            .declare-load-left {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 14px;
+              color: #ffffff;
+            }
+            .declare-load-right {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 500;
+              font-size: 18px;
+              color: #ffffff;
+            }
+          }
+        }
+        .submit-declare-content-bottom {
+          padding: 0 24px;
+        }
+      }
+    }
+  }
+}
+
+.profit-btn-bottom-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 50px 0;
+  min-width: 947px;
+  .all-init-wrap {
+    .file-container {
+      height: 110px;
+      background: rgb(58, 58, 67);
+      position: relative;
+      top: 20px;
+      border-radius: 10px;
+      display: flex;
+      padding: 15px 20px;
+      .file-item {
+        width: 240px;
+        height: 60px;
+        background: rgba(246, 246, 246, 0.1);
+        border-radius: 6px 6px 6px 6px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        justify-content: space-between;
+        .file-item-left {
+          display: flex;
+          .file-icon {
+            width: 30px;
+            height: 30px;
+            background-image: url(./assets/excel-icon.png);
+            background-size: cover;
+            margin-right: 20px;
+          }
+          .file-info-container {
+            display: flex;
+            flex-direction: column;
+            .file-name {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 400;
+              font-size: 12px;
+              color: #ffffff;
+              display: inline-block;
+              width: 155px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+            .file-size {
+              font-family: PingFang SC, PingFang SC;
+              font-weight: 400;
+              font-size: 12px;
+              color: #ffffff;
+            }
+            .file-loading {
+              display: flex;
+              align-items: center;
+              margin-top: 5px;
+              .file-loading-icon {
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                background-image: url(./assets/loading-icon.gif);
+                background-size: cover;
+                margin-right: 4px;
+              }
+              .file-loading-text {
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #8f959e;
+              }
+            }
+          }
+        }
+
+        .delete-icon {
+          width: 13px;
+          height: 13px;
+          background-image: url(./assets/file-delete-icon.png);
+          background-size: cover;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .profit-init-wrap {
+    background: rgba(58, 58, 67, 1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #595964;
+    height: auto;
+    align-items: flex-start;
+    padding: 0 24px;
+    position: relative;
+    z-index: 99;
+    .add-project-input {
+      display: flex;
+      height: 90px;
+      width: 830px;
+      flex-direction: column;
+      padding-top: 16px;
+      position: relative;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+      span {
+        white-space: nowrap;
+      }
+      .ant-input::placeholder {
+        color: rgba(143, 149, 158, 1);
+      }
+      .send_icon {
+        position: absolute;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/send-icon.svg);
+        background-size: cover;
+        cursor: pointer;
+        bottom: 12px;
+        right: 0px;
+      }
+      .no_text {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+      .upload_icon {
+        position: absolute;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/upload-icon.svg);
+        background-size: cover;
+        cursor: pointer;
+        bottom: 12px;
+        right: 38px;
+      }
+    }
+    .look-project-input {
+      width: 830px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+      position: relative;
+      .ant-select-selection-placeholder {
+        color: rgba(143, 149, 158, 1);
+      }
+      .send_icon {
+        position: absolute;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/send-icon.svg);
+        background-size: cover;
+        cursor: pointer;
+        bottom: 8px;
+        right: -5px;
+      }
+      .no_text {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+  }
+  .profit-look-wrap {
+    width: 947px;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #ffffff;
+    .reset-strategy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 136px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      border: 1px solid #0092FF;
+      margin-right: 24px;
+    }
+    .generate-strategy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 136px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      border: 1px solid #0092FF;
+    }
+  }
+  .profit-edit-wrap {
+    width: 947px;
+    display: flex;
+    justify-content: flex-end;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 0 250px;
+    padding: 0;
+    .generate-strategy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 136px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      border: 1px solid #0092FF;
+    }
+  }
+}
+
+.content-input-wrapper {
+  display: flex;
+  align-items: center;
+  .ant-input {
+    background: rgba(143, 149, 158, 0.2);
+    height: 30px;
+    width: 60px;
+    margin: 0 5px;
+  }
+}
+.edit-declareLoad-input {
+  background: rgba(143, 149, 158, 0.2);
+  height: 30px;
+  width: 98px;
+  margin: 0;
+}
+
+.init-select-option {
+  .ant-select-selector {
+    border: none !important;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0px;
+  }
+}
+
+.city-cascader {
+  .ant-select-selector {
+    width: 85px;
+    border: none !important;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0px;
+  }
+  .ant-select-selection-placeholder {
+    color: rgba(143, 149, 158, 1);
+  }
+}
+
+.customer-error-message {
+  .ant-message-notice-content {
+    background: #33333b !important;
+    box-shadow: 0px 2px 14px 0px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 5px 5px 5px 5px !important;
+    font-family: PingFang SC, PingFang SC !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    color: #ffffff !important;
+    .customer-error-message-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-image: url(./assets/customer-error-message-icon.png);
+      background-size: cover;
+      margin-right: 5px;
+    }
+  }
+}
+
+.customer-Tooltip {
+  .ant-tooltip-inner {
+    background: #1e1e29 !important;
+    border-radius: 10px !important;
+    padding: 4px 14px 3px 14px;
+  }
+}
+
+.energy-left-default-wrap {
+  display: flex;
+  margin-bottom: 50px;
+
+  .energy-left-robot-icon {
+    display: inline-block;
+    padding: 0 24px;
+    width: 46px;
+    height: 40px;
+    background: url(../../assets/xiaoda_icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 18px;
+    background-repeat: no-repeat;
+  }
+  .energy-right-wrap {
+    .energy-left-message {
+      width: 258px;
+    }
+    .recommend-strategy-wrap {
+      margin-top: 32px;
+      .recommend-strategy-item {
+        width: fit-content;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 19px 19px 19px 19px;
+        border: 1px solid #8f959e;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #dfe1e5;
+        padding: 0 15px;
+        margin-top: 16px;
+        cursor: pointer;
+      }
+      .recommend-strategy-item:hover {
+        border-color: #0092FF;
+      }
+      .recommend-strategy-item::after {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-image: url(../../assets/arrow.png);
+        background-size: cover;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .energy-left-message {
+    width: auto;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #ffffff;
+    caret-color: #fff; /* 显示光标为黑色 */
+    padding: 0 24px;
+  }
+}
+.gdt-progress {
+  .ant-progress-bg {
+    height: 2px !important;
+  }
+}
+.energy-left-default-wrap.gdt {
+  .energy-right-wrap {
+    width: 500px;
+  }
+  .energy-left-message {
+    height: 72px;
+    flex-direction: column;
+    background: #33333b;
+    box-shadow: 0px 0px 5px 0px rgba(35, 35, 41, 0.1);
+    padding: 16px;
+    justify-content: flex-start;
+    .gdt-finish {
+      margin-bottom: 5px;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffffff;
+      .gdt-minute {
+        color: #0092FF;
+      }
+    }
+  }
+}
+
+.type-cascader {
+  width: 150px !important;
+  box-shadow: none !important;
+  border: none !important;
+  .ant-select-selector {
+    border: none !important;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0 !important;
+  }
+  .ant-select-selection-placeholder {
+    color: rgba(143, 149, 158, 1) !important;
+  }
+}

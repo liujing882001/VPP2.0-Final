@@ -1,0 +1,82 @@
+.accheader{
+	height: 70px;
+	line-height: 70px;
+	background: #212029;
+	border-radius: 2px;
+	padding: 0px 30px;
+	margin-bottom: 8px;
+}
+.panel{
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFF;
+}
+.panel:nth-child(2){
+	padding-left: 20px;
+}
+.panels{
+	padding-left: 20px;
+}
+.axxset{
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: rgba(255,255,255,0.8500);
+	padding-bottom: 32px;
+}
+.allcontentesae{
+	min-width: 1200px;
+	/* padding: 16px 16px 0px 16px; */
+}
+.allcontentesae .ant-tabs-tabpane{
+	background: #212029;
+}
+
+.hybridpoint{
+	padding: 0px 30px;
+}
+.ant-tabs{
+	height: calc(100% - 70px);
+}
+.titleyear{
+	font-size: 16px;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FFF;
+	line-height: 24px;
+}
+.allcontentesae .ant-tabs > .ant-tabs-nav, .ant-tabs > div > .ant-tabs-nav{
+	margin-bottom: 0px;
+	/* border-bottom: 1px solid rgba(255,255,255,0.1); */
+}
+.accumulation_model .ant-tabs-tabpane{
+	background: #212029;
+}
+.accumulation_model .accheader{
+	padding: 0px 16px;
+}
+.ant-tabs-top >.ant-tabs-nav::before{
+	border: none;
+}
+.ant-tabs-top >.ant-tabs-nav .ant-tabs-ink-bar{
+	width: 48px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

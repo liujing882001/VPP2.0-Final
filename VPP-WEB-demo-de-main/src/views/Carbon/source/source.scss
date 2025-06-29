@@ -1,0 +1,41 @@
+.allcontent{
+	.header{
+		height: 79px;
+		// background: #FFF !important;
+		border-radius: 2px;
+		line-height: 79px;
+		padding: 0px 15px;
+		color: #FFF;
+		// padding-left: 15px !important;
+		margin-top: 15px;
+	}
+	.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+		// background: none;
+		// color: #FFFFFF;
+		// border: 1px solid #D1D2D6;
+	}
+	.ant-select-arrow{
+		color: #8F959E;
+	}
+	.ant-select{
+		margin-right: 12px;
+	}
+	.ant-table-thead>tr>th{
+		// background: #172C63;
+		// color: #FFFF;
+		// border: none;
+	}
+	.ou{
+		background: #212029;
+	}
+	.ji{
+		background: #312D36;
+	}
+	.ant-table-tbody>tr>td{
+		// color: #FFFFFF;
+		// border-bottom: 1px solid rgba(255,255,255,0.2);
+	}
+	.ant-picker{
+		// background: none;
+	}
+}

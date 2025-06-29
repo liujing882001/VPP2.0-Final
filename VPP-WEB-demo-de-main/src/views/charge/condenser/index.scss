@@ -1,0 +1,131 @@
+.condenser{
+	.navigation{
+		background: #212029;
+		.ant-spin-nested-loading{
+			height: calc(100% - 102px);
+		}
+		.nodeTypes{
+			li{
+				color: #FFF;
+			}
+			.nodeactive{
+				border: 1px solid #0092FF;
+				color: #0092FF;
+			}
+		}
+		.nodeTypes li:hover{
+			border: 1px solid #0092FF;
+			color: #0092FF;
+		}
+		.ant-tree-node-content-wrapper{
+			color: #FFF;
+		}
+		.ant-tree{
+			color: #FFF;
+			margin-left: 10px;
+		}
+		.Responsebenefits-title{
+			padding: 16px 16px;
+			    padding-bottom: 0px;
+			    color: #fff;
+			    font-size: 14px;
+			    color: #FFFFFF;
+		}
+	}
+	.incomes{
+		margin-bottom: 10px !important;
+	}
+	.adjustable{
+		// background: #212029;
+		background: none;
+		height: 100%;
+		.headeradgust{
+			background: #212029;
+			padding: 16px 16px;
+			margin-bottom: 8px;
+			border-radius: 10px;
+		}
+		.danweiTable{
+			background: #212029;
+			margin-top: 0px;
+			padding-top: 16px;
+			height: calc(100% - 72px);
+			overflow: auto;
+			border-radius: 10px;
+		}
+		.incomeList span{
+			color: #FFF;
+			border: 1px solid #D1D2D6;
+		}
+		.incomeList span:hover{
+			border: 1px solid #0092FF;
+			color: #0092FF;
+		}
+		.incomeList{
+			.recirdactive{
+				border: 1px solid #0092FF;
+				color: #0092FF;
+			}
+		}
+		.ant-btn.ant-btn-background-ghost{
+			color: #FFF;
+		}
+		.daylists {
+			li{
+				color: #FFF;
+			}
+			.active{
+				border: 1px solid #0092FF;
+				color: #0092FF;
+			}
+		}
+		.daylists li:hover{
+			border: 1px solid #0092FF;
+			color: #0092FF !important;
+		}
+		.danwei{
+			height: 34px;
+			line-height: 34px;
+			font-size: 12px;
+			color: #FFFFFF;
+			border-radius: 8px 8px;
+			// background: url('../');
+			// background: url(../../../style/load/conbg.png) no-repeat top center;
+			background-size: 100% 100%;
+			span{
+				color: #FFF;
+			}
+		}
+		.ant-table-thead>tr>th{
+			background: #312D36;
+			font-size: 12px;
+			color: #FFFFFF;
+		}
+		.ji{
+			background: #312D36;
+		}
+		.ou{
+			background: #212029;
+		}
+		.ant-table-tbody>tr>td{
+			border: none;
+			font-size: 14px;
+			color: #FFFFFF;
+			padding: 14px 16px;
+		}
+		.ant-table-tbody{
+			border-bottom: 1px solid #8F959E !important;
+		}
+		.ant-table{
+			border-bottom: 1px solid #8F959E ;
+		}
+		.ant-btn-primary{
+			background: #0092FF;
+		}
+		#iconem{
+			// width: 90%;
+			height: 100%;
+		}
+	}
+	
+}

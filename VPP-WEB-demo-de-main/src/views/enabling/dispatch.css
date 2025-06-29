@@ -1,0 +1,157 @@
+.pVcapacity h4:after{
+	background: #3370FF !important;
+}
+.pvdispacth{
+	/* width: 100%; */
+	height: 300px;
+	display: flex;
+	margin-top: 20px;
+	margin: 20px 24px;
+	margin-top: 50px;
+	background: #FFFFFF;
+}
+.pvdispacth div{
+	flex: 1;
+	/* background: rgba(18,45,96,0.28); */
+	border-radius: 2px;
+	border: 1px solid #1890FF;
+}
+.pvdispacth div>p{
+	height: 52px;
+	line-height: 52px;
+	/* background: rgba(18,45,96,0.28); */
+	background: #FFFFFF;
+	border-radius: 2px;
+	border-bottom: 1px solid #1890FF;
+	text-align: center;
+	/* color: #FFFFFF; */
+	color: #2A2B40;
+}
+.pvdispacth div>p img{
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	vertical-align: middle;
+	margin-right: 20px;
+}
+.pvdispacth div>p{
+	
+}
+.pvdispacth div:first-child+div{
+	margin: 0px 24px;
+}
+.diaodu img{
+	width: 269px;
+	height: 29px;
+}
+.diaodu{
+	width: 100%;
+	height: calc(100% - 60px);
+	/* line-height: 208px; */
+	text-align: center;
+	background: none !important;
+	border: none !important;
+	
+	
+}
+.diaodu span{
+	display: block;
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	/* color: #FFFFFF; */
+	color: #2A2B40;
+	width: 100%;
+	line-height: 0px;
+	margin-top: 40px;
+}
+.two .diaodu>img{
+	width: 224px;
+	height: 102px;
+	vertical-align: middle;
+	/* margin-top: 40px; */
+	margin: 20px 0px;
+	margin-top: 30px;
+}
+.two span{
+	margin-top: -40px;
+}
+.pvload{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	display: flex;
+	margin-top: 20px;
+}
+.pvload li{
+	list-style: none;
+	float: left;
+	flex: 1;
+	color: #2A2B40;
+	text-align: left;
+	position: relative;
+}
+.pvload li:after{
+	display: inline-block;
+	content: '';
+	width: 14px;
+	height: 14px;
+	background: #00D7E9;
+	border-radius: 7px;
+	float: left;
+	margin-right: 8px;
+	margin-top: 4px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.pvloada li:after{
+	display: inline-block;
+	content: '';
+	width: 14px;
+	height: 14px;
+	background: #A276FF;
+	border-radius: 7px;
+	float: left;
+	margin-right: 8px;
+	margin-top: 4px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.pvload li>b{
+	display: inline-block;
+	margin-left: 20px;
+}
+.pvload li:first-child+li:after{
+	background: #1890FF;
+}
+.pvload li:first-child+li+li:after{
+	
+background: #A276FF;
+}
+.pvloada li:first-child+li:after{
+	background: #00D7E9;
+}
+
+.diaodu i{
+	text-align: left;
+	font-size: 12px;
+	color: #FFFFFF;
+	display: block;
+	font-style:normal;
+	width: 224px;
+	vertical-align: middle;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+.tiemdiao{
+	
+	text-align: right !important;
+	margin: 0px;
+	margin-top: 10px !important;
+}
+
+
+
+

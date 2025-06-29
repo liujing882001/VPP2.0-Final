@@ -1,0 +1,41 @@
+.task{
+	height: auto;
+	.ant-breadcrumb{
+		color: rgba(255, 255, 255, .3);
+	}
+	.ant-breadcrumb-separator{
+		color: #fff;
+	}
+	.ant-breadcrumb a{
+		color: rgba(255, 255, 255, .3);
+	}
+	.ant-breadcrumb a:hover, .ant-breadcrumb li:last-child, .ant-breadcrumb li:last-child a{
+		color: #0092FF;
+	}
+	.task-header{
+		// width: 100%;
+		width: calc(100% + 32px);
+		background: #212029;
+		margin-top: -16px;
+		margin-left: -16px;
+		padding: 16px 16px;
+		
+	}
+	.task-content{
+		margin-top: -16px;
+		margin-left: -16px;
+		width: calc(100% + 32px);
+	}
+	.ant-tabs-bottom>.ant-tabs-nav:before, .ant-tabs-bottom>div>.ant-tabs-nav:before, .ant-tabs-top>.ant-tabs-nav:before, .ant-tabs-top>div>.ant-tabs-nav:before{
+		border: none;
+	}
+	.ant-tabs>.ant-tabs-nav .ant-tabs-nav-wrap, .ant-tabs>div>.ant-tabs-nav .ant-tabs-nav-wrap{
+		height: 60px;
+	}
+	.ant-tabs-content-holder{
+		margin: 0px 16px;
+	}
+	.ant-tabs-tabpane{
+		background: none;
+	}
+}

@@ -1,0 +1,319 @@
+# VPP算法服务安全配置模板
+# 版本: 2.1.0 - 安全优化版本
+
+# 应用配置
+app:
+  name: "VPP储能调度算法服务"
+  version: "2.1.0"
+  debug: ${DEBUG:false}
+  timezone: "Asia/Shanghai"
+  
+# 安全配置
+security:
+  # JWT配置
+  jwt:
+    secret: ${JWT_SECRET}  # 必须通过环境变量设置
+    expiration: ${JWT_EXPIRATION:3600}  # 1小时
+    issuer: ${JWT_ISSUER:vpp-algorithm}
+    refresh_expiration: ${JWT_REFRESH_EXPIRATION:86400}
+    
+  # API密钥认证
+  api_keys:
+    - name: "algorithm_service"
+      key: ${API_KEY_ALGORITHM}  # 必须通过环境变量设置
+      permissions: ["optimization", "forecasting"]
+    - name: "web_service"  
+      key: ${API_KEY_WEB}  # 必须通过环境变量设置
+      permissions: ["read", "write"]
+    
+  # 速率限制
+  rate_limiting:
+    enabled: true
+    requests_per_minute: ${RATE_LIMIT_PER_MINUTE:100}
+    burst_size: ${RATE_LIMIT_BURST:20}
+    
+  # CORS配置
+  cors:
+    allowed_origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:8080}
+    allowed_methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    allowed_headers: ["Content-Type", "Authorization", "X-API-Key"]
+    expose_headers: ["X-Request-ID"]
+    allow_credentials: true
+    max_age: 3600
+    
+  # 输入验证
+  validation:
+    max_request_size: "10MB"
+    request_timeout: 30
+    strict_mode: true
+
+# 数据库配置 - 安全版本
+database:
+  type: "postgresql"
+  host: ${DB_HOST:localhost}
+  port: ${DB_PORT:5432}
+  database: ${DB_NAME:vpp_algorithm}
+  username: ${DB_USERNAME:vpp_user}
+  password: ${DB_PASSWORD}  # 必须通过环境变量设置
+  
+  # 连接池配置
+  pool_size: ${DB_POOL_SIZE:20}
+  max_overflow: ${DB_MAX_OVERFLOW:10}
+  pool_timeout: ${DB_POOL_TIMEOUT:30}
+  pool_recycle: ${DB_POOL_RECYCLE:3600}
+  
+  # SSL配置
+  ssl_mode: ${DB_SSL_MODE:require}
+  ssl_cert: ${DB_SSL_CERT}
+  ssl_key: ${DB_SSL_KEY}
+  ssl_ca: ${DB_SSL_CA}
+  
+  # 查询安全
+  echo: false
+  query_timeout: 30
+  max_query_time: 60
+
+# Redis配置 - 安全版本
+redis:
+  host: ${REDIS_HOST:localhost}
+  port: ${REDIS_PORT:6379}
+  database: ${REDIS_DB:0}
+  password: ${REDIS_PASSWORD}
+  
+  # 连接安全
+  ssl: ${REDIS_SSL:false}
+  ssl_cert_reqs: required
+  max_connections: ${REDIS_MAX_CONNECTIONS:10}
+  socket_timeout: 30
+  socket_connect_timeout: 30
+  
+  # Redis Sentinel支持
+  sentinel:
+    enabled: ${REDIS_SENTINEL_ENABLED:false}
+    service_name: ${REDIS_SENTINEL_SERVICE:mymaster}
+    sentinels: ${REDIS_SENTINELS}
+
+# 日志配置 - 安全版本
+logging:
+  level: ${LOG_LEVEL:INFO}
+  format: ${LOG_FORMAT:json}
+  
+  # 文件日志
+  file:
+    enabled: true
+    path: ${LOG_FILE:/var/log/vpp/algorithm.log}
+    max_size: ${LOG_MAX_SIZE:100MB}
+    max_files: ${LOG_MAX_FILES:10}
+    rotation: "daily"
+    encoding: "utf-8"
+    
+  # 安全日志
+  security:
+    enabled: true
+    path: ${SECURITY_LOG_PATH:logs/security.log}
+    max_size: "50MB"
+    backup_count: 30
+    
+  # 审计日志
+  audit:
+    enabled: ${AUDIT_ENABLED:true}
+    path: ${AUDIT_LOG_FILE:/var/log/vpp/audit.log}
+    retention_days: ${AUDIT_RETENTION_DAYS:90}
+    sensitive_operations: 
+      - "optimization_request"
+      - "config_change"
+      - "user_authentication"
+      - "data_export"
+    
+  console:
+    enabled: ${LOG_CONSOLE_ENABLED:true}
+    colored: ${LOG_COLORED:true}
+
+# 监控配置
+monitoring:
+  # Prometheus监控
+  prometheus:
+    enabled: ${PROMETHEUS_ENABLED:true}
+    endpoint: "/metrics"
+    basic_auth:
+      username: ${PROMETHEUS_USER}
+      password: ${PROMETHEUS_PASSWORD}
+      
+  # 健康检查
+  health_check:
+    endpoint: "/health"
+    timeout: 30
+    detailed: ${HEALTH_DETAILED:false}
+    
+  # APM追踪
+  tracing:
+    enabled: ${TRACING_ENABLED:false}
+    endpoint: ${TRACING_ENDPOINT:http://jaeger:14268/api/traces}
+
+# 算法模型配置 - 安全版本
+models:
+  base_path: ${MODEL_BASE_PATH:./model/model_packages}
+  cache_enabled: ${MODEL_CACHE_ENABLED:true}
+  cache_ttl: ${MODEL_CACHE_TTL:3600}
+  
+  # 模型验证
+  validation:
+    enabled: true
+    checksum_validation: true
+    signature_validation: ${MODEL_SIGNATURE_VALIDATION:false}
+    
+  # 模型加密
+  encryption:
+    enabled: ${MODEL_ENCRYPTION_ENABLED:false}
+    key: ${MODEL_ENCRYPTION_KEY}
+    algorithm: "AES-256-GCM"
+
+# 数据输入配置 - 安全版本
+input:
+  data_sources:
+    - name: "database"
+      type: "database"
+      enabled: true
+      priority: 1
+      timeout: ${INPUT_DB_TIMEOUT:30}
+      retry_count: ${INPUT_DB_RETRY:3}
+      
+    - name: "api"
+      type: "api"
+      enabled: ${INPUT_API_ENABLED:false}
+      priority: 2
+      timeout: ${INPUT_API_TIMEOUT:15}
+      api_key: ${INPUT_API_KEY}
+      
+  # 数据验证和清洗
+  validation:
+    enabled: true
+    strict_mode: true
+    timeout: 30
+    max_records: ${INPUT_MAX_RECORDS:10000}
+    
+  # 数据加密
+  encryption:
+    enabled: ${INPUT_ENCRYPTION_ENABLED:false}
+    key: ${INPUT_ENCRYPTION_KEY}
+
+# 执行环境配置
+execution:
+  timeout: ${EXECUTION_TIMEOUT:300}
+  max_concurrent: ${MAX_CONCURRENT:5}
+  memory_limit: ${MEMORY_LIMIT:2048}  # MB
+  
+  # 资源限制
+  resource_limits:
+    cpu_limit: ${CPU_LIMIT:2.0}
+    memory_limit: ${MEMORY_LIMIT:2048}
+    tmp_dir_size: "1GB"
+    
+  retry:
+    enabled: true
+    max_attempts: ${RETRY_MAX_ATTEMPTS:3}
+    delay: ${RETRY_DELAY:5}
+    backoff_factor: ${RETRY_BACKOFF:2}
+
+# 环境特定配置
+environments:
+  development:
+    debug: true
+    logging:
+      level: "DEBUG"
+      console:
+        enabled: true
+    security:
+      api_keys:
+        - name: "algorithm_service"
+          key: ${API_KEY_ALGORITHM}  # 必须通过环境变量设置
+          permissions: ["optimization", "forecasting"]
+        - name: "web_service"  
+          key: ${API_KEY_WEB}  # 必须通过环境变量设置
+          permissions: ["read", "write"]
+        
+  testing:
+    debug: false
+    logging:
+      level: "INFO"
+    database:
+      database: "vpp_algorithm_test"
+      
+  production:
+    debug: false
+    logging:
+      level: "WARNING"
+      console:
+        enabled: false
+    security:
+      api_keys:
+        - name: "algorithm_service"
+          key: ${API_KEY_ALGORITHM}  # 必须通过环境变量设置
+          permissions: ["optimization", "forecasting"]
+        - name: "web_service"  
+          key: ${API_KEY_WEB}  # 必须通过环境变量设置
+          permissions: ["read", "write"]
+      rate_limiting:
+        enabled: true
+    monitoring:
+      prometheus:
+        enabled: true
+      tracing:
+        enabled: true 
+
+# SSL/TLS配置
+ssl:
+  enabled: ${SSL_ENABLED:true}
+  cert_file: ${SSL_CERT_FILE:/etc/ssl/certs/vpp.crt}
+  key_file: ${SSL_KEY_FILE:/etc/ssl/private/vpp.key}
+  ca_file: ${SSL_CA_FILE:/etc/ssl/certs/ca.crt}
+
+# 算法配置
+algorithm:
+  optimization:
+    solver: ${OPTIMIZATION_SOLVER:GLPK}
+    timeout: ${OPTIMIZATION_TIMEOUT:300}  # 秒
+    memory_limit: ${OPTIMIZATION_MEMORY_LIMIT:1024}  # MB
+    
+  forecasting:
+    models_path: ${MODELS_PATH:/opt/vpp/models}
+    cache_enabled: ${FORECASTING_CACHE:true}
+    cache_ttl: ${FORECASTING_CACHE_TTL:1800}  # 秒
+
+# 监控配置
+monitoring:
+  metrics:
+    enabled: ${METRICS_ENABLED:true}
+    port: ${METRICS_PORT:9090}
+    path: ${METRICS_PATH:/metrics}
+  
+  logging:
+    level: ${LOG_LEVEL:INFO}
+    format: ${LOG_FORMAT:json}
+    file: ${LOG_FILE:/var/log/vpp/algorithm.log}
+    max_size: ${LOG_MAX_SIZE:100MB}
+    max_files: ${LOG_MAX_FILES:10}
+    
+  tracing:
+    enabled: ${TRACING_ENABLED:false}
+    endpoint: ${TRACING_ENDPOINT:http://jaeger:14268/api/traces}
+
+# 外部服务配置
+external_services:
+  weather_api:
+    url: ${WEATHER_API_URL}
+    key: ${WEATHER_API_KEY}  # 必须通过环境变量设置
+    timeout: ${WEATHER_API_TIMEOUT:30}
+    
+  market_data:
+    url: ${MARKET_DATA_URL}
+    key: ${MARKET_DATA_KEY}  # 必须通过环境变量设置
+    timeout: ${MARKET_DATA_TIMEOUT:30}
+
+# 业务规则配置
+business_rules:
+  max_optimization_requests_per_hour: ${MAX_OPT_REQUESTS:1000}
+  max_forecasting_requests_per_hour: ${MAX_FORECAST_REQUESTS:5000}
+  max_node_capacity_mw: ${MAX_NODE_CAPACITY:100}
+  min_soc_percentage: ${MIN_SOC:10}
+  max_soc_percentage: ${MAX_SOC:90} 

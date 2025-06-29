@@ -1,0 +1,44 @@
+.view-modal{
+    width: 320px !important;
+    .ant-modal-body{
+        padding: 20px 24px 10px 24px;
+    }
+    .ant-modal-title{
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 500;
+        font-size: 16px;
+        color: #FFFFFF;
+    }
+    .view-modal-item{
+        margin-bottom: 14px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        .right-arrow{
+            display: inline-block;
+            width: 12px;
+            height: 5px;
+            // background-image: url(../../../../assets/arrow1.png);
+            background-size: cover;
+            margin: 0 6px;
+        }
+        .dot{
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin: 0 10px 0 0;
+        }
+        .dot.charge{
+            background: #32D64B;
+            padding: 0;
+        }
+        .dot.discharge{
+            background: #214469;
+        }
+        .dot.standby{
+            background: #FF9500;
+        }
+    }
+}

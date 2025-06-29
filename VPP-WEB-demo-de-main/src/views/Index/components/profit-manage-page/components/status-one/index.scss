@@ -1,0 +1,104 @@
+.status-one-wrap{
+    width: 800px;
+    height: 500px;
+    background-image: url(../../assets/capital-flow-chuneng.png);
+    background-size: 800px 460px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    position: relative;
+    .status-one-gif{
+        position: absolute;
+        display: inline-block;
+        width: 500px;
+        height: 409px;
+        background-image: url(../../assets/gif-1.gif);
+        background-size: cover;
+        background-position: center;
+        top: 16%;
+        left: 19%;
+    }
+    .real-return{
+        position: absolute;
+        top: 74px;
+        left: 81px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .revenue-operator{
+        position: absolute;
+        top: 46px;
+        left: 283px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .energy-storage-revenue{
+        position: absolute;
+        top: 94px;
+        left: 574px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .reduce-waive-fees{
+        position: absolute;
+        top: 336px;
+        left: 159px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+}

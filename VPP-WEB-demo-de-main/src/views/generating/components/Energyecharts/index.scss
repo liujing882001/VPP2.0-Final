@@ -1,0 +1,20 @@
+.semicircle {
+    width: 100px; /* 半圆的直径 */
+    height: 50px; /* 半圆的高度 */
+    background-color: #3498db; /* 半圆的颜色 */
+    border-radius: 50px 50px 0 0; /* 上半部分为圆弧，下半部分为直线 */
+    position: relative;
+    transform: rotate(180deg); /* 旋转半圆来形成半环形 */
+  }
+
+  .semicircle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px; /* 与半圆相同的直径 */
+    height: 50px; /* 与半圆相同的高度 */
+    background-color: #3498db; /* 与半圆相同的颜色 */
+    border-radius: 50px 50px 0 0; /* 上半部分为圆弧，下半部分为直线 */
+    transform: rotate(90deg); /* 旋转半圆来形成半环形 */
+  }

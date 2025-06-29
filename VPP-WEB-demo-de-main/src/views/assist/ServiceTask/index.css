@@ -1,0 +1,52 @@
+.ServiceTaskheader{
+	padding: 15px 0px;
+	padding-top: 0px;
+}
+.ant-form-text{
+	color: #FFF;
+	margin-left: 15px;
+	vertical-align: middle;
+}
+.tactics{
+	width: 157px;
+	/* height: 50px; */
+	background: #0D1E4A;
+	border-radius: 2px;
+	border: 1px solid #203875;
+	padding: 10px 10px;
+}
+.tactics p{
+	font-size: 12px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	line-height: 22px;
+}
+.tactics span{
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	line-height: 22px;
+	/* border: 1px dotted; */
+}
+.serches{
+	padding: 20px 0px;
+}
+.adddevices{
+	width: 692px;
+	height: 46px;
+	line-height: 46px;
+	border: 1px solid rgba(255,255,255,0.3000);
+	text-align: center;
+	color: #FFFFFF;
+}
+.task{
+	min-width: 1200px;
+}
+.task .ant-form-item .ant-picker{
+	margin-left: 0px;
+}
+
+
+

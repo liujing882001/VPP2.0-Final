@@ -1,0 +1,47 @@
+.peaking{
+	.header{
+		height: 79px;
+		background: #212029;
+		border-radius: 2px;
+		line-height: 79px;
+		padding: 0px 15px;
+		color: #FFF;
+		margin-top: 0px;
+		border-radius: 10px;
+	}
+	.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+		background: none;
+		// color: #FFFFFF;
+	}
+	.ant-select-arrow{
+		color: #8F959E;
+	}
+	.management{
+		// padding: 0px 15px;
+		// padding-left: 15px;
+	}
+	.title{
+		height: 60px;
+		    line-height: 60px;
+		    color: #FFF;
+		    background: #212029;
+		    // border-bottom: 1px solid #DFE1E5;
+		    padding-left: 30px;
+		    font-size: 16px;
+			padding: 0px 15px;
+	}
+	.gross h4{
+		padding-right: 20px;
+	}
+	.allmanagementlist{
+		overflow: hidden;
+		display: flex;
+		margin: 0px 81px;
+		ul{
+			// float: left;
+			// width: 33.33%;
+			flex:1;
+		}
+	}
+	
+}

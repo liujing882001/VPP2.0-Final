@@ -1,0 +1,1467 @@
+package com.example.vvpweb.tradepower;
+
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.example.gateway.model.MeteorologicalData;
+import com.example.gateway.model.MeteorologicalDataVo;
+import com.example.vvpcommom.*;
+import com.example.vvpdomain.*;
+import com.example.vvpdomain.entity.*;
+import com.example.vvpweb.systemmanagement.energymodel.model.*;
+import com.example.vvpweb.tradepower.model.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.RedisConnectionFailureException;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import javax.validation.Valid;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+@EnableAsync
+@Slf4j
+@RestController
+@RequestMapping("/tradePower")
+@CrossOrigin
+@Api(value = "电力交易", tags = {"电力交易"})
+public class TradePowerController {
+
+    @Resource
+    private IotTsKvMeteringDevice96Repository iotTsKvMeteringDevice96Repository;
+    @Resource
+    private RedisUtils redisUtils;
+    @Resource
+    NodeRepository nodeRepository;
+    @Resource
+    private AiLoadRepository aiLoadRepository;
+    @Resource
+    TradePowerRepository ttradePowerRepository;
+    @Resource
+    TradePowerLogRepository ttradePowerLogRepository;
+
+    private static TradeEnvironmentConfig config;
+
+    @Autowired
+    public TradePowerController(TradeEnvironmentConfig environmentConfig) {
+        config = environmentConfig;
+    }
+
+
+    @Scheduled(cron = "0 0 8 * * *")
+    @Async
+    @ApiOperation("交易任务生成")
+    @UserLoginToken
+    @RequestMapping(value = "taskGeneration", method = {RequestMethod.POST})
+    public ResponseResult taskGeneration() throws JsonProcessingException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        LocalDateTime now = LocalDateTime.now(ZoneOffset.ofHours(8));
+        LocalDateTime sLocalTime = now.withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(2);
+        LocalDateTime eLocalTime = sLocalTime.plusDays(2);
+
+        Date sTime = Date.from(sLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
+        Date eTime = Date.from(eLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
+        int startYear = sLocalTime.getYear();
+        int startMonth = sLocalTime.getMonthValue();
+        int startDay = sLocalTime.getDayOfMonth();
+        int endMonth = eLocalTime.getMonthValue();
+        int endDay = eLocalTime.getDayOfMonth();
+        String id = String.format("%04d%02d%02d%02d%02d", startYear, startMonth, startDay, endMonth, endDay);
+
+        //给算法发送请求
+        Map<String,String> aireq = new HashMap<>();
+        //环境替换ddddddddddddddddddddddddd
+        aireq.put("node_id",config.getAireqNode());
+        // 演示环境
+//        aireq.put("node_id","c20a1ecb5d33539e5334ad85af822252");
+//        aireq.put("node_id","e4653aad857c96f4c2ea4fd044bffbea");
+        aireq.put("task_code",id);
+
+        log.info("交易任务生成给算法发送预测储能策略请求,预测节点为===========>>>>>>>" + JSON.toJSONString(aireq));
+        String result = okHttpPost("http://127.0.0.1:13360/powerTradingStrategy", JSON.toJSONString(aireq));
+//        String result = okHttpPost("http://192.168.110.55:13360/powerTradingStrategy", JSON.toJSONString(aireq));
+
+        log.info("交易任务生成算法返回结果=======" + JSON.toJSONString(result));
+        ObjectMapper om = new ObjectMapper();
+        AIStorageEnergystrategyRequest responseResult = om.readValue(result, AIStorageEnergystrategyRequest.class);
+        if (responseResult.getCode() != 200) {
+            return ResponseResult.error("该节点不支持");
+        }
+
+        return ResponseResult.success("任务编号为"+id+"的任务将在一分钟内完成生成");
+    }
+
+    @ApiOperation("储能三日策略预测数据")
+    @UserLoginToken
+    @RequestMapping(value = "energyStrategyPrediction", method = {RequestMethod.POST})
+    @Async
+    public void energyStoragePrediction(@RequestBody EnergyStrategyCommand command) throws ParseException {
+//        try {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        LocalDateTime now = LocalDateTime.now(ZoneOffset.ofHours(8));
+        LocalDateTime sLocalTime = now.withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(2);
+        LocalDateTime eLocalTime = sLocalTime.plusDays(2);
+
+        Date sTime = Date.from(sLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
+        Date eTime = Date.from(eLocalTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
+        int startYear = sLocalTime.getYear();
+        int startMonth = sLocalTime.getMonthValue();
+        int startDay = sLocalTime.getDayOfMonth();
+        int endMonth = eLocalTime.getMonthValue();
+        int endDay = eLocalTime.getDayOfMonth();
+        String id = String.format("%04d%02d%02d%02d%02d", startYear, startMonth, startDay, endMonth, endDay);
+        Optional<TradePower> existingRecord = ttradePowerRepository.findById(id);
+        TradePower po;
+        if (existingRecord.isPresent()) {
+            po = existingRecord.get();
+        } else {
+            po = new TradePower();
+            po.setId(id);
+        }
+        Map<String, String> map = config.getNodeMap();
+        List<SchedulingStrategyModel> listEnd = new ArrayList<>();
+        List<SchedulingStrategyFirstModel> list = command.getStrategies();
+        if (list != null && list.size() > 0) {
+            list.forEach(v1 -> {
+                SchedulingStrategyModel model = new SchedulingStrategyModel();
+                model.setDate(v1.getDate());
+                List<StrategyModel> sModels = new ArrayList<>();
+                v1.getStrategy().forEach(s -> {
+                    StrategyModel sModel = new StrategyModel();
+                    sModel.setNodeId(s.getNodeId());
+                    sModel.setNodeName(map.get(s.getNodeId()));
+                    sModel.setList(new ArrayList<>());
+                    SimpleDateFormat sft = new SimpleDateFormat("HH:mm");
+
+                    List<StrategyTimeModel> sTModels = new ArrayList<>();
+                    IntStream.range(0, s.getList().size()).forEach(i -> {
+                        int startHour = (i * 15) / 60;
+                        int startMinute = (i * 15) % 60;
+                        int endHour = ((i + 1) * 15) / 60;
+                        int endMinute = ((i + 1) * 15) % 60;
+                        String stime = String.format("%02d:%02d", startHour, startMinute);
+                        String etime = String.format("%02d:%02d", endHour, endMinute);
+                        StrategyTimeModel sTModel = new StrategyTimeModel();
+                        try {
+                            sTModel.setStime(sft.parse(stime));
+                            sTModel.setEtime(sft.parse(etime));
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Double power = s.getList().get(i);
+                        sTModel.setPower(power);
+                        sTModel.setType(power > 0 ? "放电" : power == 0 ? "待机" : "充电");
+                        sTModels.add(sTModel);
+                    });
+                    sModel.setList(sTModels);
+                    sModels.add(sModel);
+                });
+                model.setStrategy(sModels);
+                listEnd.add(model);
+            });
+            List<DeclareForOperationModel> operationList = genList(sdf.format(sTime));
+            po.setSTime(sTime);
+            po.setETime(eTime);
+            po.setTradeType("日前交易");
+            //部署需改
+            po.setStatus(1);
+            //环境替换ddddddddddddddddddddddddd
+//            po.setStation("长乐产投大楼、联想后海中心A栋");
+//            po.setStation("某某商业大楼、某某中心A栋");
+//            po.setStation("长乐产投大楼");
+            po.setStation(config.getStation());
+//            po.setLoadNodes("38c9a70b255900044a85838900214aec,e238bb37143b82082f695bb5c9cb438f");
+//            po.setLoadNodes("e238bb37143b82082f695bb5c9cb438f");
+            po.setLoadNodes(config.getEnergyStoragePredictionLoadNode());
+            po.setEnergyNodes(config.getEnergyStoragePredictionEnergyNode());
+//            po.setEnergyNodes("c20a1ecb5d33539e5334ad85af822252,96a1a8c51194b433025bc8fb677de785");
+//            po.setPvNodes("bb05b2b6d467846b9ea2b68de14c6f70");
+            po.setPvNodes(config.getEnergyStoragePredictionPvNode());
+
+//            po.setPvNodes("5cfd76f998dbcf8d7e214187d0e30ac5");
+//            po.setEnergyNodes("e4653aad857c96f4c2ea4fd044bffbea,07c3c82df1dd93e9c303644eb79985cb");
+//            po.setPvNodes("bb05b2b6d467846b9ea2b68de14c6f70");
+//            po.setStation("长乐产投大楼、深圳泰伦广场A座、深圳泰伦广场B座、深圳某工业设备新材料股份有限公司");
+//            po.setLoadNodes("176c0991f24e30c2b25a9dbf1185b7b9,5eb413037ba16ea6108c12e0d6353be3,3da72e052a0b48759b0f4633df42235a,e238bb37143b82082f695bb5c9cb438f");
+
+            po.setStrategy(JSON.toJSONString(listEnd));
+//                log.info("listEnd:{}",JSON.toJSONString(listEnd));
+            po.setOperation(JSON.toJSONString(operationList));
+//                log.info("operationList:{}",JSON.toJSONString(operationList));
+            po.setUpdateTime(new Date());
+            ttradePowerRepository.save(po);
+            log.info("交易任务创建完成：{}",id);
+        }
+//        } catch(Exception ignored){
+//            log.error("ignored:{}",ignored.getMessage());
+//        }
+    }
+
+    @ApiOperation("调度策略")
+    @UserLoginToken
+    @RequestMapping(value = "schedulingStrategy", method = {RequestMethod.POST})
+    public ResponseResult<List<SchedulingStrategyModel>> schedulingStrategy(@RequestBody @Valid SchedulingStrategyRequest request) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = sdf.parse(request.getQueryDate());
+//            Date startDateM = TimeUtil.getMonthStart(startDate);
+            TradePower tradePower = ttradePowerRepository.findById(request.getTaskCode()).orElse(null);
+            String firstList = tradePower.getStrategy();
+            if (firstList == null || firstList.isEmpty()) {
+                return ResponseResult.error("此任务未生成策略");
+            }
+//            redisUtils.delete("schedulingStrategy" + tradePower.getId());
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<SchedulingStrategyModel> list = objectMapper.readValue(
+                    firstList,
+                    new TypeReference<List<SchedulingStrategyModel>>() {
+                    }
+            );
+            redisUtils.add("schedulingStrategy" + tradePower.getId(), firstList, 60 * 60, TimeUnit.SECONDS);
+
+//            Map<String,String> map = new HashMap<>();
+//            map.put("e4653aad857c96f4c2ea4fd044bffbea","产投储能001");
+//            map.put("07c3c82df1dd93e9c303644eb79985cb","产投储能002");
+//            List<SchedulingStrategyModel> listEnd = new ArrayList<>();
+//            list.forEach(v1 -> {
+//                SchedulingStrategyModel model = new SchedulingStrategyModel();
+//                model.setDate(v1.getDate());
+//                List<StrategyModel> sModels = new ArrayList<>();
+//                v1.getStrategy().forEach(s -> {
+//                    StrategyModel sModel = new StrategyModel();
+//                    sModel.setNodeId(s.getNodeId());
+//                    sModel.setNodeName(map.get(s.getNodeId()));
+//                    sModel.setList(new ArrayList<>());
+//                    SimpleDateFormat sft = new SimpleDateFormat("HH:mm");
+//
+//                    List<StrategyTimeModel> sTModels = new ArrayList<>();
+//                    IntStream.range(0, s.getList().size()).forEach(i -> {
+//                        int startHour = (i * 15) / 60;
+//                        int startMinute = (i * 15) % 60;
+//                        int endHour = ((i + 1) * 15) / 60;
+//                        int endMinute = ((i + 1) * 15) % 60;
+//                        String stime = String.format("%02d:%02d", startHour, startMinute);
+//                        String etime = String.format("%02d:%02d", endHour, endMinute);
+//                        StrategyTimeModel sTModel = new StrategyTimeModel();
+//                        try {
+//                            sTModel.setStime(sft.parse(stime));
+//                            sTModel.setEtime(sft.parse(etime));
+//                        } catch (ParseException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                        Double power = s.getList().get(i);
+//                        sTModel.setPower(power);
+//                        sTModel.setType(power > 0 ? "放电" : power == 0 ? "待机" : "充电");
+//                        sTModels.add(sTModel);
+//                    });
+//                    sModel.setList(sTModels);
+//                    sModels.add(sModel);
+//                });
+//                model.setStrategy(sModels);
+//                listEnd.add(model);
+//            });
+            list.forEach(v -> v.getStrategy().forEach(vv -> vv.getList().forEach(vvv -> vvv.setPower(Math.abs(vvv.getPower())))));
+            return ResponseResult.success(list);
+
+        } catch (RedisConnectionFailureException | ParseException e) {
+            return ResponseResult.error(501,"redis超时",null);
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @ApiOperation("调度策略编辑")
+    @UserLoginToken
+    @RequestMapping(value = "schedulingStrategyEditor", method = {RequestMethod.POST})
+    public ResponseResult<List<SchedulingStrategyModel>> schedulingStrategyEditor(@RequestBody @Valid SchedulingStrategyEditorReq request) throws JsonProcessingException, ParseException {
+        try {
+            //        TradePower tradePower = ttradePowerRepository.findById(request.getTaskCode()).orElse(null);
+            List<SchedulingStrategyModel> list = new ArrayList<>();
+            ObjectMapper objectMapper = new ObjectMapper();
+            long startTime = System.currentTimeMillis();
+
+            while (true) {
+                Object redis = redisUtils.get("schedulingStrategy" + request.getTaskCode());
+                if (redis instanceof String) {
+                    String schedulingStrategyJson = (String) redis;
+                    list = objectMapper.readValue(
+                            schedulingStrategyJson,
+                            new TypeReference<List<SchedulingStrategyModel>>() {
+                            }
+                    );
+                }
+                if (list != null && list.size() > 0) {
+                    break;
+                } else {
+                    if (System.currentTimeMillis() - startTime > 60000) {
+                        break;
+                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+//            redisUtils.delete("schedulingStrategy" + request.getTaskCode());
+
+//        String firstList = tradePower.getStrategy();
+//        if (firstList == null || firstList.isEmpty()) {
+//            return ResponseResult.error("此任务未生成策略");
+//        }
+//        List<SchedulingStrategyModel> list = objectMapper.readValue(
+//                firstList,
+//                new TypeReference<List<SchedulingStrategyModel>>() {
+//                }
+//        );
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            Date stime = timeFormat.parse(request.getStartTime());
+            if (request.getEndTime().equals("00:00"))
+            {request.setEndTime("24:00");}
+            Date etime = timeFormat.parse(request.getEndTime());
+            String strategy = request.getType();
+            Double power = request.getPower();
+
+            for (SchedulingStrategyModel model : list) {
+                if (model.getDate().equals(dateFormat.parse(request.getEditDate()))) {
+                    for (StrategyModel item : model.getStrategy()) {
+                        if (request.getNodeIds().contains(item.getNodeId())) {
+                            for (StrategyTimeModel slot : item.getList()) {
+                                if (isTimeInRange(slot.getStime(), slot.getEtime(), stime, etime)) {
+                                    slot.setType(strategy);
+                                    slot.setPower(strategy.equals("充电") ? -power : power );
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+//            List<SchedulingStrategyModel> list111 = list.stream()
+//                    .map(v -> {
+//                        SchedulingStrategyModel newStrategy = new SchedulingStrategyModel();
+//                        List<StrategyModel> updatedStrategyList = v.getStrategy().stream()
+//                                .map(vv -> {
+//                                    StrategyModel newModel = new StrategyModel();
+//                                    List<StrategyTimeModel> updatedList = vv.getList().stream()
+//                                            .map(vvv -> {
+//                                                // 修改 power 属性
+//                                                if (vvv.getType().equals("充电")) {
+//                                                    vvv.setPower(-vvv.getPower());
+//                                                }
+//                                                return vvv;
+//                                            })
+//                                            .collect(Collectors.toList());
+//                                    newModel.setList(updatedList);
+//                                    return newModel;
+//                                })
+//                                .collect(Collectors.toList());
+//                        newStrategy.setStrategy(updatedStrategyList);
+//                        return newStrategy;
+//                    })
+//                    .collect(Collectors.toList());
+
+            redisUtils.add("schedulingStrategy" + request.getTaskCode(), JSON.toJSONString(list), 60 * 60, TimeUnit.SECONDS);
+            list.forEach(v -> v.getStrategy().forEach(vv -> vv.getList().forEach(vvv -> vvv.setPower(Math.abs(vvv.getPower())))));
+            return ResponseResult.success(list);
+        }
+        catch (RedisConnectionFailureException e) {
+            return ResponseResult.error(501,"redis超时",null);
+        }
+    }
+
+    @ApiOperation("调度曲线")
+    @UserLoginToken
+    @RequestMapping(value = "dispatchCurve", method = {RequestMethod.POST})
+    public ResponseResult<List<DispatchCurveRes>> dispatchCurve(@RequestBody DispatchCurveCommand request) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        LocalDateTime nowTime = LocalDateTime.now(ZoneOffset.ofHours(8));
+//        LocalDateTime now = nowTime.withHour(0).withMinute(0).withSecond(0).withNano(0);
+//        LocalDateTime endLocalTime = now.minusMinutes(now.getMinute() % 15);
+//        LocalDateTime startLocalTime = endLocalTime.minusMinutes(15);
+//
+//        Date nowDate = Date.from(now.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
+//        Date startDate = Date.from(now.atZone(ZoneId.of("Asia/Shanghai")).toInstant());
+
+        Date startDate = sdf.parse(request.getQueryDate());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        //环境替换ddddddddddddddddddddddddd
+        //储能实际
+//        List<DispatchCurveDateRes> energyReal1list = generateResponses(startDate,calendar.getTime());
+//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e4653aad857c96f4c2ea4fd044bffbea","chuneng","load001","load",startDate,calendar.getTime())
+                //演示
+//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("c20a1ecb5d33539e5334ad85af822252","chuneng","load001","load",startDate,calendar.getTime())
+        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode1(),"chuneng","load001","load",startDate,calendar.getTime())
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//        DispatchCurveRes energyReal1 = new DispatchCurveRes("储能001实际功率",true,
+//                energyReal1list.stream().peek(response -> {
+//                    Double value = energyReal1Map.get(response.getDate());
+//                    if (value != null) {
+//                        value = Double.valueOf(String.format("%.2f", value));
+//                    }
+//                    response.setValue(value);
+//                }).collect(Collectors.toList()));
+        List<DispatchCurveDateRes> energyReal2list = generateResponses(startDate,calendar.getTime());
+//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("07c3c82df1dd93e9c303644eb79985cb","chuneng","load002","load",startDate,calendar.getTime())
+                //演示
+//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("96a1a8c51194b433025bc8fb677de785","chuneng","load002","load",startDate,calendar.getTime())
+        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode2(),"chuneng","load001","load",startDate,calendar.getTime())
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+        DispatchCurveRes energyReal2 = new DispatchCurveRes("储能实际功率",true,
+                energyReal2list.stream().peek(response -> {
+                    Double value = null;
+                    Double value1 = energyReal2Map.get(response.getDate());
+                    Double value2 = energyReal1Map.get(response.getDate());
+                    if (value1 != null) {
+                        value = value1;
+                    }
+                    if (value2 != null) {
+                        if (value == null) {
+                            value = value2;
+                        } else {
+                            value += value2;
+                        }
+                    }
+                    if (value != null && value >= 0) {
+                        value = Double.valueOf(String.format("%.2f", value));
+                    }
+                    response.setValue(value);
+                }).collect(Collectors.toList()));
+
+//        DispatchCurveRes energyFore1 = null;
+//        DispatchCurveRes energyFore2 = null;
+        DispatchCurveRes energyFore3 = null;
+        //环境替换ddddddddddddddddddddddddd
+        Map<String,String> map = new HashMap<>();
+        map.put(config.getEnergyNode1(),"储能001");
+        map.put(config.getEnergyNode2(),"储能002");
+//        map.put("e4653aad857c96f4c2ea4fd044bffbea","产投储能001");
+//        map.put("07c3c82df1dd93e9c303644eb79985cb","产投储能002");
+        List<SchedulingStrategyModel> strategyData = request.getStrategyData();
+        for (SchedulingStrategyModel s :strategyData) {
+            if (s.getDate().equals(sdf.parse(request.getQueryDate()))) {
+                List<StrategyTimeModel> s00 = s.getStrategy().get(0).getList();
+                List<StrategyTimeModel> s11 = s.getStrategy().get(1).getList();
+                for (StrategyTimeModel s0 : s00) {
+                    for (StrategyTimeModel s1 : s11) {
+                        if (s0.getStime().equals(s1.getStime())) {
+                            Double predictValue = (s0.getType().equals("充电") ? -s0.getPower() : s0.getPower()) + (s1.getType().equals("充电") ? -s1.getPower() : s1.getPower());
+                            s0.setPower(Double.valueOf(String.format("%.2f", predictValue)));
+                        }
+                    }
+                }
+                energyFore3 = new DispatchCurveRes("储能预测功率",true,s00,request.getQueryDate());
+            }
+        }
+
+//        for (SchedulingStrategyModel v : request.getStrategyData()) {
+//            if (v.getDate().equals(sdf.parse(request.getQueryDate()))){
+//                for (StrategyModel date: v.getStrategy()){
+//                    if (date.getNodeId().equals("e4653aad857c96f4c2ea4fd044bffbea")){
+//                        energyFore1 = new DispatchCurveRes("储能001预测功率",true,date.getList(),request.getQueryDate());
+//                    }  else {
+//                        energyFore2 = new DispatchCurveRes("储能002预测功率",true,date.getList(),request.getQueryDate());
+//                    }
+//                }
+//            }
+//        }
+        List<DispatchCurveRes> dispatchCurveResList = new ArrayList<>();
+//        dispatchCurveResList.add(energyReal1);
+        dispatchCurveResList.add(energyReal2);
+//        dispatchCurveResList.add(energyFore1);
+//        dispatchCurveResList.add(energyFore2);
+        dispatchCurveResList.add(energyFore3);
+
+        return ResponseResult.success(dispatchCurveResList);
+
+    }
+
+    @ApiOperation("保存下发")
+    @UserLoginToken
+    @PostMapping( "/saveSend")
+    public ResponseResult saveSend() {
+
+        return ResponseResult.success();
+    }
+
+    @ApiOperation("发用电功率分析")
+    @UserLoginToken
+    @PostMapping( "/powerAnalysis")
+    public ResponseResult<List<DispatchCurveRes>> powerAnalysis(@RequestBody PowerAnalysisCommand command) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Date startDate = sdf.parse(command.getStartDate());
+        Date endDate = sdf2.parse(command.getEndDate() + " 23:59:59");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        //环境替换ddddddddddddddddddddddddd
+        //发电实际
+        List<DispatchCurveDateRes> pvReal1list = generateResponses(startDate,endDate);
+        //演示
+//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao","JL-001-load","load",startDate,endDate)
+//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao","JL-001-load","load",startDate,endDate)
+        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getPvNode1(),"nengyuanzongbiao","JL-001-load","load",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+        DispatchCurveRes pvReal1 = new DispatchCurveRes("实际发电功率",true,
+                pvReal1list.stream().peek(response -> {
+                    Double value = pvReal1Map.get(response.getDate());
+                    if (value != null) {
+                        value = value >= 0 ? Double.valueOf(String.format("%.2f", value)) : null;
+                    }
+                    response.setValue(value);
+                }).collect(Collectors.toList()));
+        //发电预测
+        List<DispatchCurveDateRes> pvFore1list = generateResponses(startDate,endDate);
+        //演示
+//        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao",startDate,endDate)
+//        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao",startDate,endDate)
+        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getPvNode1(),"nengyuanzongbiao",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+        DispatchCurveRes pvFore1 = new DispatchCurveRes("预测发电功率",true,
+                pvFore1list.stream().peek(response -> {
+                    Double value = pvFore1Map.get(response.getDate()) == null ? null : Double.valueOf(pvFore1Map.get(response.getDate()));
+                    if (value != null) {
+                        value = value >= 0 ? Double.valueOf(String.format("%.2f", value)) : null;
+                    }
+                    response.setValue(value);
+                }).collect(Collectors.toList()));
+        //用电实际
+//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e4653aad857c96f4c2ea4fd044bffbea","chuneng","load001","load",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("07c3c82df1dd93e9c303644eb79985cb","chuneng","load002","load",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));;
+        List<DispatchCurveDateRes> gateReal1list = generateResponses(startDate,endDate);
+//        Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao","GKB-load","load",startDate,endDate)
+        Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getLoadNode1(),"nengyuanzongbiao","GKB-load","load",startDate,endDate)
+
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+        //部署需改
+//        Map<Date, Double> gateReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("176c0991f24e30c2b25a9dbf1185b7b9","nengyuanzongbiao","GKB-load","load",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//        Map<Date, Double> gateReal3Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("5eb413037ba16ea6108c12e0d6353be3","nengyuanzongbiao","GKB-load","load",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//        Map<Date, Double> gateReal4Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("3da72e052a0b48759b0f4633df42235a","nengyuanzongbiao","GKB-load","load",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//        Map<Date, Double> gateReal5Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("38c9a70b255900044a85838900214aec","nengyuanzongbiao","db-1AH2-p13","load",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+        DispatchCurveRes gateReal1 = new DispatchCurveRes("实际用电功率",true,
+                gateReal1list.stream().peek(response -> {
+                    Double gateValue = gateReal1Map.get(response.getDate());
+//                    Double energy1Value = energyReal1Map.get(response.getDate());
+//                    Double energy2Value = energyReal2Map.get(response.getDate());
+//                    Double gateValue2 = gateReal2Map.get(response.getDate());
+//                    Double gateValue3 = gateReal3Map.get(response.getDate());
+//                    Double gateValue4 = gateReal4Map.get(response.getDate());
+//                    Double gateValue5 = gateReal5Map.get(response.getDate());
+                    Double value = null;
+
+//                    if (gateValue == null && gateValue5 == null) {
+                    if (gateValue == null) {
+
+                        value = null;
+                    } else {
+                        Double finalGateValue = Optional.ofNullable(gateValue).orElse(0.0);
+//                        Double finalEnergy1Value = Optional.ofNullable(energy1Value).orElse(0.0);
+//                        Double finalEnergy2Value = Optional.ofNullable(energy2Value).orElse(0.0);
+//                        Double finalGateValue2 = Optional.ofNullable(gateValue2).orElse(0.0);
+//                        Double finalGateValue3 = Optional.ofNullable(gateValue3).orElse(0.0);
+//                        Double finalGateValue4 = Optional.ofNullable(gateValue4).orElse(0.0);
+//                        Double finalGateValue5 = Optional.ofNullable(gateValue5).orElse(0.0);
+
+//                        Double value = finalGateValue + finalEnergy1Value + finalEnergy2Value + finalGateValue2 + finalGateValue3 + finalGateValue4;
+//                        value = finalGateValue + finalGateValue5;
+                        value = finalGateValue;
+                        value = value >= 0 ? Double.valueOf(String.format("%.2f", value)) : null;
+                    }
+                    response.setValue(value);
+                }).collect(Collectors.toList()));
+        //用电预测
+        List<DispatchCurveDateRes> gateFore1list = generateResponses(startDate,endDate);
+//        Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao",startDate,endDate)
+        Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getLoadNode1(),"nengyuanzongbiao",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//        Map<Date, String> gateFore2Map = aiLoadRepository.findByDateNodeIdSystemId("176c0991f24e30c2b25a9dbf1185b7b9","nengyuanzongbiao",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//        Map<Date, String> gateFore3Map = aiLoadRepository.findByDateNodeIdSystemId("5eb413037ba16ea6108c12e0d6353be3","nengyuanzongbiao",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//        Map<Date, String> gateFore4Map = aiLoadRepository.findByDateNodeIdSystemId("3da72e052a0b48759b0f4633df42235a","nengyuanzongbiao",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//        Map<Date, String> gateFore5Map = aiLoadRepository.findByDateNodeIdSystemId("38c9a70b255900044a85838900214aec","nengyuanzongbiao",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+        DispatchCurveRes gateFore1 = new DispatchCurveRes("预测用电功率",true,
+                gateFore1list.stream().peek(response -> {
+                    Double value = gateFore1Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore1Map.get(response.getDate()));
+//                    Double value2 = gateFore2Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore2Map.get(response.getDate()));
+//                    Double value3 = gateFore3Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore3Map.get(response.getDate()));
+//                    Double value4 = gateFore4Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore4Map.get(response.getDate()));
+//                    Double value5 = gateFore5Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore5Map.get(response.getDate()));
+
+//                    value += value2 + value3 + value4;
+//                    value += value5;
+
+                    value = value >= 0 ? Double.valueOf(String.format("%.2f", value)) : null;
+                    response.setValue(value);
+                }).sorted(Comparator.comparing(DispatchCurveDateRes::getDate)).collect(Collectors.toList()));
+
+        List<DispatchCurveRes> dispatchCurveResList = new ArrayList<>();
+        dispatchCurveResList.add(pvReal1);
+        dispatchCurveResList.add(pvFore1);
+        dispatchCurveResList.add(gateReal1);
+        dispatchCurveResList.add(gateFore1);
+
+        return ResponseResult.success(dispatchCurveResList);
+    }
+
+    @ApiOperation("运行曲线分析")
+    @UserLoginToken
+    @PostMapping( "/runningCurve")
+    public ResponseResult<List<DispatchCurveRes>> runningCurve(@RequestBody RunningCurveCommand command) throws ParseException, JsonProcessingException {
+        try {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+        Date startDate = sdf.parse(command.getStartDate());
+        Date endDate = sdf2.parse(command.getEndDate() + " 23:59:59");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        //环境替换ddddddddddddddddddddddddd
+        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode1(),"chuneng","load001","load",startDate,endDate)
+
+        //演示
+//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("c20a1ecb5d33539e5334ad85af822252","chuneng","load001","load",startDate,endDate)
+//        Map<Date, Double> energyReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e4653aad857c96f4c2ea4fd044bffbea","chuneng","load001","load",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+        //演示
+            Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getEnergyNode2(),"chuneng","load002","load",startDate,endDate)
+//            Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("96a1a8c51194b433025bc8fb677de785","chuneng","load002","load",startDate,endDate)
+//        Map<Date, Double> energyReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("07c3c82df1dd93e9c303644eb79985cb","chuneng","load002","load",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));;
+        List<DispatchCurveDateRes> gateReal1list = generateResponses(startDate,endDate);
+        //部署需改
+        Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getLoadNode1(),"nengyuanzongbiao","GKB-load","load",startDate,endDate)
+//        Map<Date, Double> gateReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao","GKB-load","load",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//        Map<Date, Double> gateReal2Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("38c9a70b255900044a85838900214aec","nengyuanzongbiao","db-1AH2-p13","load",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+//                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+//        演示
+//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTime())
+        //测试
+            Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde(config.getPvNode1(),"nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTime())
+//        Map<Date, Double> pvReal1Map = iotTsKvMeteringDevice96Repository.findAllBySystemIdAndNodeIde("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao","JL-001-load","load",startDate,calendar.getTime())
+                .stream().filter(device -> device.getCountDataTime() != null && device.getHTotalUse() != null)
+                .collect(Collectors.toMap(IotTsKvMeteringDevice96::getCountDataTime, IotTsKvMeteringDevice96::getHTotalUse,(existing, replacement) -> replacement));
+        DispatchCurveRes gateReal1 = new DispatchCurveRes("节点总功率",true,
+                gateReal1list.stream().peek(response -> {
+                    Double gateValue = gateReal1Map.get(response.getDate());
+//                    Double gateValue2 = gateReal2Map.get(response.getDate());
+
+                    Double energy1Value = energyReal1Map.get(response.getDate());
+                    Double energy2Value = energyReal2Map.get(response.getDate());
+                    Double pv1Value = pvReal1Map.get(response.getDate());
+
+                    if (gateValue == null && energy1Value == null && energy2Value == null) {
+                        response.setValue(null);
+                    } else {
+                        Double finalGateValue = Optional.ofNullable(gateValue).orElse(0.0);
+//                        Double finalGateValue2 = Optional.ofNullable(gateValue2).orElse(0.0);
+
+                        Double finalEnergy1Value = Optional.ofNullable(energy1Value).orElse(0.0);
+                        Double finalEnergy2Value = Optional.ofNullable(energy2Value).orElse(0.0);
+                        Double finalPv2Value = Optional.ofNullable(pv1Value).orElse(0.0);
+//                        Double value = finalGateValue + finalGateValue2 - finalEnergy1Value - finalEnergy2Value - finalPv2Value;
+
+                        Double value = finalGateValue - finalEnergy1Value - finalEnergy2Value - finalPv2Value;
+                        value = value >= 0 ? Double.parseDouble(String.format("%.2f", value)) : 0;
+                        response.setValue(value);
+                    }
+                }).collect(Collectors.toList()));
+        //预测
+        List<SchedulingStrategyModel> list = new ArrayList<>();
+        Object redis = redisUtils.get("schedulingStrategy" + command.getTaskCode());
+        ObjectMapper objectMapper = new ObjectMapper();
+        if (redis instanceof String) {
+            String schedulingStrategyJson = (String) redis;
+            list = objectMapper.readValue(
+                    schedulingStrategyJson,
+                    new TypeReference<List<SchedulingStrategyModel>>() {
+                    }
+            );
+        }
+        Map<Date, Double> energyFore = new HashMap<>();
+        for (SchedulingStrategyModel s :list) {
+            List<StrategyTimeModel> s00 = s.getStrategy().get(0).getList();
+            List<StrategyTimeModel> s11 = s.getStrategy().get(1).getList();
+            String ymd = sdf.format(s.getDate());
+            for (StrategyTimeModel s0 : s00) {
+                for (StrategyTimeModel s1 : s11) {
+                    if (s0.getStime().equals(s1.getStime())) {
+                        String hm= timeFormat.format(s0.getStime());
+                        energyFore.put(sdf2.parse(ymd + " " +hm + ":00"),s0.getPower() + s1.getPower());
+                    }
+                }
+            }
+        }
+        List<DispatchCurveDateRes> gateFore1list = generateResponses(startDate,endDate);
+            Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getLoadNode1(),"nengyuanzongbiao",startDate,endDate)
+
+//        Map<Date, String> gateFore1Map = aiLoadRepository.findByDateNodeIdSystemId("e238bb37143b82082f695bb5c9cb438f","nengyuanzongbiao",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+//        Map<Date, String> gateFore2Map = aiLoadRepository.findByDateNodeIdSystemId("38c9a70b255900044a85838900214aec","nengyuanzongbiao",startDate,endDate)
+//                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+//                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+        //演示
+            Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId(config.getPvNode1(),"nengyuanzongbiao",startDate,endDate)
+//        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("5cfd76f998dbcf8d7e214187d0e30ac5","nengyuanzongbiao",startDate,calendar.getTime())
+//        Map<Date, String> pvFore1Map = aiLoadRepository.findByDateNodeIdSystemId("bb05b2b6d467846b9ea2b68de14c6f70","nengyuanzongbiao",startDate,endDate)
+                .stream().filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+                .collect(Collectors.toMap(AiLoadForecasting::getCountDataTime, AiLoadForecasting::getPredictValue,(existing, replacement) -> replacement));
+        DispatchCurveRes gateFore1 = new DispatchCurveRes("节点总预测功率",true,
+                gateFore1list.stream().peek(response -> {
+                    Double value = gateFore1Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore1Map.get(response.getDate()));
+//                    Double value2 = gateFore2Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(gateFore2Map.get(response.getDate()));
+                    Double value3 = energyFore.get(response.getDate()) == null ? 0.0 : energyFore.get(response.getDate());
+                    Double value4 = pvFore1Map.get(response.getDate()) == null ? 0.0 : Double.valueOf(pvFore1Map.get(response.getDate()));
+//                    value += value2 - value3 - value4;
+//                    log.info("response.getDate():{}gateFore1Map:{},energyFore:{},pvFore1Map:{}",response.getDate(),value,value3,value4);
+                    value += - value3 - value4;
+
+//                    try {
+//                        if (response.getDate().equals(sdf2.parse("2024-07-31 04:00:00"))) {
+//                            value = 16300.0;
+//                            log.info("valuezheng:{}",value);
+//
+//                        }
+//                        if (response.getDate().equals(sdf2.parse("2024-07-31 05:00:00"))) {
+//                            value = -6801.0;
+//                            log.info("valuefu:{}",value);
+//                        }
+//                    } catch (ParseException e) {
+//                        throw new RuntimeException(e);
+//                    }
+                    value = value >= 0 ? Double.parseDouble(String.format("%.2f", value)) : 0;
+//                    value = Double.valueOf(String.format("%.2f", value));
+
+                    response.setValue(value);
+                }).collect(Collectors.toList()));
+        List<DispatchCurveRes> dispatchCurveResList = new ArrayList<>();
+        dispatchCurveResList.add(gateReal1);
+        dispatchCurveResList.add(gateFore1);
+            return ResponseResult.success(dispatchCurveResList);
+        } catch (RedisConnectionFailureException e) {
+            return ResponseResult.error(501,"redis超时",null);
+        }
+    }
+
+    @ApiOperation("申报运行曲线")
+    @UserLoginToken
+    @PostMapping( "/declareForOperation")
+    public ResponseResult declareForOperation(@RequestBody DeclareForOperationCommand commend) throws ParseException, JsonProcessingException {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            Date startDate = sdf.parse(commend.getQueryDate());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            calendar.add(Calendar.DAY_OF_MONTH, 3);
+            Date endDate = calendar.getTime();
+
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        List<SchedulingStrategyModel> list = null;
+//        if (end instanceof String) {
+//            String schedulingStrategyJson = (String) end;
+//            list = objectMapper.readValue(
+//                    schedulingStrategyJson,
+//                    new TypeReference<List<SchedulingStrategyModel>>() {
+//                    }
+//            );
+//        }
+            List<SchedulingStrategyModel> list = new ArrayList<>();
+            Object redis = redisUtils.get("schedulingStrategy" + commend.getTaskCode());
+            ObjectMapper objectMapper = new ObjectMapper();
+            if (redis instanceof String) {
+                String schedulingStrategyJson = (String) redis;
+                list = objectMapper.readValue(
+                        schedulingStrategyJson,
+                        new TypeReference<List<SchedulingStrategyModel>>() {
+                        }
+                );
+            }
+            TradePower tradePower = ttradePowerRepository.findById(commend.getTaskCode()).orElse(null);
+            String firstList = tradePower.getOperation();
+            if (firstList == null || firstList.isEmpty()) {
+                return ResponseResult.error("此任务未生成策略");
+            }
+
+            List<DeclareForOperationModel> list1 = objectMapper.readValue(
+                    firstList,
+                    new TypeReference<List<DeclareForOperationModel>>() {
+                    }
+            );
+            List<Double> maxMin = new ArrayList<>();
+
+            for (DeclareForOperationModel d : list1) {
+                String dDate = sdf.format(d.getDate());
+                List<StrategyModel> energyList = list.stream().filter(e -> !sdf.format(e.getDate()).equals(dDate)).collect(Collectors.toList()).get(0).getStrategy();
+                List<StrategyTimeModel> energyEnd = new ArrayList<>();
+                for (StrategyTimeModel s0 : energyList.get(0).getList()) {
+                    String stimeHHMM = timeFormat.format(s0.getStime());
+                    for (StrategyTimeModel s1 : energyList.get(1).getList()) {
+                        String countDataTimeHHMM = timeFormat.format(s1.getStime());
+                        if (stimeHHMM.equals(countDataTimeHHMM)) {
+                            StrategyTimeModel model = new StrategyTimeModel();
+                            model.setPower(s0.getPower() + s1.getPower());
+                            model.setStime(s1.getStime());
+                            energyEnd.add(model);
+                        }
+                    }
+                }
+                //环境替换ddddddddddddddddddddddddd
+                for (OperationModel s : d.getStrategy()) {
+                    int i = 1;
+                    if (s.getNodeId().equals(config.getMasterNode())) {
+                        i = 2;
+                    }
+                    List<OperationTimeModel> operationTimeModels = s.getList();
+                    if (i == 2) {
+                        for (OperationTimeModel operationTime : operationTimeModels) {
+                            String stimeHHMM = timeFormat.format(operationTime.getStime());
+                            for (StrategyTimeModel EnergyForecasting : energyEnd) {
+                                String countDataTimeHHMM = timeFormat.format(EnergyForecasting.getStime());
+                                if (stimeHHMM.equals(countDataTimeHHMM)) {
+                                    Double power = operationTime.getPower();
+                                    Double predictValue = power + EnergyForecasting.getPower();
+                                    operationTime.setPower(predictValue);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            list1.forEach(vv -> vv.getStrategy().forEach(vvv -> vvv.getList().forEach(vvvv -> maxMin.add(vvvv.getPower()))));
+            Double max = Collections.max(maxMin);
+            Double min = Collections.min(maxMin);
+//            double interval1 = (max - min) / 4;
+//            double interval2 = interval1 + interval1;
+//            double interval3 = interval2 + interval1;
+
+            long maxT2 = Math.round(max);
+            long minT2 = Math.round(min);
+            long range = Math.abs((maxT2 - minT2) / 5);
+            String valueStr = Long.toString(range);
+            int length = valueStr.length();
+            long highestUnit = (long) Math.pow(10, length - 1);
+            long ceilingValue = ((range + highestUnit - 1) / highestUnit) * highestUnit;
+            long[] intervals = calculateIntervals(minT2,highestUnit, ceilingValue, 6);
+//            for (int i = 0; i < intervals.length; i++) {
+//                System.out.println("Interval " + (i + 1) + ": " + intervals[i]);
+//            }
+//            long interval1T2 =  Math.round(((max - min) / 4));
+//            long interval2T2 = interval1T2 + interval1T2;
+//            long interval3T2 = interval2T2 + interval1T2;
+            DeclareForOperationInterval intervalInfo = new DeclareForOperationInterval();
+            intervalInfo.setMaxPower(max);
+            intervalInfo.setMinPower(min);
+            intervalInfo.setInterval(new ArrayList<BaseModel>() {{
+                add(new BaseModel("蓝", intervals[0] + "~" +intervals[1]));
+                add(new BaseModel("绿", intervals[1] + "~" +intervals[2]));
+                add(new BaseModel("青", intervals[2] + "~" +intervals[3]));
+                add(new BaseModel("黄", intervals[3] + "~" +intervals[4]));
+                add(new BaseModel("橘", intervals[4] + "~" +intervals[5]));
+            }});
+            list1.forEach(v1 -> v1.getStrategy().forEach(v2 -> v2.getList().forEach(operationTime -> {
+                Double predictValue = operationTime.getPower();
+                operationTime.setPower(Double.valueOf(String.format("%.2f", predictValue)));
+                if (predictValue >= intervals[0] && predictValue <= intervals[1]) {
+                    operationTime.setType("蓝");
+                } else if (predictValue > intervals[1] && predictValue <= intervals[2]) {
+                    operationTime.setType("绿");
+                } else if (predictValue > intervals[2] && predictValue <= intervals[3]) {
+                    operationTime.setType("青");
+                } else if (predictValue > intervals[3] && predictValue <= intervals[4]) {
+                    operationTime.setType("黄");
+                } else if (predictValue > intervals[4] && predictValue <= intervals[5]) {
+                    operationTime.setType("橙");
+                } else {
+                    operationTime.setType("未知");
+                }
+            })));
+
+            DeclareForOperationRes listEnd = new DeclareForOperationRes();
+            listEnd.setNodeNum(config.getDeclareForOperationNum());
+            listEnd.setList(list1);
+            listEnd.setIntervalInfo(intervalInfo);
+            boolean tt = redisUtils.add("declareForOperation" + tradePower.getId(), JSON.toJSONString(list1), 60 * 60, TimeUnit.SECONDS);
+
+            return ResponseResult.success(listEnd);
+
+        } catch (RedisConnectionFailureException e) {
+            return ResponseResult.error(501,"redis超时","redis超时");
+        }
+
+    }
+    public static long[] calculateIntervals(long min,long highestUnit, long unitRange, int numIntervals) {
+        long[] intervals = new long[numIntervals];
+        log.info("min:{},highestUnit:{},unitRange:{},numIntervals:{}",min,highestUnit,unitRange,numIntervals);
+
+        long firstInterval = (min >0 ? min / unitRange : min / unitRange - 1) * unitRange;
+//        long firstInterval = (min / unitRange) * unitRange;
+
+//        log.info("firstInterval:{}",firstInterval);
+        if (min % unitRange != 0) {
+//            log.info("min % unitRange:{}",min % unitRange);
+            firstInterval -= (min < 0 ? highestUnit : 0);
+//            log.info("firstInterval2:{}",firstInterval);
+        }
+
+        for (int i = 0; i < numIntervals; i++) {
+            intervals[i] = firstInterval + i * unitRange;
+        }
+
+        long lastInterval = intervals[numIntervals - 1];
+        if (lastInterval % unitRange != 0) {
+            lastInterval = ((lastInterval / unitRange) + 1) * unitRange;
+        }
+        intervals[numIntervals - 1] = lastInterval;
+
+        return intervals;
+    }
+
+    @ApiOperation("编辑申报运行曲线")
+    @UserLoginToken
+    @PostMapping( "/editDeclareForOperation")
+    public ResponseResult editDeclareForOperation(@RequestBody EditDeclareForOperationCommand commend) throws JsonProcessingException, ParseException {
+//        TradePower tradePower = ttradePowerRepository.findById(request.getTaskCode()).orElse(null);
+        List<SchedulingStrategyModel> list = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Object redis = redisUtils.get("declareForOperation" + commend.getTaskCode());
+        if (redis instanceof String) {
+            String schedulingStrategyJson = (String) redis;
+            list = objectMapper.readValue(
+                    schedulingStrategyJson,
+                    new TypeReference<List<SchedulingStrategyModel>>() {
+                    }
+            );
+        }
+//        String firstList = tradePower.getStrategy();
+//        if (firstList == null || firstList.isEmpty()) {
+//            return ResponseResult.error("此任务未生成策略");
+//        }
+//        List<SchedulingStrategyModel> list = objectMapper.readValue(
+//                firstList,
+//                new TypeReference<List<SchedulingStrategyModel>>() {
+//                }
+//        );
+//        redisUtils.delete("declareForOperation" + commend.getTaskCode());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        Date stime = timeFormat.parse(commend.getStartTime());
+        if (commend.getEndTime().equals("00:00"))
+        {commend.setEndTime("24:00");}
+        Date etime = timeFormat.parse(commend.getEndTime());
+        String strategy = "未知";
+        Double power = commend.getPower();
+        Double max = power > commend.getMaxPower() ? power : commend.getMaxPower();
+        Double min = power < commend.getMinPower() ? power : commend.getMinPower();
+//        double interval1 = (max - min) / 4;
+//        double interval2 = interval1 + interval1;
+//        double interval3 = interval2 + interval1;
+
+        long maxT2 = Math.round(max);
+        long minT2 = Math.round(min);
+//        log.info("maxT2:{},minT2:{}",maxT2,minT2);
+        long range = Math.abs((maxT2 - minT2) / 5);
+//        log.info("range:{}",range);
+//        log.info("max:{},min:{}",max,min);
+
+        String valueStr = Long.toString(range);
+        int length = valueStr.length();
+        long highestUnit = (long) Math.pow(10, length - 1);
+        long ceilingValue = ((range + highestUnit - 1) / highestUnit) * highestUnit;
+//        log.info("valueStr:{},length:{},highestUnit:{},ceilingValue:{}",valueStr,length,highestUnit,ceilingValue);
+
+        long[] intervals = calculateIntervals(minT2, highestUnit,ceilingValue, 6);
+//        long interval1T2 =  Math.round(((max - min) / 4));
+//        long interval2T2 = interval1T2 + interval1T2;
+//        long interval3T2 = interval2T2 + interval1T2;
+        DeclareForOperationInterval intervalInfo = new DeclareForOperationInterval();
+        intervalInfo.setMaxPower(max);
+        intervalInfo.setMinPower(min);
+        intervalInfo.setInterval(new ArrayList<BaseModel>() {{
+            add(new BaseModel("蓝", intervals[0] + "~" +intervals[1]));
+            add(new BaseModel("绿", intervals[1] + "~" +intervals[2]));
+            add(new BaseModel("青", intervals[2] + "~" +intervals[3]));
+            add(new BaseModel("黄", intervals[3] + "~" +intervals[4]));
+            add(new BaseModel("橘", intervals[4] + "~" +intervals[5]));
+        }});
+        if (power >= intervals[0] && power <= intervals[1]) {
+            strategy= "蓝";
+        } else if (power > intervals[1] && power <= intervals[2]) {
+            strategy= "绿";
+        } else if (power > intervals[2] && power <= intervals[3]) {
+            strategy= "青";
+        } else if (power > intervals[3] && power <= intervals[4]) {
+            strategy= "黄";
+        } else if (power > intervals[4] && power <= intervals[5]) {
+            strategy= "橙";
+        } else {
+            strategy= "未知";
+        }
+        for (SchedulingStrategyModel model : list) {
+            if (model.getDate().equals(dateFormat.parse(commend.getEditDate()))) {
+//                log.info("model.getDate():{},dateFormat.parse(commend.getEditDate())):{}",model.getDate(),dateFormat.parse(commend.getEditDate()));
+                for (StrategyModel item : model.getStrategy()) {
+                    if (commend.getNodeIds().contains(item.getNodeId())) {
+//                        log.info("item.getNodeId():{}",item.getNodeId());
+                        for (StrategyTimeModel slot : item.getList()) {
+//                            log.info("timeFormat.format(slot.getEtime()).equals(\"00:00\"):{}",timeFormat.format(slot.getEtime()).equals("00:00"));
+                            Date slotEtime = timeFormat.format(slot.getEtime()).equals("00:00") ? timeFormat.parse("24:00") : slot.getEtime();
+//                            log.info("slotEtime:{}",slotEtime);
+                            if (isTimeInRange(slot.getStime(), slotEtime, stime, etime)) {
+//                                log.info("slot.getStime():{},slot.getEtime():{},stime:{}etim,etime:{}",slot.getStime(),slot.getEtime(),stime,etime);
+                                slot.setType(strategy);
+                                slot.setPower(power);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+        redisUtils.add("declareForOperation" + commend.getTaskCode(), JSON.toJSONString(list), 60 * 60, TimeUnit.SECONDS);
+        list.forEach(v1 -> v1.getStrategy().forEach(v2 -> v2.getList().forEach(v3 -> {
+            Double powerEnd = v3 .getPower();
+            if (powerEnd >= intervals[0] && powerEnd <= intervals[1]) {
+                v3.setType("蓝");
+            } else if (powerEnd > intervals[1] && powerEnd <= intervals[2]) {
+                v3.setType("绿");
+            } else if (powerEnd > intervals[2] && powerEnd <= intervals[3]) {
+                v3.setType("青");
+            } else if (powerEnd > intervals[3] && powerEnd <= intervals[4]) {
+                v3.setType("黄");
+            } else if (powerEnd > intervals[4] && powerEnd <= intervals[5]) {
+                v3.setType("橙");
+            } else {
+                v3.setType("未知");
+            }
+        })));
+        EditDeclareForOperationRes listEnd = new EditDeclareForOperationRes();
+        listEnd.setList(list);
+        listEnd.setIntervalInfo(intervalInfo);
+        return ResponseResult.success(listEnd);
+    }
+
+    @ApiOperation("确定申报")
+    @UserLoginToken
+    @PostMapping( "/confirmDelivery")
+    public ResponseResult confirmDelivery(@RequestBody ConfirmDeliveryCommand command) {
+        try {
+            TradePowerLog log = new TradePowerLog();
+            TradePower ttradePower = ttradePowerRepository.findById(command.getTaskCode()).orElse(null);
+            if (ttradePower != null) {
+                Object redis = redisUtils.get("schedulingStrategy" + command.getTaskCode());
+                log.setId(ttradePower.getId() + new Date().getTime());
+                log.setSTime(ttradePower.getSTime());
+                log.setETime(ttradePower.getETime());
+                log.setTradeType(ttradePower.getTradeType());
+                log.setStation(ttradePower.getStation());
+                log.setCreateTime(ttradePower.getCreateTime());
+                log.setStatus(ttradePower.getStatus());
+                log.setUpdateTime(ttradePower.getUpdateTime());
+                log.setLoadNodes(ttradePower.getLoadNodes());
+                log.setEnergyNodes(ttradePower.getEnergyNodes());
+                log.setPvNodes(ttradePower.getPvNodes());
+                log.setStrategy((String) redis);
+                log.setOperation(String.valueOf(JSON.toJSON(command.getTaskData())));
+                log.setTradePowerCode(ttradePower.getId());
+            }
+            ttradePowerLogRepository.save(log);
+            return ResponseResult.success();
+        } catch (RedisConnectionFailureException e) {
+            return ResponseResult.error(501,"redis超时","redis超时");
+        }
+    }
+
+    @ApiOperation("电力交易天气")
+    @UserLoginToken
+    @PostMapping( "/weatherChart")
+    public ResponseResult weatherChart(@RequestBody WeatherChartCommand model) {
+        try {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDateTime = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDateTime);
+            calendar.add(Calendar.DAY_OF_MONTH, 3);
+
+            //todo 以项目节点查询
+            Node node = nodeRepository.findByNodeId(config.getMasterNode());
+
+            WeatherRequest json = new WeatherRequest();
+            json.setKey("9875c3ceb98687f62b75b9639a875b27");
+            json.setLongitude(node.getLongitude());
+            json.setLatitude(node.getLatitude());
+//            json.setStartDateTime(sdf.format(startDateTime) + " 00:00:00");
+//            json.setEndDateTime(sdf.format(calendar.getTime()) + " 23:59:59");
+            json.setStartDateTime(model.getStartDate() + " 00:00:00");
+            json.setEndDateTime(model.getEndDate() + " 23:59:59");
+            log.info("weatherChart天气传参：{}", JSONObject.toJSONString(json));
+            String data = HttpUtil.okHttpPost("http://8.153.13.210:58080/datalake/meteorological/QueryMeteorologicalData",JSONObject.toJSONString(json));
+            List<MeteorologicalData> meteorologicalData = JSONObject.parseArray(JSONObject.parseObject(data).getString("data"), MeteorologicalData.class);
+            List<MeteorologicalDataVo> list = new ArrayList<>();
+            meteorologicalData.forEach(v ->{
+                MeteorologicalDataVo vo = new MeteorologicalDataVo();
+                vo.setTs(v.getTs());
+                if (v.getRtTt2() != 0) {
+                    vo.setRtTt2(Double.parseDouble(String.format("%.2f", v.getRtTt2() - 273.15)));
+                } else {
+                    vo.setRtTt2(null);
+                }
+                if (v.getPredTt2() != 0) {
+                    vo.setPredTt2(Double.parseDouble(String.format("%.2f",v.getPredTt2() - 273.15)));
+                } else {
+                    vo.setPredTt2(null);
+                }
+                list.add(vo);
+            } );
+            return ResponseResult.success(list);
+        } catch (Exception ex) {
+            return ResponseResult.error("储能天气图表查询失败");
+        }
+    }
+
+    private boolean isDateInRange(Date date, Date startDate, Date endDate) {
+        return !date.before(startDate) && !date.after(endDate);
+    }
+
+    private boolean isTimeInRange(Date stime, Date etime, Date targetStime, Date targetEtime) {
+
+        return !stime.before(targetStime) && !etime.after(targetEtime);
+    }
+    //任务开始时间
+    public List<DeclareForOperationModel> genList(String commend) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        Date startDate = sdf.parse(commend);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, 3);
+        Date endDate = calendar.getTime();
+        //部署需改
+        //用电
+//        List<AiLoadForecasting> allData = aiLoadRepository.findByDateNodeIdsSystemId(
+//                Arrays.asList("e238bb37143b82082f695bb5c9cb438f",
+//                        "176c0991f24e30c2b25a9dbf1185b7b9",
+//                        "5eb413037ba16ea6108c12e0d6353be3",
+//                        "3da72e052a0b48759b0f4633df42235a"),
+//                "nengyuanzongbiao",
+//                startDate,
+//                endDate);
+        List<AiLoadForecasting> allData = aiLoadRepository.findByDateNodeIdsSystemId(
+//                Arrays.asList("e238bb37143b82082f695bb5c9cb438f"),
+//                Arrays.asList("e238bb37143b82082f695bb5c9cb438f", "38c9a70b255900044a85838900214aec"),
+                config.getGenListLoadNode(),
+                "nengyuanzongbiao",
+                startDate,
+                endDate);
+        Map<String, Map<String, List<AiLoadForecasting>>> groupedData = allData.stream()
+                .filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+                .collect(Collectors.groupingBy(
+                        device -> sdf.format(device.getCountDataTime()),
+                        Collectors.groupingBy(
+                                AiLoadForecasting::getNodeId
+                        )
+                ));
+        //环境替换ddddddddddddddddddddddddd
+        //发电
+        List<AiLoadForecasting> allPvData = aiLoadRepository.findByDateNodeIdSystemId(
+//                "5cfd76f998dbcf8d7e214187d0e30ac5",
+//                "bb05b2b6d467846b9ea2b68de14c6f70",
+                config.getPvNode1(),
+                "nengyuanzongbiao",
+                startDate,
+                endDate);
+
+        Map<String, Map<String, List<AiLoadForecasting>>> groupedPvData = allPvData.stream()
+                .filter(device -> device.getCountDataTime() != null && device.getPredictValue() != null)
+                .collect(Collectors.groupingBy(
+                        device -> sdf.format(device.getCountDataTime()),
+                        Collectors.groupingBy(
+                                AiLoadForecasting::getNodeId
+                        )
+                ));
+        List<Double> maxMin = new ArrayList<>();
+        List<DeclareForOperationModel> list1 = generateResponsesForOperation(startDate,endDate);
+        for (DeclareForOperationModel d : list1) {
+            String dDate = sdf.format(d.getDate());
+            Map<String, List<AiLoadForecasting>> forecast = groupedData.get(dDate);
+            Map<String, List<AiLoadForecasting>> pvForecast = groupedPvData.get(dDate);
+            for (OperationModel s : d.getStrategy()) {
+                List<AiLoadForecasting> forecastings = null;
+                if (forecast!= null && forecast.get(s.getNodeId()) != null) {
+                    forecastings = forecast.get(s.getNodeId());
+                }
+                List<AiLoadForecasting> pvForecastings = null;
+                int i = 1;
+                if (s.getNodeId().equals(config.getMasterNode())) {
+                    i = 2;
+                    if (pvForecast != null){
+                        pvForecastings = pvForecast.get(s.getNodeId());
+                    }
+                }
+                List<OperationTimeModel> operationTimeModels = s.getList();
+                if (i == 2) {
+                    for (OperationTimeModel operationTime : operationTimeModels) {
+                        String stimeHHMM = timeFormat.format(operationTime.getStime());
+                        if (pvForecastings != null) {
+                            for (AiLoadForecasting pvForecasting : pvForecastings) {
+                                String countDataTimeHHMM = timeFormat.format(pvForecasting.getCountDataTime());
+                                if (stimeHHMM.equals(countDataTimeHHMM)) {
+                                    Double power = operationTime.getPower();
+                                    Double predictValue = Double.parseDouble(pvForecasting.getPredictValue());
+                                    operationTime.setPower(power - predictValue);
+                                }
+                            }
+                        }
+                        if (forecastings != null) {
+                            for (AiLoadForecasting forecasting : forecastings) {
+                                String countDataTimeHHMM = timeFormat.format(forecasting.getCountDataTime());
+                                if (stimeHHMM.equals(countDataTimeHHMM)) {
+                                    Double power = operationTime.getPower();
+                                    Double predictValue = Double.parseDouble(forecasting.getPredictValue());
+                                    operationTime.setPower(power + predictValue);
+                                }
+                            }
+                        }
+                        Double predictValue = operationTime.getPower();
+                        maxMin.add(predictValue);
+                    }
+                } else {
+                    for (OperationTimeModel operationTime : operationTimeModels) {
+                        String stimeHHMM = timeFormat.format(operationTime.getStime());
+                        if (forecastings != null) {
+                            for (AiLoadForecasting forecasting : forecastings) {
+                                String countDataTimeHHMM = timeFormat.format(forecasting.getCountDataTime());
+                                if (stimeHHMM.equals(countDataTimeHHMM)) {
+                                    Double power = operationTime.getPower();
+                                    Double predictValue = Double.parseDouble(forecasting.getPredictValue());
+                                    operationTime.setPower(power + predictValue);
+                                }
+                            }
+                        }
+                        Double predictValue = operationTime.getPower();
+                        maxMin.add(predictValue);
+                    }
+                }
+            }
+        }
+        Double max = Collections.max(maxMin);
+        Double min = Collections.min(maxMin);
+        double interval1 = (max - min) / 4;
+        double interval2 = interval1 + interval1;
+        double interval3 = interval2 + interval1;
+
+        list1.forEach(vv -> vv.getStrategy().forEach(vvv -> vvv.getList().forEach(operationTime -> {
+            Double predictValue = operationTime.getPower();
+            if (predictValue >= min && predictValue <= interval1) {
+                operationTime.setType("蓝");
+            } else if (predictValue > interval1 && predictValue <= interval2) {
+                operationTime.setType("绿");
+            } else if (predictValue > interval2 && predictValue <= interval3) {
+                operationTime.setType("青");
+            } else if (predictValue > interval3 && predictValue <= max) {
+                operationTime.setType("黄");
+            } else {
+                operationTime.setType("未知");
+            }
+        })));
+
+        return list1;
+    }
+    public static List<DispatchCurveDateRes> generateResponses(Date startDate, Date endDate) throws ParseException {
+        List<DispatchCurveDateRes> responses = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+
+        while (calendar.getTime().before(endDate)) {
+            responses.add(new DispatchCurveDateRes(sdf.parse(sdf.format(calendar.getTime())), null));
+            calendar.add(Calendar.MINUTE, 15);
+        }
+        if (!calendar.getTime().equals(endDate)) {
+            responses.add(new DispatchCurveDateRes(sdf.parse(sdf.format(endDate)), null));
+        }
+        return responses;
+    }
+    public static List<DeclareForOperationModel> generateResponsesForOperation(Date startDate, Date endDate) throws ParseException {
+        List<DeclareForOperationModel> responses = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        while (calendar.getTime().before(endDate)) {
+            DeclareForOperationModel declareForOperationModel = new DeclareForOperationModel();
+            declareForOperationModel.setDate(dateFormat.parse(dateFormat.format(calendar.getTime())));
+
+            List<OperationModel> operationModelList = new ArrayList<>();
+            for (Map.Entry<String, String> entry : config.getNodeMap().entrySet()) {
+                OperationModel operationModel = new OperationModel();
+                operationModel.setNodeId(entry.getKey());
+                operationModel.setNodeName(entry.getValue());
+
+                List<OperationTimeModel> operationTimeModelList = new ArrayList<>();
+                for (int i = 0; i < 96; i++) { // 每15分钟一个数据点
+                    OperationTimeModel operationTimeModel = new OperationTimeModel();
+                    Calendar startTime = (Calendar) calendar.clone();
+                    startTime.add(Calendar.MINUTE, i * 15);
+                    operationTimeModel.setStime(timeFormat.parse(timeFormat.format(startTime.getTime())));
+
+                    Calendar endTime = (Calendar) startTime.clone();
+                    endTime.add(Calendar.MINUTE, 15);
+                    operationTimeModel.setEtime(timeFormat.parse(timeFormat.format(endTime.getTime())));
+
+                    operationTimeModel.setPower(0.0);
+                    operationTimeModel.setType("type");
+                    operationTimeModelList.add(operationTimeModel);
+                }
+                operationModel.setList(operationTimeModelList);
+                operationModelList.add(operationModel);
+            }
+
+            declareForOperationModel.setStrategy(operationModelList);
+            responses.add(declareForOperationModel);
+
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        return responses;
+    }
+    public static String okHttpPost(String reqUrl, String json) {
+        try {
+            // 创建一个信任所有证书的 TrustManager
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        public X509Certificate[] getAcceptedIssuers() {
+                            return new X509Certificate[0];
+                        }
+
+                        public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                        }
+
+                        public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                        }
+                    }
+            };
+
+            // 创建 SSL 上下文，使用信任所有证书的 TrustManager
+            SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new SecureRandom());
+
+            // 设置 OkHttpClient 使用我们创建的 SSL 上下文
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustAllCerts[0])
+                    .hostnameVerifier((hostname, session) -> true)
+                    .build();
+
+            MediaType mediaType = MediaType.parse("application/json");
+            okhttp3.RequestBody body = okhttp3.RequestBody.create(mediaType, json);
+            Request request = new Request.Builder()
+                    .url(reqUrl)
+                    .method("POST", body)
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Accept", "application/json")
+                    .build();
+
+            // 发送请求
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (Exception e) {
+            throw new RuntimeException("HTTP POST同步请求失败 URL:" + reqUrl, e);
+        }
+    }
+}

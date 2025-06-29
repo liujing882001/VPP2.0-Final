@@ -1,0 +1,127 @@
+.Photovoltaic_model_separate{
+	padding: 0px;
+	margin: 0px;
+	height:100%;
+	padding-bottom: 16px;
+	
+	.separatepolicy{
+		display: flex;
+		padding: 16px 15px;
+		.serve{
+			flex: 1;
+			padding: 0px;
+			min-height: 180px;
+			border: 1px solid #0092FF;
+			.title{
+				height: 49px;
+				line-height: 50px;
+				// border-bottom: 1px solid #203875;
+				// background: #edf7ff;
+				background: rgba(255,255,255,0.1);
+				padding: 0px;
+				padding-left: 20px;
+				border: none;
+				color: #FFF;
+				button{
+					float: right;
+					margin-top: 7px;
+					margin-right: 10px;
+				}
+				// .ant-btn{
+				// 	float: right;
+				// 	margin-top: 10px;
+				// 	margin-right: 10px;
+				// }
+			}
+			.cont{
+				padding: 0px 20px;
+			}
+			.axxset{
+				display: block;
+				float: inherit;
+				width: 100%;
+				// margin-top: 24px;
+				margin-top: 16px;
+				margin-bottom: 0px;
+				padding-bottom: 0px;
+				color: #FFF;
+			}
+			.serverst{
+				padding-top: 10px;
+			}
+			#basics1{
+				.ant-form-item{
+					width: 100%;
+					margin-bottom: 0px;
+					margin-top: 20px;
+				}
+				.edits{
+					// position: absolute;
+					    // top: -10px;
+				}
+				.ant-picker{
+					margin-left: 0px;
+				}
+			}
+			#basics1{
+				.ant-input{
+					height: 32px;
+				}
+			}
+			.manoeuvre{
+				
+				p{
+					padding: 0px;
+					padding-top: 20px;
+					color: #FFF;
+					font-size: 14px;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					line-height: 24px;
+				}
+			}
+			#basics4 {
+				.ant-form-item{
+					width: 100%;
+				}
+			}
+		}
+	}
+	.separate:after{
+		display: none;
+	}
+	.unitys{
+		display: inline-block;
+		width: 40px;
+		height: 32px;
+		border: 1px solid #FFF;
+		border-left: none;
+		margin-top: -4px;
+		margin-left: -1px;
+		vertical-align: middle;
+		font-size: 10px;
+		line-height: 31px;
+		text-align: center;
+		// padding: 0px 5px;
+	}
+	.units{
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		border: 1px solid #8F959E;
+		border-left: none;
+		color: #FFF;
+		text-align: center;
+		line-height: 32px;
+		
+		margin-left: -3px;
+	}
+	
+	
+}
+.separate:after{
+	display: none;
+}
+.allcontentesabc .ant-tabs-content{
+		background: #FFFFFF;
+	}

@@ -1,0 +1,103 @@
+[
+    {
+        "date": "2024-06-02",
+        "dateType": 2,
+        "day": 2,
+        "dayOfWeek": 7,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-08",
+        "dateType": 2,
+        "day": 8,
+        "dayOfWeek": 6,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-09",
+        "dateType": 2,
+        "day": 9,
+        "dayOfWeek": 7,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-11",
+        "dateType": 1,
+        "day": 11,
+        "dayOfWeek": 2,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-12",
+        "dateType": 1,
+        "day": 12,
+        "dayOfWeek": 3,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-13",
+        "dateType": 1,
+        "day": 13,
+        "dayOfWeek": 4,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-14",
+        "dateType": 1,
+        "day": 14,
+        "dayOfWeek": 5,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-22",
+        "dateType": 2,
+        "day": 22,
+        "dayOfWeek": 6,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-23",
+        "dateType": 2,
+        "day": 23,
+        "dayOfWeek": 7,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    {
+        "date": "2024-06-28",
+        "dateType": 1,
+        "day": 28,
+        "dayOfWeek": 5,
+        "month": 6,
+        "updateBy": null,
+        "updateTime": null,
+        "year": 2024
+    },
+    
+]

@@ -1,0 +1,75 @@
+.allcontentequipment{
+	height: calc(100% - 16px);
+	overflow: auto;
+	min-width: 1200px;
+	display: flex;
+	.table-pointName{
+		width: 150px;
+		// max-width: 280px;
+	}
+	.ant-spin-nested-loading{
+	}
+	.adjustable{
+		height: 100%;
+		margin-left: 10px !important;
+	}
+	.navigation{
+		height: 100%;
+		width: 100% !important;
+		
+		.ant-tree .ant-tree-switcher{
+			margin-left: 10px;
+			width: 16px;
+		}
+		.navigation-treenum{
+			padding: 20px 16px;
+			padding-bottom: 0px;
+			span{
+				cursor: pointer;
+				float: right;
+			}
+		}
+		.navigation-search{
+			
+		}
+		.ant-input-search .ant-input-search-button{
+			height: 31px;
+		}
+		.ant-tree .ant-tree-treenode{
+			width: 100%;
+			padding: 7px 0px;
+		}
+		.ant-tree-treenode-selected{
+			background: rgba(0, 146, 255, .1) !important;
+			
+		}
+		.ant-tree .ant-tree-node-content-wrapper{
+			padding-left: 0px;
+		}
+		
+		.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+			// color: #0092FF;
+			// background: rgba(0, 146, 255, .1) !important;
+		}
+		.ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{
+			// width: 16px;
+			// height: 16px;
+			// line-height: 24px;
+		}
+	}
+	
+	
+}
+.import_devices{
+	.ant-upload-wrapper .ant-upload-list .ant-upload-list-item .ant-upload-list-item-actions .anticon{
+		color: #fff;
+	}
+}
+.loadTypes{
+		.ant-select-arrow{
+			display: none;
+		}
+	}
+.loadTypes .ant-select-selection-item{
+	color: #fff;
+}

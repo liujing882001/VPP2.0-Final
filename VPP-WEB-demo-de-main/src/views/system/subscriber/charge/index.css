@@ -1,0 +1,159 @@
+.electric{
+	padding: 26px 26px;
+	background: #09183F;
+}
+.electrictitle{
+	padding: 10px 0px;
+}
+.electrictitle .ant-input-group-wrapper{
+	float: right;
+}
+.ant-form-item-explain, .ant-form-item-extra{
+	font-size: 12px;
+}
+.ant-typography.ant-typography-secondary{
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 12px;
+	margin: 10px 0px;
+}
+#basics .anticon{
+	margin-right: 10px;
+	color: #FFFFFF;
+}
+
+.tangram-suggestion-main{
+	z-index: 999999999;
+}
+.ant-input-group-addon:first-child{
+	background: none;
+	color: #FFFFFF;
+}
+.dynamic-delete-button {
+  position: relative;
+  top: 4px;
+  margin: 0 8px;
+  color: #999;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  right: 0px;
+}
+.ant-space-align-baseline{
+	width: 100%;
+}
+.allelectric .ant-space-item{
+	width: 100%;
+}
+
+.ant-btn-dashed{
+	background: none;
+	color: #FFFFFF;
+}
+/* .ant-btn{
+	background: none;
+} */
+.btn1{
+	border: none;
+	background: #09183f;
+	color: #FFFFFF;
+	width: 30%;
+	text-align: left;
+	/* margin-left: 110px; */
+}
+.ant-btn:hover, .ant-btn:focus{
+	/* background:  #09183f; */
+	/* background: rgba(0, 146, 255, .8); */
+	/* border: none; */
+}
+
+
+.ant-form-item-control-input-content .ant-input{
+	/* border: none; */
+	/* background: #172C63; */
+}
+.ant-form-item:after{
+	
+}
+#basics .ant-space-align-center{
+	/* width: 100%; */
+	border: 1px solid #FFF;
+	    width: 462px;
+	    margin: 0 auto;
+	    display: block;
+	    border-top: none;
+	/* margin-bottom: 24px; */
+	/* padding-top: 15px; */
+	/* padding-left: 10px; */
+}
+.dynamic-delete-button{
+	
+}
+.btn2{
+	/* margin-left: 110px; */
+	border: none;
+	background: #09183f;
+	color: #FFFFFF;
+	width: 30%;
+	text-align: left;
+}
+#basics .dynamic-delete-button{
+	position: absolute; 
+	right: -43px;
+	font-size: 16px;
+}
+.deleat{
+	font-size: 16px;
+}
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover{
+	border-color: none;
+}
+.ant-input-affix-wrapper{
+	background: none;
+	color: #000;
+}
+.hu{
+	padding: 10px 10px;
+}
+.dynamic{
+	position: absolute; 
+	right: -32px;
+	top: 0px;
+	cursor: pointer;
+}
+.dynamics{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	cursor: pointer;
+	
+}
+.ant-col-sm-26 .ant-input{
+	/* border: none; 
+	background: #172C63;
+	color: #FFFFFF; */
+}
+/* . */
+.ant-col-sm-26  .dynamic{
+	position: absolute;
+	right: 85px;
+}
+.allbtns{
+	width: 85%;
+}
+.removejie{
+	position: absolute;
+	position: absolute;
+	right: -34px;
+	top: 0px;
+}
+.ant-row .ant-form-item{
+	margin-bottom: 0px;
+}
+
+
+
+
+
+
+
+

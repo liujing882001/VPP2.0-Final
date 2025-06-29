@@ -1,0 +1,28 @@
+.dections .allbtns .active{
+	margin-right: 0px !important;
+}
+.dections .allbtns span:nth-child(2):after{
+	background: none;
+	display: none;
+}
+.dections .allbtns .all{
+	margin-right: 0px !important;
+}
+.alltablsefg{
+	width: 100%;
+	overflow: hidden;
+	padding: 0px 0px;
+}
+.dections{
+	background: #212029;
+	border-radius: 10px;
+	padding: 16px 16px;
+	min-width: 1200px;
+	padding-top: 16px;
+	padding-bottom: 24px;
+}
+.detail{
+	/* background: #09183F; */
+	border-radius: 2px;
+	/* padding: 22px 22px; */
+}

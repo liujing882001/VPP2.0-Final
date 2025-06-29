@@ -1,0 +1,763 @@
+.generating-cockpit {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  min-width: 1300px;
+  overflow: auto;
+  // min-height: 940px;
+  // max-height: 950px;
+  height: 950px;
+  .generating-cockpit-map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0px;
+    top: 0px;
+    background: #fff;
+  }
+  .generating-cockpit-type {
+    position: absolute;
+    top: 60px;
+    left: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .generating-cockpit-province {
+      cursor: pointer;
+      min-width: 180px;
+      max-width: 360px;
+      height: 32px;
+      line-height: 32px;
+      background: url(./img/address.svg) no-repeat left 10px center
+        rgba(13, 16, 22, 0.4);
+      background-size: 16px 16px;
+      padding-left: 40px;
+      border-radius: 6px 6px 6px 6px;
+      position: relative;
+      .generating-cockpit-province-selectval {
+        // padding-right: 10px;
+        // margin-right: ;
+        padding: 0px 25px;
+        padding-left: 0px;
+        background: url(./img/bottom.svg) right 5px center no-repeat;
+
+        background-size: 12px 12px;
+      }
+      .generating-cockpit-province-noselectval {
+        // width: calc(100% - 10px);
+        padding: 0px 25px;
+        padding-left: 0px;
+        background: url(./img/top.svg) right 5px center no-repeat;
+        background-size: 12px 12px;
+      }
+      .fade-in {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        backdrop-filter: blur(10px);
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        z-index: 9999;
+        height: 234px;
+        // width: 100%;
+        background: rgba(13, 16, 22, 0.4);
+        border-radius: 6px 6px 6px 6px;
+       margin-left: -40px;
+       margin-top: 8px;
+        overflow: auto;
+		max-width: 360px;
+      }
+    }
+    .generating-cockpit-province::after {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+    }
+    .generating-cockpit-province-type {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      background: rgba(13, 16, 22, 0.4);
+      border-radius: 6px 6px 6px 6px;
+      margin-left: 16px;
+      div {
+        padding: 0px 7px;
+        font-size: 12px;
+        color: #ffffff;
+        span {
+          display: inline-block;
+          padding: 4px 12px;
+          margin: 4px 0px;
+          cursor: pointer;
+          i {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: -3px;
+            margin-right: 4px;
+          }
+          .generating-cockpit-province-zhisuan {
+            background: url(./img/zhisuan.svg) left top no-repeat;
+          }
+          .generating-cockpit-province-jiaotong {
+            background: url(./img/jiaotong.svg) left top no-repeat;
+          }
+          .generating-cockpit-province-zhizao {
+            background: url(./img/zhizao.svg) left top no-repeat;
+          }
+          .generating-cockpit-province-louyu {
+            background: url(./img/louyu.svg) left top no-repeat;
+          }
+          b {
+            font-weight: normal;
+            padding-left: 4px;
+          }
+        }
+      }
+      .active {
+        span {
+          display: inline-block;
+          padding: 4px 12px;
+          background: rgba(0, 146, 255, 0.1);
+          border-radius: 6px 6px;
+          color: #0092FF;
+          .generating-cockpit-province-zhisuan {
+            // background: url(./img/azhisuan.svg) left top no-repeat;
+          }
+          .generating-cockpit-province-jiaotong {
+            // background: url(./img/ajiaotong.svg) left top no-repeat;
+          }
+          .generating-cockpit-province-zhizao {
+            // background: url(./img/azhizao.svg) left top no-repeat;
+          }
+          .generating-cockpit-province-louyu {
+            // background: url(./img/alouyu.svg) left top no-repeat;
+          }
+        }
+      }
+    }
+  }
+  .generating-cockpit-Energy-income-block {
+    position: absolute;
+    // bottom: 0px;
+    top: 603px;
+	bottom: 16px;
+    right: 12px;
+    left: 0px;
+	// background: #fff;
+	overflow: hidden;
+    // hei
+
+    .generating-cockpit-Energy-income-block-chart {
+      // display: flex;
+	  height: 296px;
+	  width:100%;
+      .generating-cockpit-Energy-block {
+        background: rgba(13, 16, 22, 0.4);
+        backdrop-filter: blur(10px);
+        margin-left: 16px;
+        padding: 12px 12px;
+        // flex: 1;
+		// width:50%;
+		display:inline-block;
+		width:calc(50% - 16px);
+
+        .generating-cockpit-Energy-block-title {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          position: relative;
+          .hand-drawn-line-day {
+            width: 64px;
+            height: 32px;
+            background: rgba(22, 25, 38, 0.3);
+            border-radius: 4px 4px 4px 4px;
+            border: 1px solid #393c49;
+            display: flex;
+            line-height: 32px;
+            margin-left: 12px;
+            div {
+              flex: 1;
+              text-align: center;
+              width: 32px;
+              cursor: pointer;
+              font-size: 14px;
+              color: #c1c8d3;
+            }
+            .drawactive {
+              background: rgba(31, 41, 53, 0.6);
+              border-radius: 4px 4px 4px 4px;
+              border: 1px solid rgba(0, 146, 255, 0.5);
+              color: #0092FF;
+              line-height: 30px;
+              height: 32px;
+              margin-left: -1px;
+              margin-top: -1px;
+            }
+          }
+
+          .ant-select-outlined:not(.ant-select-customize-input)
+            .ant-select-selector {
+            border-color: rgba(57, 60, 73, 1);
+            outline: none;
+            box-shadow: none;
+          }
+          .ant-picker {
+            margin-left: 12px;
+          }
+          .ant-picker-outlined {
+            border-color: rgba(57, 60, 73, 1);
+          }
+          .ant-picker-suffix {
+            color: #8f959e !important;
+          }
+          .anticon {
+            color: #8f959e;
+          }
+          .generating-cockpit-Energy-block-title-header {
+            font-family: PangMenZhengDao, PangMenZhengDao;
+            font-weight: 400;
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 24px;
+            text-align: left;
+            font-style: normal;
+            text-transform: none;
+            justify-content: flex-start;
+            flex: auto;
+            font-family: PangMenZhengDao, PangMenZhengDao;
+          }
+          .generating-cockpit-Energy-block-title-header::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border: 2px solid #fff;
+            border-radius: 50% 50%;
+            vertical-align: 1px;
+            margin-right: 7px;
+          }
+          .generating-cockpit-Energy-block-title-header::after {
+            content: "";
+            display: inline-block;
+            width: 200px;
+            height: 1.5px; /* 线的高度 */
+            background-image: linear-gradient(
+              to right,
+              rgba(0, 146, 255, 0.5),
+              rgba(0, 146, 255, 0.3),
+              rgba(0, 146, 255, 0.3),
+              rgba(255, 255, 255, 0.1),
+              transparent
+            );
+            background-size: 100% 100%, 200% 100%, 300% 100%; /* 逐渐增大背景尺寸 */
+            background-repeat: no-repeat;
+            margin-top: 10px; /* 与其他元素之间的距离 */
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+          }
+        }
+        .hand-drawn-line-Revenue-frequency {
+          float: left;
+          background: rgba(22, 25, 38, 0.3);
+          border: 1px solid #393c49;
+          display: flex;
+          border-radius: 8px 8px;
+          margin-right: 20px;
+          margin-top: 16px;
+          position: absolute;
+          z-index: 9;
+          div {
+            padding: 0px 12px;
+            font-size: 12px;
+            color: #c1c8d3;
+            border-radius: 8px 8px;
+            cursor: pointer;
+            height: 26px;
+            line-height: 26px;
+          }
+          div:first-child.active {
+            background: rgba(0, 146, 255, 0.2);
+            border: 1px solid rgba(0, 146, 255, 0.5);
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            margin-left: -1px;
+            margin-top: -1px;
+            height: 28px;
+            margin-bottom: -1px;
+          }
+          div:first-child + div.active {
+            background: rgba(0, 146, 255, 0.2);
+            border: 1px solid rgba(0, 146, 255, 0.5);
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            margin-right: -1px;
+            margin-top: -1px;
+            height: 28px;
+            margin-bottom: -1px;
+          }
+        }
+      }
+	  .generating-cockpit-Energy-block:first-child{
+		  
+	  }
+    }
+
+    .generating-cockpit-Energy-block-map {
+      width: 284px;
+      height: 28px;
+      background: rgba(13, 16, 22, 0.4);
+      border-radius: 6px 6px 6px 6px;
+      margin-bottom: 12px;
+      display: flex;
+      margin-left: 12px;
+      div {
+        padding: 4px 10px;
+        font-size: 12px;
+        color: #ffffff;
+      }
+      div::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #0a84ff;
+        border-radius: 2px 2px 2px 2px;
+        margin-right: 4px;
+      }
+      div:nth-child(2)::before {
+        background: #ffcf40;
+      }
+      div:nth-child(3)::before {
+        background: #0abab5;
+      }
+      div:nth-child(4)::before {
+        background: #aeaeae;
+      }
+    }
+  }
+  .generating-cockpit-quantity-of-electricity {
+    position: absolute;
+    top: 60px;
+    right: 12px;
+    // bottom: 312px;
+
+    .generating-cockpit-quantity-of-electricity-load {
+      background: rgba(13, 16, 22, 0.4);
+      padding: 12px 16px;
+      min-width: 352px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 16px;
+      .generating-cockpit-quantity-of-electricity-load-title {
+        font-family: PangMenZhengDao, PangMenZhengDao;
+        font-weight: 400;
+        font-size: 18px;
+        color: #ffffff;
+        padding-bottom: 6px;
+        position: relative;
+        .generating-cockpit-Energy-block-title-header::before {
+          content: "";
+          display: inline-block;
+          width: 6px;
+          height: 6px;
+          border: 2px solid #fff;
+          border-radius: 50% 50%;
+          vertical-align: 1px;
+          margin-right: 7px;
+        }
+        .generating-cockpit-Energy-block-title-header::after {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 1.5px;
+          background-image: linear-gradient(
+            to right,
+            rgba(0, 146, 255, 0.5),
+            rgba(0, 146, 255, 0.3),
+            rgba(0, 146, 255, 0.3),
+            rgba(0, 146, 255, 0.1),
+            transparent
+          );
+          background-size: 100% 100%, 200% 100%, 300% 100%;
+          background-repeat: no-repeat;
+          margin-top: 10px;
+          position: absolute;
+          bottom: 0px;
+          left: 0px;
+        }
+      }
+      .generating-cockpit-quantity-of-electricity-load-num {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 12px;
+        div {
+          flex: 1;
+          position: relative;
+          p {
+            font-family: D-DIN, D-DIN;
+            font-weight: 700;
+            font-size: 18px;
+            color: #0092FF;
+            padding: 0px;
+            margin: 0px;
+          }
+          span {
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+          }
+          i {
+            font-style: normal;
+            color: #c1c8d3;
+          }
+        }
+        div::after {
+          content: "";
+          display: inline-block;
+          width: 1.5px;
+          height: 100%;
+          background: linear-gradient(
+            244deg,
+            rgba(69, 252, 247, 0) 0%,
+            rgba(69, 252, 247, 1) 50%,
+            rgba(69, 252, 247, 0) 100%
+          );
+          background-size: 100% 100%, 200% 100%, 300% 100%;
+          background-repeat: no-repeat;
+          margin-top: 10px;
+          position: absolute;
+          bottom: 0px;
+          right: 20px;
+        }
+        div:nth-child(3)::after {
+          display: none;
+        }
+      }
+      .generating-cockpit-quantity-of-electricity-load-num-Energy {
+        width: 100%;
+        display: flex;
+        padding-top: 12px;
+        .Energy {
+          flex: 1;
+          p {
+            font-weight: 700;
+            font-size: 18px;
+            color: #0092FF;
+            margin-bottom: 4px;
+          }
+          span {
+            font-weight: 400;
+            font-size: 12px;
+            color: #ffffff;
+          }
+          i {
+            font-style: normal;
+            color: #c1c8d3;
+          }
+          // display: flex;
+          // flex-direction: column;
+          // justify-content: center;
+        }
+        .Energy:first-child + div {
+          div {
+            height: 42px;
+            background: url(./img/energy-blue.svg) center top no-repeat;
+            text-align: center;
+            line-height: 70px;
+            font-size: 16px;
+          }
+          p {
+            text-align: center;
+            padding-top: 5px;
+            font-size: 12px;
+            color: #fff;
+            font-weight: normal;
+          }
+        }
+        .Energy:first-child + div + div {
+          div {
+            height: 42px;
+            background: url(./img/energy-jian.svg) center top no-repeat;
+            text-align: center;
+            line-height: 70px;
+            font-size: 16px;
+          }
+          p {
+            text-align: center;
+            padding-top: 5px;
+            font-size: 12px;
+            color: #fff;
+            font-weight: normal;
+          }
+        }
+        .Energy-electric {
+          flex: 1;
+          display: flex;
+          background: none;
+          padding: 0px;
+          img {
+            width: 58px;
+            height: 50px;
+          }
+          div {
+            margin-left: 12px;
+            width: calc(100% - 58px);
+            font-size: 12px;
+            p {
+              font-size: 12px;
+            }
+            span {
+              b {
+                font-weight: 700;
+                font-size: 18px;
+                color: #0092FF;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ant-spin-nested-loading .ant-spin-container::after {
+    background: none;
+  }
+  .ant-spin-nested-loading > div > .ant-spin {
+    top: 0px;
+  }
+  .ant-tree .ant-tree-switcher {
+    width: 12px;
+  }
+  .ant-tree-list {
+    margin-left: 12px;
+  }
+  .ant-tree .ant-tree-indent-unit{
+	  width: 12px;
+  }
+  .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{
+	  margin-left: -16px;
+  }
+}
+.generating-cockpit::-webkit-scrollbar {
+  display: none;
+}
+
+/* 或者设置滚动条宽度为0 */
+.generating-cockpit::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+@font-face {
+  font-family: "PangMenZhengDao";
+  src: url("../../style/fonts/PangMenZhengDaoBiaoTiTiMianFeiBan-2.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.nodestyle {
+  width: auto !important;
+  min-width: 170px !important;
+  max-width: 280px !important;
+}
+@media (min-height: 950px) {
+  .generating-cockpit {
+	max-height: 100%;
+	height: 100%;
+	.generating-cockpit-map{
+		height: 100%;
+	}
+	.generating-cockpit-Energy-income-block{
+		bottom: 16px;
+		top: inherit;
+		
+	}
+  }
+}
+// @media (max-height: 800px) {
+//   .generating-cockpit {
+//     height: 100%;
+// 	.generating-cockpit-quantity-of-electricity{
+// 		position: absolute;
+// 		top: 14px;
+// 		right: 20px;
+// 		// bottom: 312px;
+// 		// display: grid;
+// 		    /* grid-template-columns: 1fr 200px; */
+// 		    // gap: 0px;
+// 		.generating-cockpit-quantity-of-electricity-load{
+// 			background: rgba(13,16,22,0.4);
+// 			padding: 6px 8px;
+// 			min-width: 352px;
+// 			backdrop-filter: blur(10px);
+// 			margin-bottom: 10px;
+// 			.generating-cockpit-quantity-of-electricity-load-title{
+// 				font-family: PangMenZhengDao, PangMenZhengDao;
+// 				font-weight: 400;
+// 				font-size: 14px;
+// 				color: #FFFFFF;
+// 				padding-bottom: 4px;
+// 				position: relative;
+// 				.generating-cockpit-Energy-block-title-header::before{
+// 					content: '';
+// 					display: inline-block;
+// 					width: 4px;
+// 					height: 4px;
+// 					border: 2px solid #FFF;
+// 					border-radius: 50% 50%;
+// 					vertical-align: 1px;
+// 					margin-right: 7px;
+// 				}
+// 				.generating-cockpit-Energy-block-title-header::after {
+// 					content: '';
+// 					display: inline-block;
+// 					width: 100%;
+// 				    height: 1.5px;
+// 				    background-image: linear-gradient(to right, rgba(10, 186, 181, 0.50), rgba(10, 186, 181, 0.30)
+// 					, rgba(10, 186, 181, 0.30),rgba(255, 255, 255, 0.1)
+// 					,transparent);
+// 				    background-size: 100% 100%, 200% 100%, 300% 100%;
+// 				    background-repeat: no-repeat;
+// 				    margin-top: 10px;
+// 					position: absolute;
+// 					bottom: 0px;
+// 					left: 0px;
+// 				}
+// 			}
+// 			.generating-cockpit-quantity-of-electricity-load-num{
+// 				width: 100%;
+// 				display: flex;
+// 				align-items: center;
+// 				justify-content: center;
+// 				margin-top: 12px;
+// 				div{
+// 					flex: 1;
+// 					position: relative;
+// 					p{
+// 						font-family: D-DIN, D-DIN;
+// 						font-weight: 700;
+// 						font-size: 16px;
+// 						color: #0ABAB5;
+// 						padding: 0px;
+// 						margin: 0px;
+// 					}
+// 					span{
+// 						font-family: PingFang SC, PingFang SC;
+// 						font-weight: 400;
+// 						font-size: 12px;
+// 						color: #FFFFFF;
+// 					}
+// 				}
+// 				div::after{
+// 					content: '';
+// 					display: inline-block;
+// 					width: 1.5px;
+// 					height: 100%;
+// 					background:linear-gradient(244deg,rgba(69, 252, 247,0) 0%,rgba(69, 252, 247, 1) 50%,rgba(69, 252, 247,0) 100%);
+// 					background-size: 100% 100%, 200% 100%, 300% 100%;
+// 					background-repeat: no-repeat;
+// 					margin-top: 10px;
+// 					position: absolute;
+// 					bottom: 0px;
+// 					right: 20px;
+
+// 				}
+// 				div:nth-child(3)::after{
+// 					display: none;
+// 				}
+// 			}
+// 			.generating-cockpit-quantity-of-electricity-load-num-Energy{
+// 				width: 100%;
+// 				display: flex;
+// 				padding-top: 10px;
+// 				.Energy{
+// 					flex: 1;
+// 					p{
+// 						font-weight: 700;
+// 						font-size: 16px;
+// 						color: #0ABAB5;
+// 						margin-bottom: 4px;
+// 					}
+// 					span{
+// 						font-weight: 400;
+// 						font-size: 12px;
+// 						color: #FFFFFF;
+// 					}
+// 					// display: flex;
+// 					// flex-direction: column;
+// 					// justify-content: center;
+// 				}
+// 				.Energy:first-child+div{
+// 					div{
+// 						height: 32px;
+// 						background: url(./img/energy-blue.svg) center top no-repeat;
+// 						background-size: contain;
+// 						text-align: center;
+// 						line-height: 54px;
+// 						font-size: 16px;
+// 						font-size: 14px;
+// 					}
+// 					p{
+// 						text-align: center;
+// 						padding-top: 5px;
+// 						font-size: 12px;
+// 						color: #FFF;
+// 						font-weight: normal;
+// 					}
+
+// 				}
+// 				.Energy:first-child+div+div{
+// 					div{
+// 						height: 32px;
+// 						background: url(./img/energy-jian.svg) center top no-repeat;
+// 						background-size: contain;
+// 						text-align: center;
+// 						line-height: 54px;
+// 						font-size: 14px;
+// 					}
+// 					p{
+// 						text-align: center;
+// 						padding-top: 5px;
+// 						font-size: 12px;
+// 						color: #FFF;
+// 						font-weight: normal;
+// 					}
+// 				}
+// 				.Energy-electric{
+// 					flex: 1;
+// 					display: flex;
+// 					background: none;
+// 					padding: 0px;
+// 					img{
+// 						width: 46.4px;
+// 						height: 40px;
+// 					}
+// 					div{
+// 						margin-left: 12px;
+// 						width: calc(100% - 58px);
+// 						font-size: 12px;
+// 						p{
+// 							font-size: 12px;
+// 						}
+// 						span{
+// 							b{
+// 								font-weight: 700;
+// 								font-size: 18px;
+// 								color: #0ABAB5;
+// 							}
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+
+//   }
+
+// }

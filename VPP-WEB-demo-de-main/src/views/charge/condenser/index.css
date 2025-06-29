@@ -1,0 +1,157 @@
+.navigation{
+	height: 100%;
+}
+.ant-tree{
+	margin-top: 15px;
+}
+.adjustableheader .daylists{
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	
+}
+.headeradgust{
+	background: #FFFFFF;
+}
+/* .danweiTable{
+	background: #FFFFFF;
+	margin-top: 6px;
+} */
+.ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
+	/* background: none; */
+	color: #FFFFFF;
+}
+.ant-pagination-item-active{
+	background: none;
+}
+.danwei{
+	/* width: 26/0px; */
+	font-size: 14px;
+	text-align: left;
+	width: 240px;
+	height: 54px;
+	line-height: 54px;
+	padding: 0px 20px;
+	background: rgba(0, 146, 255, 0.1);
+	/* line-height: 40px; */
+	/* padding-right: 20px; */
+	margin-left: 30px;
+	margin-bottom: 10px;
+	/* color: #2A2B40; */
+	float: right;
+}
+.danwei span{
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #049B4E;
+	float: right;
+}
+.ant-tree .ant-tree-node-content-wrapper{
+	background: none !important;
+}
+.headeradgust button{
+	vertical-align: top;
+}
+.ant-spin-nested-loading>div>.ant-spin{
+	top: 10%;
+}
+.nodeTypes{
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 0px;
+	display: flex;
+}
+.nodeTypes li{
+	flex:1;
+	list-style: none;
+	float: left;
+	width: 93px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid #D1D2D6;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #2A2B40;
+	margin: 0px 16px;
+	cursor: pointer;
+}
+.nodeTypes .nodeactive{
+	border: 1px solid #1890FF;
+	color: #1890FF;
+}
+.navigationsearch{
+	padding: 15px 15px;
+}
+.description{
+	color: #FFFFFF;
+	line-height: 50px;
+	margin-left: 10px;
+	padding-left: 20px;
+	float: left;
+	font-size: 12px;
+}
+#chart-container{
+	position: relative;
+	height: 400px;
+}
+.alliconemName{
+	height: 100%;
+}
+.iconemName{
+	position: absolute;
+	top: 8px;
+	font-size: 12px;
+	margin-left: 6px;
+	color: #FFFFFF;
+}
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner{
+	background: #0092FF;
+	border-color: #0092FF;
+}
+
+.ant-checkbox-input:focus+.ant-checkbox-inner, .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner{
+	border-color: #0092FF;
+}
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner:hover{
+	border-color: #0092FF;
+}
+.ant-tree-checkbox-inner:hover{
+	border-color: #0092FF;
+}
+.ant-cascader-menu-item-expand .ant-cascader-menu-item-expand-icon, .ant-cascader-menu-item-loading-icon{
+	color: #FFFFFF;
+}
+.incomeList span{
+	display: inline-block;
+	width: 65px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid #D1D2D6;
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFF;
+	margin-right: 12px;
+	/* margin-left: 10px; */
+	cursor: pointer;
+	/* margin: 0px 15px; */
+}
+.ant-picker-input input{
+	color: aliceblue !important;
+}
+.ant-select-selector input{
+	color: aliceblue !important;
+}
+
+
+
+
+
+
+
+

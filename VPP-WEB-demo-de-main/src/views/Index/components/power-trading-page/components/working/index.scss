@@ -1,0 +1,675 @@
+.working-wrapper{
+    position: relative;
+}
+.main-strategy-content{
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+    .robot-icon{
+        display: inline-block;
+        width: 46px;
+        height: 40px;
+        background-image: url(../../../../assets/xiaoda_icon.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 18px;
+        position: absolute;
+    }
+    .robot-gif-icon{
+        display: inline-block;
+        width: 46px;
+		height: 40px;
+		background-size: contain;
+        background-image:url(../../../../assets/xiaoda_icon.png);
+		background-position: right center;
+        background-repeat: no-repeat;
+        margin-right: 18px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }   
+}
+.main-strategy-content{
+    display: flex;
+    flex-direction: column;
+}
+.working-robot-gif-icon{
+    display: inline-block;
+    width: 46px;
+    height: 40px;
+    background-size: contain;
+    background-image: url(../../../../assets/xiaoda_icon.png);
+    background-position: left center;
+    // background-size: 64px 64px;
+    background-repeat: no-repeat;
+    margin-right: 18px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+}
+
+.working-robot-icon{
+    display: inline-block;
+    width: 46px;
+    height: 40px;
+    background-image: url(../../assets/xiaoda_icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 18px;
+    position: absolute;
+}
+
+.working-loading-icon-wrap{
+    display: flex;
+    background: rgba(143, 149, 158, 0.1);
+    justify-content: left;
+    margin: 0 24px 0 24px;
+    .working-loading-icon{
+        display: inline-block;
+        width: 48px;
+        height: 28px;
+        background-image: url(../../assets/loading.gif);
+        background-size: cover;
+        background-position: center;
+    }
+
+}
+
+.main-strategy{
+    width:calc(100% - 68px);
+    background: rgba(42,43,64,0.1);
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.3663);
+    border: 2px solid #0092FF;
+    border-radius: 10px;
+    margin-left: 70px;
+    margin-bottom: 35px;
+    .main-strategy-title{
+        padding: 0 24px;
+        width: 100;
+        display: flex;
+        align-items: center;
+        height: 42px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        background: rgba(255,255,255,0.1);
+    }
+
+    .energy-content-wrapper{
+        width: 100%;
+        overflow: hidden;
+        .energy-content-wrapper-top{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px 9px 24px;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            width: 100%;
+            .edit-btn{
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                width: 56px;
+                height: 26px;
+                background: #0092FF;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 0;
+            }
+            .edit-btn:hover{
+                background: #0092FF;
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+            }
+            .exit-edit-btn{
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                width: 56px;
+                height: 26px;
+                background: #0092FF;
+                border-radius: 3px 3px 3px 3px;
+            }
+            .exit-edit-btn:hover{
+                background: #0092FF;
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+            }
+            .copy-btn{
+                width: 93px;
+                height: 32px;
+                border-radius: 3px;
+                border: 1px solid #0092FF;
+                background: transparent;
+                color: #0092FF;
+                margin-right: 10px;
+            }
+            .copy-btn:hover{
+                border-radius: 3px 3px 3px 3px;
+                color: #0092FF;
+                border: 1px solid #0092FF;
+            }
+            .strategy-distribute{
+                width: 107px;
+                height: 32px;
+                border: #0092FF;
+                background: #0092FF;
+                border-radius: 3px;
+                font-family: PingFangSC, PingFang SC;
+                font-weight: 400;
+                font-size: 14px;
+                color: #FFFFFF;
+            }
+            .strategy-distribute:hover{
+                background: #0092FF;
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 14px;
+                color: #FFFFFF;
+            }
+        }
+        .loading-wrapper{
+            padding-left: 13px;
+            .loading-icon{
+                display: inline-block;
+                width: 60px;
+                height: 42px;
+                background-image: url(../../../../assets/loading.gif);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: left center;
+                background-position: -10px 8px;
+            }
+        }
+        .energy-content-wrapper-bottom{
+            background: rgba(143,149,158,0.1);
+            border-radius: 4px 4px 4px 4px;
+            margin: 0 24px;
+            padding: 20px 10px;
+            opacity: 0.8;
+           
+            .energy-content-center{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 30px;
+                .energy-content-center-left{
+                    display: flex;
+                    align-items: center;
+                    .unit{
+                        font-family: PingFangSC, PingFang SC;
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #FFFFFF;
+                        margin-right: 30px;
+                    }
+                    .type-wrap{
+                        margin-right: 24px;
+                        .type-dot-01{
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            background: #186AC3;
+                            border-radius: 12px;
+                            margin-right: 10px;
+                        }
+                        .type-dot-02{
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            background: #2C98FB;
+                            border-radius: 12px;
+                            margin-right: 10px;
+                        }
+                        .type-dot-03{
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            background: #86BAF6;
+                            border-radius: 12px;
+                            margin-right: 10px;
+                        }
+                        .type-dot-04{
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            background: #EEF0FD;
+                            border-radius: 12px;
+                            margin-right: 10px;
+                        }
+                        .text-type{
+                            font-family: PingFangSC, PingFang SC;
+                            font-weight: 400;
+                            font-size: 14px;
+                            color: #FFFFFF;
+                        }
+                    }
+                    .type-wrap:last-child{
+                        margin-right: 0;
+                    }
+                }
+                .energy-content-center-right{
+                    display: flex;
+                    align-items: center;
+                    .dots-text-wrap{
+                        margin-left: 24px;
+                        .green-dot{
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            background: #32D64B;
+                            border-radius: 2px;
+                            margin-right: 10px;
+                        }
+                        .yellow-dot{
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            background: #FF9500;
+                            border-radius: 2px;
+                            margin-right: 10px;
+                        }
+                        .grey-dot{
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            background: #214469;
+                            border-radius: 2px;
+                            margin-right: 10px;
+                        }
+                        .dot-text{
+                            font-family: PingFangSC, PingFang SC;
+                            font-weight: 400;
+                            font-size: 14px;
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+              
+            }
+        
+            .energy-content-table{
+                .table-bg{
+                  height: 150px;
+                  margin-top: 20px;
+                  position: relative;
+                  .table-bg-timer{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 30px 0 130px;
+                    margin-bottom: 8px;
+                    .table-bg-timer-item{
+                        font-family: PingFangSC, PingFang SC;
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #FFFFFF;
+                        position: relative;
+                    }
+                  }
+                  .table-bg-top{
+                    display: flex;
+                    padding: 0 46px 0 145px;
+        
+                    .table-bg-top-item{
+                        width: 96px;
+                        height: 9px;
+                        border-left: 1px solid #8F959E;
+                      }
+                    .table-bg-top-item:last-child{
+                        width: 96px;
+                        height: 9px;
+                        border-right: 1px solid #8F959E;
+                        transform-origin: left bottom;
+                        transform: scale(0.92, 1);
+                    }
+                  }
+                  .table-bg-bottom{
+                    display: flex;
+                    padding: 0 46px 0 145px;
+                    height: 85px;
+                    .table-bg-bottom-item{
+                        width: 96px;
+                        border-left:1px solid rgba(143, 149, 158, .2)
+                    }
+                    .table-bg-bottom-item:last-child{
+                        border-right: 1px solid rgba(143, 149, 158, .2);
+                        width: 96px;
+                        transform-origin: left bottom;
+                        transform: scale(0.92, 1);
+                    }
+                  }
+        
+                  .electricity-wrap{
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    top: 35px;
+                    padding: 0 46px 0 107px;
+                    width: calc(100%);
+                    .electricity-text{
+                        font-family: PingFangSC, PingFang SC;
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #FFFFFF;
+                        flex-shrink: 0;
+                        margin-right: 14px;
+                        
+                    }
+                    .electricity-price{
+                        display: flex;
+                        flex-grow: 1;
+                        .electricity-price-item{
+                            height:24px;
+                            flex-grow: 1;
+                            width: 0.96;
+                        }
+                        .electricity-price-item:last-child{
+                            position: relative;
+                            left: -3px;
+                        }
+                    }
+                  }
+             
+                }
+                .energy-content-table-bottom{
+                    // top: 70px;
+                    position: absolute;
+                    top: 60px;
+                    width: calc(100%);
+                    padding-bottom: 50px;
+                    .table-content-item-wrap{
+                        margin-top: 16px;
+                        margin-bottom: 16px;
+                    }
+                  
+                }
+             
+            }
+        }
+    }
+
+}
+
+.working-chart-wrap{
+    width: 100%;
+    .working-chart-title-wrap{
+        padding: 24px 24px 9px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        .trade-price-chart-query-wrap{
+            display: flex;
+            .trade-price-chart-query-time{
+                margin-right: 16px;
+                height: 26px;
+            }
+            .trade-price-chart-query-btn{
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                width: 56px;
+                height: 26px;
+                background: #0092FF;
+                border-radius: 3px 3px 3px 3px;
+            }
+            .trade-price-chart-query-btn:hover{
+                background: #0092FF;
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+            }
+        }
+    }
+    .loading-wrapper{
+        padding-left: 13px;
+        .loading-icon{
+            display: inline-block;
+            width: 60px;
+            height: 42px;
+            background-image: url(../../../../assets/loading.gif);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-position: -10px 8px;
+        }
+    }
+    .working-chart-content-wrap{
+        margin: 0 24px;
+        border-radius: 4px;
+        height: 280px;
+        background: rgba(143,149,158,0.1);
+        border-radius: 4px 4px 0px 0px;
+        position: relative;
+        .trade-price-legend-tips{
+            position: absolute;
+            top: 18px;
+            left: 28px;
+            display: flex;
+            align-items: center;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 10px;
+            color: #FFFFFF;
+            .trade-price-legend-tips-item{
+                margin-bottom: 0;
+                display: flex;
+                align-items: center;
+                margin-right: 25px;
+            }
+            .trade-price-legend-icon-1{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #43E3E3;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+            .trade-price-legend-icon-2{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #0092FF;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+            .trade-price-legend-icon-3{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #8AC2FF;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+            .trade-price-legend-icon-4{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #257DDC;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+        }
+
+        .empty-container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            .empty-icon{
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                background-image: url(../../../../assets/empty.png);
+                background-size: cover;
+                background-position: center;
+            }
+            .empty-text{
+                color: #fff;
+                font-size: 14px;
+            }
+        }
+    }
+
+        .weather-chart-title-wrap{
+            padding: 24px 24px 9px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            .weather-hart-query-wrap{
+                display: flex;
+                .weather-chart-query-time{
+                    margin-right: 16px;
+                    height: 26px;
+                }
+                .weather-chart-query-btn{
+                    font-family: PingFang SC, PingFang SC;
+                    font-weight: 400;
+                    font-size: 12px;
+                    color: #FFFFFF;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    width: 56px;
+                    height: 26px;
+                    background: #0092FF;
+                    border-radius: 3px 3px 3px 3px;
+                }
+                .weather-chart-query-btn:hover{
+                    background: #0092FF;
+                    font-family: PingFang SC, PingFang SC;
+                    font-weight: 400;
+                    font-size: 12px;
+                    color: #FFFFFF;
+                }
+            }
+        }
+        .loading-wrapper{
+            padding-left: 13px;
+            .loading-icon{
+                display: inline-block;
+                width: 60px;
+                height: 42px;
+                background-image: url(../../../../assets/loading.gif);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: left center;
+                background-position: -10px 8px;
+            }
+        }
+        .weather-chart-content-wrap{
+            margin: 0 24px;
+            border-radius: 4px;
+            height: 280px;
+            background: rgba(143,149,158,0.1);
+            border-radius: 4px 4px 0px 0px;
+            position: relative;
+            .weather-legend-tips{
+                position: absolute;
+                top: 18px;
+                left: 28px;
+                display: flex;
+                align-items: center;
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 10px;
+                color: #FFFFFF;
+                .weather-legend-tips-item{
+                    margin-bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    margin-right: 25px;
+                }
+                .weather-legend-icon-1{
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    background: #43E3E3;
+                    border-radius: 3px 3px 3px 3px;
+                    margin-right: 8px;
+                }
+                .weather-legend-icon-2{
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    background: #0092FF;
+                    border-radius: 3px 3px 3px 3px;
+                    margin-right: 8px;
+                }
+                .weather-legend-icon-3{
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    background: #8AC2FF;
+                    border-radius: 3px 3px 3px 3px;
+                    margin-right: 8px;
+                }
+                .weather-legend-icon-4{
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    background: #257DDC;
+                    border-radius: 3px 3px 3px 3px;
+                    margin-right: 8px;
+                }
+            }
+    
+            .empty-container{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                .empty-icon{
+                    display: inline-block;
+                    width: 50px;
+                    height: 50px;
+                    background-image: url(../../../../assets/empty.png);
+                    background-size: cover;
+                    background-position: center;
+                }
+                .empty-text{
+                    color: #fff;
+                    font-size: 14px;
+                }
+            }
+        }
+}
+

@@ -1,0 +1,377 @@
+.indexContent {
+  a {
+    // color: #FFFFFF;
+  }
+  .ant-layout-sider-children {
+  }
+
+  .collspanbtn {
+    display: inline-block;
+    float: left;
+    color: #ffffff;
+    margin-left: 16px;
+    cursor: pointer;
+  }
+  .hind-collspanbtn {
+    .anticon-menu-fold {
+      display: none;
+    }
+  }
+
+  .silderHed {
+    width: 100%;
+    // position: relative;
+	overflow: visible !important;
+    ul {
+      padding: 0;
+      padding-left: 17px;
+      background: #212029;
+      padding-top: 24px;
+      margin: 0px;
+      height: 100%;
+      // ma-width: 200px;
+      li {
+        list-style: none;
+        color: #ffffff;
+        text-align: center;
+        padding: 12px 0px;
+        padding-bottom: 16px;
+        .menuItem {
+          border-left: 1px solid #4a4953;
+          margin-left: 12px;
+          margin-top: 10px;
+          margin-bottom: 24px;
+          a {
+            width: 50%;
+            display: inline-block;
+          }
+          span {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 12px;
+            color: #8f959e;
+            // margin: 0px 10px;
+            margin-right: 6px;
+            margin-left: 7px;
+            margin-bottom: 8px;
+            cursor: pointer;
+          }
+          .active {
+            background: #0092FF;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #ffffff;
+          }
+        }
+        p {
+          margin: 0px;
+          // padding-bottom: 8px;
+          font-size: 14px;
+          color: #ffffff;
+          .anticon {
+            margin-right: 13px;
+          }
+          .inactive {
+            // padding: 4px 8px;
+            min-width: 68px;
+            cursor: pointer;
+            a {
+              color: #ffffff !important;
+            }
+          }
+          .active {
+            display: inline-block;
+            background: #0092FF;
+            border-radius: 3px;
+            font-size: 14px;
+            color: #ffffff;
+            padding: 0px 4px;
+
+            // width: 60px;
+            min-width: 68px;
+            // padding: 4px 4px;
+            cursor: pointer;
+
+            a {
+              color: #ffffff !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.NewContent {
+  // height: '100%';
+  // overflow:'auto' ;
+  // float:'right'
+}
+.ant-layout-content {
+  overflow: auto !important;
+}
+.bgblue {
+  .silderHed {
+    ul {
+      li {
+        padding-bottom: 16px;
+      }
+    }
+  }
+}
+.in-assist-mode {
+  width: 100px;
+  height: 28px;
+  background: #0092FF;
+  border-radius: 271px 271px 271px 271px;
+  border: 1px solid #0092FF;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  margin-left: 24px;
+  cursor: pointer;
+  .in-assist-mode-icon {
+    flex-shrink: 0;
+    margin-right: 7px;
+    display: inline-block;
+    width: 19px;
+    height: 14px;
+    background-image: url(./assets/coplit-icon.png);
+    background-size: cover;
+    position: relative;
+  }
+  span {
+    margin-right: 12px;
+    position: relative;
+    top: -1px;
+  }
+  .right-icon {
+    display: inline-block;
+    background-image: url(./assets/right-icon.png);
+    background-size: cover;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    top: 1px;
+  }
+}
+
+.out-assist-mode {
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  margin-left: 20px;
+  position: relative;
+  cursor: pointer;
+  .out-assist-mode-icon {
+    margin-right: 6px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(./assets/out-assist-mode-icon.png);
+    background-size: cover;
+    position: relative;
+    top: 3px;
+  }
+}
+
+.submit-declare-table {
+  margin-bottom: 10px;
+  .ant-table-tbody {
+    background-color: rgba(143, 149, 158, 0.2) !important;
+    margin-bottom: 10px;
+  }
+}
+.silderHed:hover {
+  overflow-y: auto;
+}
+.silderHed {
+  width: 100%;
+  // height: 100%;
+	overflow-x: visible !important;
+  margin-top: 50px;
+  overflow: auto;
+  overflow-y: hidden;
+  ul {
+    padding: 0;
+    padding-left: 17px;
+    background: #212029;
+    padding-top: 24px;
+    margin: 0px;
+    width: 216px;
+    // width: calc(100% - 5px);
+    // ma-width: 200px;
+    li {
+      list-style: none;
+      color: #ffffff;
+      // text-align: center;
+      // padding: 12px 0px;
+      // padding-bottom: 16px;
+      .menuItem {
+        border-left: 1px solid #4a4953;
+        margin-left: 12px;
+        margin-top: 10px;
+        margin-bottom: 24px;
+        a {
+          min-width: 50%;
+          display: inline-block;
+        }
+        span {
+          display: inline-block;
+          padding: 4px 8px;
+          font-size: 12px;
+          color: #8f959e;
+          // margin: 0px 10px;
+          margin-right: 6px;
+          margin-left: 7px;
+          margin-bottom: 8px;
+          cursor: pointer;
+        }
+        .active {
+          background: #0092FF;
+          border-radius: 3px;
+          font-size: 12px;
+          color: #ffffff;
+        }
+      }
+      p {
+        margin: 0px;
+        // padding-bottom: 8px;
+        font-size: 14px;
+        color: #ffffff;
+        .anticon {
+          margin-right: 13px;
+        }
+        .inactive {
+          // padding: 4px 8px;
+          min-width: 68px;
+          cursor: pointer;
+          a {
+            color: #ffffff !important;
+          }
+        }
+        .active {
+          display: inline-block;
+          background: #0092FF;
+          border-radius: 3px;
+          font-size: 14px;
+          color: #ffffff;
+          padding: 0px 4px;
+
+          // width: 60px;
+          min-width: 68px;
+          // padding: 4px 4px;
+          cursor: pointer;
+
+          a {
+            color: #ffffff !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.shangtang {
+  .collspanbtn {
+    margin-top: 5px;
+  }
+  p {
+    display: inline-block;
+  }
+  .shangtang-logo {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    background-image: url(../../style/shangtang/shangtang-logo.png);
+    background-size: 100px 40px;
+    height: 60px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    left: 10px;
+  }
+  .damao-logo {
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-image: url(../../style/shangtang/damao-logo.png);
+    background-size: contain;
+    height: 60px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .in-assist-mode {
+    top: -24px;
+  }
+
+  .out-assist-mode {
+    top: -24px;
+  }
+}
+.ant-popover-inner-content-menu {
+  // background: #2F4A4E;
+  overflow: hidden;
+  width: 225px;
+  p {
+    margin-bottom: 0px;
+  }
+}
+.ant-popover-placement-rightTop > .ant-popover-arrow {
+  // background: #0092FF;
+}
+.ant-popover .ant-popover-inner {
+  background: #173348;
+  font-size: 14px;
+  color: #ffffff;
+}
+.ant-popover .ant-popover-arrow:before {
+  background: #173348;
+}
+.ant-layout .ant-layout-sider {
+  // position: relative;
+  overflow: visible !important;
+}
+.silderHed-collapsed {
+  width: 10px;
+  height: 92px;
+  background: #212029;
+  line-height: 92px;
+  box-shadow: 2px 0px 6px 0px rgba(0, 21, 41, 0.35);
+  // position: absolute;
+  // left: 0px;
+  // top: 162px;
+  border-radius: 0px 10px 10px 0px;
+  color: #ffffff;
+  text-align: center;
+  z-index: 99;
+  margin-right:-10px;
+  float:right;
+  margin-top:150px;
+  img {
+    margin-left: -3px;
+  }
+}
+.silderHed-collapsed-active {
+  width: 10px;
+  height: 92px;
+  background: #212029;
+  line-height: 92px;
+  box-shadow: 2px 0px 6px 0px rgba(0, 21, 41, 0.35);
+  // position: absolute;
+  // left: 220px;
+  // top: 162px;
+  border-radius: 0px 10px 10px 0px;
+  color: #ffffff;
+  text-align: center;
+  z-index: 99;
+  margin-right:-10px;
+  float:right;
+  margin-top:200px;
+position: relative;
+    z-index: 9;
+  img {
+    margin-left: -3px;
+  }
+}

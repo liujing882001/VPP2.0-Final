@@ -1,0 +1,24 @@
+package com.example.vvpscheduling.model;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+@Data
+public class PointMonthModel implements Serializable {
+    private String nodeId;
+    private String systemId;
+    private Double pointValue;
+    private String ts;
+
+
+    public PointMonthModel() {
+    }
+
+    public PointMonthModel(String nodeId, String systemId, Double pointValue, String ts) {
+        this.nodeId = nodeId;
+        this.systemId = systemId;
+        this.pointValue = pointValue;
+        this.ts = ts;
+    }
+}

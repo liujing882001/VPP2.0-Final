@@ -1,0 +1,22 @@
+/* 房源列表样式： */
+.houseList {
+  position: fixed;//固定定位
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 330px;
+  transition: all 1s;//过渡效果
+  transform: translate3d(0, 330px, 0);//向下移动列表的高度
+  background: #fff;
+  z-index: 5;
+}
+.show {
+  transform: translate3d(0, 0, 0);//恢复原位置
+}
+ 
+.houseItems {
+  padding: 0 10px;
+  overflow-y: auto;//占满垂直方向剩余高度
+  height: 100%;
+  padding-bottom: 45px;
+}

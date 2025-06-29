@@ -1,0 +1,489 @@
+[
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "ZM-002",
+                                                "key": "ZM-002",
+                                                "load": 1000,
+                                                "title": "达卯照明设备",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 1,
+                                        "id": "zhaoming",
+                                        "key": "zhaoming_dec2d319acb390a9ff146201ca954a83",
+                                        "load": 0,
+                                        "title": "照明系统",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 1,
+                                "id": "dec2d319acb390a9ff146201ca954a83",
+                                "key": "dec2d319acb390a9ff146201ca954a83",
+                                "load": 0,
+                                "title": "不在线节点检查",
+                                "type": "NODE"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "9",
+                                                "key": "9",
+                                                "load": 2.5,
+                                                "title": "2F小会议室空调",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "2",
+                                                "key": "2",
+                                                "load": 2.5,
+                                                "title": "2F办公区左空调",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "32",
+                                                "key": "32",
+                                                "load": 2.5,
+                                                "title": "2F办公区右空调",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "7",
+                                                "key": "7",
+                                                "load": 2.5,
+                                                "title": "2F大会议室空调",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "29",
+                                                "key": "29",
+                                                "load": 2.5,
+                                                "title": "秦总办公室空调",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 5,
+                                        "id": "kongtiao",
+                                        "key": "kongtiao_bcd3587aeae63c13a1acab7efb245aaf",
+                                        "load": 0,
+                                        "title": "空调系统",
+                                        "type": "SYSTEM"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "8",
+                                                "key": "8",
+                                                "load": 0.25,
+                                                "title": "2F排风",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "1",
+                                                "key": "1",
+                                                "load": 0.25,
+                                                "title": "2F办公区长筒灯",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "33",
+                                                "key": "33",
+                                                "load": 0.25,
+                                                "title": "2F办公区筒灯",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "34",
+                                                "key": "34",
+                                                "load": 0.25,
+                                                "title": "2F大会议室长筒灯",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "6",
+                                                "key": "6",
+                                                "load": 0.25,
+                                                "title": "2F大会议室筒灯",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "35",
+                                                "key": "35",
+                                                "load": 0.25,
+                                                "title": "2F照明",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 6,
+                                        "id": "zhaoming",
+                                        "key": "zhaoming_bcd3587aeae63c13a1acab7efb245aaf",
+                                        "load": 0,
+                                        "title": "照明系统",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 11,
+                                "id": "bcd3587aeae63c13a1acab7efb245aaf",
+                                "key": "bcd3587aeae63c13a1acab7efb245aaf",
+                                "load": 0,
+                                "title": "达卯智能2F",
+                                "type": "NODE"
+                            }
+                        ],
+                        "deviceSize": 12,
+                        "id": "1000815",
+                        "key": "1000815",
+                        "load": 0,
+                        "title": "徐汇区",
+                        "type": "COUNTY"
+                    }
+                ],
+                "deviceSize": 12,
+                "id": "1000008",
+                "key": "1000008",
+                "load": 0,
+                "title": "上海市",
+                "type": "CITY"
+            }
+        ],
+        "deviceSize": 12,
+        "id": "8",
+        "key": "8",
+        "load": 0,
+        "title": "上海市",
+        "type": "PROVINCE"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "RES-003-L",
+                                                "key": "RES-003-L",
+                                                "load": 2000,
+                                                "title": "设备",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 1,
+                                        "id": "kongtiao",
+                                        "key": "kongtiao_3da72e052a0b48759b0f4633df42235a",
+                                        "load": 0,
+                                        "title": "空调系统",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 1,
+                                "id": "3da72e052a0b48759b0f4633df42235a",
+                                "key": "3da72e052a0b48759b0f4633df42235a",
+                                "load": 0,
+                                "title": "深圳某工业设备新材料股份有限公司",
+                                "type": "NODE"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "RES-001-AL",
+                                                "key": "RES-001-AL",
+                                                "load": 2000,
+                                                "title": "设备",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 1,
+                                        "id": "kongtiao",
+                                        "key": "kongtiao_176c0991f24e30c2b25a9dbf1185b7b9",
+                                        "load": 0,
+                                        "title": "空调系统",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 1,
+                                "id": "176c0991f24e30c2b25a9dbf1185b7b9",
+                                "key": "176c0991f24e30c2b25a9dbf1185b7b9",
+                                "load": 0,
+                                "title": "深圳泰伦广场A座",
+                                "type": "NODE"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "RES-002-BL",
+                                                "key": "RES-002-BL",
+                                                "load": 2000,
+                                                "title": "设备",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 1,
+                                        "id": "kongtiao",
+                                        "key": "kongtiao_5eb413037ba16ea6108c12e0d6353be3",
+                                        "load": 0,
+                                        "title": "空调系统",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 1,
+                                "id": "5eb413037ba16ea6108c12e0d6353be3",
+                                "key": "5eb413037ba16ea6108c12e0d6353be3",
+                                "load": 0,
+                                "title": "深圳泰伦广场B座",
+                                "type": "NODE"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-003",
+                                                "key": "DQT-003",
+                                                "load": 1500,
+                                                "title": "其他（冷机）003",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-004",
+                                                "key": "DQT-004",
+                                                "load": 1500,
+                                                "title": "其他（冷机）004",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 2,
+                                        "id": "41b5336fd14dbd553278ce523f7f5363",
+                                        "key": "41b5336fd14dbd553278ce523f7f5363_e907da09fa81619508b3eb881c94e5f8",
+                                        "load": 0,
+                                        "title": "其他",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 2,
+                                "id": "e907da09fa81619508b3eb881c94e5f8",
+                                "key": "e907da09fa81619508b3eb881c94e5f8",
+                                "load": 0,
+                                "title": "测试节点B号_BBBBB",
+                                "type": "NODE"
+                            }
+                        ],
+                        "deviceSize": 5,
+                        "id": "1001972",
+                        "key": "1001972",
+                        "load": 0,
+                        "title": "南山区",
+                        "type": "COUNTY"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-008",
+                                                "key": "DQT-008",
+                                                "load": 2000,
+                                                "title": "其他（冷机）008",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-006",
+                                                "key": "DQT-006",
+                                                "load": 2000,
+                                                "title": "其他（冷机）006",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-007",
+                                                "key": "DQT-007",
+                                                "load": 2000,
+                                                "title": "其他（冷机）007",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 3,
+                                        "id": "41b5336fd14dbd553278ce523f7f5363",
+                                        "key": "41b5336fd14dbd553278ce523f7f5363_151761f652c43d300928948d7fbbb242",
+                                        "load": 0,
+                                        "title": "其他",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 3,
+                                "id": "151761f652c43d300928948d7fbbb242",
+                                "key": "151761f652c43d300928948d7fbbb242",
+                                "load": 0,
+                                "title": "测试节点D号_DDDD",
+                                "type": "NODE"
+                            }
+                        ],
+                        "deviceSize": 3,
+                        "id": "1001976",
+                        "key": "1001976",
+                        "load": 0,
+                        "title": "龙华区",
+                        "type": "COUNTY"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-002",
+                                                "key": "DQT-002",
+                                                "load": 1500,
+                                                "title": "其他（冷机）002",
+                                                "type": "DEVICE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-001",
+                                                "key": "DQT-001",
+                                                "load": 1500,
+                                                "title": "其他（冷机）001",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 2,
+                                        "id": "41b5336fd14dbd553278ce523f7f5363",
+                                        "key": "41b5336fd14dbd553278ce523f7f5363_8a0a9db1304eb368575ce9351130bf51",
+                                        "load": 0,
+                                        "title": "其他",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 2,
+                                "id": "8a0a9db1304eb368575ce9351130bf51",
+                                "key": "8a0a9db1304eb368575ce9351130bf51",
+                                "load": 0,
+                                "title": "测试节点A号_AAAAA",
+                                "type": "NODE"
+                            }
+                        ],
+                        "deviceSize": 2,
+                        "id": "1001973",
+                        "key": "1001973",
+                        "load": 0,
+                        "title": "宝安区",
+                        "type": "COUNTY"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "deviceSize": 0,
+                                                "id": "DQT-005",
+                                                "key": "DQT-005",
+                                                "load": 2000,
+                                                "title": "其他（冷机）005",
+                                                "type": "DEVICE"
+                                            }
+                                        ],
+                                        "deviceSize": 1,
+                                        "id": "41b5336fd14dbd553278ce523f7f5363",
+                                        "key": "41b5336fd14dbd553278ce523f7f5363_94dd2a367a714d0aa1fd23ef2badaa81",
+                                        "load": 0,
+                                        "title": "其他",
+                                        "type": "SYSTEM"
+                                    }
+                                ],
+                                "deviceSize": 1,
+                                "id": "94dd2a367a714d0aa1fd23ef2badaa81",
+                                "key": "94dd2a367a714d0aa1fd23ef2badaa81",
+                                "load": 0,
+                                "title": "测试节点C号_CCCC",
+                                "type": "NODE"
+                            }
+                        ],
+                        "deviceSize": 1,
+                        "id": "1001974",
+                        "key": "1001974",
+                        "load": 0,
+                        "title": "龙岗区",
+                        "type": "COUNTY"
+                    }
+                ],
+                "deviceSize": 11,
+                "id": "1001969",
+                "key": "1001969",
+                "load": 0,
+                "title": "深圳市",
+                "type": "CITY"
+            }
+        ],
+        "deviceSize": 11,
+        "id": "1000018",
+        "key": "1000018",
+        "load": 0,
+        "title": "广东省",
+        "type": "PROVINCE"
+    }
+]

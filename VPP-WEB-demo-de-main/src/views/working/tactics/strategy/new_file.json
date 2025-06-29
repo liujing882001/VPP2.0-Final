@@ -1,0 +1,139 @@
+{
+	 [{
+		children: [{
+			children: [{
+				children: [{
+					children: [{
+						children: [{
+							children: [],
+							deviceSize: 0,
+							id: "YQZM-001",
+							key: "YQZM-001",
+							load: 15.0,
+							title: "照明",
+							type: null
+						}, {
+							children: [],
+							deviceSize: 0,
+							id: "CKZM-001",
+							key: "CKZM-001",
+							load: 15.0,
+							title: "照明",
+							type: null
+						}],
+						deviceSize: 2,
+						id: "094a464aaca148bda5782fa80fd613d4",
+						key: "094a464aaca148bda5782fa80fd613d4_d4c26914bf624ccf8c82478125c68e1d",
+						load: 0.0,
+						title: "园区照明",
+						type: "SYSTEM"
+					}, {
+						children: [{
+							children: [],
+							deviceSize: 0,
+							id: "CKCDZ-001",
+							key: "CKCDZ-001",
+							load: 600.0,
+							title: "充电桩",
+							type: null
+						}],
+						deviceSize: 1,
+						id: "1b0cff9c62fe49c8ada88df001e6d4e1",
+						key: "1b0cff9c62fe49c8ada88df001e6d4e1_d4c26914bf624ccf8c82478125c68e1d",
+						load: 0.0,
+						title: "充电桩系统",
+						type: "SYSTEM"
+					}, {
+						children: [{
+							children: [],
+							deviceSize: 0,
+							id: "YQRSQ-001",
+							key: "YQRSQ-001",
+							load: 40.0,
+							title: "充电桩",
+							type: null
+						}],
+						deviceSize: 1,
+						id: "5c34f44d118c4b5e95d187f96aa81c61",
+						key: "5c34f44d118c4b5e95d187f96aa81c61_d4c26914bf624ccf8c82478125c68e1d",
+						load: 0.0,
+						title: "热水器",
+						type: "SYSTEM"
+					}, {
+						children: [{
+							children: [],
+							deviceSize: 0,
+							id: "YQKT-001",
+							key: "YQKT-001",
+							load: 40.0,
+							title: "空调",
+							type: null
+						}, {
+							children: [],
+							deviceSize: 0,
+							id: "CKKT-001",
+							key: "CKKT-001",
+							load: 20.0,
+							title: "空调",
+							type: null
+						}],
+						deviceSize: 2,
+						id: "7ded202b7a224e2f800881bd634b31e9",
+						key: "7ded202b7a224e2f800881bd634b31e9_d4c26914bf624ccf8c82478125c68e1d",
+						load: 0.0,
+						title: "厂区空调",
+						type: "SYSTEM"
+					}, {
+						children: [{
+							children: [],
+							deviceSize: 0,
+							id: "CKNZ-001",
+							key: "CKNZ-001",
+							load: 0.0,
+							title: "能源总表",
+							type: null
+						}, {
+							children: [],
+							deviceSize: 0,
+							id: "YQNZ-001",
+							key: "YQNZ-001",
+							load: 0.0,
+							title: "能源总表",
+							type: null
+						}],
+						deviceSize: 2,
+						id: "nengyuanzongbiao",
+						key: "nengyuanzongbiao_d4c26914bf624ccf8c82478125c68e1d",
+						load: 0.0,
+						title: "能源总表",
+						type: "SYSTEM"
+					}],
+					deviceSize: 8,
+					id: "d4c26914bf624ccf8c82478125c68e1d",
+					key: "d4c26914bf624ccf8c82478125c68e1d",
+					load: 0.0,
+					title: "测试商业综合体",
+					type: "NODE"
+				}],
+				deviceSize: 8,
+				id: "1000247",
+				key: "1000247",
+				load: 0.0,
+				title: "小店区",
+				type: null
+			}],
+			deviceSize: 8,
+			id: "1000245",
+			key: "1000245",
+			load: 0.0,
+			title: "太原市",
+			type: null
+		}],
+		deviceSize: 8,
+		id: "1000003",
+		key: "1000003",
+		load: 0.0,
+		title: "山西省",
+		type: null
+	}]
+}

@@ -1,0 +1,310 @@
+.generate-project-content {
+  padding: 16px 24px 53px 24px;
+  .generate-project-top {
+    display: flex;
+    justify-content: space-around;
+    .generate-project-top-left {
+      width: 408px;
+      height: 142px;
+      background: rgba(143, 149, 158, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-right: 14px;
+      .generate-project-top-left-title {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 16px;
+        color: #ffffff;
+        width: 260px;
+        height: 40px;
+        background-image: url(../../assets/generate-bg.png);
+        background-size: cover;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 16px;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .generate-project-top-left-content {
+        margin-top: 23px;
+        width: 110px;
+        height: 56px;
+        background-image: url(../../assets/speed-icon.png);
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        font-weight: 700;
+        font-size: 22px;
+        color: #ffffff;
+        small {
+          font-size: 14px;
+          position: relative;
+          top: 3px;
+        }
+      }
+    }
+    .generate-project-top-right {
+      width: 408px;
+      height: 142px;
+      background: rgba(143, 149, 158, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .generate-project-top-right-title {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 16px;
+        color: #ffffff;
+        width: 260px;
+        height: 40px;
+        background-image: url(../../assets/generate-bg.png);
+        background-size: cover;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 16px;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .generate-project-top-right-content {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 500;
+        font-size: 24px;
+        color: #ffffff;
+        margin-top: 31px;
+      }
+    }
+  }
+  .generate-project-center-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 16px;
+    .generate-project-center-1-item {
+      width: 266px;
+      height: 44px;
+      background-image: url(../../assets/center-item-bg.png);
+      background-size: cover;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: 16px;
+      span {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .generate-project-center-1-item-title {
+        font-size: 14px;
+        small {
+          font-size: 12px;
+        }
+      }
+      .generate-project-center-1-item-number {
+        font-size: 18px;
+      }
+    }
+    .generate-project-center-1-item:last-child {
+      margin-right: 0;
+    }
+  }
+  .generate-project-center-2 {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .investors {
+      width: 408px;
+      height: 123px;
+      background: rgba(143, 149, 158, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      display: flex;
+      flex-direction: column;
+      .investors-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 14px;
+        background: rgba(143, 149, 158, 0.1);
+        height: 36px;
+      }
+      .investors-content {
+        display: flex;
+        padding: 19px 94px 21px 94px;
+        justify-content: space-between;
+        flex: 1;
+        .investors-content-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          .investors-content-item-title {
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 12px;
+            color: #d1d2d6;
+          }
+          .investors-content-item-content {
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 500;
+            font-size: 16px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    .electricity-users {
+      width: 408px;
+      height: 123px;
+      background: rgba(143, 149, 158, 0.1);
+      border-radius: 3px 3px 3px 3px;
+      display: flex;
+      flex-direction: column;
+      .electricity-users-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: PingFang SC, PingFang SC;
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 14px;
+        background: rgba(143, 149, 158, 0.1);
+        height: 36px;
+      }
+      .electricity-users-content {
+        display: flex;
+        padding: 19px 40px 21px 40px;
+        justify-content: space-between;
+        flex: 1;
+        .electricity-users-content-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          .electricity-users-content-item-title {
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 12px;
+            color: #d1d2d6;
+          }
+          .electricity-users-content-item-content {
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 500;
+            font-size: 16px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+  .cash-table-wrapper {
+    width: 100%;
+    height: 330px;
+    background: rgba(143, 149, 158, 0.1);
+    border-radius: 4px;
+    margin-top: 16px;
+    .cash-table-title-wrapper {
+      height: 50px;
+      background: #3c3e47;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 4px 4px 0 0;
+      color: #ffffff;
+      padding: 0 17px;
+      display: flex;
+      align-items: center;
+      .cash-table-title {
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          background-image: url(../../assets/finish-icon.png);
+          background-size: cover;
+          margin-right: 8px;
+          position: relative;
+          top: 3px;
+        }
+      }
+    }
+    .table-div {
+      margin-top: 16px;
+      overflow-x: scroll;
+      height: 250px;
+      padding: 0 16px;
+      table {
+        border-collapse: collapse;
+        border: 1px solid #595964;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 12px;
+        color: #d1d2d6;
+        width: 100%;
+        table-layout: fixed;
+        padding-bottom: 10px;
+        border-collapse: collapse;
+        border-spacing: 0;
+        td {
+          height: 30px;
+          border: 1px solid #595964;
+          width: 90px;
+          padding-left: 25px;
+        }
+        .tr-1 {
+          background: #3c3e47;
+        }
+        .tr-3 {
+          background: #3c3e47;
+        }
+        .tr-7 {
+          background: #3c3e47;
+        }
+      }
+    }
+  }
+}
+.assessment-content {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+
+  .assessment-content-item {
+    .assessment-content-item-top {
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 14px;
+      color: #c1c8d3;
+      margin-bottom: 10px;
+    }
+    .assessment-content-item-bottom {
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 600;
+      font-size: 24px;
+      color: #ffffff;
+      i {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #c1c8d3;
+        font-style: normal;
+        margin-left: 8px;
+      }
+    }
+  }
+}

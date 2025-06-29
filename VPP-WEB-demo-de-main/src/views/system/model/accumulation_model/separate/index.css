@@ -1,0 +1,76 @@
+.allcontents{
+	padding: 20px 26px;
+}
+.serve{
+	/* height: 70px; */
+	/* background: #09183F; */
+	border-radius: 2px;
+	/* border: 1px solid #1890FF; */
+	padding: 0px 20px;
+	padding-bottom: 20px;
+}
+#basics1 .ant-form-item{
+	float: left;
+	width: 30%;
+	margin-top: 20px;
+}
+#basics1 .ant-form-item>button{
+	margin-right: 10px;
+}
+.axxset{
+	width: 34%;
+	float: left;
+	/* padding-top: 20px; */
+}
+.hybridpoint{
+	overflow: hidden;
+}
+.serverst{
+	padding-top: 20px;
+}
+.serve p{
+	color: #2A2B40;
+	padding-top: 10px;
+}
+.serve .ant-form{
+	overflow: hidden;
+	
+}
+.serve .titles{
+	font-size: 16px;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FFFFFF;
+	margin-right: 20px;
+}
+.serve .formitem{
+	float: left;
+	width: 30%;
+	padding-bottom: 20px;
+}
+#basics4 .ant-form-item{
+	float: left;
+	width: 50%;
+	margin-top: 20px;
+}
+#basics4 .ant-form-item:last-child>.ant-col-offset-8{
+	margin-left: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

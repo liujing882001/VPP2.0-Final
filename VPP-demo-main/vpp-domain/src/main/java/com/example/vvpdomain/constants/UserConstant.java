@@ -1,0 +1,20 @@
+package com.example.vvpdomain.constants;
+
+public class UserConstant {
+
+    /**
+     * 用户token前缀
+     */
+    public static final String USER_TOKEN_KEY = "user_token_";
+    /**
+     * 请求当前用户
+     */
+    public static final String CUR_REQUEST_USER_KEY = "cur_request_user_key_";
+    /**
+     * 请求当前用户公钥
+     */
+    public static final String CUR_REQUEST_USER_PUBLIC_KEY = "cur_request_user_public_key_";
+
+    public static final String DM_PRIVATE_KEY = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC39mxFEjYceNap4+AkdUIz31OZ+HU13ypqdSPe9tFW+Ff3b6J/qD+5nVxTzrGetJ8wXSIC684Bw6GWOWRhs+pM0199zkmrvP+lXUUo/ANuEdKXRoLriPlIeyOtuYLyhm6E7LsaCCYYXrQTqvi/RHyCBSZDuoXP1cw3p6wvANewM7aScR8suHDT7myPs1oSfDVapYOk9RCV+Es8lVSiKCFOyJkn2VZXZVbdeqL0yqvekc1DTa1TFhz56oSTuvDGnRVwa/EBqMKlsdgZZapsiJFGPC2bpCd5VZN4dhAq9aMgBvkJYE2qETArkJxXquHtdVoLHhOCGXL5S52YestuslQTAgMBAAECggEBAJcU02B6j2QcvbdzBX8Lqh4t2FwIWEKxEAW0RIx1ygESHjSBQ0RyKjvHh67wfqFnl6FBq5AYluyN/SQB6HXxK4iCw9bvV0OrCY2Gpyj8p9h63KgOabEEoi4rq2aeh3Okghm6zgKYFKlJBb1tWbLDjTm+/uj6w7Cn1nsSwm8r0vfKahEBQl56Gwwc0p9CvJzL7/GQwN6wdpjfuF7bpgH2YyOM4Vt+Fp/Irlg9RSjKKQnLOTokuwFYJSNdmiAQUQaqLNIAZth0zIG6M/V2yYnP6uYQ9Dn4JrwUtfBYzc14iFlqomp5euCYClZ4Ju5cQdJ+NBu6ZqTPoHTGcT0GYSMANmECgYEA8mOjI3YPR+son8MeQoCT0QRGQhrD4/HBPz3nutYfJ8KjDrrkhfN5vtHdn0Sdv9Xt6FhbqiBYTyQuSgwUzA/TKpJ+nLIG3RGxmHWxxO90AZ2MY7WD1PF87frnt2xv2japAr/j5grpS9HNMMx6AC9PNopsBPOWsvaLRs7Vd6hPKqMCgYEAwkrmEoHSCIDbYXem0cv63xw0H6AEbiJxGMIRb9HJ0KN3gwNzAilCTlUGPdfzfrDQNXbnxXrNyuNn/KbPdNu4f1llRnTgTM6ZsHdKEDUFDVmNMcl9ySNfFYQbUtce6TZKj9Dut31aXJt3CUj1SLuYPrWRue+P+KvHDNWCieZyt9ECgYEAl0AjaZpe+LK9+8tmk3rmQjRXnyJSgGe3/b2kX0sDz+y9kRCATzHaE3+juqG3iiB1P1n7gRKD6IacN+qIA7oQO+2EAkV40PQcjRVMI6aEDgoAs6ttozA5k8rQUv3gYhtfpW6WSFMgtwYo8z11F65t0IvZ0dEqhWwhBsNEI1GsbN8CgYBAmucmAET2zuIj5sVxvYIN7jLm0S6n8Ivqz508sWWKGtECn4L+lPmXUm5g4g31cpXJMWCgKdWEQVmyiUUydl1C+1bRtstevtQb+Y6HFRo49i4dAALzfu9/GA593UpKAeOJLtAx81y4rnlGfRwSs05Mi9OJID+fUH8/pT9i214KAQKBgA2xYw7BzaV78qVlI9dkzvCGSzj09ZuLroFxUxwLbKGBnN8fKjn5erbgIF/D+TK5myqKBFREblMUJBwIEUSrN7ENq1FPRCuQI8bsa3gK/UBhQ87Z5h8hGYNPy6uu1KpwDWL2xVarhhIqZ/wOo9jAGothzcyDvJvh9Fbi8GlFBvic";
+
+}

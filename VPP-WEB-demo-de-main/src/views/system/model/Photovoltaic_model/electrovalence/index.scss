@@ -1,0 +1,123 @@
+.bread-time-of-use{
+    position: relative;
+    top: -16px;
+    left: -16px;
+    width: 110%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background: #212029;
+    padding: 0 34px;
+    .bread-time-of-use-title{
+        margin-right: 14px;
+        cursor: pointer;
+    }
+    .bread-time-of-use-title:last-child{
+        margin-left: 14px;
+    }
+    .bread-time-of-use-title.active{
+        color: #0092FF;
+    }
+}
+
+.hybrid-time-of-use{
+    background: #212029;
+    padding: 28px 20px 13px 20px;
+    
+    .hybrid-time-of-use-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 19px 0;
+
+        h2{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 500;
+            font-size: 16px;
+            color: #FFFFFF;
+            margin: 0;
+        }
+        .hybrid-time-of-use-header-right{
+			.ant-btn-default:disabled,.ant-btn-disabled{
+				background: #0092FF !important;
+				border-radius: 3px 3px 3px 3px;
+				opacity: 0.5;
+			}
+			.ant-picker-outlined.ant-picker-disabled{
+				opacity: 0.5;
+			}
+            .hybrid-time-of-use-header-btn{
+                margin-left: 16px;
+                // width: 120px !important;
+                height: 32px !important;
+                background: #0092FF !important;
+                border-radius: 3px 3px 3px 3px !important;
+                color: #FFFFFF !important;
+                border: none;
+            }
+			.hybrid-time-of-use-header-btn-ghost{
+				background: none;
+				margin-left: 16px;
+				border-color: #0092FF;
+				color: #0092FF;
+				border-radius: 3px 3px 3px 3px !important;
+			}
+			
+        }
+    }
+	
+	.hybrid-time-of-use-list{
+		width: 100%;
+		margin-bottom: 16px;
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+		#control-hooks{
+			width: 100%;
+			display: flex;
+			// flex: 1;
+			.ant-form-item{
+				margin-bottom: 0px;
+				.ant-form-item-control-input-content {
+					text-align: right;
+				}
+			}
+			
+		}
+		.hybrid-time-of-use-list-div{
+			flex: 1;
+			padding: 0px 16px;
+			height: 60px;
+			background: rgba(143,149,158,0.1);
+			border-radius: 4px 4px 4px 4px;
+			margin-left: 13px;
+			display: flex;
+			justify-content: space-between;
+			font-size: 14px;
+			color: #FFFFFF;
+			align-items: center;
+			span{
+				display: inline-block;
+				justify-content: flex-end;
+			}
+			input{
+				width: 80px;
+				height: 32px;
+			}
+			
+		}
+		.hybrid-time-of-use-list-div:first-child{
+			margin-left: 0px;
+		}
+	}
+
+    // .ant-table-row {
+    //     border: none !important;
+    // }
+    [class*="ant-table"]{
+        border: none;
+    }
+    .ant-table-row:nth-child(2n){
+        background: #302F39;
+    }
+}

@@ -1,0 +1,43 @@
+.calculate{
+	height: calc(100% - 16px);
+	overflow: auto;
+	.ant-tree-list{
+		margin-left: 10px;
+	}
+	.ant-tabs-nav{
+		border-radius: 10px;
+	}
+	.ant-input-search-button{
+		height: 31px;
+	}
+	.navigation{
+		width: 100% !important;
+		float: inherit !important; 
+	}
+	.adjustable{
+		margin-left: 16px !important;
+	}
+	.ant-spin-nested-loading{
+		height: calc(100% - 132px);
+	}
+	.ant-tabs-top >.ant-tabs-nav::before{
+		border: none;
+	}
+	.ant-tree .ant-tree-node-content-wrapper{
+		padding-left: 0px;
+	}
+	.ant-tree .ant-tree-switcher{
+		width: 16px;
+		margin-left: 10px;
+	}
+	.ant-empty .ant-empty-image{
+		height: 68px;
+		
+		// background: url(../../../style/damao/emptys.png) no-repeat center center;
+		background-size: 84px;
+		margin-bottom: 0px;
+	}
+	.ant-empty-normal .ant-empty-description{
+		font-size: 12px;
+	}
+}

@@ -1,0 +1,129 @@
+.skinheader .ant-select:not(.ant-select-disabled):hover .ant-select-selector{
+	border: none;
+}
+.skinheader .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+	border: none;
+}
+.skinheader .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector{
+	border: none;
+}
+.allskin{
+	width: 274px;
+	height: 367px;
+	background: #212029;
+	border-radius: 2px;
+	float: left;
+	text-align: center;
+}
+.skinarea{
+	margin-left: 300px;
+	height: 367px;
+	
+	display: flex;
+}
+.skinarea .wider{
+	flex: 1;
+	height: 100%;
+	background: #212029;
+}
+.skinarea .wider:first-child{
+	margin-right: 26px;
+	
+}
+.skinbg{
+	width: 120px;
+	height: 120px;
+	line-height: 120px;
+	background: url(../../../style/imgs/tuo.png) no-repeat top center;
+	background-size: cover;
+	margin: 0 auto;
+	font-size: 32px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	text-align: center;
+	margin-top: 40px;
+}
+.allskin p{
+	font-size: 16px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFF;
+	text-align: center;
+}
+.allskin span{
+	font-size: 34px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFF;
+	line-height: 40px;
+}
+.wider h4{
+	height: 54px;
+	line-height: 54px;
+	/* background: #172C63; */
+	font-size: 18px;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FFF;
+	text-align: center;
+	/* border-bottom: 1px solid #DFE1E5;	 */
+}
+.afforest{
+	margin: 20px 70px;
+	display: flex;
+	margin-top: 50px;
+}
+.afforest div{
+	flex: 1;
+	height: 150px;
+	text-align: center;
+}
+.afforest div>img{
+	width: 69px;
+	height: 69px;
+	margin-bottom: 15px;
+}
+.afforest div>p{
+	font-size: 22px;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #36CBCB;
+}
+.afforest div>span{
+	font-size: 16px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFF;
+}
+.afforest div:nth-child(2){
+	/* width: 45px; */
+	/* height: 40px; */
+	background: url(../../../style/imgs/tree.png) no-repeat center center;
+	background-size: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

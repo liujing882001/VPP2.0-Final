@@ -1,0 +1,68 @@
+.roleheader{
+	background: #212029;
+	padding: 16px 0px;
+	/* border-radius: 10px; */
+	/* height: 100px; */
+	/* line-height: 100px; */
+}
+.roleheader button{
+	/* margin-left: 20px; */
+}
+.role{
+	background: #212029;
+	padding: 16px 16px;
+	padding-top: 0px;
+	min-width: 1200px;
+	border-radius: 10px;
+	/* margin: 16px 16px 0px 16px; */
+	/* margin-top: 16px; */
+}
+
+.ant-tree-checkbox-disabled.ant-tree-checkbox-checked .ant-tree-checkbox-inner:after{
+	border-color: #fff ;
+}
+.ant-tree-checkbox-inner{
+	/* border: none; */
+	border: 1px solid #fff;
+}
+.ant-tree .ant-tree-treenode-disabled .ant-tree-node-content-wrapper{
+	color: #fff;
+	background: #FFF;
+}
+/* .ant-modal-body{
+		padding: 16px 24px;
+		padd
+	} */
+.ant-modal-body .ant-tree{
+	margin-top: 0px;
+}
+.ant-tree-checkbox-inner:hover{
+	border: 1px solid #0092FF !important;
+}
+.ant-tree-checkbox-disabled .ant-tree-checkbox-inner{
+	/* border: none; */
+	/* background: none; */
+}
+.ant-tree-checkbox-disabled .ant-tree-checkbox-inner{
+	
+}
+
+/* .ant-tree-checkbox-checked .ant-tree-checkbox-inner{ */
+.ant-tree-checkbox-disabled>.ant-tree-checkbox-inner{
+	/* background: none ; */
+}
+.ant-tree-checkbox-disabled .ant-tree-checkbox-inner{
+	/* background: #0092FF; */
+}
+.ant-tree-checkbox-disabled .ant-tree-checkbox-inner{
+	background-color: #212029 !important ;
+	border-color:#FFF !important;
+	/* border: non; */
+}
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner{
+	background-color: #0092FF !important ;
+	border-color:#0092FF !important;
+}
+.menu_managementForm .ant-modal-content{
+	padding-bottom: 24px;
+}

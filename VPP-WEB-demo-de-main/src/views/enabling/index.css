@@ -1,0 +1,72 @@
+.enabling{
+	width: 100%;
+	height: auto;
+	display: flex;
+	margin-top: 28px;
+	float: left;
+}
+.calculate{
+	height: calc(100% - 16px);
+	overflow: auto;
+}
+.enabling li{
+	flex: 1;
+	list-style: none;
+	height: 549px;
+	background: #09183F;
+	text-align: center;
+}
+.enabling li:nth-child(2){
+	margin: 0px 30px;
+}
+.enabling li>img{
+	width: 234px;
+	height: 216px;
+	margin-top: 58px;
+}
+.enabling li>h4{
+	font-size: 28px;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #FFFFFF;
+	text-align: center;
+	margin-top: 30px;
+}
+.enabling li>p{
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	margin: 0px 58px;
+	margin-top: 10px;
+	text-align: left;
+	min-height: 80px;
+}
+.enabling li>button{
+	margin-top: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

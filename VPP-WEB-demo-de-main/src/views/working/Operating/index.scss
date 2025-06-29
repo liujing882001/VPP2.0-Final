@@ -1,0 +1,29 @@
+.Operating{
+	overflow: auto;
+	a{
+		// color:#0092FF;
+	}
+	.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td,.ant-table-row-hover,.ant-table-row-hover>td{
+	  background-color: #212029 !important;
+	}
+	
+	.ant-table-fixed .ant-table-row-hover,.ant-table-row-hover>td{
+	  background-color: #212029 !important;
+	}
+	.ant-select{
+		margin-right:0px;
+	}
+	.ant-select-clear{
+		background-color: #212029 !important;
+		color: #fff;
+	}
+}
+.Operating-modal{
+	.ant-modal-content{
+		padding-bottom: 24px;
+	}
+}
+.ant-table-wrapper .ant-table{
+	scrollbar-width: auto;
+	scrollbar-color: auto;
+}

@@ -1,0 +1,148 @@
+
+.dispatch-chart-wrap{
+    .dispatch-chart-title-wrap{
+        padding: 24px 24px 9px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        .dispatch-chart-query-wrap{
+            display: flex;
+            .dispatch-chart-query-time{
+                margin-right: 16px;
+                height: 26px;
+            }
+            .dispatch-chart-query-btn{
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                width: 56px;
+                height: 26px;
+                background: #0092FF;
+                border-radius: 3px 3px 3px 3px;
+            }
+            .dispatch-chart-query-btn:hover{
+                background: #0092FF;
+                font-family: PingFang SC, PingFang SC;
+                font-weight: 400;
+                font-size: 12px;
+                color: #FFFFFF;
+            }
+        }
+    }
+    .loading-wrapper{
+        padding-left: 13px;
+        .loading-icon{
+            display: inline-block;
+            width: 60px;
+            height: 42px;
+            background-image: url(../../../../assets/loading.gif);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-position: -10px 8px;
+        }
+    }
+    .dispatch-chart-content-wrap{
+        margin: 0 24px;
+        border-radius: 4px;
+        height: 280px;
+        background: rgba(143,149,158,0.1);
+        border-radius: 4px 4px 0px 0px;
+        position: relative;
+        .dispatch-legend-tips{
+            position: absolute;
+            top: 18px;
+            left: 28px;
+            display: flex;
+            align-items: center;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 10px;
+            color: #FFFFFF;
+            .dispatch-legend-tips-item{
+                margin-bottom: 0;
+                display: flex;
+                align-items: center;
+                margin-right: 25px;
+            }
+            .dispatch-legend-icon-1{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #43E3E3;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+            .dispatch-legend-icon-2{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #0092FF;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+            .dispatch-legend-icon-3{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #8AC2FF;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+            .dispatch-legend-icon-4{
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #257DDC;
+                border-radius: 3px 3px 3px 3px;
+                margin-right: 8px;
+            }
+        }
+
+        .empty-container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            .empty-icon{
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                background-image: url(../../../../assets/empty.png);
+                background-size: cover;
+                background-position: center;
+            }
+            .empty-text{
+                color: #fff;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+
+
+.loading-wrapper{
+    height: 28px;
+    width: 100%;
+    .loading-icon{
+        height: 28px;
+        display: inline-block;
+        width: 48px;
+        background-image: url(../../assets/loading.gif);
+        background-size: cover;
+        background-position: center center;
+    }
+}

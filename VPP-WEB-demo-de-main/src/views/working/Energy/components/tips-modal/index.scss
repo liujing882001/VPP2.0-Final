@@ -1,0 +1,76 @@
+.tips-modal{
+    width: 400px;
+    height: 156px;
+    .ant-modal-content{
+        // padding: 0 0 24px 0;
+    }
+
+    .tips-modal-title{
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 500;
+        font-size: 16px;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        .warn-icon{
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background: url(../../assets/warn-icon.png);
+            background-size: cover;
+            margin-right: 14px;
+        }
+    }
+    .tips-modal-content{
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 16px;
+        color: #FFFFFF; 
+        margin: 10px 0 22px 0;
+        padding-left:35px;
+    }
+    .cancel-btn{
+        width: 65px;
+        height: 32px;
+        border-radius: 3px;
+        background: transparent;
+        border: 1px solid #AEAEAE;
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #AEAEAE;
+    }
+    .cancel-btn:hover{
+        border: 1px solid #FFFFFF;
+        color: #FFFFFF;
+    }
+    .ant-modal-footer{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .confirm-btn{
+        background: #0092FF !important;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+        width: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+    }
+
+    .confirm-btn:hover{
+        background: #0092FF !important;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+        width: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+    }
+}

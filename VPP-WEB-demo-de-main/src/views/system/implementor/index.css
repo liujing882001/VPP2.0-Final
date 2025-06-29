@@ -1,0 +1,17 @@
+.implementor{
+	padding: 20px 0px;
+}
+.implementor .ant-btn{
+	float: inherit;
+	margin: 0px;
+}
+.implementor .ant-input-group{
+	/* float: right; */
+	
+}
+.implementor .ant-select-selector{
+	border-radius: 50px 0px 0px 50px !important;
+}
+.ant-tree li.ant-tree-treenode-disabled > span:not(.ant-tree-switcher), li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper, li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper span{
+	color: #FFFFFF;
+}

@@ -1,0 +1,9 @@
+.modalheader{
+	padding: 15px 0px;
+}
+.photo{
+	background: #212029;
+}
+.photo .ant-table-wrapper{
+	margin: 0px;
+}

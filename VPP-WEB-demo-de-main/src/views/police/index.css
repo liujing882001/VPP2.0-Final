@@ -1,0 +1,111 @@
+.police{
+	/* padding: 20px 20px; */
+	/* background: #FFF; */
+	min-width: 1200px;
+}
+.report{
+	background: #212029;
+	padding: 16px 16px;
+	line-height: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px; /* 间距可以根据需要调整 */
+}
+.report_layout{
+	width: calc(20% + (random() * 60%));
+}
+.report b{
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFF;
+	line-height: 22px;
+}
+
+
+.report .ant-picker{
+	background: none;
+}
+.ant-table-thead th.ant-table-column-sort{
+	/* background: #172c63; */
+}
+.ant-empty-description{
+	/* color: #FFFFFF; */
+}
+.ant-pagination-prev, .ant-pagination-next, .ant-pagination-jump-prev, .ant-pagination-jump-next{
+	color: #2A2B40;
+}
+.batch_body{
+	background: #212029;
+	padding: 18px 20px;
+}
+.batch_title{
+	padding-bottom: 18px;
+}
+.policeing{
+	padding: 2px 5px;
+	color: #FF5353;
+	background: rgba(237,46,46,0.2);
+	border-radius: 4px 4px 4px 4px;
+	border: 1px solid rgba(255,83,83,0.5);
+	font-size: 12px;
+}
+.handle{
+	padding: 2px 5px;
+	color: #4A80FF;
+	background: rgba(37,102,255,0.2);
+	border-radius: 4px 4px 4px 4px;
+	border: 1px solid rgba(37,102,255,0.5);
+	font-size: 12px;
+}
+.Recovered{
+	padding: 2px 5px;
+	color: #2EEDB1;
+	background: rgba(46,237,177,0.2);
+	border-radius: 4px 4px 4px 4px;
+	border: 1px solid rgba(46,237,177,0.5);
+	font-size: 12px;
+}
+.ant-table-body {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}
+.ant-table-wrapper .ant-table{
+	scrollbar-width: auto;
+	scrollbar-color: auto;
+}
+.ant-select-item.ant-select-item-option.ant-select-item-option-active{
+	background: rgba(0, 146, 255, 0.1);
+}
+.ant-select-item.ant-select-item-option:hover{
+	background: rgba(255, 255, 255, .05) !important;
+}
+.rc-virtual-list-scrollbar.rc-virtual-list-scrollbar-vertical div{
+	background: rgba(0, 146, 255, 0.1) !important;
+}
+.Select_All{
+	
+	/* cursor: pointer; */
+}
+.Select_All a{
+	background: url('../../style/electric/close.svg') right center no-repeat;
+	background-size: 14px;
+	padding-right: 16px;
+	vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

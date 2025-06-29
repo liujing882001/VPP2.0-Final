@@ -1,0 +1,158 @@
+package com.example.vvpservice.revenue.enums;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public enum EstimationParameterEnum {
+    designPower("电站设计功率"),
+    backupHours("备电小时数"),
+    designCapacity("电站设计容量"),
+    purchasePrice("采购价格"),
+    equipmentCostRatio("设备费用占比"),
+    engineeringCostRatio("工程费用占比"),
+    totalInvestment("投资总额"),
+    equipmentCost("设备费用"),
+    engineeringCost("工程费用"),
+    assessPeriod("评估年限"),
+    selfFinancingRatio("自筹比例"),
+    loanRatio("贷款比例"),
+    loanInterestRate("贷款利率"),
+    loanTerm("贷款年限"),
+    annualRepayment("年还款金额"),
+    depreciationPeriod("折旧年限"),
+    residualValue("预计残值金额"),
+    governmentSubsidy("政府补贴"),
+    customerShare("客户分享比例"),
+    electricityUserShare("电力用户分成比例"),
+    energyEfficiency("能效提升收益"),
+    cycleCount("循环次数"),
+    annualDays("年运行天数"),
+    dailyDischarge("日放电次数"),
+    lifespan("寿命年限"),
+    usableDepth("可用深度"),
+    batteryDegradationMin("电池衰减最低值"),
+    batteryDegCoeff("电池衰减系数"),
+    chargingEfficiency("充电效率"),
+    dischargeEfficiency("放电效率"),
+    systemEfficiency("系统效率"),
+    annualChargingHours("年充电小时数"),
+    annualDischargeHours("年放电小时数"),
+    avgChargingPrice("平均充电电价"),
+    avgDischargePrice("平均放电电价"),
+    chargeDischargePriceDiff("充放电价差"),
+    electricityCost("度电成本"),
+    backupCost("保电费用"),
+    mainTRatio5Y("前5年维保比例"),
+    mainTRatio5_10Y("5-10年维保比例"),
+    mainTRatio10_25Y("10-25年维保比例"),
+    insuranceFee("保险费"),
+    insuranceRate("保险费比例"),
+    storageArea("储能电站占地"),
+    batteryOMCost("电池运维费用"),
+    platformFee("平台服务费"),
+    platformRate("运营费比例"),
+    batteryReplRatio("更换电池比例"),
+    taxExemption3Years("所得税前三年免除额"),
+    incomeTaxRate("所得税率"),
+    systemPower("系统配置功率"),
+    annualChargingAmount("年充电量"),
+    annualChargingAmountTax("年充电电金额（含税）"),
+    annualDischargeAmount("年放电量"),
+    annualDischargeAmountTax("年放电金额（含税）"),
+    govSubsidyIncome("政府补贴收益"),
+    demandResponseIncome("需求响应客户收益"),
+    efficiencyImprovementIncome("能效提升客户收益"),
+    peakValleyArbitrageIncome("峰谷套利客户收益"),
+    backupIncome("保电收益"),
+    totalEfficiencyIncome("能效提升总收益"),
+    totalDemandResponseIncome("需求响应总收益"),
+    assetSellElectricityIncome("资产方卖电（去除客户分享后）"),
+    annualPurchaseAmountTax("年购电金额（含税）"),
+    annualPurchaseCostExTax("年购电成本（不含税）"),
+    peakValleyIncome("削峰填谷总收益"),
+    maintenanceCost("设备维护费用"),
+    depreciationCost("折旧费"),
+    laborCost("人工费"),
+    totalExpenses("支出合计"),
+    assetNetIncome("资产方净收益"),
+    revenue("营业收入"),
+    assetIncomeAfterShare("资产方扣除客户分享收益"),
+    annualSubsidy("每年补贴"),
+    taxesAndSurcharges("税金及附加"),
+    cityMaintenanceTax("城市维护建设税（7%）"),
+    educationSurcharge("教育费附加（3%）"),
+    localEducationSurcharge("地方教育费附加（2%）"),
+    vat("增值税"),
+    outputTax("销项税额"),
+    constInputTaxBal("建设期进项税余额"),
+    operationInputTax("运营期进项税"),
+    operatingCost("经营成本"),
+    interestExpense("利息支出"),
+    totalCost("总成本费用"),
+    originalValue("原值"),
+    currentDepreciation("当期折旧费"),
+    netValue("净值"),
+    currentDepreciationExpense("当期折旧摊销费"),
+    previousYearLossOffset("弥补以前年度亏损"),
+    taxableIncome("应纳税所得额"),
+    incomeTax("所得税（15%）"),
+    afterTaxIncome("所得税后"),
+    roi("投资回报率（ROI）"),
+    cashInflow("现金流入"),
+    fixedAssetsResidual("回收固定资产余值"),
+    cashOutflow("现金流出"),
+    constInvest("建设投资"),
+    workingCapital("流动资金"),
+    rent("租金"),
+    netCashFlowBeforeTax("所得税前净现金流量"),
+    cumulativeNetCashFlowBeforeTax("累计所得税前净现金流量"),
+    taxAdjustment("调整所得税（15%）"),
+    paybackPeriodBeforeTax("税前投资回收期"),
+    netCashFlowAfterTax("所得税后净现金流量"),
+    cumulativeNetCashFlowAfterTax("累计所得税后净现金流量"),
+    paybackPeriodAfterTax("税后投资回收期"),
+    financialIRRBeforeTax("财务内部收益率（所得税前）"),
+    financialIRRAfterTax("财务内部收益率（所得税后）"),
+    paybackPeriodYearsBeforeTax("投资回收期（所得税前）(年)"),
+    paybackPeriodYearsAfterTax("投资回收期（所得税后）(年)"),
+    hwSwCosts("软硬件费用"),
+    peakShavingValleyFillingTotalIncome("削峰填谷评估年限总收益"),
+    peakShavingValleyFillingUserShare("削峰填谷用户分成比例"),
+    peakShavingValleyFillingUserIncome("削峰填谷评估年限电力用户收益"),
+    peakShavingValleyFillingAvgAnnualIncome("削峰填谷电力用户平均年收入"),
+    peakShavingInvestorIncome("削峰填谷评估年限投资方收入"),
+    peakShavingValleyFillingInvestorIncome("削峰填谷投资方平均年收入"),
+    peakShavingValleyFillingTotalProfit("削峰填谷利润总额"),
+    demandResponseTotalIncome("需求响应评估年限总收入（预估）"),
+    demandResponseUserShare("需求响应用户分成比例"),
+    demandResponseAssetShare("需求响应资产方分成比例"),
+    demandResponseAnnualIncome("需求响应年电力用户收益"),
+    demandResponseUserIncome("需求响应评估年限电力用户收益"),
+    demandResponseAssetIncome("需求响应评估年限资产方收益"),
+    investmentIRR("投资分析IRR"),
+    invPayback("投资回报年限"),
+    storageIRRPreTax("储能IRR（税前）"),
+    storagePayback("储能投资回报周期");
+
+
+    private final String chineseName;
+
+    EstimationParameterEnum(String chineseName) {
+        this.chineseName = chineseName;
+    }
+    private static final Map<String, EstimationParameterEnum> lookup = new HashMap<>();
+
+    static {
+        for (EstimationParameterEnum param : EstimationParameterEnum.values()) {
+            lookup.put(param.name(), param);
+        }
+    }
+
+    public static String getChineseNameByKey(String key) {
+        EstimationParameterEnum param = lookup.get(key);
+        return param != null ? param.getChineseName() : null;
+    }
+    public String getChineseName() {
+        return chineseName;
+    }
+}

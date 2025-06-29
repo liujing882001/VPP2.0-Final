@@ -1,0 +1,26 @@
+package com.example.vvpservice.electricitytrading.model;
+
+import com.example.vvpcommom.BigDecimalSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+@Data
+public class ElectricityPrice {
+	@ApiModelProperty("字段名称")
+	private String name;
+
+	@ApiModelProperty("数据")
+	private List<Price> priceList;
+
+	@Data
+	public static class Price {
+		String ts;
+
+		@JsonSerialize(using = BigDecimalSerialize.class)
+		BigDecimal price;
+	}
+}

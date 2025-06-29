@@ -1,0 +1,342 @@
+# VPP算法服务环境变量配置模板 v2.0
+# ==========================================
+# 
+# 请复制此文件为 .env 并填入实际值
+# 永远不要将包含真实密码的 .env 文件提交到版本控制系统
+# 
+# 版本: 2.0.0
+# 更新: 2024-12-29
+
+# =============================================================================
+# 🔧 基础服务配置
+# =============================================================================
+
+# 服务信息
+SERVICE_NAME=vpp-algorithm-service
+SERVICE_VERSION=2.0.0
+ENVIRONMENT=production  # 可选值: development, testing, staging, production
+
+# 服务端口和主机
+HOST=0.0.0.0
+PORT=8000
+WORKERS=4  # 生产环境建议设置为CPU核心数
+
+# 调试模式 (生产环境请设置为false)
+DEBUG=false
+LOG_LEVEL=INFO  # 可选值: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# =============================================================================
+# 🗄️ 数据库配置 (PostgreSQL)
+# =============================================================================
+
+# 数据库连接信息
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=vpp_algorithm
+DB_USERNAME=vpp_user
+DB_PASSWORD=请设置强密码至少16字符包含大小写字母数字特殊字符
+
+# 连接池配置
+DB_POOL_SIZE=20
+DB_MAX_OVERFLOW=10
+DB_POOL_TIMEOUT=30
+DB_POOL_RECYCLE=3600
+
+# SSL配置
+DB_SSL_MODE=require  # 可选值: disable, allow, prefer, require, verify-ca, verify-full
+DB_CONNECT_TIMEOUT=10
+
+# 数据库URL格式（可选，优先级高于单独配置）
+# DATABASE_URL=postgresql://username:password@host:port/database
+
+# =============================================================================
+# 🔴 Redis配置 (缓存和会话存储)
+# =============================================================================
+
+# Redis连接信息
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=请设置Redis密码
+REDIS_DB=0
+
+# Redis连接池配置
+REDIS_POOL_SIZE=10
+REDIS_SSL=false
+
+# Redis集群配置（如果使用集群）
+# REDIS_CLUSTER_NODES=node1:7000,node2:7000,node3:7000
+# REDIS_CLUSTER_PASSWORD=cluster_password
+
+# =============================================================================
+# 🔐 安全和认证配置
+# =============================================================================
+
+# JWT配置
+JWT_SECRET=请生成32字节随机密钥例如使用openssl_rand_base64_32
+JWT_ALGORITHM=HS256
+JWT_EXPIRATION=3600  # JWT过期时间（秒）
+JWT_REFRESH_EXPIRATION=86400  # 刷新令牌过期时间（秒）
+JWT_ISSUER=vpp-algorithm-service
+
+# API密钥配置
+API_KEY_ALGORITHM=请设置算法服务API密钥至少32字符
+API_KEY_WEB=请设置Web应用API密钥至少32字符
+API_KEY_MOBILE=请设置移动应用API密钥至少32字符
+
+# 加密密钥（用于敏感数据加密）
+ENCRYPTION_KEY=请生成Fernet加密密钥使用cryptography.fernet.Fernet.generate_key()
+
+# CORS配置
+CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8080,https://yourdomain.com
+CORS_ALLOWED_METHODS=GET,POST,PUT,DELETE,OPTIONS
+CORS_ALLOWED_HEADERS=Content-Type,Authorization,X-API-Key
+
+# =============================================================================
+# 🚦 速率限制配置
+# =============================================================================
+
+# API速率限制
+RATE_LIMIT_PER_MINUTE=100
+RATE_LIMIT_BURST=20
+RATE_LIMIT_ENABLED=true
+
+# 优化算法特定限制
+MAX_OPT_REQUESTS_PER_HOUR=1000
+MAX_FORECAST_REQUESTS_PER_HOUR=5000
+
+# =============================================================================
+# 📊 监控和指标配置
+# =============================================================================
+
+# Prometheus指标
+METRICS_ENABLED=true
+METRICS_PORT=9090
+METRICS_PATH=/metrics
+
+# 日志配置
+LOG_FORMAT=json  # 可选值: json, text
+LOG_FILE=/var/log/vpp/algorithm.log
+LOG_MAX_SIZE=100MB
+LOG_MAX_FILES=10
+
+# 审计日志
+AUDIT_ENABLED=true
+AUDIT_LOG_FILE=/var/log/vpp/audit.log
+AUDIT_RETENTION_DAYS=90
+
+# 分布式追踪
+TRACING_ENABLED=false
+TRACING_ENDPOINT=http://jaeger:14268/api/traces
+TRACING_SERVICE_NAME=vpp-algorithm
+
+# =============================================================================
+# 🌐 外部服务配置
+# =============================================================================
+
+# 天气API
+WEATHER_API_URL=https://api.weather.com/v1
+WEATHER_API_KEY=请设置天气API密钥
+WEATHER_API_TIMEOUT=30
+
+# 电力市场数据API
+MARKET_DATA_URL=https://api.marketdata.com/v1
+MARKET_DATA_KEY=请设置市场数据API密钥
+MARKET_DATA_TIMEOUT=30
+
+# 邮件服务配置
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=your-email@domain.com
+SMTP_PASSWORD=请设置邮件服务密码或应用专用密码
+SMTP_USE_TLS=true
+FROM_EMAIL=noreply@yourdomain.com
+
+# =============================================================================
+# 📈 算法和优化配置
+# =============================================================================
+
+# 优化器配置
+OPTIMIZATION_SOLVER=GLPK  # 可选值: GLPK, CPLEX, GUROBI, MOSEK
+OPTIMIZATION_TIMEOUT=300  # 优化超时时间（秒）
+OPTIMIZATION_MEMORY_LIMIT=1024  # 内存限制（MB）
+
+# 模型配置
+MODELS_PATH=/opt/vpp/models
+FORECASTING_CACHE=true
+FORECASTING_CACHE_TTL=1800  # 预测缓存TTL（秒）
+
+# 业务规则配置
+MAX_NODE_CAPACITY=100  # 最大节点容量（MW）
+MIN_SOC=10  # 最小SOC百分比
+MAX_SOC=90  # 最大SOC百分比
+
+# =============================================================================
+# 🔒 SSL/TLS配置
+# =============================================================================
+
+# SSL证书配置
+SSL_ENABLED=true
+SSL_CERT_FILE=/etc/ssl/certs/vpp.crt
+SSL_KEY_FILE=/etc/ssl/private/vpp.key
+SSL_CA_FILE=/etc/ssl/certs/ca.crt
+
+# TLS版本
+TLS_MIN_VERSION=1.2
+TLS_MAX_VERSION=1.3
+
+# =============================================================================
+# ☁️ 云服务配置 (可选)
+# =============================================================================
+
+# AWS配置
+AWS_ACCESS_KEY_ID=请设置AWS访问密钥
+AWS_SECRET_ACCESS_KEY=请设置AWS秘密密钥
+AWS_DEFAULT_REGION=us-west-2
+AWS_S3_BUCKET=vpp-algorithm-bucket
+
+# Azure配置
+AZURE_STORAGE_ACCOUNT=请设置Azure存储账户
+AZURE_STORAGE_KEY=请设置Azure存储密钥
+AZURE_CONTAINER_NAME=vpp-algorithm-container
+
+# Google Cloud配置
+GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+GCP_PROJECT_ID=your-project-id
+GCS_BUCKET_NAME=vpp-algorithm-bucket
+
+# =============================================================================
+# 📡 消息队列配置 (可选)
+# =============================================================================
+
+# RabbitMQ配置
+RABBITMQ_HOST=localhost
+RABBITMQ_PORT=5672
+RABBITMQ_USERNAME=vpp_user
+RABBITMQ_PASSWORD=请设置RabbitMQ密码
+RABBITMQ_VHOST=/vpp
+
+# Kafka配置
+KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+KAFKA_SECURITY_PROTOCOL=PLAINTEXT
+KAFKA_SASL_USERNAME=kafka_user
+KAFKA_SASL_PASSWORD=请设置Kafka密码
+
+# Celery配置
+CELERY_BROKER_URL=redis://localhost:6379/1
+CELERY_RESULT_BACKEND=redis://localhost:6379/2
+CELERY_WORKER_CONCURRENCY=4
+
+# =============================================================================
+# 🏥 健康检查和备份配置
+# =============================================================================
+
+# 健康检查
+HEALTH_CHECK_INTERVAL=30  # 健康检查间隔（秒）
+HEALTH_CHECK_TIMEOUT=10   # 健康检查超时（秒）
+
+# 数据备份
+BACKUP_ENABLED=true
+BACKUP_SCHEDULE=0 2 * * *  # 每天凌晨2点执行备份
+BACKUP_RETENTION_DAYS=30
+BACKUP_S3_BUCKET=vpp-algorithm-backups
+
+# =============================================================================
+# 🧪 测试环境配置
+# =============================================================================
+
+# 测试数据库
+TEST_DB_HOST=localhost
+TEST_DB_PORT=5432
+TEST_DB_NAME=vpp_algorithm_test
+TEST_DB_USERNAME=vpp_test_user
+TEST_DB_PASSWORD=test_password
+
+# 测试Redis
+TEST_REDIS_HOST=localhost
+TEST_REDIS_PORT=6379
+TEST_REDIS_DB=15
+
+# =============================================================================
+# 🚀 性能优化配置
+# =============================================================================
+
+# 应用性能
+UVICORN_WORKERS=4
+UVICORN_WORKER_CLASS=uvicorn.workers.UvicornWorker
+UVICORN_MAX_REQUESTS=1000
+UVICORN_MAX_REQUESTS_JITTER=50
+
+# 内存优化
+MALLOC_ARENA_MAX=4
+MALLOC_MMAP_THRESHOLD=65536
+
+# 数据库性能
+DB_STATEMENT_TIMEOUT=30000  # 语句超时（毫秒）
+DB_LOCK_TIMEOUT=10000       # 锁超时（毫秒）
+
+# =============================================================================
+# 🏭 生产环境特定配置
+# =============================================================================
+
+# 错误跟踪
+SENTRY_DSN=请设置Sentry_DSN用于错误追踪
+SENTRY_ENVIRONMENT=production
+SENTRY_TRACES_SAMPLE_RATE=0.1
+
+# APM配置
+NEW_RELIC_LICENSE_KEY=请设置New_Relic许可证密钥
+NEW_RELIC_APP_NAME=VPP-Algorithm-Service
+
+# Datadog配置
+DD_API_KEY=请设置Datadog_API密钥
+DD_SERVICE=vpp-algorithm
+DD_ENV=production
+DD_VERSION=2.0.0
+
+# =============================================================================
+# 🔧 开发环境配置
+# =============================================================================
+
+# 开发模式设置（仅开发环境）
+DEV_RELOAD=true
+DEV_LOG_QUERIES=false
+DEV_SHOW_SQL=false
+
+# 代码热重载
+WATCHFILES_ENABLED=true
+
+# =============================================================================
+# 📋 配置验证和安全建议
+# =============================================================================
+
+# 配置验证
+VALIDATE_CONFIG_ON_STARTUP=true
+FAIL_FAST_ON_CONFIG_ERROR=true
+
+# 安全建议：
+# 1. 所有密码至少16字符，包含大小写字母、数字、特殊字符
+# 2. API密钥至少32字符随机字符串
+# 3. 定期轮换所有密钥和密码
+# 4. 使用强加密算法（AES-256, RSA-2048+）
+# 5. 启用所有可用的安全功能（SSL, 审计日志等）
+# 6. 限制数据库和Redis访问来源
+# 7. 定期备份所有重要数据
+# 8. 监控所有服务的健康状态
+# 9. 设置适当的日志级别避免敏感信息泄露
+# 10. 定期更新所有依赖包的版本
+
+# =============================================================================
+# 🎯 部署检查清单
+# =============================================================================
+
+# 部署前请确认：
+# □ 所有密码和密钥已设置为强随机值
+# □ 生产环境DEBUG设置为false
+# □ 数据库SSL已启用
+# □ 防火墙规则已正确配置
+# □ 证书有效期充足
+# □ 备份策略已配置并测试
+# □ 监控和告警已设置
+# □ 负载均衡器健康检查已配置
+# □ 日志轮转已配置
+# □ 所有外部依赖服务可访问 

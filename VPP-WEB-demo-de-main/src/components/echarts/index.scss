@@ -1,0 +1,79 @@
+.Electricity_price{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	div{
+		font-size: 14px;
+		color: #FFFFFF;
+		margin-right: 24px;
+	}
+	div:before{
+		display: inline-block;
+		content: '';
+		width: 12px;
+		height: 12px;
+		background: #186AC3;
+		display: inline-block;
+		border-radius: 2px 2px;
+		margin-right: 10px;
+	}
+	.price_electrovalence:before{
+		display: inline-block;
+		content: '';
+		width: 12px;
+		height: 12px;
+		background: #186AC3;
+		display: inline-block;
+		border-radius: 2px 2px;
+		margin-right: 10px;
+	}
+	.price_electrovalence:nth-child(2):before{
+		background: #2C98FB;
+	}
+	.price_electrovalence:nth-child(3):before{
+		background: #86BAF6;
+	}
+	.price_electrovalence:nth-child(4):before{
+		background: #EEF0FD;
+	}
+	.price_state:before{
+		display: inline-block;
+		content: '';
+		width: 12px;
+		height: 12px;
+		background: #AB98FF;
+		display: inline-block;
+		border-radius: 2px 2px;
+		margin-right: 10px;
+	}
+	.price_state_node:before{
+		display: inline-block;
+		content: '';
+		width: 12px;
+		height: 12px;
+		background: #FACF05;
+		display: inline-block;
+		border-radius: 2px 2px;
+		margin-right: 10px;
+	}
+	.price_state_soc:before{
+		display: inline-block;
+		content: '';
+		width: 12px;
+		height: 2px;
+		background: #5AD8A6;
+		display: inline-block;
+		border-radius: 2px 2px;
+		margin-right: 10px;
+		vertical-align: middle;
+	}
+	// .price_state{
+	// 	width: 12px;
+	// 	height: 12px;
+	// 	background: #AB98FF;
+	// 	background: #186AC3;
+	// 	display: inline-block;
+	// }
+}
+

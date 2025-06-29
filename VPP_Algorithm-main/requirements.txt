@@ -1,0 +1,11 @@
+# 统一依赖文件
+numpy
+pandas
+scikit-learn
+matplotlib
+requests
+sqlalchemy
+pydantic
+python-dotenv
+timeout_decorator
+# 如有更多依赖请补充 

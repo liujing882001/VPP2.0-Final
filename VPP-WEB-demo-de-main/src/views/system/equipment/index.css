@@ -1,0 +1,128 @@
+.searchs button{
+	margin-left: 0px;
+	height: 32px;
+}
+.allcontengts{
+	width: 100%;
+	min-width: 1200px;
+}
+.adjustableequipment{
+	margin-left: 315px !important;
+}
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+	/* background: none; */
+	color: #0092FF;
+}
+/* .navigation{
+	padding: 0px 15px;
+} */
+::selection{
+	background: rgba(255, 255, 255, 0.15) !important;
+}
+.ant-input:focus, .ant-input-focused{
+	border-color: #FFFFFF;
+	box-shadow: #004B90;
+}
+.ant-input-search .ant-input:hover, .ant-input-search .ant-input:focus{
+	/* border-color: #FFFFFF; */
+	/* cursor: pointer; */
+}
+.equipment .ant-upload-list{
+	display: none;
+}
+.ant-select-selection-item{
+	color: #FFFFFF;
+}
+.adjustableheader .ant-upload button{
+	background: #0091FF;
+	border: none;
+	color: #FFFFFF;
+}
+.equipment button{
+	height: 32px !important;
+	margin-left: 0px !important;
+}
+.equipment button:first-child{
+	margin-right: 15px;
+}
+tr.ant-table-expanded-row > td, tr.ant-table-expanded-row:hover > td{
+	background: none;
+}
+ant-modal-body{
+	color: #FFFFFF;
+}
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+	/* background: none !important; */
+}
+#validate_other .ant-form-text{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	
+}
+.ant-table-row-level-1:first-child  td{
+	background: #000000 !important;
+}
+.traascroll{
+	height: calc(100% - 100px);
+	overflow-y: auto;
+	padding: 0px 15px;
+}
+.downLoad{
+	/* color: #FFFFFF; */
+	cursor: pointer;
+	/* margin-top: 20px; */
+	display: inline-block;
+	font-size: 14px;
+	height: 32px;
+	line-height: 34px;
+	color: #1890FF;
+	background: url(../../../style/electric/download.png) left center no-repeat;
+	background-size: 14px;
+	padding-left: 18px;
+	margin-left: 10px;
+}
+.xlsxName{
+	color: #8F959E;
+	cursor: pointer;
+	margin-top: 10px;
+	display: block;
+	width: 100%;
+	font-size: 12px;
+}
+.ant-upload-list-item-info .ant-upload-text-icon .anticon, .ant-upload-list-item-info .anticon-loading .anticon{
+	/* color: #FFFFFF; */
+}
+.ant-upload-list-item:hover{
+	background: none !important;
+}
+.ant-upload-list-item-info:hover{
+	background: none !important;
+}
+.ant-upload-list-item-card-actions .anticon{
+	color: #FFFFFF;
+}
+/* .ant-upload-list-item-card-actions .anticon:hover{
+	color: #FFFFFF;
+} */
+
+.ant-spin-nested-loading{
+	/* height: 80% !important; */
+}
+.ant-spin-container{
+	height: 100%;
+}
+.ant-input{
+	color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+

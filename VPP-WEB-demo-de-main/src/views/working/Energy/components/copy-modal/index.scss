@@ -1,0 +1,62 @@
+.copy-modal{
+    width: 400px;
+    .ant-modal-content{
+        // padding: 0 0 24px 0;
+    }
+    .copy-modal-item{
+        
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        margin-bottom: 22px;
+    }
+    .cancel-btn{
+        width: 65px;
+        height: 32px;
+        border-radius: 3px;
+        background: transparent;
+        border: 1px solid #AEAEAE;
+        font-family: PingFangSC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #AEAEAE;
+    }
+    .cancel-btn:hover{
+        border: 1px solid #FFFFFF;
+        color: #fff;
+    }
+    .disabled-btn{
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    .ant-modal-footer{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .confirm-btn{
+        background: #0092FF !important;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+        width: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+    }
+
+    .confirm-btn:hover{
+        background: #0092FF !important;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF !important;
+        width: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+    }
+}

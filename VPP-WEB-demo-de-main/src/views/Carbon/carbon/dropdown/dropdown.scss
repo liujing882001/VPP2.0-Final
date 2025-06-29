@@ -1,0 +1,115 @@
+.allcontent1{
+	
+	// width: 100%;
+	min-width: 1200px;
+	// height: 100%;
+	height: calc(100% - 16px);
+	border-radius: 10px;
+	overflow: auto;
+	// margin: 0px 16px;
+	.header{
+		height: 79px;
+		background: #212029;
+		line-height: 79px;
+		padding: 0px 15px;
+		color: #FFF;
+		border-radius: 10px;
+		margin-top: 0px;
+	}
+	.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+		background: none;
+		// color: #FFFFFF;
+	}
+	.ant-select-arrow{
+		color: #8F959E;
+	}
+	.ant-select{
+		margin-right: 12px;
+	}
+	.ant-table-thead>tr>th{
+		// background: #172C63;
+		// color: #FFFF;
+		// border: none;
+	}
+	.ou{
+		background: #212029;
+	}
+	.ji{
+		background: #312D36;
+	}
+	.ant-table-tbody>tr>td{
+		// color: #FFFFFF;
+		// border-bottom: 1px solid rgba(255,255,255,0.2);
+	}
+	.ant-picker{
+		background: none;
+	}
+	.combustion{
+		width: 100%;
+		height: calc(100% - 110px);
+		background: #212029;
+		padding:20px 21px;
+		margin-top: 15px;
+		overflow: auto;
+		.ant-btn{
+			width: 139px;
+			height: 32px;
+			border: 1px solid #E7E8EC;
+			background: none;
+			color: #FFF;
+			margin-right: 24px;
+		}
+		.active{
+			background: #0092FF;
+			color: #FFFFFF;
+			border: none;
+		}
+	}
+	.combustion button:last-child{
+		margin-right: 0px;
+		background: #3370FF;
+		border: none;
+	}
+	.emission{
+		padding: 16px 16px;
+		background: #212029;
+		margin-top: 16px;
+		// border-radius: 2px;
+		.title{
+			font-size: 14px;
+			font-family: PingFangSC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #FFF;
+			// padding: 20px 20px;
+			padding-bottom: 15px;
+			overflow: hidden;
+			padding-top: 0px;
+			.list{
+				float:right;
+				.ant-btn{
+					margin-left: 15px;
+				}
+			}
+		}
+	}
+	.ant-table-tbody .ant-table-cell{
+		// background: none !important;
+	}
+	.className6{
+		display: none !important; 
+	}
+	.ant-modal-confirm .ant-modal-confirm-btns .ant-btn + .ant-btn{
+		background: #0092FF;
+		border: none;
+		color: #FFF;
+	}
+	
+}
+.ant-table-summary .ant-table-cell{
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+// .ant-btn-dangerous{
+// 	background: #0092FF;
+// 	border: none;
+// 	color: #FFF;
+// }

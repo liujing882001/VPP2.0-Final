@@ -1,0 +1,12 @@
+.historys{
+	background: #212029;
+	border-radius: 10px;
+	padding: 16px 16px;
+	min-width: 1200px;
+}
+.ant-pagination-options-quick-jumper input{
+	background: none;
+}
+.ant-pagination-options-quick-jumper{
+	/* color: #FFFFFF; */
+}

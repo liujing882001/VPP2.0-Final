@@ -1,0 +1,77 @@
+.divappend{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	z-index: 99999;
+}
+.BMap_stdMpZoom{
+	height: 158px !important;
+	    width: 30px !important;
+	    /* background: #FFF; */
+	    box-shadow: 0px 2px 6px 0px rgba(1,106,53,0.31);
+	    padding: 10px 0px;
+	    box-shadow: 0px 2px 6px 0px rgba(1,106,53,0.31);
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.15);
+}
+.BMap_stdMpSlider{
+	width: 30px !important;
+	/* // height: 120px !important; */
+	top: 30px !important;
+}
+.BMap_stdMpPan{
+	display: none;
+}
+.BMap_zlHolder.hvr{
+	display: none !important;
+}
+.BMap_stdMpSliderBgBot{
+	background: url(../../style/load/map.png) no-repeat -31px bottom !important;
+	background-size: 44px 464px !important;
+	left: 12px !important;
+	/* // top:58px !important; */
+}
+.BMap_stdMpZoom .BMap_stdMpZoomIn{
+	/* // background-image: #FFF url(../../style/damao/map.png) !important; */
+	/* background:  url(../../style/load/add.png) top center no-repeat !important; */
+	background:  url('img/add.png') top center no-repeat !important;
+	background-repeat: no-repeat;
+	background-size: 16px !important;
+	left: 4px !important;
+	top: 6px;
+}
+
+.BMap_stdMpPan{
+	background: url(../../style/load/map.png)  !important;
+	background-size: 44px 464px !important;
+}
+.BMap_stdMpSliderBgTop{
+	width: 11px !important;
+	background: url(../../style/load/map.png) no-repeat -20px -226px !important;
+	background-size: 44px 464px !important;
+	left: 11px !important;
+	/* // top: 14px !important; */
+	/* // height: 120px !important; */
+}
+.BMap_stdMpZoom .BMap_stdMpZoomOut{
+	/* background:  url(../../style/load/cut.png) top center no-repeat !important; */
+	background:  url('img/cut.png') top center no-repeat !important;
+	background-repeat: no-repeat;
+	background-size: 18px !important;
+	left: 4.5px !important;
+	top: 138px !important;
+}
+.BMap_stdMpSliderBar{
+	display: none;
+}
+.BMap_stdMpCtrl{
+	position: absolute;
+	right: 0px !important;
+	bottom: 100px !important;
+	top: 274px !important;
+	left: calc(100% - 48px) !important;
+		  /* // inset: none; */
+		    /* // inset-top: 0; */
+
+
+}

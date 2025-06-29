@@ -1,0 +1,66 @@
+.tabls .ant-table-row .ant-table-row-level-1>td{
+	background: #004B90;
+}
+.parameter{
+	background: none !important;
+	padding: 0px !important;
+	/* padding-top: 16px !important; */
+}
+.allcontented{
+	background: #212029;
+	min-width: 1200px;
+	border-radius: 10px;
+	/* margin: 0px 16px 0px 16px; */
+	
+}
+.hybridBody{
+	background: #212029;
+	padding: 16px 16px;
+	border-radius: 10px;
+}
+.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input, .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover{
+	background: none;
+}
+input:-internal-autofill-selected {
+	background-color: #000000 !important;
+}
+.ant-input-password-icon.anticon{
+	/* color: #2A2B40; */
+}
+.infono{
+	font-size: 11px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFF;
+}
+.pasname{
+	color: #FFF;
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+}
+.unitName{
+	color: #FFF;
+	vertical-align: middle;
+	font-size: 16px;
+	padding-left: 10px;
+}
+#basic .ant-select-clear{
+	background: #212029;
+	color: #FFF;
+}
+.ant-upload-list{
+	color: #FFF;
+}
+.ant-upload-list-item-info .ant-upload-text-icon .anticon, .ant-upload-list-item-info .anticon-loading .anticon{
+	color: #FFF;
+}
+.ant-btn-text{
+	color: #FFF;
+}
+.newbutton:hover{
+	border-color: #0092FF;
+}
+.tangram-suggestion-main{
+	z-index: 999999999;
+}

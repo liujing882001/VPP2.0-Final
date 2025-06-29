@@ -1,0 +1,83 @@
+.status-four-wrap{
+    width: 800px;
+    height: 500px;
+    background-image: url(../../assets/energy-flow-energy.png);
+    background-size: 800px 460px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    position: relative;
+    .status-four-gif{
+        position: absolute;
+        display: inline-block;
+        width: 500px;
+        height: 409px;
+        background-image: url(../../assets/gif-4.gif);
+        background-size: cover;
+        background-position: center;
+        top: 14%;
+        left: 18%;
+    }
+    .charging-discharge-capacity-1{
+        position: absolute;
+        top: 57px;
+        left: 585px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .electricity-purchased-1{
+        position: absolute;
+        top: 53px;
+        left: 67px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .enterprise-electricity-1{
+        position: absolute;
+        top: 299px;
+        left: 164px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+}

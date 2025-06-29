@@ -1,0 +1,131 @@
+.chat-message-right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    .chat-message-content-right{
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        padding: 0 24px;
+        height: 42px;
+        background: #0092FF;
+        box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.2923);
+        border-radius: 6px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        position: relative;
+        cursor: pointer;
+        &:hover {
+            .chatMessage_content_right_operate {
+              position: absolute;
+              bottom: 2px;
+              cursor: pointer;
+              width: 24px;
+              height: 24px;
+              bottom: -10px;
+              left: -10px;
+              background: #3a3a43;
+              border-radius: 6px 6px 6px 6px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              i {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background-image: url(../../assets/copy-icon.png);
+                background-size: contain;
+              }
+            }
+          }
+    }
+}
+
+.chat-stop-text{
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #8F959E;
+    margin: 12px 0;
+}
+.chat-message-left{
+    display: flex;
+    margin-bottom: 30px;
+    .robot-gif{
+        display: inline-block;
+        width: 46px;
+        height: 35px;
+        background-image: url(../../../../assets/xiaoda_icon.png);
+        background-size: contain;
+		background-repeat: no-repeat;
+        position: relative;
+        left: 0px;
+        background-position: right center;
+        flex-shrink: 0;
+    }
+    .loading-gif{
+        display: inline-block;
+        width: 100px;
+        height: 40px;
+        position: relative;
+        left: -40px;
+        background-image: url(../../assets/loading.gif);
+        background-size: cover;
+        margin-right: 6px;
+        border-radius: 6px;
+    }
+    .robot-icon{
+        display: inline-block;
+        width: 46px;
+        height: 35px;
+        background-image: url(../../../../assets/xiaoda_icon.png);
+        background-size: contain;
+        margin-right: 18px;
+        flex-shrink: 0;
+    }
+    .chat-message-content-left{
+        padding: 16px 24px;
+        background: #292930;
+        box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.3663);
+        border: 2px solid #0092FF;
+        border-radius: 6px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+        .special-header{
+            width: 100%;
+            height: 42px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+    }
+}
+.regenerate-btn{
+    position: relative;
+    top: -10px;
+    display: inline-block;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &::before{
+        content: '';
+        display: inline-block;
+        margin-left: 67px;
+        width: 16px;
+        height: 16px;
+        background-image: url(../../assets/regenerate-icon.png);
+        background-size: cover;
+        margin-right: 6px;
+    }
+}

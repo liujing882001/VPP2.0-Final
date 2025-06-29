@@ -1,0 +1,27 @@
+.BMap_stdMpZoom{
+	/* height: auto; */
+	
+}
+.BMap_stdMpCtrl{
+	position: absolute;
+	right: 0px !important;
+	bottom: 50px !important;
+	top: 482px !important;
+	left: calc(100% - 48px) !important;
+}
+.BMap_stdMpType4 .BMap_stdMpZoom{
+	background: rgba(255, 255, 255, 0.15) !important;
+}
+.BMap_stdMpType4 .BMap_stdMpZoom .BMap_button{
+	border: none !important;
+}
+.BMap_stdMpType4 .BMap_stdMpZoomIn .BMap_smcbg{
+	background:  url('img/add.png') center center no-repeat !important;
+	background-repeat: no-repeat;
+	background-size: 18px !important;
+}
+.BMap_stdMpType4 .BMap_stdMpZoomOut .BMap_smcbg{
+	background:  url('img/cut.png') center center no-repeat !important;
+	background-repeat: no-repeat;
+	background-size: 20px !important;
+}

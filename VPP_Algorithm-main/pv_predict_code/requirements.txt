@@ -1,0 +1,7 @@
+pandas
+numpy
+psycopg2
+xgboost
+scikit-learn
+pytz
+scipy

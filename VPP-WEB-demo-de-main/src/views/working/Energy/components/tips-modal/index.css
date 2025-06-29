@@ -1,0 +1,47 @@
+.tips-modal {
+  width: 400px;
+  height: 156px;
+}
+
+.tips-modal .ant-modal-content {
+  /* padding: 0 0 24px 0; */
+}
+
+.tips-modal .tips-modal-title {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 16px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+
+.tips-modal .tips-modal-title .warn-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background: url(../../assets/warn-icon.png);
+  background-size: cover;
+  margin-right: 14px;
+}
+
+.tips-modal .tips-modal-content {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin: 10px 0 22px 0;
+  padding-left: 35px;
+}
+
+.tips-modal .cancel-btn {
+  width: 65px;
+  height: 32px;
+  border-radius: 3px;
+  background: transparent;
+  border: 1px solid #AEAEAE;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 14px;
+  color: #AEAEAE;
+}

@@ -1,0 +1,19 @@
+.Photovoltaic_model{
+	.ant-tabs > .ant-tabs-nav, .ant-tabs > div > .ant-tabs-nav{
+		margin-bottom: 0px;
+		// border-bottom: 1px solid rgba(255,255,255,0.1);
+		height: 100%;
+	}
+	.ant-tabs-tabpane{
+			background: #212029;
+		}
+	.accheader{
+		margin-bottom: 10px;
+	}
+	.ant-tabs-top >.ant-tabs-nav{
+		margin-bottom: 0px;
+	}
+	.ant-tabs-top >.ant-tabs-nav::before{
+		border: none;
+	}
+}

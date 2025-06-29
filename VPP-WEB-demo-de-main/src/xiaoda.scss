@@ -1,0 +1,18 @@
+.xiaoda-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-image: url(./assets/xiaoda_icon.png);
+}
+.xiaoda-icon-bottom {
+  position: absolute;
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  background-size: cover;
+  background-image: url(./assets/xiaoda-icon-bottom.png);
+  bottom: 0;
+  left: 0;
+  display: none;
+}

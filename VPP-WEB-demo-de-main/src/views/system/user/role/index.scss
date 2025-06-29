@@ -1,0 +1,27 @@
+.menu_managementForm .ant-modal-content{
+	padding-bottom: 24px;
+}
+.menu_managementForm {
+	.ant-tabs-top >.ant-tabs-nav::before{
+		display: none;
+	}
+	.ant-tabs .ant-tabs-tab{
+		margin: 0px 0px;
+		margin-right: 30px;
+		padding-bottom: 0px;
+	}
+	.ant-tabs .ant-tabs-tab-btn{
+		font-size: 14px !important;
+	}
+	.ant-tabs-tab-btn, .ant-tabs-tab-remove{
+		font-size: 14px !important;
+	}
+	.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+		font-size: 14px !important;
+		color: #0092FF ;
+	}
+	.ant-tabs>.ant-tabs-nav .ant-tabs-nav-wrap, .ant-tabs>div>.ant-tabs-nav .ant-tabs-nav-wrap{
+		height: 46px;
+		
+	}
+}

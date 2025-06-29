@@ -1,0 +1,102 @@
+.allcontent1{
+	// width: 100%;
+	min-width: 1200px;
+	// height: calc(100% - 16px);
+	height: 100%;
+	// overflow: auto;
+	// background: #212029;
+	.header{
+		height: 79px;
+		background: #212029;
+		border-radius: 2px;
+		line-height: 79px;
+		padding: 0px 15px;
+		color: #FFF;
+		margin-top: 0px;
+		// margin-top: 15px;
+	}
+	.mechanism{
+		background: #212029;
+		border-radius: 2px;
+		padding: 15px 15px;
+		margin-top: 16px;
+	}
+	.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+		background: none;
+		// color: #FFFFFF;
+	}
+	.ant-select-arrow{
+		color: #8F959E;
+	}
+	.ant-select{
+		margin-right: 12px;
+	}
+	.ant-table-thead>tr>th{
+		// background: #172C63;
+		// color: #FFFF;
+		// border: none;
+	}
+	.ou{
+		background: #212029;
+	}
+	.ji{
+		background: #312D36;
+	}
+	.ant-table-tbody>tr>td{
+		// color: #FFFFFF;
+		// border-bottom: 1px solid rgba(255,255,255,0.2);
+	}
+	.ant-picker{
+		background: none;
+	}
+	.combustion{
+		width: 100%;
+		height: calc(100% - 110px);
+		background: #212029;
+		padding:20px 21px;
+		margin-top: 15px;
+		overflow: auto;
+		.ant-btn{
+			width: 139px;
+			height: 32px;
+			border: 1px solid #E7E8EC;
+			background: none;
+			color: #FFFFFF;
+			margin-right: 24px;
+		}
+		.active{
+			background: #3370FF;
+			color: #FFFFFF;
+			border: none;
+		}
+	}
+	.combustion button:last-child{
+		margin-right: 0px;
+		background: #3370FF;
+		border: none;
+	}
+	.emission{
+		padding: 16px 16px;
+		// background: #09183F;
+		border-radius: 2px;
+		.title{
+			font-size: 14px;
+			font-family: PingFangSC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #FFFFFF;
+			// padding: 20px 20px;
+			padding-bottom: 15px;
+			overflow: hidden;
+			.list{
+				float:right;
+				.ant-btn{
+					margin-left: 15px;
+				}
+			}
+		}
+	}
+	.ant-table-tbody .ant-table-cell{
+		// background: none !important;
+	}
+	
+}

@@ -1,0 +1,204 @@
+.xuheader:after{
+		display: inline-block;
+		content: '';
+		width: 1px;
+		height: 15px;
+		background: #DFE1E5;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 0px;
+		margin-right: 20px;
+	}
+.xulogin{
+	background: #212029;
+	height: 100%;
+	// max-height: 900px;
+	// background: url(../../style/load/bg.png) left center no-repeat;
+	// background: url(../../assets/logo.svg) left center no-repeat;
+	background-size: cover;
+	.ant-input-suffix{
+		// cp;/
+	}
+	.ant-input::selection{
+		background: #DFE1E5 !important;
+	}
+	::selection{
+		background: #DFE1E5 !important;
+	}
+	.ant-checkbox-input:focus+.ant-checkbox-inner, .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner{
+		border-color: #0092FF;
+	}
+	.ant-checkbox-wrapper:hover{
+		border-color: #0092FF;
+	}
+	.header{
+		width: 100%;
+		height: 50px !important;
+		line-height: 50px;
+		background: #212029;
+		// background: #FFFFFF;
+		padding: 0px !important;
+		// text-align: left;
+		.shangtang-wrap{
+			display: flex;
+			align-items: center;
+			height: 100%;
+			.shangtang-logo{
+				width: 100px;
+				height: 40px;
+				background-image: url(../../style/shangtang/shangtang-logo.png);
+				background-size: cover;
+			}
+			.damao-logo{
+				width: 80px;
+				height: 30px;
+				background-image: url(../../style/shangtang/damao-logo.png);
+				background-size: cover;
+			}
+		}
+		img{
+			display: inline-block;
+			width: 107px;
+			// height: 66px;
+			// margin-top: 14px;
+			margin-left: 37px;
+			vertical-align: middle;
+			// float: left;
+		}
+		ul{
+			float: right;
+			margin-right: 30px;
+			li{
+				font-size: 16px;
+				font-family: PingFangSC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #2A2B40;
+				list-style: none;
+				float: left;
+				width: 100px;
+				line-height: 108px;
+				position: relative;
+				
+			}
+		}
+		// ul l
+	}
+	.content{
+		width: 100%;
+		height: calc(100% - 50px);
+		min-height: 636px;
+		// background: url(../../style/load/bg.png) left center no-repeat;
+		background: url(../../assets/logo.svg)left center no-repeat;
+		background-size: cover;
+		
+		#basics2{
+			background: #151517;
+			border-radius: 31px;
+			// border: 1px solid #FFFFFF;
+			backdrop-filter: blur(2px);
+			padding: 40px 50px;
+			width: 442px;
+			position: absolute;
+			// right: 100px;
+			top: 20%;
+			left: 50%; /* 向左偏移50% */
+			  transform: translateX(-50%);
+			// transform: translate(-50%, -50%);
+			.ant-btn-primary{
+				width: 100%;
+				background: #0092FF;
+			}
+			h1{
+				text-align: center;
+				font-family: PingFangSC-Semibold, PingFang SC;
+				font-weight: 600;
+				color: #FFF;
+			}
+			.ant-checkbox + span{
+				color: #FFF;
+			}
+			.ant-input-prefix{
+				color: #AEAEAE !important;
+				
+			}
+			.ant-input-affix-wrapper{
+				height: 36px;
+				background: #FFF;
+				border-radius: 6px;
+			}
+			.ant-input-password-icon.anticon{
+				color: #AEAEAE;
+			}
+			.ant-input{
+				background: #FFF;
+				border-radius: 6px;
+				color: #777777;
+			}
+			.anticon svg{
+				color: #AEAEAE;
+			}
+			.ant-input-prefix:after{
+				display: inline-block;
+				content: '';
+				width: 1px;
+				height: 14px;
+				border: 1px solid #DFE1E5;
+				margin: 0px 12px;
+			}
+			.ant-checkbox-checked .ant-checkbox-inner{
+				background: none;
+				border-color: #0092FF ;
+			}
+			.ant-checkbox:hover .ant-checkbox-inner {
+				border-color: #0092FF; // 移入时的边框颜色
+				background-color: #0092FF; // 移入时的背景颜色
+			}
+			
+			.ant-checkbox-checked .ant-checkbox-inner {
+			  border-color: #0092FF; // 选中后的边框颜色
+			  background-color: #0092FF; // 选中后的背景颜色
+			}
+			.ant-checkbox:hover .ant-checkbox-inner::after {
+			  border-color: #d9d9d9; // 悬浮时文字边框颜色
+			}
+		}
+		.Record_number{
+			position: absolute;
+			bottom: 20px;
+			text-align: center;
+			left: 50%;
+			// transform: ;
+			transform: translateX(-50%);
+			font-size: 14px;
+			color: #C7C7C7;
+			cursor: pointer;
+		}
+		
+	}
+	.footer{
+		width: 100%;
+		height: 82px;
+		background: #FFFFFF;
+		text-align: center;
+		font-size: 16px;
+		font-family: PingFangSC-Regular, PingFang SC;
+		font-weight: 400;
+		color: #AEAEAE;
+		line-height: 30px;
+		// padding-top: 30px;
+		display: table;
+		padding: 10px 0px;
+		span{
+			display: table-cell;
+			vertical-align: middle;
+		}
+		p{
+			padding: 0px;
+			margin: 0px;
+		}
+	}
+	.ant-input{
+		// color: #FFF !important; 
+	}
+}

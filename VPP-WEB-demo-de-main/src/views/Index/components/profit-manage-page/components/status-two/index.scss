@@ -1,0 +1,125 @@
+.status-two-wrap{
+    width: 800px;
+    height: 500px;
+    background-image: url(../../assets/capital-flow-both.png);
+    background-size: 800px 460px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    position: relative;
+    .status-two-gif{
+        position: absolute;
+        display: inline-block;
+        width: 492px;
+        height: 450px;
+        background-image: url(../../assets/gif-2.gif);
+        background-size: cover;
+        background-position: center;
+        top: 9%;
+        left: 18%;
+    }
+    .real-return-1{
+        position: absolute;
+        top: 76px;
+        left: 49px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .revenue-operator-1{
+        position: absolute;
+        top: 46px;
+        left: 252px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .energy-storage-revenue-1{
+        position: absolute;
+        top: 94px;
+        left: 543px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .photovoltaic-revenue-1{
+        position: absolute;
+        top: 333px;
+        left: 106px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+    .reduce-waive-fees-1{
+        position: absolute;
+        top: 333px;
+        left: 457px;
+        span{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-right: 16px;
+        }
+        .green-text{
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0092FF;
+            margin-right: 10px;
+            position: relative;
+            top: 1px;
+        }
+    }
+}

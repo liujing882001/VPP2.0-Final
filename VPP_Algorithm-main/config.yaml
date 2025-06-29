@@ -1,0 +1,215 @@
+# VPP算法服务配置文件
+# 版本: 2.0.0
+# 作者: VPP Team
+
+# 应用配置
+app:
+  name: "VPP储能调度算法服务"
+  version: "2.0.0"
+  debug: false
+  timezone: "Asia/Shanghai"
+
+# 服务配置
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  reload: false
+  access_log: true
+
+# 数据库配置
+database:
+  type: "postgresql"  # sqlite, postgresql, mysql
+  url: "${DATABASE_URL:postgresql://user:password@localhost:5432/vpp_algorithm}"
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  pool_recycle: 3600
+  echo: false
+
+# Redis配置
+redis:
+  url: "${REDIS_URL:redis://localhost:6379/0}"
+  password: "${REDIS_PASSWORD:}"
+  max_connections: 10
+  socket_timeout: 30
+  socket_connect_timeout: 30
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file:
+    enabled: true
+    path: "logs/vpp_algorithm.log"
+    max_size: "100MB"
+    backup_count: 7
+    rotation: "daily"
+  console:
+    enabled: true
+    colored: true
+
+# 监控配置
+monitoring:
+  prometheus:
+    enabled: true
+    endpoint: "/metrics"
+  health_check:
+    endpoint: "/health"
+    timeout: 30
+
+# 算法模型配置
+models:
+  base_path: "./model/model_packages"
+  cache_enabled: true
+  cache_ttl: 3600  # 缓存时间（秒）
+  
+  # 储能策略模型
+  storage_energy:
+    - name: "StorageAIStrategy"
+      path: "StorageAIStrategy"
+      enabled: true
+      default: true
+    - name: "StorageAIStrategy_Asc1"
+      path: "StorageAIStrategy_Asc1"
+      enabled: true
+    - name: "StorageAIStrategy_Asc2"
+      path: "StorageAIStrategy_Asc2"
+      enabled: true
+    - name: "StorageAIStrategy_Chiku"
+      path: "StorageAIStrategy_Chiku"
+      enabled: true
+    - name: "StorageAIStrategy_Lingang"
+      path: "StorageAIStrategy_Lingang"
+      enabled: true
+    - name: "StorageAIStrategy_Zhongda001J"
+      path: "StorageAIStrategy_Zhongda001J"
+      enabled: true
+
+  # 负荷预测模型
+  load_prediction:
+    - name: "DemandLoad_LightGBM"
+      path: "DemandLoad_LightGBM"
+      enabled: true
+      default: true
+    - name: "DemandLoad_Asc1"
+      path: "DemandLoad_Asc1"
+      enabled: true
+    - name: "DemandLoad_Asc2"
+      path: "DemandLoad_Asc2"
+      enabled: true
+    - name: "DemandLoad_Chiku"
+      path: "DemandLoad_Chiku"
+      enabled: true
+    - name: "DemandLoad_Lingang"
+      path: "DemandLoad_Lingang"
+      enabled: true
+
+  # 光伏预测模型
+  pv_prediction:
+    - name: "PVPower_Lingang"
+      path: "PVPower_Lingang"
+      enabled: true
+      default: true
+
+# 数据输入配置
+input:
+  data_sources:
+    - name: "database"
+      type: "database"
+      enabled: true
+      priority: 1
+    - name: "json_file"
+      type: "json"
+      enabled: false
+      priority: 2
+      path: "./input/data/"
+  
+  # 数据验证
+  validation:
+    enabled: true
+    strict_mode: false
+    timeout: 30
+
+# 数据输出配置
+output:
+  targets:
+    - name: "database"
+      type: "database"
+      enabled: true
+      priority: 1
+    - name: "api"
+      type: "api"
+      enabled: true
+      priority: 2
+  
+  # 结果缓存
+  cache:
+    enabled: true
+    ttl: 1800  # 30分钟
+    max_size: 1000
+
+# 算法执行配置
+execution:
+  timeout: 300  # 5分钟
+  max_concurrent: 5
+  retry:
+    enabled: true
+    max_attempts: 3
+    delay: 5  # 秒
+    backoff_factor: 2
+
+# 安全配置
+security:
+  api_key:
+    enabled: false
+    header_name: "X-API-Key"
+    keys: []
+  
+  cors:
+    allow_origins: ["*"]
+    allow_methods: ["GET", "POST", "PUT", "DELETE"]
+    allow_headers: ["*"]
+    allow_credentials: true
+
+# 性能配置
+performance:
+  # 连接池
+  connection_pool:
+    size: 20
+    timeout: 30
+  
+  # 缓存
+  cache:
+    type: "redis"  # memory, redis
+    default_ttl: 300
+    max_keys: 10000
+
+# 特定环境配置
+environments:
+  development:
+    debug: true
+    logging:
+      level: "DEBUG"
+    database:
+      echo: true
+  
+  testing:
+    debug: false
+    logging:
+      level: "INFO"
+    database:
+      url: "sqlite:///test.db"
+  
+  production:
+    debug: false
+    logging:
+      level: "WARNING"
+      file:
+        enabled: true
+    performance:
+      connection_pool:
+        size: 50
+    security:
+      api_key:
+        enabled: true 

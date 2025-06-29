@@ -1,0 +1,47 @@
+.default-tips{
+    height: 32px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    border-radius: 19px 19px 19px 19px;
+    border: 1px solid #45454F;
+    width: fit-content;
+    padding: 0 16px;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    margin-left: 60px;
+    cursor: pointer;
+    &::after{
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 9px;
+        background-image: url(../../assets/arrow.png);
+        background-size: 15px 9px;
+    }
+}
+
+.change-btn{
+    display: flex;
+    align-items: center;
+    width: 70px;
+    margin-left: 70px;
+    cursor: pointer;
+    .change-btn-icon{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-image: url(../../assets/refresh-icon.png);
+        background-size: cover;
+        margin-right: 4px;
+    }
+    .chang-btn-text{
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: #FFFFFF;
+    }
+}

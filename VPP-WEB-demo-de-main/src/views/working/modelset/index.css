@@ -1,0 +1,243 @@
+.allcontent{
+	/* overflow: hidden; */
+}
+.manageheader{
+	height: 79px;
+	line-height: 79px;
+	background: #09183F;
+	border-radius: 2px;
+	/* margin-top: 16px; */
+}
+.manageheader .ant-select{
+	margin-left: 20px;
+}
+.manageheader .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+	border: none;
+}
+.manageheader .acc .ant-picker{
+	float: left;
+}
+.manageheader .tab_con3{
+	/* margin-top: 25px; */
+}
+.Distributed{
+	width: 100%;
+	height: auto;
+	background: #09183F;
+	border-radius: 2px;
+	margin-top: 16px;
+	padding-bottom: 40px;
+}
+.Distributed h4{
+	
+}
+.Distributed>h4{
+	font-size: 16px;
+	font-family: PingFangSC-Light, PingFang SC;
+	font-weight: 300;
+	color: rgba(255, 255, 255, 0.7);
+	margin: 0px;
+	padding: 20px 0px;
+	line-height: 24px;
+	padding-left: 11px;
+	overflow: hidden;
+	line-height: 32px;
+}
+
+.Distributed>h4:after{
+	content: '';
+	display: inline-block;
+	width: 9px;
+	height: 32px;
+	background: #A276FF;
+	border-radius: 5px;
+	float: left;
+	margin-right: 20px;
+}
+.cell h4{
+	font-size: 16px;
+	font-family: PingFangSC-Light, PingFang SC;
+	font-weight: 300;
+	color: rgba(255, 255, 255, 0.7);
+	margin: 0px;
+	padding: 20px 0px;
+	line-height: 24px;
+	padding-left: 11px;
+	overflow: hidden;
+	line-height: 32px;
+}
+.cell>h4:after{
+	content: '';
+	display: inline-block;
+	width: 9px;
+	height: 32px;
+	background: #44D7B6;
+	border-radius: 5px;
+	float: left;
+	margin-right: 20px;
+}
+.manage{
+	/* width: 100%; */
+	display: flex;
+	margin:  0px 64px;
+	border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+	padding-bottom: 50px;
+}
+.manage .hadoop{
+	flex: 1;
+}
+.hadooplist{
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	display: flex;
+}
+.hadooplist li{
+	float: left;
+	/* width: 25%; */
+	list-style: none;
+	flex: 1;
+}
+.hadooplist li>h4{
+	font-size: 16px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.5);
+	padding: 0px;
+	/* height: 20px; */
+	margin: 0px;
+	line-height: 20px;
+}
+.hadooplist li>h4:after{
+	content: '';
+	display: inline-block;
+	width: 4px;
+	height: 20px;
+	background: #0091FF;
+	border-radius: 5px;
+	float: left;
+	margin-right: 20px;
+}
+.hadooplist li>b{
+	display: inline-block;
+	font-size: 20px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #FFFFFF;
+	line-height: 28px;
+	margin-left: 23px;
+	padding-top: 22px;
+}
+.warnhadooplist li>h4:after{
+	background:#E02020;
+}
+.quantity1{
+	margin: 0px;
+	height: 34px;
+	line-height: 34px;
+	margin: 20px 0px;
+	overflow: hidden;
+	font-size: 16px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.7);
+	margin-left: 0px;
+	padding-left: 0px;
+	margin-top: 0px;
+}
+.quantity1 img{
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+.quantity1 span{
+	font-size: 24px;
+	font-family: SourceHanSansCN-Heavy, SourceHanSansCN;
+	font-weight: 800;
+	color: #FFFFFF;
+	line-height: 24px;
+	margin-left: 26px;
+}
+.battery{
+	width: 600px;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+	padding: 60px 0px;
+}
+.battery div{
+	flex: 1;
+}
+.battery div>img{
+	width: 58px;
+	height: 58px;
+	float: left;
+}
+.battery div>b{
+	color: #FFFFFF;
+	font-size: 24px;
+	font-family: SourceHanSansCN-Heavy, SourceHanSansCN;
+	font-weight: 800;
+	color: #00BF8F;
+	line-height: 24px;
+	padding-left: 20px;
+	padding-top: 7px;
+	display: inline-block;
+}
+.battery div>span{
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.7);
+	line-height: 20px;
+	padding-left: 20px;
+	padding-top: 5px;
+	display: inline-block;
+}
+.battery div:nth-child(2)>b{
+	color: #FFCF40;
+}
+#element{
+	width: 100%;
+	height: 275px;
+}
+.cell{
+	width: 100%;
+	background: #09183F;
+	border-radius: 2px;
+	margin-top: 16px;
+	padding-top: 30px;
+}
+.cell .manage{
+	border: none;
+}
+.number{
+	font-size: 24px;
+	font-family: SourceHanSansCN-Heavy, SourceHanSansCN;
+	font-weight: 800;
+	color: #FFFFFF;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

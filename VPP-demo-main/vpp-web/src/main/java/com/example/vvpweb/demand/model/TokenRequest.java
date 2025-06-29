@@ -1,0 +1,19 @@
+package com.example.vvpweb.demand.model;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+public class TokenRequest {
+    @ApiModelProperty("TokenRequest")
+    private String root;
+
+    @ApiModelProperty("协议版本")
+    private Integer version;
+
+    @ApiModelProperty("请求ID,由请求方生成,同一个DN应保证其唯一性,以便与响应相对应")
+    private String requestID;
+
+    @ApiModelProperty("下位节点的ID")
+    private String dnID;
+}

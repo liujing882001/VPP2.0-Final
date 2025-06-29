@@ -1,0 +1,763 @@
+./api/v2/routes.py:94:89: E501 line too long (95 > 88 characters)
+./api/v2/routes.py:377:89: E501 line too long (89 > 88 characters)
+./api/v2/routes.py:413:89: E501 line too long (134 > 88 characters)
+./api/v2/routes.py:413:114: E241 multiple spaces after ','
+./api/v2/routes.py:533:89: E501 line too long (99 > 88 characters)
+./common/exceptions.py:35:89: E501 line too long (96 > 88 characters)
+./common/log_util.py:38:89: E501 line too long (113 > 88 characters)
+./common/log_util.py:274:1: F811 redefinition of unused 'get_logger' from line 219
+./common/log_util.py:326:89: E501 line too long (96 > 88 characters)
+./core/algorithm_engine.py:393:89: E501 line too long (105 > 88 characters)
+./core/algorithm_engine.py:484:89: E501 line too long (92 > 88 characters)
+./core/database_manager.py:84:89: E501 line too long (114 > 88 characters)
+./core/database_manager.py:169:20: F821 undefined name 're'
+./core/database_manager.py:305:89: E501 line too long (93 > 88 characters)
+./core/gpu_accelerated_engine.py:8:1: F401 'typing.Tuple' imported but unused
+./core/gpu_accelerated_engine.py:15:1: F401 'asyncio' imported but unused
+./core/gpu_accelerated_engine.py:27:1: F401 '.algorithm_engine.PriceSignalProcessor' imported but unused
+./core/gpu_accelerated_engine.py:51:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:64:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:71:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:98:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:112:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:126:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:130:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:138:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:143:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:146:89: E501 line too long (97 > 88 characters)
+./core/gpu_accelerated_engine.py:150:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:152:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:154:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:169:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:172:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:178:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:181:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:187:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:190:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:200:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:204:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:208:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:212:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:216:28: E226 missing whitespace around arithmetic operator
+./core/gpu_accelerated_engine.py:217:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:222:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:232:28: E226 missing whitespace around arithmetic operator
+./core/gpu_accelerated_engine.py:233:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:237:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:252:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:256:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:259:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:262:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:267:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:270:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:274:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:278:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:281:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:285:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:299:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:305:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:308:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:312:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:326:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:329:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:330:13: F841 local variable 'A_eq' is assigned to but never used
+./core/gpu_accelerated_engine.py:331:13: F841 local variable 'b_eq' is assigned to but never used
+./core/gpu_accelerated_engine.py:333:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:337:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:340:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:344:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:347:53: E226 missing whitespace around arithmetic operator
+./core/gpu_accelerated_engine.py:348:29: E226 missing whitespace around arithmetic operator
+./core/gpu_accelerated_engine.py:349:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:351:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:363:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:380:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:397:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:406:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:410:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:413:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:436:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:461:89: E501 line too long (89 > 88 characters)
+./core/gpu_accelerated_engine.py:463:89: E501 line too long (92 > 88 characters)
+./core/gpu_accelerated_engine.py:471:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:473:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:479:89: E501 line too long (92 > 88 characters)
+./core/gpu_accelerated_engine.py:487:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:492:40: E226 missing whitespace around arithmetic operator
+./core/gpu_accelerated_engine.py:492:52: E228 missing whitespace around modulo operator
+./core/gpu_accelerated_engine.py:492:55: E226 missing whitespace around arithmetic operator
+./core/gpu_accelerated_engine.py:493:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:495:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:502:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:509:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:512:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:526:89: E501 line too long (91 > 88 characters)
+./core/gpu_accelerated_engine.py:542:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:545:1: W293 blank line contains whitespace
+./core/gpu_accelerated_engine.py:548:6: W291 trailing whitespace
+./core/gpu_accelerated_engine.py:548:7: W292 no newline at end of file
+./core/observability_engine.py:12:1: F401 'datetime.datetime' imported but unused
+./core/observability_engine.py:12:1: F401 'datetime.timedelta' imported but unused
+./core/observability_engine.py:20:1: F401 'pathlib.Path' imported but unused
+./core/observability_engine.py:62:1: W293 blank line contains whitespace
+./core/observability_engine.py:68:1: W293 blank line contains whitespace
+./core/observability_engine.py:74:1: W293 blank line contains whitespace
+./core/observability_engine.py:79:1: W293 blank line contains whitespace
+./core/observability_engine.py:88:1: W293 blank line contains whitespace
+./core/observability_engine.py:102:1: W293 blank line contains whitespace
+./core/observability_engine.py:120:1: W293 blank line contains whitespace
+./core/observability_engine.py:124:1: W293 blank line contains whitespace
+./core/observability_engine.py:133:1: W293 blank line contains whitespace
+./core/observability_engine.py:139:1: W293 blank line contains whitespace
+./core/observability_engine.py:140:89: E501 line too long (90 > 88 characters)
+./core/observability_engine.py:145:1: W293 blank line contains whitespace
+./core/observability_engine.py:153:1: W293 blank line contains whitespace
+./core/observability_engine.py:155:1: W293 blank line contains whitespace
+./core/observability_engine.py:160:1: W293 blank line contains whitespace
+./core/observability_engine.py:161:89: E501 line too long (90 > 88 characters)
+./core/observability_engine.py:163:1: W293 blank line contains whitespace
+./core/observability_engine.py:170:1: W293 blank line contains whitespace
+./core/observability_engine.py:174:1: W293 blank line contains whitespace
+./core/observability_engine.py:179:1: W293 blank line contains whitespace
+./core/observability_engine.py:181:1: W293 blank line contains whitespace
+./core/observability_engine.py:190:1: W293 blank line contains whitespace
+./core/observability_engine.py:195:1: W293 blank line contains whitespace
+./core/observability_engine.py:198:1: W293 blank line contains whitespace
+./core/observability_engine.py:199:89: E501 line too long (89 > 88 characters)
+./core/observability_engine.py:203:1: W293 blank line contains whitespace
+./core/observability_engine.py:208:1: W293 blank line contains whitespace
+./core/observability_engine.py:213:1: W293 blank line contains whitespace
+./core/observability_engine.py:218:1: W293 blank line contains whitespace
+./core/observability_engine.py:223:1: W293 blank line contains whitespace
+./core/observability_engine.py:226:1: W293 blank line contains whitespace
+./core/observability_engine.py:228:1: W293 blank line contains whitespace
+./core/observability_engine.py:233:1: W293 blank line contains whitespace
+./core/observability_engine.py:236:1: W293 blank line contains whitespace
+./core/observability_engine.py:238:1: W293 blank line contains whitespace
+./core/observability_engine.py:248:1: W293 blank line contains whitespace
+./core/observability_engine.py:254:1: W293 blank line contains whitespace
+./core/observability_engine.py:260:1: W293 blank line contains whitespace
+./core/observability_engine.py:262:1: W293 blank line contains whitespace
+./core/observability_engine.py:270:1: W293 blank line contains whitespace
+./core/observability_engine.py:275:1: W293 blank line contains whitespace
+./core/observability_engine.py:280:1: W293 blank line contains whitespace
+./core/observability_engine.py:283:1: W293 blank line contains whitespace
+./core/observability_engine.py:291:1: W293 blank line contains whitespace
+./core/observability_engine.py:293:1: W293 blank line contains whitespace
+./core/observability_engine.py:294:89: E501 line too long (89 > 88 characters)
+./core/observability_engine.py:298:1: W293 blank line contains whitespace
+./core/observability_engine.py:301:1: W293 blank line contains whitespace
+./core/observability_engine.py:304:1: W293 blank line contains whitespace
+./core/observability_engine.py:307:1: W293 blank line contains whitespace
+./core/observability_engine.py:319:1: W293 blank line contains whitespace
+./core/observability_engine.py:321:1: W293 blank line contains whitespace
+./core/observability_engine.py:336:1: W293 blank line contains whitespace
+./core/observability_engine.py:343:1: W293 blank line contains whitespace
+./core/observability_engine.py:348:1: W293 blank line contains whitespace
+./core/observability_engine.py:352:1: W293 blank line contains whitespace
+./core/observability_engine.py:363:1: W293 blank line contains whitespace
+./core/observability_engine.py:373:1: W293 blank line contains whitespace
+./core/observability_engine.py:376:1: W293 blank line contains whitespace
+./core/observability_engine.py:379:53: W291 trailing whitespace
+./core/observability_engine.py:380:31: E128 continuation line under-indented for visual indent
+./core/observability_engine.py:382:1: W293 blank line contains whitespace
+./core/observability_engine.py:389:1: W293 blank line contains whitespace
+./core/observability_engine.py:392:1: W293 blank line contains whitespace
+./core/observability_engine.py:400:1: W293 blank line contains whitespace
+./core/observability_engine.py:405:1: W293 blank line contains whitespace
+./core/observability_engine.py:410:61: W291 trailing whitespace
+./core/observability_engine.py:411:20: E128 continuation line under-indented for visual indent
+./core/observability_engine.py:416:1: W293 blank line contains whitespace
+./core/observability_engine.py:424:1: W293 blank line contains whitespace
+./core/observability_engine.py:430:1: W293 blank line contains whitespace
+./core/observability_engine.py:434:1: W293 blank line contains whitespace
+./core/observability_engine.py:438:1: W293 blank line contains whitespace
+./core/observability_engine.py:440:1: W293 blank line contains whitespace
+./core/observability_engine.py:449:1: W293 blank line contains whitespace
+./core/observability_engine.py:461:1: W293 blank line contains whitespace
+./core/observability_engine.py:465:1: W293 blank line contains whitespace
+./core/observability_engine.py:469:1: W293 blank line contains whitespace
+./core/observability_engine.py:474:1: W293 blank line contains whitespace
+./core/observability_engine.py:478:1: W293 blank line contains whitespace
+./core/observability_engine.py:488:1: W293 blank line contains whitespace
+./core/observability_engine.py:494:1: W293 blank line contains whitespace
+./core/observability_engine.py:498:1: W293 blank line contains whitespace
+./core/observability_engine.py:502:89: E501 line too long (89 > 88 characters)
+./core/observability_engine.py:503:1: W293 blank line contains whitespace
+./core/observability_engine.py:509:32: E131 continuation line unaligned for hanging indent
+./core/observability_engine.py:509:89: E501 line too long (102 > 88 characters)
+./core/observability_engine.py:513:1: W293 blank line contains whitespace
+./core/observability_engine.py:529:1: W293 blank line contains whitespace
+./core/observability_engine.py:533:1: W293 blank line contains whitespace
+./core/observability_engine.py:541:1: W293 blank line contains whitespace
+./core/observability_engine.py:546:1: W293 blank line contains whitespace
+./core/observability_engine.py:549:89: E501 line too long (93 > 88 characters)
+./core/observability_engine.py:550:1: W293 blank line contains whitespace
+./core/observability_engine.py:556:1: W293 blank line contains whitespace
+./core/observability_engine.py:559:1: W293 blank line contains whitespace
+./core/observability_engine.py:561:1: W293 blank line contains whitespace
+./core/observability_engine.py:567:1: W293 blank line contains whitespace
+./core/observability_engine.py:572:1: W293 blank line contains whitespace
+./core/observability_engine.py:575:89: E501 line too long (93 > 88 characters)
+./core/observability_engine.py:576:1: W293 blank line contains whitespace
+./core/observability_engine.py:582:1: W293 blank line contains whitespace
+./core/observability_engine.py:585:1: W293 blank line contains whitespace
+./core/observability_engine.py:587:1: W293 blank line contains whitespace
+./core/observability_engine.py:589:1: W293 blank line contains whitespace
+./core/observability_engine.py:591:1: W293 blank line contains whitespace
+./core/observability_engine.py:595:1: W293 blank line contains whitespace
+./core/observability_engine.py:598:89: E501 line too long (98 > 88 characters)
+./core/observability_engine.py:602:1: W293 blank line contains whitespace
+./core/observability_engine.py:605:1: W293 blank line contains whitespace
+./core/observability_engine.py:608:1: W293 blank line contains whitespace
+./core/observability_engine.py:618:1: W293 blank line contains whitespace
+./core/observability_engine.py:624:89: E501 line too long (90 > 88 characters)
+./core/observability_engine.py:624:91: W291 trailing whitespace
+./core/observability_engine.py:625:36: E128 continuation line under-indented for visual indent
+./core/observability_engine.py:627:1: W293 blank line contains whitespace
+./core/observability_engine.py:636:1: W293 blank line contains whitespace
+./core/observability_engine.py:640:1: W293 blank line contains whitespace
+./core/observability_engine.py:646:1: W293 blank line contains whitespace
+./core/observability_engine.py:650:89: E501 line too long (93 > 88 characters)
+./core/observability_engine.py:652:89: E501 line too long (94 > 88 characters)
+./core/observability_engine.py:653:1: W293 blank line contains whitespace
+./core/observability_engine.py:655:1: W293 blank line contains whitespace
+./core/observability_engine.py:657:1: W293 blank line contains whitespace
+./core/observability_engine.py:661:1: W293 blank line contains whitespace
+./core/observability_engine.py:666:1: W293 blank line contains whitespace
+./core/observability_engine.py:682:89: E501 line too long (91 > 88 characters)
+./core/observability_engine.py:695:21: W291 trailing whitespace
+./core/observability_engine.py:695:22: W292 no newline at end of file
+./power_trade_strategy_code/power_trade_strategy.py:45:89: E501 line too long (178 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:62:89: E501 line too long (96 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:64:89: E501 line too long (127 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:65:89: E501 line too long (129 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:68:89: E501 line too long (93 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:71:89: E501 line too long (143 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:72:89: E501 line too long (155 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:73:89: E501 line too long (149 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:74:89: E501 line too long (150 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:81:89: E501 line too long (94 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:82:89: E501 line too long (108 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:96:89: E501 line too long (94 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:129:89: E501 line too long (96 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:130:89: E501 line too long (105 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:131:89: E501 line too long (99 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:132:89: E501 line too long (97 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:164:89: E501 line too long (100 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:245:89: E501 line too long (140 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:269:89: E501 line too long (130 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy.py:422:5: F841 local variable 'result' is assigned to but never used
+./power_trade_strategy_code/power_trade_strategy_refactored.py:111:89: E501 line too long (93 > 88 characters)
+./power_trade_strategy_code/power_trade_strategy_refactored.py:224:46: E221 multiple spaces before operator
+./power_trade_strategy_code/power_trade_strategy_refactored.py:224:49: E222 multiple spaces after operator
+./power_trade_strategy_code/power_trade_strategy_refactored.py:274:13: F841 local variable 'result' is assigned to but never used
+./pv_predict_code/Controler/__init__.py:1:1: W391 blank line at end of file
+./pv_predict_code/PV_predict.py:98:89: E501 line too long (164 > 88 characters)
+./pv_predict_code/PV_predict.py:253:89: E501 line too long (97 > 88 characters)
+./pv_predict_code/PV_predict.py:275:89: E501 line too long (95 > 88 characters)
+./pv_predict_code/PV_predict.py:278:89: E501 line too long (129 > 88 characters)
+./pv_predict_code/PV_predict.py:279:89: E501 line too long (127 > 88 characters)
+./pv_predict_code/PV_predict.py:282:89: E501 line too long (97 > 88 characters)
+./pv_predict_code/PV_predict.py:286:89: E501 line too long (107 > 88 characters)
+./pv_predict_code/PV_predict.py:307:52: E241 multiple spaces after ','
+./pv_predict_code/PV_predict.py:308:63: E241 multiple spaces after ','
+./pv_predict_code/PV_predict.py:309:64: E241 multiple spaces after ','
+./pv_predict_code/PV_predict.py:403:89: E501 line too long (115 > 88 characters)
+./pv_predict_code/PV_predict.py:404:89: E501 line too long (109 > 88 characters)
+./pv_predict_code/PV_predict.py:419:89: E501 line too long (95 > 88 characters)
+./scripts/advanced_code_fixer.py:359:11: F541 f-string is missing placeholders
+./scripts/code_cleanup.py:125:89: E501 line too long (156 > 88 characters)
+./scripts/code_cleanup.py:326:11: F541 f-string is missing placeholders
+./scripts/code_cleanup.py:334:11: F541 f-string is missing placeholders
+./scripts/code_cleanup.py:341:60: E241 multiple spaces after ','
+./tests/test_comprehensive.py:20:1: E402 module level import not at top of file
+./tests/test_comprehensive.py:28:1: E402 module level import not at top of file
+./tests/test_comprehensive.py:35:1: E402 module level import not at top of file
+./tests/test_comprehensive.py:403:19: E226 missing whitespace around arithmetic operator
+./tests/test_comprehensive.py:404:11: F541 f-string is missing placeholders
+./tests/test_comprehensive.py:405:17: E226 missing whitespace around arithmetic operator
+./tests/test_comprehensive.py:411:15: F541 f-string is missing placeholders
+./tests/test_comprehensive.py:416:15: F541 f-string is missing placeholders
+./tests/test_optimized.py:27:1: E402 module level import not at top of file
+./tests/test_optimized.py:28:1: E402 module level import not at top of file
+./tests/test_optimized.py:33:1: E402 module level import not at top of file
+./tests/test_optimized.py:34:1: E402 module level import not at top of file
+./tests/test_performance.py:24:1: E402 module level import not at top of file
+./tests/test_performance.py:25:1: E402 module level import not at top of file
+./tests/test_performance.py:200:15: F541 f-string is missing placeholders
+./tests/test_performance.py:323:15: F541 f-string is missing placeholders
+./tests/test_performance.py:357:15: F541 f-string is missing placeholders
+./vpp_es_schedule_code/api/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/config/__init__.py:105:43: E999 IndentationError: expected an indented block after 'if' statement on line 105
+./vpp_es_schedule_code/cron/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/cron/redis_clock.py:42:9: E999 IndentationError: expected an indented block after 'except' statement on line 40
+./vpp_es_schedule_code/cron/scheduler_manager.py:10:1: E402 module level import not at top of file
+./vpp_es_schedule_code/cron/scheduler_manager.py:11:1: E402 module level import not at top of file
+./vpp_es_schedule_code/cron/scheduler_manager.py:12:1: E402 module level import not at top of file
+./vpp_es_schedule_code/cron/scheduler_manager.py:13:1: E402 module level import not at top of file
+./vpp_es_schedule_code/cron/scheduler_manager.py:14:1: E402 module level import not at top of file
+./vpp_es_schedule_code/cron/scheduler_manager.py:15:1: E402 module level import not at top of file
+./vpp_es_schedule_code/input/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/input/input_class/database_read.py:11:1: E402 module level import not at top of file
+./vpp_es_schedule_code/input/input_class/database_read.py:33:89: E501 line too long (89 > 88 characters)
+./vpp_es_schedule_code/input/input_class/database_read.py:35:89: E501 line too long (97 > 88 characters)
+./vpp_es_schedule_code/input/input_class/database_read.py:70:66: E241 multiple spaces after ','
+./vpp_es_schedule_code/input/input_class/json_read.py:13:1: E402 module level import not at top of file
+./vpp_es_schedule_code/input/input_class/json_read.py:14:1: E402 module level import not at top of file
+./vpp_es_schedule_code/input/input_class/json_read.py:16:1: E402 module level import not at top of file
+./vpp_es_schedule_code/input/input_class/json_read.py:101:66: E241 multiple spaces after ','
+./vpp_es_schedule_code/input/loader.py:81:63: E999 IndentationError: expected an indented block after 'for' statement on line 81
+./vpp_es_schedule_code/model/loader.py:7:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_example.py:13:89: E501 line too long (89 > 88 characters)
+./vpp_es_schedule_code/model/model_example.py:198:5: F841 local variable 'result' is assigned to but never used
+./vpp_es_schedule_code/model/model_example.py:264:21: F541 f-string is missing placeholders
+./vpp_es_schedule_code/model/model_example.py:267:17: F541 f-string is missing placeholders
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:48:89: E501 line too long (100 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:54:89: E501 line too long (120 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:58:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:65:89: E501 line too long (110 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:72:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:98:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:101:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:104:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:132:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:133:60: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:134:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:135:44: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:136:56: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:137:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:138:54: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:139:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:140:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:141:48: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:158:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:161:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:164:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:167:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:170:89: E501 line too long (124 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:223:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:231:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:239:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:247:89: E501 line too long (140 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:252:9: F841 local variable 'result' is assigned to but never used
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:270:89: E501 line too long (138 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:273:89: E501 line too long (138 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:276:89: E501 line too long (107 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:279:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:282:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:285:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:288:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:295:89: E501 line too long (102 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:298:89: E501 line too long (110 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:315:89: E501 line too long (102 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:318:89: E501 line too long (110 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:346:89: E501 line too long (107 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:349:89: E501 line too long (121 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:352:89: E501 line too long (123 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:355:89: E501 line too long (123 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:358:89: E501 line too long (123 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:361:89: E501 line too long (123 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:366:89: E501 line too long (110 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy/main.py:369:89: E501 line too long (110 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:8:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:9:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:10:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:11:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:12:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:51:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:55:89: E501 line too long (125 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:88:89: E501 line too long (103 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:91:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:94:89: E501 line too long (120 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:97:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:138:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:139:60: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:140:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:141:44: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:142:56: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:143:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:144:54: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:145:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:146:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:147:48: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:164:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:167:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:170:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:173:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:176:89: E501 line too long (124 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:232:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:240:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:248:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:256:89: E501 line too long (140 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:263:9: F841 local variable 'result' is assigned to but never used
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:272:89: E501 line too long (124 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:284:89: E501 line too long (134 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:291:89: E501 line too long (160 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:302:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:325:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:335:89: E501 line too long (120 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:385:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:393:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc1/main.py:412:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:7:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:8:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:9:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:10:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:11:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:53:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:57:89: E501 line too long (125 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:90:89: E501 line too long (103 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:93:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:96:89: E501 line too long (120 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:99:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:140:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:141:60: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:142:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:143:44: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:144:56: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:145:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:146:54: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:147:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:148:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:149:48: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:166:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:169:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:172:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:175:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:178:89: E501 line too long (124 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:234:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:242:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:250:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:258:89: E501 line too long (140 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:265:9: F841 local variable 'result' is assigned to but never used
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:274:89: E501 line too long (124 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:290:89: E501 line too long (160 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:300:89: E501 line too long (134 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:308:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:331:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:343:89: E501 line too long (120 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:395:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:403:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Asc2/main.py:422:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:40:89: E501 line too long (151 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:44:89: E501 line too long (157 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:71:89: E501 line too long (102 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:74:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:77:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:80:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:108:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:109:60: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:110:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:111:44: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:112:56: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:113:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:114:54: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:115:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:116:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:117:48: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:143:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:146:89: E501 line too long (110 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:149:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:152:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:155:89: E501 line too long (104 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:201:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:207:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:213:89: E501 line too long (150 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:220:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:228:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:236:89: E501 line too long (140 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:241:9: F841 local variable 'result' is assigned to but never used
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:249:89: E501 line too long (104 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:259:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:271:89: E501 line too long (116 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:274:89: E501 line too long (124 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:316:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Chiku/main.py:334:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:7:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:8:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:9:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:10:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:11:1: E402 module level import not at top of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:51:89: E501 line too long (108 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:57:89: E501 line too long (120 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:61:89: E501 line too long (126 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:92:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:95:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:98:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:126:9: F841 local variable 'usableDepth' is assigned to but never used
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:126:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:127:60: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:128:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:129:44: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:130:56: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:131:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:132:54: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:133:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:134:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:135:48: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:151:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:152:89: E501 line too long (141 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:153:89: E501 line too long (137 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:154:89: E501 line too long (137 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:155:89: E501 line too long (135 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:259:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:267:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:275:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:283:89: E501 line too long (140 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:290:9: F841 local variable 'result' is assigned to but never used
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:306:89: E501 line too long (134 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:309:89: E501 line too long (107 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:312:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:315:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:318:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:321:89: E501 line too long (109 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:343:5: E265 block comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:351:89: E501 line too long (120 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:390:89: E501 line too long (127 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:391:89: E501 line too long (129 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Lingang/main.py:396:89: E501 line too long (99 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:40:89: E501 line too long (151 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:44:89: E501 line too long (157 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:71:89: E501 line too long (102 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:74:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:77:89: E501 line too long (119 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:80:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:108:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:109:60: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:110:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:111:44: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:112:56: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:113:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:114:54: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:115:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:116:50: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:117:48: E262 inline comment should start with '# '
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:143:89: E501 line too long (130 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:146:89: E501 line too long (110 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:149:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:152:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:155:89: E501 line too long (104 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:201:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:207:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:213:89: E501 line too long (150 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:220:89: E501 line too long (146 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:228:89: E501 line too long (142 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:236:89: E501 line too long (140 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:241:9: F841 local variable 'result' is assigned to but never used
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:249:89: E501 line too long (104 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:259:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:271:89: E501 line too long (116 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:274:89: E501 line too long (124 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:324:89: E501 line too long (106 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/StorageAIStrategy_Zhongda001J/main.py:342:89: E501 line too long (118 > 88 characters)
+./vpp_es_schedule_code/model/model_packages/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/model/schemas/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/output/__init__.py:1:1: W391 blank line at end of file
+./vpp_es_schedule_code/output/loader.py:73:63: E999 IndentationError: expected an indented block after 'for' statement on line 73
+./vpp_es_schedule_code/output/output_class/api_post.py:38:89: E501 line too long (107 > 88 characters)
+./vpp_es_schedule_code/output/output_class/database_write.py:71:89: E501 line too long (100 > 88 characters)
+./vpp_es_schedule_code/output/output_class/database_write.py:80:89: E501 line too long (96 > 88 characters)
+./vpp_es_schedule_code/service.py:142:5: F824 `global model_loader` is unused: name is never assigned in scope
+./vpp_es_schedule_code/service.py:142:5: F824 `global input_loader` is unused: name is never assigned in scope
+./vpp_es_schedule_code/service.py:142:5: F824 `global output_loader` is unused: name is never assigned in scope
+./vpp_es_schedule_code/service.py:208:89: E501 line too long (103 > 88 characters)
+./vpp_es_schedule_code/service.py:220:89: E501 line too long (96 > 88 characters)
+./vpp_es_schedule_code/service.py:300:5: F824 `global start_time` is unused: name is never assigned in scope
+./vpp_es_schedule_code/service.py:358:89: E501 line too long (92 > 88 characters)
+./vpp_es_schedule_code/service.py:407:89: E501 line too long (96 > 88 characters)
+./vpp_load_prediction_code/api/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/config/__init__.py:102:43: E999 IndentationError: expected an indented block after 'if' statement on line 102
+./vpp_load_prediction_code/cron/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/cron/redis_clock.py:39:9: E999 IndentationError: expected an indented block after 'except' statement on line 37
+./vpp_load_prediction_code/cron/scheduler_manager.py:51:89: E501 line too long (95 > 88 characters)
+./vpp_load_prediction_code/input/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/input/input_class/database_read.py:61:66: E241 multiple spaces after ','
+./vpp_load_prediction_code/input/loader.py:53:63: E999 IndentationError: expected an indented block after 'for' statement on line 53
+./vpp_load_prediction_code/model/model_example.py:54:89: E501 line too long (111 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:58:89: E501 line too long (111 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:62:89: E501 line too long (111 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:66:89: E501 line too long (111 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:70:89: E501 line too long (114 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:75:89: E501 line too long (111 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:79:89: E501 line too long (114 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:151:89: E501 line too long (103 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:220:89: E501 line too long (99 > 88 characters)
+./vpp_load_prediction_code/model/model_example.py:314:58: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_example.py:315:69: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_example.py:316:70: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_example.py:509:89: E501 line too long (96 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:42:5: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:52:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:52:89: E501 line too long (106 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:76:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:76:89: E501 line too long (116 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:77:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:82:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:85:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:91:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:97:12: E262 inline comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:100:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:103:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:146:89: E501 line too long (128 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:156:89: E501 line too long (152 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:168:89: E501 line too long (170 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:199:89: E501 line too long (131 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:209:89: E501 line too long (132 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:221:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:269:5: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:288:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:309:89: E501 line too long (133 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:309:118: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:312:89: E501 line too long (144 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:312:129: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:315:89: E501 line too long (145 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:315:130: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:319:89: E501 line too long (122 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:422:89: E501 line too long (137 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:432:89: E501 line too long (138 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:444:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:452:89: E501 line too long (119 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:455:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:502:5: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc1/main.py:508:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:41:5: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:51:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:51:89: E501 line too long (106 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:75:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:75:89: E501 line too long (116 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:76:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:81:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:84:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:90:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:96:12: E262 inline comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:99:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:102:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:145:89: E501 line too long (128 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:155:89: E501 line too long (152 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:167:89: E501 line too long (170 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:203:89: E501 line too long (131 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:216:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:262:5: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:273:9: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:294:89: E501 line too long (118 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:294:103: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:297:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:297:114: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:300:89: E501 line too long (130 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:300:115: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:304:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:410:89: E501 line too long (137 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:422:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:429:89: E501 line too long (119 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:432:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:479:5: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:485:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:532:5: E265 block comment should start with '# '
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:541:89: E501 line too long (149 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:542:89: E501 line too long (149 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:543:89: E501 line too long (156 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:544:89: E501 line too long (125 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:545:89: E501 line too long (131 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:547:89: E501 line too long (131 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Asc2/main.py:548:89: E501 line too long (137 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:67:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:73:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:79:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:82:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:132:89: E501 line too long (152 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:162:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:168:89: E501 line too long (142 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:172:89: E501 line too long (140 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:175:89: E501 line too long (117 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:227:89: E501 line too long (118 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:227:103: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:230:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:230:114: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:233:89: E501 line too long (130 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:233:115: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:237:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:334:89: E501 line too long (148 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:339:89: E501 line too long (146 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:346:89: E501 line too long (119 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:349:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:415:89: E501 line too long (123 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Chiku/main.py:416:89: E501 line too long (130 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:42:89: E501 line too long (105 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:43:89: E501 line too long (105 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:44:89: E501 line too long (105 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:82:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:88:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:92:89: E501 line too long (105 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:95:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:98:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:148:89: E501 line too long (152 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:178:89: E501 line too long (131 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:184:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:254:89: E501 line too long (165 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:254:150: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:257:89: E501 line too long (176 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:257:161: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:260:89: E501 line too long (177 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:260:162: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:264:89: E501 line too long (154 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:359:89: E501 line too long (137 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:367:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:375:89: E501 line too long (119 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_LightGBM/main.py:378:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:69:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:75:89: E501 line too long (135 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:81:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:84:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:134:89: E501 line too long (152 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:164:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:170:89: E501 line too long (142 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:174:89: E501 line too long (140 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:177:89: E501 line too long (117 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:229:89: E501 line too long (118 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:229:103: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:232:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:232:114: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:235:89: E501 line too long (130 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:235:115: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:239:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:336:89: E501 line too long (148 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:341:89: E501 line too long (146 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:348:89: E501 line too long (119 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:351:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:417:89: E501 line too long (123 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/DemandLoad_Lingang/main.py:418:89: E501 line too long (130 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:158:89: E501 line too long (152 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:166:89: E501 line too long (113 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:195:89: E501 line too long (118 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:195:103: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:198:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:198:114: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:201:89: E501 line too long (130 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:201:115: E241 multiple spaces after ','
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:205:89: E501 line too long (107 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:258:89: E501 line too long (119 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/PVPower_Lingang/main.py:261:89: E501 line too long (129 > 88 characters)
+./vpp_load_prediction_code/model/model_packages/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/model/schemas/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/output/__init__.py:1:1: W391 blank line at end of file
+./vpp_load_prediction_code/output/loader.py:63:63: E999 IndentationError: expected an indented block after 'for' statement on line 63
+./vpp_load_prediction_code/output/output_class/database_write.py:63:89: E501 line too long (100 > 88 characters)
+./vpp_load_prediction_code/output/output_class/database_write.py:72:89: E501 line too long (96 > 88 characters)
+./vpp_load_prediction_code/service.py:54:89: E501 line too long (136 > 88 characters)
+./vpp_load_prediction_code/utils/database/core.py:27:89: E501 line too long (190 > 88 characters)
+./vpp_load_prediction_code/utils/database/core.py:37:89: E501 line too long (91 > 88 characters)
+./vpp_load_prediction_code/utils/database/core.py:51:89: E501 line too long (92 > 88 characters)
+762
