@@ -135,4 +135,18 @@ public class CaCollectionModel implements Serializable {
     public CaCollectionModel() {
 
     }
+
+    // Manual setters to ensure compilation
+    public void setCollectionModelId(String collectionModelId) { this.collectionModelId = collectionModelId; }
+    public void setEmissionFactorNum(Integer emissionFactorNum) { this.emissionFactorNum = emissionFactorNum; }
+    public void setEmissionFactorName(String emissionFactorName) { this.emissionFactorName = emissionFactorName; }
+    public void setScopeType(Integer scopeType) { this.scopeType = scopeType; }
+    public void setCollectMode(Integer collectMode) { this.collectMode = collectMode; }
+    public void setSystemId(String systemId) { this.systemId = systemId; }
+    public void setSystemName(String systemName) { this.systemName = systemName; }
+    public void setDeviceId(String deviceId) { this.deviceId = deviceId; }
+    public void setDeviceName(String deviceName) { this.deviceName = deviceName; }
+    public void setDataPointId(String dataPointId) { this.dataPointId = dataPointId; }
+    public void setDataPointName(String dataPointName) { this.dataPointName = dataPointName; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
 }

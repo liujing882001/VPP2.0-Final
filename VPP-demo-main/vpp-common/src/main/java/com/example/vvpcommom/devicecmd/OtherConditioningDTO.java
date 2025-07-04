@@ -17,4 +17,6 @@ public class OtherConditioningDTO implements Serializable {
     @ApiModelProperty(value = "开关状态 开启 关闭", name = "power", required = true)
     private POWEREnum power;
 
+    // Manual getter to ensure compilation
+    public POWEREnum getPower() { return power; }
 }

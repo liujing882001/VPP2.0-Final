@@ -1,10 +1,5 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum DayOfWeekEnum {
     //周几（1-周一 2-周二 3-周三 4-周四 5-周五 6-周六 7-周日）
 
@@ -18,6 +13,19 @@ public enum DayOfWeekEnum {
 
     private Integer id;
     private String name;
+
+    DayOfWeekEnum(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     // 普通方法
     public static String getName(int id) {

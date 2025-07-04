@@ -17,4 +17,11 @@ public class StationNodeTreeDTO {
         this.parentId = parentId;
         this.nodeName = nodeName;
     }
+
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public String getParentId() { return parentId; }
+    public void setParentId(String parentId) { this.parentId = parentId; }
+    public List<StationNodeTreeDTO> getChildren() { return children; }
+    public void setChildren(List<StationNodeTreeDTO> children) { this.children = children; }
 }

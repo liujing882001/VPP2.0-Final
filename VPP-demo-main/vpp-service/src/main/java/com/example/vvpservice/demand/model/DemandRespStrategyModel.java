@@ -40,4 +40,36 @@ public class DemandRespStrategyModel implements Serializable {
      */
     private String createBy;
 
+    // 手动添加getter和setter方法以确保编译通过
+    public String getSId() {
+        return sId;
+    }
+
+    public void setSId(String sId) {
+        this.sId = sId;
+    }
+
+    public String getRespId() {
+        return respId;
+    }
+
+    public void setRespId(String respId) {
+        this.respId = respId;
+    }
+
+    public String getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(String strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
 }

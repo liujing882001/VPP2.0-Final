@@ -98,4 +98,38 @@ public class DemandStrategy implements Serializable {
      */
     @Column(name = "ensure")
     private Integer ensure;
+
+    // Manual getters and setters to ensure compilation
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getRespId() { return respId; }
+    public void setRespId(String respId) { this.respId = respId; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public String getSystemId() { return systemId; }
+    public void setSystemId(String systemId) { this.systemId = systemId; }
+    public Date getTimePoint() { return timePoint; }
+    public void setTimePoint(Date timePoint) { this.timePoint = timePoint; }
+    public String getStrategyContent() { return strategyContent; }
+    public void setStrategyContent(String strategyContent) { this.strategyContent = strategyContent; }
+    public boolean isLlm() { return isLlm; }
+    public void setLlm(boolean llm) { isLlm = llm; }
+    public Integer getState() { return state; }
+    public void setState(Integer state) { this.state = state; }
+    public String getForecastAdjustedLoad() { return forecastAdjustedLoad; }
+    public void setForecastAdjustedLoad(String forecastAdjustedLoad) { this.forecastAdjustedLoad = forecastAdjustedLoad; }
+    public Date getForecastTime() { return forecastTime; }
+    public void setForecastTime(Date forecastTime) { this.forecastTime = forecastTime; }
+    public String getNodeName() { return nodeName; }
+    public void setNodeName(String nodeName) { this.nodeName = nodeName; }
+    public String getCommandValue() { return commandValue; }
+    public void setCommandValue(String commandValue) { this.commandValue = commandValue; }
+    public String getNoHouseholds() { return noHouseholds; }
+    public void setNoHouseholds(String noHouseholds) { this.noHouseholds = noHouseholds; }
+    public String getForecastLoad() { return forecastLoad; }
+    public void setForecastLoad(String forecastLoad) { this.forecastLoad = forecastLoad; }
+    public String getForecastAdjustLoad() { return forecastAdjustLoad; }
+    public void setForecastAdjustLoad(String forecastAdjustLoad) { this.forecastAdjustLoad = forecastAdjustLoad; }
+    public Integer getEnsure() { return ensure; }
+    public void setEnsure(Integer ensure) { this.ensure = ensure; }
 }

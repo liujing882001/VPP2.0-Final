@@ -83,5 +83,20 @@ public class ScheduleStrategyView {
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
+    public String getId() { return id; }
+    public String getStrategyId() { return strategyId; }
+    public boolean isDemandResponse() { return isDemandResponse; }
+    public String getNodeId() { return nodeId; }
+    public String getNodeName() { return nodeName; }
+    public String getDeviceSn() { return deviceSn; }
+    public String getDeviceName() { return deviceName; }
+    public String getDeviceModel() { return deviceModel; }
+    public double getDeviceRatedPower() { return deviceRatedPower; }
+    public double getDeviceRealPower() { return deviceRealPower; }
+    public String getDeviceBrand() { return deviceBrand; }
+    public Boolean getOnline() { return online; }
+    public String getDeviceId() { return deviceId; }
+    public Date getCreatedTime() { return createdTime; }
+    public Date getUpdateTime() { return updateTime; }
 
 }

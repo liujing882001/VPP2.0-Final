@@ -152,4 +152,8 @@ public class CfgStorageEnergyBaseInfo implements Serializable {
     public CfgStorageEnergyBaseInfo() {
     }
 
+    public double getMinDischargePercent() { return minDischargePercent; }
+    public double getMaxChargePercent() { return maxChargePercent; }
+    public double getStorageEnergyCapacity() { return storageEnergyCapacity; }
+
 }

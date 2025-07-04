@@ -18,4 +18,21 @@ public class RTLoadMonthModel implements Serializable {
         this.value = value;
         this.ts = ts;
     }
+
+    // 手动添加getter和setter方法以确保编译通过
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
+    public String getTs() {
+        return ts;
+    }
+
+    public void setTs(String ts) {
+        this.ts = ts;
+    }
 }

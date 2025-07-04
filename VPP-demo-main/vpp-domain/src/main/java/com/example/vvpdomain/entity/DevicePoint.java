@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zph
@@ -38,7 +39,7 @@ public class DevicePoint implements Serializable {
      * 设备序列号
      * 一对多，多的一方必须维护关系，即不能指定mapped=""
      *
-     * @ManyToOne注解“一对多”关系中‘多’方的实体类属性(该属性是单个对象)， targetEntity注解关联的实体类类型
+     * @ManyToOne注解"一对多"关系中'多'方的实体类属性(该属性是单个对象)， targetEntity注解关联的实体类类型
      */
     @ManyToOne(targetEntity = Device.class,
             fetch = FetchType.LAZY,
@@ -111,4 +112,24 @@ public class DevicePoint implements Serializable {
     public String toString() {
         return String.format("DevicePoint [id=%s, pointName=%s, device detail=%s]", pointId, pointName, device.getDeviceId());
     }
+
+    public String getPointId() { return pointId; }
+    public String getPointSn() { return pointSn; }
+    public String getPointDesc() { return pointDesc; }
+    public String getPointName() { return pointName; }
+    public String getPointUnit() { return pointUnit; }
+    public Device getDevice() { return device; }
+    public String getPointKey() { return pointKey; }
+    public String getDeviceSn() { return deviceSn; }
+
+    public void setPointId(String pointId) { this.pointId = pointId; }
+    public void setDevice(Device device) { this.device = device; }
+    public void setDeviceSn(String deviceSn) { this.deviceSn = deviceSn; }
+    public void setDeviceConfigKey(String deviceConfigKey) { this.deviceConfigKey = deviceConfigKey; }
+    public void setPointKey(String pointKey) { this.pointKey = pointKey; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public void setPointSn(String pointSn) { this.pointSn = pointSn; }
+    public void setPointName(String pointName) { this.pointName = pointName; }
+    public void setPointUnit(String pointUnit) { this.pointUnit = pointUnit; }
+    public void setPointDesc(String pointDesc) { this.pointDesc = pointDesc; }
 }

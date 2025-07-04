@@ -87,4 +87,14 @@ public class Role implements Serializable {
     public Role() {
     }
 
+    public int getRoleKey() { return roleKey; }
+    public String getRoleName() { return roleName; }
+    public void setRoleName(String roleName) { this.roleName = roleName; }
+    public void setRoleLabel(String roleLabel) { this.roleLabel = roleLabel; }
+    public String getConfigType() { return configType; }
+    public void setConfigType(String configType) { this.configType = configType; }
+    
+    // Add missing method
+    public String getRoleId() { return roleId; }
+
 }

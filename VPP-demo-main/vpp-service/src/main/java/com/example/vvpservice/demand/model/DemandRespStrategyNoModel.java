@@ -63,4 +63,24 @@ public class DemandRespStrategyNoModel implements Serializable {
      * 任务id
      */
     private String respId;
+
+    // 手动添加缺失的getter/setter方法以确保编译通过
+    public String getDrsId() { return drsId; }
+    public void setDrsId(String drsId) { this.drsId = drsId; }
+    public String getSId() { return sId; }
+    public void setSId(String sId) { this.sId = sId; }
+    public String getNoHouseholds() { return noHouseholds; }
+    public void setNoHouseholds(String noHouseholds) { this.noHouseholds = noHouseholds; }
+    public Integer getDrsStatus() { return drsStatus; }
+    public void setDrsStatus(Integer drsStatus) { this.drsStatus = drsStatus; }
+    public Double getDeclareLoad() { return declareLoad; }
+    public void setDeclareLoad(Double declareLoad) { this.declareLoad = declareLoad; }
+    public String getNodeName() { return nodeName; }
+    public void setNodeName(String nodeName) { this.nodeName = nodeName; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public Integer getIsPlatform() { return isPlatform; }
+    public void setIsPlatform(Integer isPlatform) { this.isPlatform = isPlatform; }
+    public String getRespId() { return respId; }
+    public void setRespId(String respId) { this.respId = respId; }
 }

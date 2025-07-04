@@ -22,4 +22,13 @@ public class RAPriceDTO {
         this.price = price;
         this.strategy = strategy;
     }
+
+    public LocalDate getEffectiveDate() { return effectiveDate; }
+    public void setEffectiveDate(LocalDate effectiveDate) { this.effectiveDate = effectiveDate; }
+    public String getSTime() { return sTime; }
+    public void setSTime(String sTime) { this.sTime = sTime; }
+    public BigDecimal getPrice() { return price; }
+    public void setPrice(BigDecimal price) { this.price = price; }
+    public BigDecimal getStrategy() { return strategy; }
+    public void setStrategy(BigDecimal strategy) { this.strategy = strategy; }
 }

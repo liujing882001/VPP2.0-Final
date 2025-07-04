@@ -116,4 +116,32 @@ public class CfgPhotovoltaicTouPrice implements Serializable {
         return getNodeId() + TimeUtil.toYmdStr(getEffectiveDate()) + getTimeFrame();
     }
 
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public Date getEffectiveDate() { return effectiveDate; }
+    public void setEffectiveDate(Date effectiveDate) { this.effectiveDate = effectiveDate; }
+    public String getTimeFrame() { return timeFrame; }
+    public void setTimeFrame(String timeFrame) { this.timeFrame = timeFrame; }
+    public BigDecimal getPriceHour() { return priceHour; }
+
+    // 手动添加缺失的getter/setter方法以确保编译通过
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getSystemId() { return systemId; }
+    public void setSystemId(String systemId) { this.systemId = systemId; }
+    public String getPriceTag() { return priceTag; }
+    public void setPriceTag(String priceTag) { this.priceTag = priceTag; }
+    public Integer getOrder() { return order; }
+    public void setOrder(Integer order) { this.order = order; }
+    public String getSTime() { return sTime; }
+    public void setSTime(String sTime) { this.sTime = sTime; }
+    public String getETime() { return eTime; }
+    public void setETime(String eTime) { this.eTime = eTime; }
+    public String getProperty() { return property; }
+    public void setProperty(String property) { this.property = property; }
+    public void setPriceHour(BigDecimal priceHour) { this.priceHour = priceHour; }
+    public Date getCreatedTime() { return createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
 }

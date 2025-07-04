@@ -42,4 +42,14 @@ public class RevenueParameterDto implements Serializable {
 	 */
 	public RevenueParameterDto() {
 	}
+	
+	// Add missing methods manually since Lombok might not be working properly
+	public String getParamId() { return paramId; }
+	public void setParamId(String paramId) { this.paramId = paramId; }
+	public String getParamName() { return paramName; }
+	public void setParamName(String paramName) { this.paramName = paramName; }
+	public String getDefaultValue() { return defaultValue; }
+	public void setDefaultValue(String defaultValue) { this.defaultValue = defaultValue; }
+	public String getUnit() { return unit; }
+	public void setUnit(String unit) { this.unit = unit; }
 }

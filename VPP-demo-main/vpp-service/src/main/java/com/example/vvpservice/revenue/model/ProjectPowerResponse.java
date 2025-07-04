@@ -16,6 +16,11 @@ public class ProjectPowerResponse {
 
 	private List<PowerInfo> infos = new ArrayList<>();
 
+	public String getNodeId() { return nodeId; }
+	public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+	public List<PowerInfo> getInfos() { return infos; }
+	public void setInfos(List<PowerInfo> infos) { this.infos = infos; }
+
 	@Data
 	@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 	public static class PowerInfo {
@@ -33,5 +38,14 @@ public class ProjectPowerResponse {
 		private Double esDischargeVolume = 0.0;
 
 //		private Double enterpriseConsumption;
+
+		public String getMonth() { return month; }
+		public void setMonth(String month) { this.month = month; }
+		public Double getPvVolume() { return pvVolume; }
+		public void setPvVolume(Double pvVolume) { this.pvVolume = pvVolume; }
+		public Double getEsChargeVolume() { return esChargeVolume; }
+		public void setEsChargeVolume(Double esChargeVolume) { this.esChargeVolume = esChargeVolume; }
+		public Double getEsDischargeVolume() { return esDischargeVolume; }
+		public void setEsDischargeVolume(Double esDischargeVolume) { this.esDischargeVolume = esDischargeVolume; }
 	}
 }

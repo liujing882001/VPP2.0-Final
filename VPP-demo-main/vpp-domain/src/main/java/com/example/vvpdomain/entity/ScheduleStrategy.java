@@ -132,4 +132,10 @@ public class ScheduleStrategy implements Serializable {
     public ScheduleStrategy() {
     }
 
+    // Manual getters to ensure compilation
+    public List<Device> getDeviceList() { return deviceList; }
+    public String getCmdExpression() { return cmdExpression; }
+    public int getStrategyType() { return strategyType; }
+    public boolean isDemandResponse() { return isDemandResponse; }
+    public boolean isStrategyStatus() { return isStrategyStatus; }
 }

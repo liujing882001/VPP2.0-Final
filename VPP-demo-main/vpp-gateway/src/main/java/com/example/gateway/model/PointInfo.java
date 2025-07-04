@@ -26,5 +26,9 @@ public class PointInfo implements Serializable {
         this.value = value;
     }
 
+    public String getPointSn() { return pointSn; }
+    public void setPointSn(String pointSn) { this.pointSn = pointSn; }
+    public String getValue() { return value; }
+    public void setValue(String value) { this.value = value; }
 
 }

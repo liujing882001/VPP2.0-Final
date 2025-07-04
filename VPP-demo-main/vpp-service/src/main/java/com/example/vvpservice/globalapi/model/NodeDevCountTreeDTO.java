@@ -22,4 +22,11 @@ public class NodeDevCountTreeDTO {
         this.deviceSize = deviceSize;
 
     }
+
+    public String getParentId() { return parentId; }
+    public void setParentId(String parentId) { this.parentId = parentId; }
+    public List<NodeDevCountTreeDTO> getChildren() { return children; }
+    public void setChildren(List<NodeDevCountTreeDTO> children) { this.children = children; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
 }

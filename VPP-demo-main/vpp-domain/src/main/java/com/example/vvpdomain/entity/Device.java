@@ -173,4 +173,45 @@ public class Device implements Serializable {
     public String toString() {
         return String.format("Device [id=%s, deviceName=%s, Device detail=%s]", deviceId, deviceName, node.getNodeId());
     }
+
+    public String getDeviceBrand() { return deviceBrand; }
+    public String getDeviceModel() { return deviceModel; }
+    public List<DevicePoint> getDevicePointList() { return devicePointList; }
+    public void setDeviceBrand(String deviceBrand) { this.deviceBrand = deviceBrand; }
+    public void setDeviceModel(String deviceModel) { this.deviceModel = deviceModel; }
+    public void setDevicePointList(List<DevicePoint> devicePointList) { this.devicePointList = devicePointList; }
+    public void setLoadType(String loadType) { this.loadType = loadType; }
+    public void setLoadProperties(String loadProperties) { this.loadProperties = loadProperties; }
+    public void setDeviceId(String deviceId) { this.deviceId = deviceId; }
+    public void setConfigKey(String configKey) { this.configKey = configKey; }
+    public void setDeviceLabel(String deviceLabel) { this.deviceLabel = deviceLabel; }
+    public void setDeviceRatedPower(double deviceRatedPower) { this.deviceRatedPower = deviceRatedPower; }
+    public void setOnline(Boolean online) { this.online = online; }
+    public void setNode(Node node) { this.node = node; }
+    public void setSystemType(SysDictType systemType) { this.systemType = systemType; }
+    public void setMecOnline(Boolean mecOnline) { this.mecOnline = mecOnline; }
+    public void setMecName(String mecName) { this.mecName = mecName; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
+    public void setDeviceSn(String deviceSn) { this.deviceSn = deviceSn; }
+    public String getDeviceProtocol() { return deviceProtocol; }
+    public String getMecId() { return mecId; }
+    public String getDeviceName() { return deviceName; }
+    public String getDeviceSn() { return deviceSn; }
+    public String getConfigKey() { return configKey; }
+    public String getDeviceLabel() { return deviceLabel; }
+    public double getDeviceRatedPower() { return deviceRatedPower; }
+    public Boolean getOnline() { return online; }
+    public Node getNode() { return node; }
+    public SysDictType getSystemType() { return systemType; }
+    public String getLoadType() { return loadType; }
+    public String getLoadProperties() { return loadProperties; }
+    public Boolean getMecOnline() { return mecOnline; }
+    public String getMecName() { return mecName; }
+    public Date getCreatedTime() { return createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public String getDeviceId() { return deviceId; }
+    public void setMecId(String mecId) { this.mecId = mecId; }
+    public void setDeviceName(String deviceName) { this.deviceName = deviceName; }
+    public void setDeviceProtocol(String deviceProtocol) { this.deviceProtocol = deviceProtocol; }
 }

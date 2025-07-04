@@ -42,4 +42,12 @@ public class EleNodeInfo {
 		this.children.add(nodeInfo);
 		this.childrenMap.put(String.valueOf(nodeInfo.value), nodeInfo);
 	}
+	
+	// Add missing methods manually since Lombok might not be working properly
+	public String getField() { return field; }
+	public void setField(String field) { this.field = field; }
+	public Object getValue() { return value; }
+	public void setValue(Object value) { this.value = value; }
+	public List<EleNodeInfo> getChildren() { return children; }
+	public void setChildren(List<EleNodeInfo> children) { this.children = children; }
 }

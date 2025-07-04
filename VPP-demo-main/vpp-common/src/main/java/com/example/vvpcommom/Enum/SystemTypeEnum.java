@@ -1,10 +1,5 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum SystemTypeEnum {
 
     beiyongdianchixitong("beiyongdianchixitong", "备用电池系统"),
@@ -18,4 +13,17 @@ public enum SystemTypeEnum {
 
     private String id;
     private String name;
+
+    SystemTypeEnum(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

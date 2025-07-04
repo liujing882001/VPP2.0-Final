@@ -12,4 +12,8 @@ public class DemandResponseDayInfoModel implements Serializable {
     private int totalSize;
     private List<DayInfoModel> data = new ArrayList<>();
 
+    public int getTotalSize() { return totalSize; }
+    public void setTotalSize(int totalSize) { this.totalSize = totalSize; }
+    public List<DayInfoModel> getData() { return data; }
+    public void setData(List<DayInfoModel> data) { this.data = data; }
 }

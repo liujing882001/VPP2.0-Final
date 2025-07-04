@@ -31,4 +31,6 @@ public class ApplicationResponse {
 		this.applicationNameEn = menu.getMenuNameEn();
 		this.isFrame = menu.getIsFrame();
 	}
+
+	public List<ApplicationResponse> getChild() { return child; }
 }

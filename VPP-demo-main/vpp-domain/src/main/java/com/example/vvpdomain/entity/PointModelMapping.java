@@ -57,4 +57,16 @@ public class PointModelMapping {
 		this.deviceList = device.getDeviceSn();
 		this.calculation_formula = "data['" + getDeviceSn(device) + "." + pointModel.getKey() + "']";
 	}
+
+	public String getMappingId() { return mappingId; }
+	public String getCalculation_formula() { return calculation_formula; }
+	public String getDeviceList() { return deviceList; }
+	public StationNode getStation() { return station; }
+	public PointModel getPointModel() { return pointModel; }
+	public String getMappingType() { return mappingType; }
+
+	public void setStation(StationNode station) { this.station = station; }
+	public void setPointModel(PointModel pointModel) { this.pointModel = pointModel; }
+	public void setDeviceList(String deviceList) { this.deviceList = deviceList; }
+	public void setMappingType(String mappingType) { this.mappingType = mappingType; }
 }

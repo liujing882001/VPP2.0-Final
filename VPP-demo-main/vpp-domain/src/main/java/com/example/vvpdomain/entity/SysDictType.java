@@ -65,4 +65,7 @@ public class SysDictType implements Serializable {
     public SysDictType() {
     }
 
+    public String getSystemName() { return systemName; }
+    public String getSystemId() { return systemId; }
+
 }

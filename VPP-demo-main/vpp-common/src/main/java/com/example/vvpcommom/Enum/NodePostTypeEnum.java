@@ -1,10 +1,5 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum NodePostTypeEnum {
 
     load("load", "负荷"),
@@ -13,4 +8,17 @@ public enum NodePostTypeEnum {
 
     private String nodePostType;
     private String nodePostName;
+
+    NodePostTypeEnum(String nodePostType, String nodePostName) {
+        this.nodePostType = nodePostType;
+        this.nodePostName = nodePostName;
+    }
+
+    public String getNodePostType() {
+        return nodePostType;
+    }
+
+    public String getNodePostName() {
+        return nodePostName;
+    }
 }

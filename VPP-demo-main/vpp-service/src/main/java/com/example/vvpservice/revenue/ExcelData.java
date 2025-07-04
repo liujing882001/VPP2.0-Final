@@ -16,4 +16,10 @@ public class ExcelData {
 	private Date date;
 
 	private Double power;
+	
+	// Add missing method manually since Lombok might not be working properly
+	public Date getDate() { return date; }
+	public void setDate(Date date) { this.date = date; }
+	public Double getPower() { return power; }
+	public void setPower(Double power) { this.power = power; }
 }

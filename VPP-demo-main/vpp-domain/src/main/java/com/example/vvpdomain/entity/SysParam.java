@@ -92,4 +92,12 @@ public class SysParam implements Serializable {
     public SysParam() {
     }
 
+    public String getSysParamValue() {
+        return sysParamValue;
+    }
+
+    public void setSysParamValue(String sysParamValue) {
+        this.sysParamValue = sysParamValue;
+    }
+
 }

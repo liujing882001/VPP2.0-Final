@@ -54,4 +54,16 @@ public class IotDevicePointDataView {
     @ApiModelProperty(value = "符合性质", name = "countyRegionName", required = true)
     private String loadProperties;
 
+    public void setDeviceName(String deviceName) { this.deviceName = deviceName; }
+    public void setNodeName(String nodeName) { this.nodeName = nodeName; }
+    public void setPointName(String pointName) { this.pointName = pointName; }
+    public void setSystemName(String systemName) { this.systemName = systemName; }
+    public void setPointSn(String pointSn) { this.pointSn = pointSn; }
+    public void setPointUnit(String pointUnit) { this.pointUnit = pointUnit; }
+    public void setProvinceRegionName(String provinceRegionName) { this.provinceRegionName = provinceRegionName; }
+    public void setCountyRegionName(String countyRegionName) { this.countyRegionName = countyRegionName; }
+    public void setCityRegionName(String cityRegionName) { this.cityRegionName = cityRegionName; }
+    public void setPointDesc(String pointDesc) { this.pointDesc = pointDesc; }
+    public void setLoadType(String loadType) { this.loadType = loadType; }
+    public void setLoadProperties(String loadProperties) { this.loadProperties = loadProperties; }
 }

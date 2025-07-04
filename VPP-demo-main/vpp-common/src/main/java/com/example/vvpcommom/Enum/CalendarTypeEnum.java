@@ -1,10 +1,5 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum CalendarTypeEnum {
     //1-工作日 2-非工作日 3-删除计算日 4-元旦 5-春节 6-清明节 7-劳动节 8-端午节 9-中秋节 10-国庆节
 
@@ -19,10 +14,21 @@ public enum CalendarTypeEnum {
     midAutumnFestival(9, "中秋节"),
     nationalDay(10, "国庆节");
 
-
     private Integer id;
     private String name;
 
+    CalendarTypeEnum(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     // 普通方法
     public static String getName(int id) {

@@ -70,4 +70,15 @@ public class UserRole implements Serializable {
                 .append("roleId", getRoleId())
                 .toString();
     }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getRoleId() { return roleId; }
+    public void setRoleId(String roleId) { this.roleId = roleId; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
+    public Date getCreatedTime() { return createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
 }

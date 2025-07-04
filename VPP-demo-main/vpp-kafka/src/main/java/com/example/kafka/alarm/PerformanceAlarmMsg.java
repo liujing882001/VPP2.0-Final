@@ -45,4 +45,8 @@ public class PerformanceAlarmMsg {
 	private String deviceType;
 
 	private Boolean recovery;
+
+	public void setRecovery(Boolean recovery) {
+		this.recovery = recovery;
+	}
 }

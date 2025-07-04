@@ -80,4 +80,141 @@ public class AlarmInfo {
 
 	@Column(name = "device_type")
 	private String deviceType;
+
+	public String getAlarmContext() { return alarmContext; }
+	public String getStationName() { return stationName; }
+	public java.util.Date getStartTime() { return startTime; }
+
+	// 手动添加所有缺失的getter和setter方法以确保编译通过
+	public String getAlarmId() {
+		return alarmId;
+	}
+
+	public void setAlarmId(String alarmId) {
+		this.alarmId = alarmId;
+	}
+
+	public AlarmRule getAlarmRule() {
+		return alarmRule;
+	}
+
+	public void setAlarmRule(AlarmRule alarmRule) {
+		this.alarmRule = alarmRule;
+	}
+
+	public String getNodeId() {
+		return nodeId;
+	}
+
+	public void setNodeId(String nodeId) {
+		this.nodeId = nodeId;
+	}
+
+	public String getRuleName() {
+		return ruleName;
+	}
+
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
+	}
+
+	public String getNodeName() {
+		return nodeName;
+	}
+
+	public void setNodeName(String nodeName) {
+		this.nodeName = nodeName;
+	}
+
+	public int getAlarmType() {
+		return alarmType;
+	}
+
+	public void setAlarmType(int alarmType) {
+		this.alarmType = alarmType;
+	}
+
+	public int getAlarmLevel() {
+		return alarmLevel;
+	}
+
+	public void setAlarmLevel(int alarmLevel) {
+		this.alarmLevel = alarmLevel;
+	}
+
+	public void setAlarmContext(String alarmContext) {
+		this.alarmContext = alarmContext;
+	}
+
+	public String getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(String stationId) {
+		this.stationId = stationId;
+	}
+
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public Boolean getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
+	}
+
+	public int getAlarmStatus() {
+		return alarmStatus;
+	}
+
+	public void setAlarmStatus(int alarmStatus) {
+		this.alarmStatus = alarmStatus;
+	}
+
+	public String getAlarmDurationTime() {
+		return alarmDurationTime;
+	}
+
+	public void setAlarmDurationTime(String alarmDurationTime) {
+		this.alarmDurationTime = alarmDurationTime;
+	}
+
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getDeviceType() {
+		return deviceType;
+	}
+
+	public void setDeviceType(String deviceType) {
+		this.deviceType = deviceType;
+	}
 }

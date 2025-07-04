@@ -33,5 +33,10 @@ public class EnergyUnit{
         return Double.valueOf(getRight().getPointValue());
     }
 
+    // Manual getters to ensure compilation
+    public IotTsKvEnergyLastWeekView getLeft() { return left; }
+    public IotTsKvEnergyLastWeekView getRight() { return right; }
+    public String getDataStr() { return dataStr; }
+
 }
 

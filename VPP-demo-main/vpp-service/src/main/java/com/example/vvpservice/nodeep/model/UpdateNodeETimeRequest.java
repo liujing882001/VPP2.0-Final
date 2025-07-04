@@ -21,6 +21,9 @@ public class UpdateNodeETimeRequest {
 		private String timeSpan;
 
 		private String property;
+
+		public String getTimeSpan() { return timeSpan; }
+		public String getProperty() { return property; }
 	}
 
 	public Map<String, String> getTimeMap() {
@@ -31,5 +34,6 @@ public class UpdateNodeETimeRequest {
 		return map;
 	}
 
+	public List<TimeInfo> getTimeInfos() { return timeInfos; }
 
 }

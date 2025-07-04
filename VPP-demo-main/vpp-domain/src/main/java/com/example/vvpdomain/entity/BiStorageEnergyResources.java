@@ -75,14 +75,14 @@ public class BiStorageEnergyResources implements Serializable {
 
     /**
      * 当前可充容量kwh
-     * 可充容量= ∑ 单个电站的容量*（1-SOC）
+     * 可充容量= ∑ 单个电站的容量*（1-SOC）
      */
     @Column(name = "in_capacity")
     private Double inCapacity;
 
     /**
      * 当前可放容量kwh
-     * 可放容量= ∑ 单个电站的容量*（SOC）；
+     * 可放容量= ∑ 单个电站的容量*（SOC）；
      */
     @Column(name = "out_capacity")
     private Double outCapacity;
@@ -165,4 +165,46 @@ public class BiStorageEnergyResources implements Serializable {
     public BiStorageEnergyResources() {
     }
 
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public Boolean getOnline() { return online; }
+    public void setOnline(Boolean online) { this.online = online; }
+    public Boolean getIsEnabled() { return isEnabled; }
+    public void setIsEnabled(Boolean isEnabled) { this.isEnabled = isEnabled; }
+    public String getNodeName() { return nodeName; }
+    public void setNodeName(String nodeName) { this.nodeName = nodeName; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public Double getCapacity() { return capacity; }
+    public void setCapacity(Double capacity) { this.capacity = capacity; }
+    public Double getSoc() { return soc; }
+    public void setSoc(Double soc) { this.soc = soc; }
+    public Double getSoh() { return soh; }
+    public void setSoh(Double soh) { this.soh = soh; }
+    public Double getInCapacity() { return inCapacity; }
+    public void setInCapacity(Double inCapacity) { this.inCapacity = inCapacity; }
+    public Double getOutCapacity() { return outCapacity; }
+    public void setOutCapacity(Double outCapacity) { this.outCapacity = outCapacity; }
+    public Double getLoad() { return load; }
+    public void setLoad(Double load) { this.load = load; }
+    public Double getMaxInLoad() { return maxInLoad; }
+    public void setMaxInLoad(Double maxInLoad) { this.maxInLoad = maxInLoad; }
+    public Double getMaxOutLoad() { return maxOutLoad; }
+    public void setMaxOutLoad(Double maxOutLoad) { this.maxOutLoad = maxOutLoad; }
+    public Double getActualLoad() { return actualLoad; }
+    public void setActualLoad(Double actualLoad) { this.actualLoad = actualLoad; }
+    public String getActualStrategy() { return actualStrategy; }
+    public void setActualStrategy(String actualStrategy) { this.actualStrategy = actualStrategy; }
+    public String getStrategy() { return Strategy; }
+    public void setStrategy(String Strategy) { this.Strategy = Strategy; }
+    public Date getTs() { return ts; }
+    public void setTs(Date ts) { this.ts = ts; }
+    public Date getCreatedTime() { return createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
+    public Boolean getPlanChargeStatus() { return planChargeStatus; }
+    public void setPlanChargeStatus(Boolean planChargeStatus) { this.planChargeStatus = planChargeStatus; }
+    public Boolean getPlanDischargeStatus() { return planDischargeStatus; }
+    public void setPlanDischargeStatus(Boolean planDischargeStatus) { this.planDischargeStatus = planDischargeStatus; }
 }

@@ -132,4 +132,28 @@ public class DemandRespStrategyNo implements Serializable {
     @Column(name = "resp_id")
     @ApiModelProperty("任务id")
     private String respId;
+
+    // Manual getters and setters to ensure compilation
+    public String getDrsId() { return drsId; }
+    public void setDrsId(String drsId) { this.drsId = drsId; }
+    public DemandRespStrategy getDemandRespStrategy() { return demandRespStrategy; }
+    public void setDemandRespStrategy(DemandRespStrategy demandRespStrategy) { this.demandRespStrategy = demandRespStrategy; }
+    public String getNoHouseholds() { return noHouseholds; }
+    public void setNoHouseholds(String noHouseholds) { this.noHouseholds = noHouseholds; }
+    public Integer getDrsStatus() { return drsStatus; }
+    public void setDrsStatus(Integer drsStatus) { this.drsStatus = drsStatus; }
+    public Double getDeclareLoad() { return declareLoad; }
+    public void setDeclareLoad(Double declareLoad) { this.declareLoad = declareLoad; }
+    public String getNodeName() { return nodeName; }
+    public void setNodeName(String nodeName) { this.nodeName = nodeName; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public Double getDeclarePrice() { return declarePrice; }
+    public void setDeclarePrice(Double declarePrice) { this.declarePrice = declarePrice; }
+    public Integer getIsPlatform() { return isPlatform; }
+    public void setIsPlatform(Integer isPlatform) { this.isPlatform = isPlatform; }
+    public String getRespId() { return respId; }
+    public void setRespId(String respId) { this.respId = respId; }
+    public Integer getWinningBid() { return winningBid; }
+    public void setWinningBid(Integer winningBid) { this.winningBid = winningBid; }
 }

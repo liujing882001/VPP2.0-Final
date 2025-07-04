@@ -35,4 +35,11 @@ public class PageModel implements Serializable {
      */
     private List<?> content = new ArrayList();
 
+    // Manual setters to ensure compilation
+    public void setPageSize(int pageSize) { this.pageSize = pageSize; }
+    public void setContent(List<?> content) { this.content = content; }
+    public void setTotalPages(int totalPages) { this.totalPages = totalPages; }
+    public void setTotalElements(int totalElements) { this.totalElements = totalElements; }
+    public void setNumber(int number) { this.number = number; }
+
 }

@@ -23,4 +23,7 @@ public class AvailVppDataDTO {
 
     }
 
+    public List<AvailVppDataDTO> getChildren() { return children; }
+    public void setChildren(List<AvailVppDataDTO> children) { this.children = children; }
+
 }

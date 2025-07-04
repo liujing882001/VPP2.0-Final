@@ -20,4 +20,13 @@ public class RAEnergyBaseDTO {
         this.minDischargePercent = minDischargePercent;
 
     }
+
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public Double getStorageEnergyCapacity() { return storageEnergyCapacity; }
+    public void setStorageEnergyCapacity(Double storageEnergyCapacity) { this.storageEnergyCapacity = storageEnergyCapacity; }
+    public Double getMaxChargePercent() { return maxChargePercent; }
+    public void setMaxChargePercent(Double maxChargePercent) { this.maxChargePercent = maxChargePercent; }
+    public Double getMinDischargePercent() { return minDischargePercent; }
+    public void setMinDischargePercent(Double minDischargePercent) { this.minDischargePercent = minDischargePercent; }
 }

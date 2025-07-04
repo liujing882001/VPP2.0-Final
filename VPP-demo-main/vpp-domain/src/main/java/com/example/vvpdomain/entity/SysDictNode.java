@@ -85,4 +85,20 @@ public class SysDictNode implements Serializable {
     public SysDictNode() {
     }
 
+    public String getNodeTypeId() { return nodeTypeId; }
+    public void setNodeTypeId(String nodeTypeId) { this.nodeTypeId = nodeTypeId; }
+    public String getNodeTypeName() { return nodeTypeName; }
+    public void setNodeTypeName(String nodeTypeName) { this.nodeTypeName = nodeTypeName; }
+    public String getNodePostType() { return nodePostType; }
+    public void setNodePostType(String nodePostType) { this.nodePostType = nodePostType; }
+    public String getNodePostTypeDesc() { return nodePostTypeDesc; }
+    public void setNodePostTypeDesc(String nodePostTypeDesc) { this.nodePostTypeDesc = nodePostTypeDesc; }
+    public String getConfigType() { return configType; }
+    public void setConfigType(String configType) { this.configType = configType; }
+    public Integer getNodeOrder() { return nodeOrder; }
+    public void setNodeOrder(Integer nodeOrder) { this.nodeOrder = nodeOrder; }
+    public Date getCreatedTime() { return createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
 }

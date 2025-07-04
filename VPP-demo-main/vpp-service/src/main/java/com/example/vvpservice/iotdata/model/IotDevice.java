@@ -43,4 +43,29 @@ public class IotDevice implements Serializable {
     @ExcelProperty(value = "mecId")
     private String mecId;
 
+    public String getDeviceId() { return deviceId; }
+    public void setDeviceId(String deviceId) { this.deviceId = deviceId; }
+    public String getDeviceName() { return deviceName; }
+    public void setDeviceName(String deviceName) { this.deviceName = deviceName; }
+    public String getPropId() { return propId; }
+    public void setPropId(String propId) { this.propId = propId; }
+    public String getPropName() { return propName; }
+    public void setPropName(String propName) { this.propName = propName; }
+    public String getModel() { return model; }
+    public void setModel(String model) { this.model = model; }
+    public String getBrand() { return brand; }
+    public void setBrand(String brand) { this.brand = brand; }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+    public String getPropUnit() { return propUnit; }
+    public void setPropUnit(String propUnit) { this.propUnit = propUnit; }
+    public String getPropKey() { return propKey; }
+    public void setPropKey(String propKey) { this.propKey = propKey; }
+    public String getPropValue() { return propValue; }
+    public void setPropValue(String propValue) { this.propValue = propValue; }
+    public String getDeviceProtocol() { return deviceProtocol; }
+    public void setDeviceProtocol(String deviceProtocol) { this.deviceProtocol = deviceProtocol; }
+    public String getMecId() { return mecId; }
+    public void setMecId(String mecId) { this.mecId = mecId; }
+
 }

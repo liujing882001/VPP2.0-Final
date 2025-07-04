@@ -12,6 +12,8 @@ import com.example.vvpdomain.SysParamRepository;
 import com.example.vvpdomain.entity.SysParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +23,8 @@ import java.util.Map;
 @Slf4j
 @Service("rpcRequestService")
 public class RPCRequestServiceImpl implements RPCRequestService{
+
+    private static final Logger log = LoggerFactory.getLogger(RPCRequestServiceImpl.class);
 
     @Resource
     private RedisUtils redisUtils;

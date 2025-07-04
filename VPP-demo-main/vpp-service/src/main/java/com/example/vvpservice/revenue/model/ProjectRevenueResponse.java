@@ -18,6 +18,12 @@ public class ProjectRevenueResponse {
 
 	private List<Profit> profits = new ArrayList<>();
 
+	// Add missing methods manually since Lombok might not be working properly
+	public String getNodeId() { return nodeId; }
+	public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+	public List<Profit> getProfits() { return profits; }
+	public void setProfits(List<Profit> profits) { this.profits = profits; }
+
 	@Data
 	@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 	public static class Profit {
@@ -37,5 +43,18 @@ public class ProjectRevenueResponse {
 		@JsonSerialize(using = BigDecimalSerializer.class)
 		private BigDecimal profitOperator = BigDecimal.ZERO;
 
+		// Add missing methods manually since Lombok might not be working properly
+		public String getMonth() { return month; }
+		public void setMonth(String month) { this.month = month; }
+		public String getType() { return type; }
+		public void setType(String type) { this.type = type; }
+		public BigDecimal getProfitTotal() { return profitTotal; }
+		public void setProfitTotal(BigDecimal profitTotal) { this.profitTotal = profitTotal; }
+		public BigDecimal getProfitActual() { return profitActual; }
+		public void setProfitActual(BigDecimal profitActual) { this.profitActual = profitActual; }
+		public BigDecimal getProfitElectricity() { return profitElectricity; }
+		public void setProfitElectricity(BigDecimal profitElectricity) { this.profitElectricity = profitElectricity; }
+		public BigDecimal getProfitOperator() { return profitOperator; }
+		public void setProfitOperator(BigDecimal profitOperator) { this.profitOperator = profitOperator; }
 	}
 }

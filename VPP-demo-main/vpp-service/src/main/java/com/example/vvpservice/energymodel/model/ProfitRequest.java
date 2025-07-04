@@ -23,4 +23,12 @@ public class ProfitRequest {
 	@NotBlank(message = "结束日期不能为空")
 	private String endDate;
 
+	public List<String> getNodeId() { return nodeId; }
+	public void setNodeId(List<String> nodeId) { this.nodeId = nodeId; }
+	public String getSystemId() { return systemId; }
+	public void setSystemId(String systemId) { this.systemId = systemId; }
+	public String getStartDate() { return startDate; }
+	public void setStartDate(String startDate) { this.startDate = startDate; }
+	public String getEndDate() { return endDate; }
+	public void setEndDate(String endDate) { this.endDate = endDate; }
 }

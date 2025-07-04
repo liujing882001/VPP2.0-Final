@@ -1,14 +1,9 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * @author Zhaoph
  * 严重程度
  */
-@Getter
-@AllArgsConstructor
 public enum AlarmSeverityEnum {
 
         SUCCESS(0, "紧急"),
@@ -24,7 +19,6 @@ public enum AlarmSeverityEnum {
     ;
 */
 
-
     /**
      * 严重程度
      */
@@ -33,4 +27,17 @@ public enum AlarmSeverityEnum {
      * 严重程度，1 故障 2 警告 3 提示
      */
     private String desc;
+
+    AlarmSeverityEnum(Integer id, String desc) {
+        this.id = id;
+        this.desc = desc;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 }

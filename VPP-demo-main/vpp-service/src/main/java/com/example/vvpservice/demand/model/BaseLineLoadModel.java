@@ -85,4 +85,22 @@ public class BaseLineLoadModel {
      * 统计年份
      */
     private Integer countYear;
+
+    // Manual getters and setters to ensure compilation
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public String getSystemId() { return systemId; }
+    public void setSystemId(String systemId) { this.systemId = systemId; }
+    public String getRealValue() { return realValue; }
+    public void setRealValue(String realValue) { this.realValue = realValue; }
+    public Date getCountDataTime() { return countDataTime; }
+    public void setCountDataTime(Date countDataTime) { this.countDataTime = countDataTime; }
+    public String getCountData() { return countData; }
+    public void setCountData(String countData) { this.countData = countData; }
+    public String getCountTime() { return countTime; }
+    public void setCountTime(String countTime) { this.countTime = countTime; }
+    public Integer getCountYear() { return countYear; }
+    public void setCountYear(Integer countYear) { this.countYear = countYear; }
 }

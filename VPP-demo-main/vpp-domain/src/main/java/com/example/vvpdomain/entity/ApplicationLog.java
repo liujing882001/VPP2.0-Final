@@ -34,4 +34,11 @@ public class ApplicationLog {
 		this.id = UUID.randomUUID().toString();
 		this.ts = LocalDateTime.now();
 	}
+
+	public void setTs(LocalDateTime ts) { this.ts = ts; }
+	public LocalDateTime getTs() { return ts; }
+	public void setUserId(String userId) { this.userId = userId; }
+	public void setApplicationName(String applicationName) { this.applicationName = applicationName; }
+	public void setApplicationId(String applicationId) { this.applicationId = applicationId; }
+	public String getApplicationName() { return applicationName; }
 }

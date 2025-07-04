@@ -137,4 +137,7 @@ public class User implements Serializable {
     public User() {
     }
 
+    public Role getRole() { return role; }
+    public List<Node> getNodeList() { return nodeList; }
+
 }

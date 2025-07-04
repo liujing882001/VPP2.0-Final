@@ -198,4 +198,41 @@ public class IotTsKv implements Serializable {
     public IotTsKv() {
     }
 
+    public String getPointValue() {
+        return pointValue;
+    }
+
+    public Date getTs() {
+        return ts;
+    }
+
+    public String getValue() {
+        return pointValue;
+    }
+
+    public String getPointDesc() { return pointDesc; }
+    public String getId() { return id; }
+    public String getProvinceRegionId() { return provinceRegionId; }
+    public String getProvinceRegionName() { return provinceRegionName; }
+    public String getCityRegionId() { return cityRegionId; }
+    public String getCityRegionName() { return cityRegionName; }
+    public String getCountyRegionId() { return countyRegionId; }
+    public String getCountyRegionName() { return countyRegionName; }
+    public String getNodeId() { return nodeId; }
+    public String getNodeName() { return nodeName; }
+    public double getLatitude() { return latitude; }
+    public double getLongitude() { return longitude; }
+    public String getNodePostType() { return nodePostType; }
+    public String getSystemId() { return systemId; }
+    public String getSystemName() { return systemName; }
+    public String getDeviceSn() { return deviceSn; }
+    public String getDeviceName() { return deviceName; }
+    public String getDeviceConfigKey() { return deviceConfigKey; }
+    public String getPointSn() { return pointSn; }
+    public String getPointName() { return pointName; }
+    public String getPointValueType() { return pointValueType; }
+    public String getMsgType() { return msgType; }
+    public String getPointUnit() { return pointUnit; }
+    public Date getCreatedTime() { return createdTime; }
+    public Date getUpdateTime() { return updateTime; }
 }

@@ -50,4 +50,20 @@ public class ListProjSubCategoryVo {
         this.photovoltaic = new ArrayList<>();
         this.load = new ArrayList<>();
     }
+
+    public List<ListProjSubCategoryVo> getChildren() { return load; }
+    public void setChildren(List<ListProjSubCategoryVo> children) { this.load = children; }
+
+    // 手动添加缺失的getter方法以确保编译通过
+    public List<ListProjSubCategoryVo> getEnergy() {
+        return energy;
+    }
+
+    public List<ListProjSubCategoryVo> getPhotovoltaic() {
+        return photovoltaic;
+    }
+
+    public List<ListProjSubCategoryVo> getLoad() {
+        return load;
+    }
 }

@@ -82,4 +82,15 @@ public class CfgStorageEnergyStrategyPower96 implements Serializable {
     @Column(name = "policy_model")
     private Integer policyModel;
 
+    public String getStrategy() { return strategy; }
+    public Double getPower() { return power; }
+
+    // 手动添加缺失的getter方法以确保编译通过
+    public Date getEffectiveDate() {
+        return effectiveDate;
+    }
+
+    public String getETime() {
+        return eTime;
+    }
 }

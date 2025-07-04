@@ -14,4 +14,21 @@ public class ElectricityInfoModel {
         this.price = price;
         this.property = property;
     }
+
+    // 手动添加getter和setter方法以确保编译通过
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getProperty() {
+        return property;
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
 }

@@ -90,4 +90,9 @@ public class DemandCalendar implements Serializable {
 
     }
 
+    // Manual getter to ensure compilation
+    public Integer getDateType() {
+        return dateType;
+    }
+
 }

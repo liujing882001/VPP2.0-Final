@@ -1,10 +1,5 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum ModuleNameEnum {
     storage_tactics("storage_tactics", "储能充放电策略"),
     tactics("tactics", "可调负荷运行策略"),
@@ -14,4 +9,17 @@ public enum ModuleNameEnum {
 
     private String moduleId;
     private String moduleName;
+
+    ModuleNameEnum(String moduleId, String moduleName) {
+        this.moduleId = moduleId;
+        this.moduleName = moduleName;
+    }
+
+    public String getModuleId() {
+        return moduleId;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
 }

@@ -34,4 +34,11 @@ public class RPCModel implements Serializable {
     public RPCModel() {
     }
 
+    public String getDeviceSn() { return deviceSn; }
+    public void setDeviceSn(String deviceSn) { this.deviceSn = deviceSn; }
+    public List<PointInfo> getPointInfoList() { return pointInfoList; }
+    public void setPointInfoList(List<PointInfo> pointInfoList) { this.pointInfoList = pointInfoList; }
+    public Date getTimestamp() { return timestamp; }
+    public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
+
 }

@@ -44,6 +44,20 @@ public class ElectricityPriceResponse {
 
 	private List<priceData> priceList = new ArrayList<>();
 
+	// 手动添加缺失的getter/setter方法以确保编译通过
+	public String getCity() { return city; }
+	public void setCity(String city) { this.city = city; }
+	public String getElectricityCategory() { return electricityCategory; }
+	public void setElectricityCategory(String electricityCategory) { this.electricityCategory = electricityCategory; }
+	public int getYear() { return year; }
+	public void setYear(int year) { this.year = year; }
+	public int getMonth() { return month; }
+	public void setMonth(int month) { this.month = month; }
+	public String getVoltage() { return voltage; }
+	public void setVoltage(String voltage) { this.voltage = voltage; }
+	public List<priceData> getPriceList() { return priceList; }
+	public void setPriceList(List<priceData> priceList) { this.priceList = priceList; }
+
 	@Data
 	public static class priceData {
 
@@ -67,5 +81,14 @@ public class ElectricityPriceResponse {
 		 */
 		private String consumption;
 
+		// 手动添加缺失的getter/setter方法以确保编译通过
+		public String getStartDate() { return startDate; }
+		public void setStartDate(String startDate) { this.startDate = startDate; }
+		public String getTimeCategory() { return timeCategory; }
+		public void setTimeCategory(String timeCategory) { this.timeCategory = timeCategory; }
+		public BigDecimal getPrice() { return price; }
+		public void setPrice(BigDecimal price) { this.price = price; }
+		public String getConsumption() { return consumption; }
+		public void setConsumption(String consumption) { this.consumption = consumption; }
 	}
 }

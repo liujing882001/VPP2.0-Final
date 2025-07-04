@@ -131,4 +131,21 @@ public class Menu implements Serializable {
     public Menu() {
     }
 
+    public String getMenuName() { return menuName; }
+    public String getIconLink() { return iconLink; }
+    public String getComponent() { return component; }
+    public String getMenuNameEn() { return menuNameEn; }
+    public int getIsFrame() { return isFrame; }
+    public Integer getOrderNum() { return orderNum; }
+    public String getMenuId() { return menuId; }
+    public void setIconLink(String iconLink) { this.iconLink = iconLink; }
+    public String getParentId() { return parentId; }
+    public void setParentId(String parentId) { this.parentId = parentId; }
+    
+    // Add missing methods
+    public String getMenuType() { return menuType; }
+    public void setMenuType(String menuType) { this.menuType = menuType; }
+    public void setMenuName(String menuName) { this.menuName = menuName; }
+    public void setComponent(String component) { this.component = component; }
+
 }

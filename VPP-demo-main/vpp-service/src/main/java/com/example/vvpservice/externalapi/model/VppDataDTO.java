@@ -16,4 +16,6 @@ public class VppDataDTO {
         this.dataList = new ArrayList<>();
     }
 
+    public void setDataId(String dataId) { this.dataId = dataId; }
+    public void setDataList(List<VppData> dataList) { this.dataList = dataList; }
 }

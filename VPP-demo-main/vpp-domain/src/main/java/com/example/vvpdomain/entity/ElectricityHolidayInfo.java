@@ -41,5 +41,22 @@ public class ElectricityHolidayInfo {
 
 		@Column(name = "et")
 		private LocalTime et;
+
+		public String getNodeId() { return nodeId; }
+		public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+		public java.time.LocalDate getDate() { return date; }
+		public void setDate(java.time.LocalDate date) { this.date = date; }
+		public java.time.LocalTime getSt() { return st; }
+		public void setSt(java.time.LocalTime st) { this.st = st; }
+		public java.time.LocalTime getEt() { return et; }
+		public void setEt(java.time.LocalTime et) { this.et = et; }
 	}
+
+	public ElectricityHolidayKey getPk() { return pk; }
+	public java.math.BigDecimal getPrice() { return price; }
+	public String getType() { return type; }
+
+	// Manual setters to ensure compilation
+	public void setType(String type) { this.type = type; }
+	public void setPrice(BigDecimal price) { this.price = price; }
 }

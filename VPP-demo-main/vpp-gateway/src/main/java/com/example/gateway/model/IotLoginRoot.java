@@ -12,4 +12,7 @@ public class IotLoginRoot implements Serializable {
 
     private String token;
     private String refreshToken;
+
+    public String getToken() { return this.token; }
+    public void setToken(String token) { this.token = token; }
 }

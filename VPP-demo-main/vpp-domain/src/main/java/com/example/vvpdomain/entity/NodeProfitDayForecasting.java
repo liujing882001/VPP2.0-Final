@@ -71,4 +71,18 @@ public class NodeProfitDayForecasting implements Serializable {
     public NodeProfitDayForecasting() {
     }
 
+    public String getProfitId() { return profitId; }
+    public void setProfitId(String profitId) { this.profitId = profitId; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public double getProfitValue() { return profitValue; }
+    public void setProfitValue(double profitValue) { this.profitValue = profitValue; }
+    public double getProfitForecastValue() { return profitForecastValue; }
+    public void setProfitForecastValue(double profitForecastValue) { this.profitForecastValue = profitForecastValue; }
+    public Date getProfitDateDay() { return profitDateDay; }
+    public void setProfitDateDay(Date profitDateDay) { this.profitDateDay = profitDateDay; }
+    public Date getCreatedTime() { return createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
 }

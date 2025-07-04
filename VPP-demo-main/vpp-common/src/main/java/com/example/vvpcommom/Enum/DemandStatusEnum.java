@@ -1,13 +1,8 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * 需求响应任务状态 by myt 20240307
  */
-@Getter
-@AllArgsConstructor
 public enum DemandStatusEnum {
 
     all(-1,"全部"),
@@ -17,9 +12,21 @@ public enum DemandStatusEnum {
     completed(3, "已完成"),
     absent(4, "不参加");
 
-
     private Integer id;
     private String status;
+
+    DemandStatusEnum(Integer id, String status) {
+        this.id = id;
+        this.status = status;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
 
     // 普通方法

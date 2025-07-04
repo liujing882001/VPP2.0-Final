@@ -31,4 +31,17 @@ public class ListProjSubEnergyAndPvVo {
         this.energy = new ArrayList<>();
         this.photovoltaic = new ArrayList<>();
     }
+
+    public List<ListProjSubEnergyAndPvVo> getEnergy() { return energy; }
+    public void setEnergy(List<ListProjSubEnergyAndPvVo> energy) { this.energy = energy; }
+    public List<ListProjSubEnergyAndPvVo> getPhotovoltaic() { return photovoltaic; }
+    public void setPhotovoltaic(List<ListProjSubEnergyAndPvVo> photovoltaic) { this.photovoltaic = photovoltaic; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public String getStationName() { return stationName; }
+    public void setStationName(String stationName) { this.stationName = stationName; }
+    public String getStationTypeId() { return stationTypeId; }
+    public void setStationTypeId(String stationTypeId) { this.stationTypeId = stationTypeId; }
+    public List<ListProjSubEnergyAndPvVo> getChildren() { return energy; }
+    public void setChildren(List<ListProjSubEnergyAndPvVo> children) { this.energy = children; }
 }

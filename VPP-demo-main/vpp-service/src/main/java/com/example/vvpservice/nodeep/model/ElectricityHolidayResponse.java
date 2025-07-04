@@ -14,6 +14,11 @@ public class ElectricityHolidayResponse {
 
 	private List<HolidayInfo> holidayInfos = new ArrayList<>();
 
+	// Manual getter to ensure compilation
+	public List<HolidayInfo> getHolidayInfos() {
+		return holidayInfos;
+	}
+
 	@Data
 	public static class HolidayInfo {
 		private LocalDate date;
@@ -25,5 +30,12 @@ public class ElectricityHolidayResponse {
 		private String cateGory;
 
 		private BigDecimal price;
+
+		// Manual getters to ensure compilation
+		public LocalDate getDate() { return date; }
+		public LocalTime getSt() { return st; }
+		public LocalTime getEt() { return et; }
+		public String getCateGory() { return cateGory; }
+		public BigDecimal getPrice() { return price; }
 	}
 }

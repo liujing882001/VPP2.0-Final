@@ -114,4 +114,38 @@ public class AiLoadForecasting implements Serializable {
      */
     public AiLoadForecasting() {
     }
+
+    // 手动添加缺失的getter方法以确保编译通过
+    public LocalDateTime getCountDataTime() {
+        return countDataTime;
+    }
+
+    public String getPredictValue() {
+        return predictValue;
+    }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public String getSystemId() { return systemId; }
+    public void setSystemId(String systemId) { this.systemId = systemId; }
+    public BigDecimal getRealValue() { return realValue; }
+    public void setRealValue(BigDecimal realValue) { this.realValue = realValue; }
+    public BigDecimal getUltraShortTermForecastValue() { return ultraShortTermForecastValue; }
+    public void setUltraShortTermForecastValue(BigDecimal ultraShortTermForecastValue) { this.ultraShortTermForecastValue = ultraShortTermForecastValue; }
+    public BigDecimal getCurrentForecastValue() { return currentForecastValue; }
+    public void setCurrentForecastValue(BigDecimal currentForecastValue) { this.currentForecastValue = currentForecastValue; }
+    public BigDecimal getBaselineLoadValue() { return baselineLoadValue; }
+    public void setBaselineLoadValue(BigDecimal baselineLoadValue) { this.baselineLoadValue = baselineLoadValue; }
+    public void setCountDataTime(LocalDateTime countDataTime) { this.countDataTime = countDataTime; }
+    public LocalDateTime getCreatedTime() { return createdTime; }
+    public void setCreatedTime(LocalDateTime createdTime) { this.createdTime = createdTime; }
+    public LocalDateTime getUpdateTime() { return updateTime; }
+    public void setUpdateTime(LocalDateTime updateTime) { this.updateTime = updateTime; }
+    public String getBaselineLoadValueOther() { return baselineLoadValueOther; }
+    public void setBaselineLoadValueOther(String baselineLoadValueOther) { this.baselineLoadValueOther = baselineLoadValueOther; }
+    public void setPredictValue(String predictValue) { this.predictValue = predictValue; }
+    public String getPredictAdjustableAmount() { return predictAdjustableAmount; }
+    public void setPredictAdjustableAmount(String predictAdjustableAmount) { this.predictAdjustableAmount = predictAdjustableAmount; }
 }

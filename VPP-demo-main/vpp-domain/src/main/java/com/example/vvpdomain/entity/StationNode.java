@@ -136,4 +136,61 @@ public class StationNode implements Serializable {
 
     @Column(name = "electricity_company")
     private String electricityCompany;
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getStationId() { return stationId; }
+    public void setStationId(String stationId) { this.stationId = stationId; }
+    public String getStationName() { return stationName; }
+    public void setStationName(String stationName) { this.stationName = stationName; }
+    public String getStationCategory() { return stationCategory; }
+    public void setStationCategory(String stationCategory) { this.stationCategory = stationCategory; }
+    public String getStationType() { return stationType; }
+    public void setStationType(String stationType) { this.stationType = stationType; }
+    public Date getCreateTime() { return createTime; }
+    public void setCreateTime(Date createTime) { this.createTime = createTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
+    public String getParentId() { return parentId; }
+    public void setParentId(String parentId) { this.parentId = parentId; }
+    public double getLongitude() { return longitude; }
+    public void setLongitude(double longitude) { this.longitude = longitude; }
+    public double getLatitude() { return latitude; }
+    public void setLatitude(double latitude) { this.latitude = latitude; }
+    public double getNodeArea() { return nodeArea; }
+    public void setNodeArea(double nodeArea) { this.nodeArea = nodeArea; }
+    public String getProvinceRegionId() { return provinceRegionId; }
+    public void setProvinceRegionId(String provinceRegionId) { this.provinceRegionId = provinceRegionId; }
+    public String getProvinceRegionName() { return provinceRegionName; }
+    public void setProvinceRegionName(String provinceRegionName) { this.provinceRegionName = provinceRegionName; }
+    public String getProvince() { return province; }
+    public void setProvince(String province) { this.province = province; }
+    public String getCityRegionId() { return cityRegionId; }
+    public void setCityRegionId(String cityRegionId) { this.cityRegionId = cityRegionId; }
+    public String getCityRegionName() { return cityRegionName; }
+    public void setCityRegionName(String cityRegionName) { this.cityRegionName = cityRegionName; }
+    public String getCountyRegionId() { return countyRegionId; }
+    public void setCountyRegionId(String countyRegionId) { this.countyRegionId = countyRegionId; }
+    public String getCountyRegionName() { return countyRegionName; }
+    public void setCountyRegionName(String countyRegionName) { this.countyRegionName = countyRegionName; }
+    public String getNoHouseholds() { return noHouseholds; }
+    public void setNoHouseholds(String noHouseholds) { this.noHouseholds = noHouseholds; }
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+    public String getSystemIds() { return systemIds; }
+    public void setSystemIds(String systemIds) { this.systemIds = systemIds; }
+    public String getStationTypeId() { return stationTypeId; }
+    public void setStationTypeId(String stationTypeId) { this.stationTypeId = stationTypeId; }
+    public String getSystemNames() { return systemNames; }
+    public void setSystemNames(String systemNames) { this.systemNames = systemNames; }
+    public String getStationState() { return stationState; }
+    public void setStationState(String stationState) { this.stationState = stationState; }
+    public String getEType() { return eType; }
+    public void setEType(String eType) { this.eType = eType; }
+    public String getVoltage() { return voltage; }
+    public void setVoltage(String voltage) { this.voltage = voltage; }
+    public String getBasicBill() { return basicBill; }
+    public void setBasicBill(String basicBill) { this.basicBill = basicBill; }
+    public String getElectricityCompany() { return electricityCompany; }
+    public void setElectricityCompany(String electricityCompany) { this.electricityCompany = electricityCompany; }
 }

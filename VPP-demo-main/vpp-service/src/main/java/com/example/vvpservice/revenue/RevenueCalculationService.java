@@ -33,6 +33,8 @@ import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -61,6 +63,9 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class RevenueCalculationService {
+
+	// 手动添加log变量以确保编译通过
+	private static final Logger log = LoggerFactory.getLogger(RevenueCalculationService.class);
 
 	private RevenueParameterRepository parameterRepository;
 

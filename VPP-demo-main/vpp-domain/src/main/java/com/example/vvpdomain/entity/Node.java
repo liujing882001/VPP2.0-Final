@@ -184,5 +184,53 @@ public class Node implements Serializable {
     public Node() {
     }
 
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public String getNodeName() { return nodeName; }
+    public void setNodeName(String nodeName) { this.nodeName = nodeName; }
+    public SysDictNode getNodeType() { return nodeType; }
+    public void setNodeType(SysDictNode nodeType) { this.nodeType = nodeType; }
+    public List<Device> getDeviceList() { return deviceList; }
+    public void setDeviceList(List<Device> deviceList) { this.deviceList = deviceList; }
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+    public String getProvince() { return province; }
+    public void setProvince(String province) { this.province = province; }
+    public String getSystemIds() { return systemIds; }
+    public void setSystemIds(String systemIds) { this.systemIds = systemIds; }
+    public String getProvinceRegionName() { return provinceRegionName; }
+    public String getCountyRegionName() { return countyRegionName; }
+    public String getCityRegionName() { return cityRegionName; }
+    public String getNodePostType() { return nodePostType; }
 
+    // 手动添加缺失的getter方法以确保编译通过
+    public Boolean getOnline() {
+        return online;
+    }
+
+    public String getProvinceRegionId() { return provinceRegionId; }
+    public void setProvinceRegionId(String provinceRegionId) { this.provinceRegionId = provinceRegionId; }
+    public void setProvinceRegionName(String provinceRegionName) { this.provinceRegionName = provinceRegionName; }
+    public String getCityRegionId() { return cityRegionId; }
+    public void setCityRegionId(String cityRegionId) { this.cityRegionId = cityRegionId; }
+    public void setCityRegionName(String cityRegionName) { this.cityRegionName = cityRegionName; }
+    public String getCountyRegionId() { return countyRegionId; }
+    public void setCountyRegionId(String countyRegionId) { this.countyRegionId = countyRegionId; }
+    public void setCountyRegionName(String countyRegionName) { this.countyRegionName = countyRegionName; }
+    public void setNodePostType(String nodePostType) { this.nodePostType = nodePostType; }
+    public void setOnline(Boolean online) { this.online = online; }
+    public double getLongitude() { return longitude; }
+    public void setLongitude(double longitude) { this.longitude = longitude; }
+    public double getLatitude() { return latitude; }
+    public void setLatitude(double latitude) { this.latitude = latitude; }
+    public double getNodeArea() { return nodeArea; }
+    public void setNodeArea(double nodeArea) { this.nodeArea = nodeArea; }
+    public Boolean getIsEnabled() { return isEnabled; }
+    public void setIsEnabled(Boolean isEnabled) { this.isEnabled = isEnabled; }
+    public String getNoHouseholds() { return noHouseholds; }
+    public void setNoHouseholds(String noHouseholds) { this.noHouseholds = noHouseholds; }
+    public Date getCreatedTime() { return createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
 }

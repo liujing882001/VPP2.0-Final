@@ -1,11 +1,7 @@
 package com.example.vvpcommom.Enum;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-@Getter
-@AllArgsConstructor
 public enum SysParamEnum {
 
 
@@ -40,4 +36,17 @@ public enum SysParamEnum {
      * 5：三方智慧能源平台
      */
     private String desc;
+
+    SysParamEnum(Integer id, String desc) {
+        this.id = id;
+        this.desc = desc;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 }

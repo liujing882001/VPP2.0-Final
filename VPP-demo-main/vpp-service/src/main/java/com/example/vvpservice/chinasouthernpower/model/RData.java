@@ -75,5 +75,46 @@ public class RData implements Serializable {
     @ApiModelProperty(value = "照明灯泡当前亮度（流明）", required = false)
     private Integer Rm;
 
-
+    public Double getP() { return P; }
+    public void setP(Double P) { this.P = P; }
+    public Double getQ() { return Q; }
+    public void setQ(Double Q) { this.Q = Q; }
+    public Double getPa() { return Pa; }
+    public void setPa(Double Pa) { this.Pa = Pa; }
+    public Double getPb() { return Pb; }
+    public void setPb(Double Pb) { this.Pb = Pb; }
+    public Double getPc() { return Pc; }
+    public void setPc(Double Pc) { this.Pc = Pc; }
+    public Double getQa() { return Qa; }
+    public void setQa(Double Qa) { this.Qa = Qa; }
+    public Double getQb() { return Qb; }
+    public void setQb(Double Qb) { this.Qb = Qb; }
+    public Double getQc() { return Qc; }
+    public void setQc(Double Qc) { this.Qc = Qc; }
+    public Double getC() { return C; }
+    public void setC(Double C) { this.C = C; }
+    public Double getUa() { return Ua; }
+    public void setUa(Double Ua) { this.Ua = Ua; }
+    public Double getUb() { return Ub; }
+    public void setUb(Double Ub) { this.Ub = Ub; }
+    public Double getUc() { return Uc; }
+    public void setUc(Double Uc) { this.Uc = Uc; }
+    public Double getIa() { return Ia; }
+    public void setIa(Double Ia) { this.Ia = Ia; }
+    public Double getIb() { return Ib; }
+    public void setIb(Double Ib) { this.Ib = Ib; }
+    public Double getIc() { return Ic; }
+    public void setIc(Double Ic) { this.Ic = Ic; }
+    public Integer getRb() { return Rb; }
+    public void setRb(Integer Rb) { this.Rb = Rb; }
+    public Double getRf() { return Rf; }
+    public void setRf(Double Rf) { this.Rf = Rf; }
+    public Integer getRv() { return Rv; }
+    public void setRv(Integer Rv) { this.Rv = Rv; }
+    public Integer getRc() { return Rc; }
+    public void setRc(Integer Rc) { this.Rc = Rc; }
+    public Double getSoc() { return Soc; }
+    public void setSoc(Double Soc) { this.Soc = Soc; }
+    public Integer getRm() { return Rm; }
+    public void setRm(Integer Rm) { this.Rm = Rm; }
 }

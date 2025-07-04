@@ -7,12 +7,16 @@ import com.example.vvpcommom.SpringBeanHelper;
 import com.example.vvpdomain.RevenueLoadDateRepository;
 import com.example.vvpdomain.entity.RevenueLoadDto;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class ExcelListener extends AnalysisEventListener<ExcelData> {
+
+	private static final Logger log = LoggerFactory.getLogger(ExcelListener.class);
 
 	private String projectId;
 

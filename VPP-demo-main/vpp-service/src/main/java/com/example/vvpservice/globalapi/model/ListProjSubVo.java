@@ -45,4 +45,7 @@ public class ListProjSubVo {
         this.stationState = node.getStationState();
         this.children = new ArrayList<>();
     }
+
+    public List<ListProjSubVo> getChildren() { return children; }
+    public void setChildren(List<ListProjSubVo> children) { this.children = children; }
 }

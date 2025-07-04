@@ -12,6 +12,8 @@ import com.example.vvpservice.alarm.AlarmStrategy.AlarmPatternStrategy;
 import com.example.vvpservice.alarm.impl.AlarmServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +25,9 @@ import static com.example.vvpservice.alarm.impl.AlarmServiceImpl.getAlarmContext
 @Component
 @Slf4j
 public class AlarmPatternAndStrategy implements AlarmPatternStrategy {
+
+	// 手动添加log变量以确保编译通过
+	private static final Logger log = LoggerFactory.getLogger(AlarmPatternAndStrategy.class);
 
 	private static final String ALARM = "alarm";
 

@@ -1,14 +1,10 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * @author Zhaoph
  * 报警状态
  */
-@Getter
-@AllArgsConstructor
 public enum AlarmStatusEnum {
 
 
@@ -24,4 +20,17 @@ public enum AlarmStatusEnum {
      * 报警状态0 已恢复 1报警中 2 处理中
      */
     private String desc;
+
+    AlarmStatusEnum(Integer id, String desc) {
+        this.id = id;
+        this.desc = desc;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 }

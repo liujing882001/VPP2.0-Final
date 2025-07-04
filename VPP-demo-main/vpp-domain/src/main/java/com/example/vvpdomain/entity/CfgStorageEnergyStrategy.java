@@ -168,4 +168,43 @@ public class CfgStorageEnergyStrategy implements Serializable {
             return BigDecimal.ZERO;
         }
     }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public Double getLongitude() { return longitude; }
+    public void setLongitude(Double longitude) { this.longitude = longitude; }
+    public Double getLatitude() { return latitude; }
+    public void setLatitude(Double latitude) { this.latitude = latitude; }
+    public String getSystemId() { return systemId; }
+    public void setSystemId(String systemId) { this.systemId = systemId; }
+    public Date getEffectiveDate() { return effectiveDate; }
+    public void setEffectiveDate(Date effectiveDate) { this.effectiveDate = effectiveDate; }
+    public String getPriceTag() { return priceTag; }
+    public void setPriceTag(String priceTag) { this.priceTag = priceTag; }
+    public Integer getOrder() { return order; }
+    public void setOrder(Integer order) { this.order = order; }
+    public String getTimeFrame() { return timeFrame; }
+    public void setTimeFrame(String timeFrame) { this.timeFrame = timeFrame; }
+    public String getSTime() { return sTime; }
+    public void setSTime(String sTime) { this.sTime = sTime; }
+    public String getETime() { return eTime; }
+    public void setETime(String eTime) { this.eTime = eTime; }
+    public String getProperty() { return property; }
+    public void setProperty(String property) { this.property = property; }
+    public BigDecimal getPriceHour() { return priceHour; }
+    public void setPriceHour(BigDecimal priceHour) { this.priceHour = priceHour; }
+    public String getStrategy() { return strategy; }
+    public void setStrategy(String strategy) { this.strategy = strategy; }
+    public String getStrategyForecasting() { return strategyForecasting; }
+    public void setStrategyForecasting(String strategyForecasting) { this.strategyForecasting = strategyForecasting; }
+    public Integer getStrategyHour() { return strategyHour; }
+    public void setStrategyHour(Integer strategyHour) { this.strategyHour = strategyHour; }
+    public Double getMultiplyingPower() { return multiplyingPower; }
+    public void setMultiplyingPower(Double multiplyingPower) { this.multiplyingPower = multiplyingPower; }
+    public Date getCreatedTime() { return createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
 }

@@ -225,5 +225,57 @@ public class IotTsKvMeteringDevice96 implements Serializable {
         return getNodeId() + TimeUtil.toYmdStr(getCountDate());
     }
 
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getProvinceRegionId() { return provinceRegionId; }
+    public void setProvinceRegionId(String provinceRegionId) { this.provinceRegionId = provinceRegionId; }
+    public String getCityRegionId() { return cityRegionId; }
+    public void setCityRegionId(String cityRegionId) { this.cityRegionId = cityRegionId; }
+    public String getCountyRegionId() { return countyRegionId; }
+    public void setCountyRegionId(String countyRegionId) { this.countyRegionId = countyRegionId; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public Double getLongitude() { return longitude; }
+    public void setLongitude(Double longitude) { this.longitude = longitude; }
+    public Double getLatitude() { return latitude; }
+    public void setLatitude(Double latitude) { this.latitude = latitude; }
+    public String getNodePostType() { return nodePostType; }
+    public void setNodePostType(String nodePostType) { this.nodePostType = nodePostType; }
+    public String getSystemId() { return systemId; }
+    public void setSystemId(String systemId) { this.systemId = systemId; }
+    public String getDeviceSn() { return deviceSn; }
+    public void setDeviceSn(String deviceSn) { this.deviceSn = deviceSn; }
+    public String getPointSn() { return pointSn; }
+    public void setPointSn(String pointSn) { this.pointSn = pointSn; }
+    public String getConfigKey() { return configKey; }
+    public void setConfigKey(String configKey) { this.configKey = configKey; }
+    public Double getHTotalUse() { return hTotalUse; }
+    public void setHTotalUse(Double hTotalUse) { this.hTotalUse = hTotalUse; }
+    public Double getColValue() { return colValue; }
+    public void setColValue(Double colValue) { this.colValue = colValue; }
+    public Double getAvgValue() { return avgValue; }
+    public void setAvgValue(Double avgValue) { this.avgValue = avgValue; }
+    public Double getMinValue() { return minValue; }
+    public void setMinValue(Double minValue) { this.minValue = minValue; }
+    public Double getMaxValue() { return maxValue; }
+    public void setMaxValue(Double maxValue) { this.maxValue = maxValue; }
+    public Double getFirstValue() { return firstValue; }
+    public void setFirstValue(Double firstValue) { this.firstValue = firstValue; }
+    public Double getLastValue() { return lastValue; }
+    public void setLastValue(Double lastValue) { this.lastValue = lastValue; }
+    public Double getTotalPowerEnergy() { return totalPowerEnergy; }
+    public void setTotalPowerEnergy(Double totalPowerEnergy) { this.totalPowerEnergy = totalPowerEnergy; }
+    public Double getTotalPowerEnergyBase() { return totalPowerEnergyBase; }
+    public void setTotalPowerEnergyBase(Double totalPowerEnergyBase) { this.totalPowerEnergyBase = totalPowerEnergyBase; }
+    public String getPointDesc() { return pointDesc; }
+    public void setPointDesc(String pointDesc) { this.pointDesc = pointDesc; }
+    public String getPointUnit() { return pointUnit; }
+    public void setPointUnit(String pointUnit) { this.pointUnit = pointUnit; }
+    public Date getCountDate() { return countDate; }
+    public void setCountDate(Date countDate) { this.countDate = countDate; }
+    public Date getCountTime() { return countTime; }
+    public void setCountTime(Date countTime) { this.countTime = countTime; }
+    public Date getCountDataTime() { return countDataTime; }
+    public String getTimeScope() { return timeScope; }
 
 }

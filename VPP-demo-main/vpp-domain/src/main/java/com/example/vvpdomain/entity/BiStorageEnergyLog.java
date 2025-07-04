@@ -92,14 +92,14 @@ public class BiStorageEnergyLog implements Serializable {
     private Double load;
     /**
      * 最大可充功率kw
-     * 可充功率=∑单个电站电池处于“充电”状态时的电池功率
+     * 可充功率=∑单个电站电池处于"充电"状态时的电池功率
      */
     @Column(name = "max_in_load")
     private Double maxInLoad;
 
     /**
      * 最大可放功率kw
-     * 可放功率= ∑单个电站电池处于“放电”状态时的电池功率；
+     * 可放功率= ∑单个电站电池处于"放电"状态时的电池功率；
      */
     @Column(name = "max_out_load")
     private Double maxOutLoad;
@@ -155,4 +155,12 @@ public class BiStorageEnergyLog implements Serializable {
         this.id = bis.getId() + calendar.getTimeInMillis();
     }
 
+    public Double getSoc() { return soc; }
+
+    public String getStationName() { return nodeName; }
+    public Date getStartTime() { return ts; }
+    public String getPk() { return id; }
+    public String getProperty() { return null; }
+    public Double getPrice() { return null; }
+    public String getTimeScope() { return null; }
 }

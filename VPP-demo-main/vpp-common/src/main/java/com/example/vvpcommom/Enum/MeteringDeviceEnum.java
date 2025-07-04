@@ -1,14 +1,10 @@
 package com.example.vvpcommom.Enum;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * @author Zhaoph
  * 计量设备  参数枚举
  */
-@Getter
-@AllArgsConstructor
 public enum MeteringDeviceEnum {
 
 
@@ -21,4 +17,17 @@ public enum MeteringDeviceEnum {
 
     private String id;
     private String name;
+
+    MeteringDeviceEnum(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

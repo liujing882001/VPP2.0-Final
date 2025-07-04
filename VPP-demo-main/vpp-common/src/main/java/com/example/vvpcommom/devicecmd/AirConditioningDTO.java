@@ -32,4 +32,9 @@ public class AirConditioningDTO implements Serializable {
     @ApiModelProperty(value = "风速 一档 二挡  三挡", name = "windSpeed", required = true)
     private WSEnum windSpeed;
 
+    // Manual getters to ensure compilation
+    public POWEREnum getPower() { return power; }
+    public WSEnum getWindSpeed() { return windSpeed; }
+    public MODEEnum getMode() { return mode; }
+    public TEMPEnum getTemp() { return temp; }
 }

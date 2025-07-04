@@ -87,4 +87,9 @@ public class CfgStorageEnergyShareProportion implements Serializable {
     public CfgStorageEnergyShareProportion() {
     }
 
+    // Add missing methods manually since Lombok might not be working properly
+    public Double getLoadProp() { return loadProp; }
+    public Double getPowerUserProp() { return powerUserProp; }
+    public Double getOperatorProp() { return operatorProp; }
+
 }

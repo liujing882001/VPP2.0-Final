@@ -134,4 +134,41 @@ public class NodeProfit implements Serializable {
 
     }
 
+    public String getProfitId() { return this.profitId; }
+    public void setProfitId(String profitId) { this.profitId = profitId; }
+    public String getNodeId() { return this.nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public double getProfitValue() { return this.profitValue; }
+    public void setProfitValue(double profitValue) { this.profitValue = profitValue; }
+    public Date getProfitDate() { return this.profitDate; }
+    public void setProfitDate(Date profitDate) { this.profitDate = profitDate; }
+    public double getPriceHigh() { return this.priceHigh; }
+    public void setPriceHigh(double priceHigh) { this.priceHigh = priceHigh; }
+    public double getPricePeak() { return this.pricePeak; }
+    public void setPricePeak(double pricePeak) { this.pricePeak = pricePeak; }
+    public double getPriceStable() { return this.priceStable; }
+    public void setPriceStable(double priceStable) { this.priceStable = priceStable; }
+    public double getPriceLow() { return this.priceLow; }
+    public void setPriceLow(double priceLow) { this.priceLow = priceLow; }
+    public double getInElectricityHigh() { return this.inElectricityHigh; }
+    public void setInElectricityHigh(double inElectricityHigh) { this.inElectricityHigh = inElectricityHigh; }
+    public double getInElectricityPeak() { return this.inElectricityPeak; }
+    public void setInElectricityPeak(double inElectricityPeak) { this.inElectricityPeak = inElectricityPeak; }
+    public double getInElectricityStable() { return this.inElectricityStable; }
+    public void setInElectricityStable(double inElectricityStable) { this.inElectricityStable = inElectricityStable; }
+    public double getInElectricityLow() { return this.inElectricityLow; }
+    public void setInElectricityLow(double inElectricityLow) { this.inElectricityLow = inElectricityLow; }
+    public double getOutElectricityHigh() { return this.outElectricityHigh; }
+    public void setOutElectricityHigh(double outElectricityHigh) { this.outElectricityHigh = outElectricityHigh; }
+    public double getOutElectricityPeak() { return this.outElectricityPeak; }
+    public void setOutElectricityPeak(double outElectricityPeak) { this.outElectricityPeak = outElectricityPeak; }
+    public double getOutElectricityStable() { return this.outElectricityStable; }
+    public void setOutElectricityStable(double outElectricityStable) { this.outElectricityStable = outElectricityStable; }
+    public double getOutElectricityLow() { return this.outElectricityLow; }
+    public void setOutElectricityLow(double outElectricityLow) { this.outElectricityLow = outElectricityLow; }
+    public Date getCreatedTime() { return this.createdTime; }
+    public void setCreatedTime(Date createdTime) { this.createdTime = createdTime; }
+    public Date getUpdateTime() { return this.updateTime; }
+    public void setUpdateTime(Date updateTime) { this.updateTime = updateTime; }
+
 }

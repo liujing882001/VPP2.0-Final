@@ -133,4 +133,31 @@ public class ElectricityPrice implements Serializable {
         this.dateType = price.getDateType();
         this.priceUse = price.getPriceUse();
     }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getNodeId() { return nodeId; }
+    public void setNodeId(String nodeId) { this.nodeId = nodeId; }
+    public LocalDateTime getEffectiveDate() { return effectiveDate; }
+    public void setEffectiveDate(LocalDateTime effectiveDate) { this.effectiveDate = effectiveDate; }
+    public String getTimeFrame() { return timeFrame; }
+    public void setTimeFrame(String timeFrame) { this.timeFrame = timeFrame; }
+    public LocalTime getStartTime() { return startTime; }
+    public void setStartTime(LocalTime startTime) { this.startTime = startTime; }
+    public LocalTime getEndTime() { return endTime; }
+    public void setEndTime(LocalTime endTime) { this.endTime = endTime; }
+    public String getProperty() { return property; }
+    public void setProperty(String property) { this.property = property; }
+    public BigDecimal getPrice() { return price; }
+    public void setPrice(BigDecimal price) { this.price = price; }
+    public BigDecimal getStrategy() { return strategy; }
+    public void setStrategy(BigDecimal strategy) { this.strategy = strategy; }
+    public LocalDateTime getCreatedTime() { return createdTime; }
+    public void setCreatedTime(LocalDateTime createdTime) { this.createdTime = createdTime; }
+    public LocalDateTime getUpdateTime() { return updateTime; }
+    public void setUpdateTime(LocalDateTime updateTime) { this.updateTime = updateTime; }
+    public String getDateType() { return dateType; }
+    public void setDateType(String dateType) { this.dateType = dateType; }
+    public String getPriceUse() { return priceUse; }
+    public void setPriceUse(String priceUse) { this.priceUse = priceUse; }
 }

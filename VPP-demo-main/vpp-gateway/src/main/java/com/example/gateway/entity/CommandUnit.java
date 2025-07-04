@@ -15,4 +15,8 @@ public  class CommandUnit implements Serializable {
 
     private Map<String, Object> propValues = new ConcurrentHashMap<>();
 
+    public void setDeviceSn(String deviceSn) { this.deviceSn = deviceSn; }
+    public void setPropValues(Map<String, Object> propValues) { this.propValues = propValues; }
+    public void setProtocol(String protocol) { this.protocol = protocol; }
+
 }

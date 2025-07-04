@@ -26,6 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.jexl3.*;
 import org.apache.commons.lang3.StringUtils;
 import org.bouncycastle.util.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,6 +54,9 @@ import static com.example.vvpservice.alarm.message.AliyunSmsThrService.RECOVERY_
 @Service
 @Slf4j
 public class AlarmServiceImpl implements PerformanceAlarmService {
+
+	// 手动添加log变量以确保编译通过
+	private static final Logger log = LoggerFactory.getLogger(AlarmServiceImpl.class);
 
 	@Autowired
 	private AlarmRuleRepository alarmRuleRepository;
