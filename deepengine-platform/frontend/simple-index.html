@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepEngine分布式能源管理平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .energy-solar { color: #f59e0b; }
+        .energy-wind { color: #06b6d4; }
+        .energy-storage { color: #8b5cf6; }
+        .energy-grid { color: #10b981; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航 -->
+    <nav class="gradient-bg text-white p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                    ⚡
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">DeepEngine</h1>
+                    <p class="text-sm opacity-80">AI原生能源平台</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span class="text-sm">系统正常运行</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <div class="container mx-auto p-6">
+        <!-- 页面标题 -->
+        <div class="mb-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">能源管理总览</h2>
+            <p class="text-gray-600">实时监控分布式能源系统运行状态</p>
+        </div>
+
+        <!-- 关键指标卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="card rounded-xl border border-gray-200 p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-3 bg-yellow-50 rounded-lg">
+                        <span class="text-2xl">☀️</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-green-600 text-sm font-medium">+15.2%</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-2xl font-bold text-gray-900" id="solar-power">--</span>
+                        <span class="text-sm text-gray-500">kW</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">光伏发电</p>
+                </div>
+            </div>
+
+            <div class="card rounded-xl border border-gray-200 p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-3 bg-cyan-50 rounded-lg">
+                        <span class="text-2xl">💨</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-green-600 text-sm font-medium">+8.7%</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-2xl font-bold text-gray-900" id="wind-power">--</span>
+                        <span class="text-sm text-gray-500">kW</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">风力发电</p>
+                </div>
+            </div>
+
+            <div class="card rounded-xl border border-gray-200 p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-3 bg-purple-50 rounded-lg">
+                        <span class="text-2xl">🔋</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-blue-600 text-sm font-medium">充电中</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-2xl font-bold text-gray-900" id="storage-capacity">--</span>
+                        <span class="text-sm text-gray-500">%</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">储能容量</p>
+                </div>
+            </div>
+
+            <div class="card rounded-xl border border-gray-200 p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="p-3 bg-green-50 rounded-lg">
+                        <span class="text-2xl">📈</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-green-600 text-sm font-medium">优秀</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-2xl font-bold text-gray-900" id="efficiency">--</span>
+                        <span class="text-sm text-gray-500">%</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">系统效率</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 系统状态和API测试 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- API状态面板 -->
+            <div class="card rounded-xl border border-gray-200 p-6 shadow-sm">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">API服务状态</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span class="font-medium">后端API</span>
+                        </div>
+                        <span class="text-sm text-gray-500">http://localhost:8000</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span class="font-medium">PowerGen API</span>
+                        </div>
+                        <button onclick="testPowerGenAPI()" class="text-blue-600 text-sm hover:underline">测试</button>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                            <span class="font-medium">SmartLoad API</span>
+                        </div>
+                        <span class="text-sm text-gray-500">开发中</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                            <span class="font-medium">VPPCloud API</span>
+                        </div>
+                        <span class="text-sm text-gray-500">开发中</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 快速操作面板 -->
+            <div class="card rounded-xl border border-gray-200 p-6 shadow-sm">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">快速操作</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="refreshData()" class="flex items-center justify-center space-x-2 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
+                        <span class="text-lg">🔄</span>
+                        <span class="text-sm font-medium">刷新数据</span>
+                    </button>
+                    <button onclick="window.open('http://localhost:8000/docs', '_blank')" class="flex items-center justify-center space-x-2 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
+                        <span class="text-lg">📚</span>
+                        <span class="text-sm font-medium">API文档</span>
+                    </button>
+                    <button onclick="testAllAPIs()" class="flex items-center justify-center space-x-2 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
+                        <span class="text-lg">🧪</span>
+                        <span class="text-sm font-medium">测试API</span>
+                    </button>
+                    <button onclick="showAbout()" class="flex items-center justify-center space-x-2 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
+                        <span class="text-lg">ℹ️</span>
+                        <span class="text-sm font-medium">关于项目</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI智能建议 -->
+        <div class="card rounded-xl border border-gray-200 p-6 shadow-sm">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">AI智能建议</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <span class="text-green-600">📈</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-green-900">发电效率优化</h4>
+                            <p class="text-sm text-green-700 mt-1">
+                                基于天气预测，建议调整光伏板角度，预计可提升15%发电效率
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span class="text-blue-600">🔋</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-blue-900">储能调度建议</h4>
+                            <p class="text-sm text-blue-700 mt-1">
+                                预测明日用电高峰在14:00-16:00，建议提前充电以应对需求
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="mt-12 bg-gray-800 text-white p-6">
+        <div class="container mx-auto text-center">
+            <p class="text-sm opacity-80">
+                DeepEngine分布式能源管理平台 v2.0.0 | AI原生开发 | 
+                <span id="current-time"></span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // API基础URL
+        const API_BASE_URL = 'http://localhost:8000';
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTime();
+            setInterval(updateTime, 1000);
+            loadInitialData();
+        });
+
+        // 更新时间显示
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = 
+                now.toLocaleString('zh-CN');
+        }
+
+        // 加载初始数据
+        async function loadInitialData() {
+            try {
+                await testPowerGenAPI();
+            } catch (error) {
+                console.error('加载初始数据失败:', error);
+                showNotification('连接后端服务失败，请确保后端服务正在运行', 'error');
+            }
+        }
+
+        // 测试PowerGen API
+        async function testPowerGenAPI() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/v1/powergen/dashboard`);
+                if (!response.ok) throw new Error('API请求失败');
+                
+                const data = await response.json();
+                console.log('PowerGen API响应:', data);
+                
+                // 更新UI数据
+                if (data.status === 'success' && data.data) {
+                    document.getElementById('solar-power').textContent = data.data.solar_power || '--';
+                    document.getElementById('wind-power').textContent = data.data.wind_power || '--';
+                    document.getElementById('storage-capacity').textContent = data.data.storage_capacity || '--';
+                    document.getElementById('efficiency').textContent = data.data.efficiency || '--';
+                }
+                
+                showNotification('PowerGen API测试成功', 'success');
+                return data;
+            } catch (error) {
+                console.error('PowerGen API测试失败:', error);
+                showNotification('PowerGen API测试失败: ' + error.message, 'error');
+                throw error;
+            }
+        }
+
+        // 测试所有API
+        async function testAllAPIs() {
+            showNotification('正在测试所有API...', 'info');
+            
+            try {
+                // 测试根API
+                const rootResponse = await fetch(`${API_BASE_URL}/`);
+                const rootData = await rootResponse.json();
+                console.log('根API响应:', rootData);
+                
+                // 测试健康检查
+                const healthResponse = await fetch(`${API_BASE_URL}/health`);
+                const healthData = await healthResponse.json();
+                console.log('健康检查响应:', healthData);
+                
+                // 测试PowerGen API
+                await testPowerGenAPI();
+                
+                showNotification('所有API测试完成，请查看控制台日志', 'success');
+            } catch (error) {
+                showNotification('API测试过程中出现错误: ' + error.message, 'error');
+            }
+        }
+
+        // 刷新数据
+        async function refreshData() {
+            showNotification('正在刷新数据...', 'info');
+            await loadInitialData();
+        }
+
+        // 显示关于信息
+        function showAbout() {
+            alert(`DeepEngine分布式能源管理平台 v2.0.0
+
+🌟 特色功能:
+• AI原生开发，90%代码AI生成
+• 支持光伏、风电、储能系统管理
+• 实时数据监控和预测分析
+• 云原生微服务架构
+
+🛠️ 技术栈:
+• 后端: FastAPI + Python
+• 前端: React + TypeScript
+• AI: PyTorch + Transformers
+• 数据库: PostgreSQL + Redis + InfluxDB
+
+📞 联系我们:
+• 项目地址: https://github.com/deepengine/vpp-2.0-platform
+• 技术支持: tech@deepengine.com`);
+        }
+
+        // 显示通知
+        function showNotification(message, type = 'info') {
+            const colors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500',
+                warning: 'bg-yellow-500'
+            };
+            
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-all duration-300`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // 3秒后自动移除
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,75 @@
+{
+  "name": "deepengine-platform",
+  "version": "2.0.0",
+  "description": "DeepEngine分布式能源管理平台 - AI原生开发",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend/app",
+    "ai-algorithms"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:ai\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "dev:ai": "cd ai-algorithms && python -m serving.main",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && docker build -t deepengine-backend .",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && pytest",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && flake8 app/",
+    "format": "npm run format:frontend && npm run format:backend",
+    "format:frontend": "cd frontend && npm run format",
+    "format:backend": "cd backend && black app/ && isort app/",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:build": "docker-compose build",
+    "k8s:deploy": "kubectl apply -f infrastructure/kubernetes/",
+    "k8s:delete": "kubectl delete -f infrastructure/kubernetes/"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "frontend/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:frontend",
+      "npm run format:frontend"
+    ],
+    "backend/**/*.py": [
+      "npm run lint:backend",
+      "npm run format:backend"
+    ]
+  },
+  "keywords": [
+    "distributed-energy",
+    "virtual-power-plant",
+    "ai-native",
+    "smart-grid",
+    "energy-management",
+    "cursor-ai",
+    "react",
+    "fastapi",
+    "pytorch"
+  ],
+  "author": "DeepEngine Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepengine/vpp-2.0-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deepengine/vpp-2.0-platform/issues"
+  },
+  "homepage": "https://github.com/deepengine/vpp-2.0-platform#readme"
+} 

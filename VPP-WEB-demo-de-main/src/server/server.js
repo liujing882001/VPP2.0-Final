@@ -18,8 +18,8 @@ var axiosCancel = [];
 // export const RequestUrl = "https://www.damao.tech/vppApi/";
 // export const RequestUrl = "htltp://182.92.237.233:19097/vppApi/";
 // export const RequestUrl = "http://deepengine.edgeoniot.com:29097/vppApi/"
-export const RequestUrl = "http://60.205.171.153:59090/"
-//export const RequestUrl="http://localhost:8080/"
+//export const RequestUrl = "http://60.205.171.153:59090/"
+export const RequestUrl="http://localhost:8080/"
 
 
 // http://182.92.237.233:19097/vppApi

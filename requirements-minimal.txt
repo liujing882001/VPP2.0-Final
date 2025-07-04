@@ -1,0 +1,5 @@
+# Minimal Dependencies for FastAPI
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv 
